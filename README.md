@@ -7,11 +7,11 @@
 
 * [IOS iRime App 下載安裝](<https://apps.apple.com/tw/app/irime%E8%BE%93%E5%85%A5%E6%B3%95-%E5%B0%8F%E9%B9%A4%E5%8F%8C%E6%8B%BC%E4%BA%94%E7%AC%94%E9%83%91%E7%A0%81%E8%BE%93%E5%85%A5%E6%B3%95/id1142623977>)
 
-* App 開啓區域網路分享 （ 讓PC可以上傳設定檔到 ipad 中
+* 開啓 iRime App 後 點擊 pc_pass_iRime 開啓區網分享功能 （ 讓 PC 可以上傳 設定檔 到 ipad 中 )
 
 ![](https://github.com/copy0401/irime-bopomo-config/raw/master/images/1_ipad1.jpg)
 
-* 開啓後的畫面
+* 開啓後的畫面 （ 會顯示區網網址 例如: 192.168.xx.xx ）
 
 ![](https://github.com/copy0401/irime-bopomo-config/raw/master/images/2_ipad2.jpg)
 
@@ -47,7 +47,7 @@
 
 ![](https://github.com/copy0401/irime-bopomo-config/raw/master/images/10_ipad6.png)
 
-![](https://github.com/copy0401/irime-bopomo-config/raw/master/images/11_ipad5.png)
+![](https://github.com/copy0401/irime-bopomo-config/raw/master/images/11_ipad6.png)
 
 * 本文所使用的輸入法由 [洋蔥](https://github.com/oniondelta) 所製作的洋蔥純注音 
 * 在此感謝 [Rime](https://github.com/rime) 作者佛振 等人的付出與貢獻 
