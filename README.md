@@ -1,0 +1,1 @@
+# irime-bopomo-config
