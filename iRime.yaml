@@ -1,0 +1,29 @@
+config_version: 1.4 #配置文件版本
+app_setting:
+    space_swipe_to_move: true #开启空格键盘移动光标
+    play_key_voice: false #开启键盘声
+    play_key_voice_name: "default.caf" #键盘声音文件,如果声音文件不存在或者没有开发访问权限，将播放系统声音。
+    play_key_voice_volume: 1.0 #键盘音量大小范围从0.0~1.0之间
+    impact_feedback: true #键盘震动反馈。这里只支持IOS10以上的系统，且只支持Taptic Engine技术的机型。
+    impact_feedback_style: "UIImpactFeedbackStyleLight" #UIImpactFeedbackStyleLight 轻   UIImpactFeedbackStyleMedium 中   UIImpactFeedbackStyleHeavy 高
+    swipe_just_insert_symbol: true #未开放
+    is_custom_key_font: false #键盘字体是否自字义
+    is_show_candidate_comment: true #反查开关
+    is_autom_fill_symbol: false #是否输入（ “ 等符号自动补全
+    is_open_host_app: false #是否点击键盘图标打开主程序
+    is_insert_symbol_auto_insert_candiate: false #是否输入符号时自动上屏
+    is_hide_mode_change: false #是否隐藏地球
+    current_chinese_type: 0 #是否繁体输出。
+    candidate_preedit_type: 1 #候择栏栏输入符号样式，1为正常上下结构，2为内嵌
+    is_open_word_association: true #打开联想词
+    is_show_select_input_icon: true #是否显示切换方案图标
+    keyboard_type: 0 #键盘类型：0 #为默认键盘，1为27键盘
+    portrait_keyboard_height_offset: 0 #坚屏键盘调试。最大增加40像素；
+    monitor_paste: 1 #候选栏显示剪贴板内容
+    candidate_tool_bar_is_show_emoji: 1 #显示emoji表情
+    candidate_tool_bar_is_show_schema_switcher: 1 #显示切换方案
+    candidate_tool_bar_is_show_pasteboard: 1 #显示剪贴板历史
+    is_text_replacement_on: false #是否启用系统文本替换
+    swipe_upper_to_rime: false #上滑是否交到rime,如果打开，只接受ASCII码。其它直接上屏
+    display_upper_text: true #是否显示上滑符
+    is_show_pop: true #是否显示字符预览

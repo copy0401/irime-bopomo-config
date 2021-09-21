@@ -1,0 +1,12 @@
+patch:
+  app_setting:
+    swipe_upper_to_rime: true
+    impact_feedback: false
+    play_key_voice: false
+    is_text_replacement_on: true
+    keyboard_type: 0
+    current_chinese_type: 0
+    is_show_candidate_comment: true
+    is_insert_symbol_auto_insert_candiate: false
+    is_open_word_association: false
+    theme_name: flypy
