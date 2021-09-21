@@ -86,4 +86,4 @@
 
 * 本文所使用的嘸蝦米輸入法 由 [ianzhuo](https://github.com/ianzhuo/irime-liur)  所製作的蝦米_繁中/蝦米_簡中.
 
-* 在此感謝 [Rime](https://github.com/rime) 作者佛振等人的付出與貢獻 .
+* 在此感謝 [Rime](https://github.com/rime) 作者 [佛振](https://github.com/lotem) 等人的付出與貢獻 .
