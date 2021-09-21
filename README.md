@@ -14,13 +14,13 @@
 
 - - -
 
-* 開啓後的畫面 （ 會顯示區網網址 例如: 192.168.xx.xx ）
+* 開啓後的畫面 （ 會顯示區網網址IP 例如: 192.168.xx.xx ）
 
 ![](https://github.com/copy0401/irime-bopomo-config/raw/master/images/2_ipad2.png)
 
 - - -
 
-* 電腦打開瀏覽器 輸入剛剛的網址 
+* 使用電腦瀏覽器 輸入剛剛的網址 
 
 ![](https://github.com/copy0401/irime-bopomo-config/raw/master/images/3_pc1.png)
 
@@ -32,7 +32,7 @@
 
 - - -
 
-* 移動到 theme/flypy/port 目錄下 刪除(紅色按鈕) 原先的 theme.yaml 
+* 移動到 theme/flypy/port 目錄下 刪除(紅色按鈕) 原先的 theme.yaml  ( 這裡以 覆蓋 flypy 主題的方式 爲例 )
 
 ![](https://github.com/copy0401/irime-bopomo-config/raw/master/images/5_pc3.png)
 
@@ -56,13 +56,13 @@
 
 - - -
 
-* 選 小鶴  ( 剛剛的 注音 )
+* 選 小鶴  ( 剛剛以修改爲 注音樣式的主題 )
 
 ![](https://github.com/copy0401/irime-bopomo-config/raw/master/images/9_ipad5.jpg)
 
 - - -
 
-* 設定完成
+* 設定完成後 輸入法的畫面
 
 ![](https://github.com/copy0401/irime-bopomo-config/raw/master/images/10_ipad6.png)
 
