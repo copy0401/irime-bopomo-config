@@ -52,50 +52,50 @@ preset_keyboards:
     round_corner: *jpgd4
 #现在只支持配置click,swipe_up,swipe_down键盘
     keys:
-      - {click: '1', label: "ㄅ❶", swipe_down: "1", width: 9}
-      - {click: '2', label: "ㄉ❷", swipe_down: "2", width: 9}
-      - {click: '3', label: "ˇ❸", swipe_down: "3", width: 9}
-      - {click: '4', label: "ˋ❹", swipe_down: "4", width: 9}
-      - {click: '5', label: "ㄓ❺", swipe_down: "5", width: 9}
-      - {click: '6', label: "ˊ❻", swipe_down: "6", width: 9}
-      - {click: '7', label: "˙❼", swipe_down: "7", width: 9}
-      - {click: '8', label: "ㄚ❽", swipe_down: "8", width: 9}
-      - {click: '9', label: "ㄞ❾", swipe_down: "9", width: 9}
-      - {click: '0', label: "ㄢ⓿", swipe_down: "0", width: 9}
+      - {click: '1', label: "ㄅ", width: 9}
+      - {click: '2', label: "ㄉ", width: 9}
+      - {click: '3', label: "ˇ", width: 9}
+      - {click: '4', label: "ˋ", width: 9}
+      - {click: '5', label: "ㄓ", width: 9}
+      - {click: '6', label: "ˊ", width: 9}
+      - {click: '7', label: "˙", width: 9}
+      - {click: '8', label: "ㄚ", width: 9}
+      - {click: '9', label: "ㄞ", width: 9}
+      - {click: '0', label: "ㄢ", width: 9}
       - {click: '-', label: "ㄦ", width: 9}
       # 第二行
-      - {click: q, label: "ㄆ🆀", swipe_down: "q", width: 9}
-      - {click: w, label: "ㄊ🆆", swipe_down: "w", width: 9}
-      - {click: e, label: "ㄍ🅴", swipe_down: "e", width: 9}
-      - {click: r, label: "ㄐ🆁", swipe_down: "r", width: 9}
-      - {click: t, label: "ㄔ🆃", swipe_down: "t", width: 9}
-      - {click: y, label: "ㄗ🆈", swipe_down: "y", width: 9}
-      - {click: u, label: "ㄧ🆄", swipe_down: "u", width: 9}
-      - {click: i, label: "ㄛ🅸", swipe_down: "i", width: 9}
-      - {click: o, label: "ㄟ🅾", swipe_down: "o", width: 9}
-      - {click: p, label: "ㄣ🅿", swipe_down: "p", width: 9}
+      - {click: q, label: "ㄆ", width: 9}
+      - {click: w, label: "ㄊ", width: 9}
+      - {click: e, label: "ㄍ", width: 9}
+      - {click: r, label: "ㄐ", width: 9}
+      - {click: t, label: "ㄔ", width: 9}
+      - {click: y, label: "ㄗ", width: 9}
+      - {click: u, label: "ㄧ", width: 9}
+      - {click: i, label: "ㄛ", width: 9}
+      - {click: o, label: "ㄟ", width: 9}
+      - {click: p, label: "ㄣ", width: 9}
       - {click: BackSpace, width: 9}
       # 第三行
-      - {click: a, label: "ㄇ🅐", swipe_down: "a", width: 9}
-      - {click: s, label: "ㄋ🆂", swipe_down: "s", width: 9}
-      - {click: d, label: "ㄎ🅳", swipe_down: "d", width: 9}
-      - {click: f, label: "ㄑ🅵", swipe_down: "f", width: 9}
-      - {click: g, label: "ㄕ🅶", swipe_down: "g", width: 9}
-      - {click: h, label: "ㄘ🅷", swipe_down: "h", width: 9}
-      - {click: j, label: "ㄨ🅹", swipe_down: "j", width: 9}
-      - {click: k, label: "ㄜ🅺", swipe_down: "k", width: 9}
-      - {click: l, label: "ㄠ🅻", swipe_down: "l", width: 9}
+      - {click: a, label: "ㄇ", width: 9}
+      - {click: s, label: "ㄋ", width: 9}
+      - {click: d, label: "ㄎ", width: 9}
+      - {click: f, label: "ㄑ", width: 9}
+      - {click: g, label: "ㄕ", width: 9}
+      - {click: h, label: "ㄘ", width: 9}
+      - {click: j, label: "ㄨ", width: 9}
+      - {click: k, label: "ㄜ", width: 9}
+      - {click: l, label: "ㄠ", width: 9}
       - {click: ";", label: "ㄤ", width: 9}
       - {width: 9}
       # 第四行
       # - {click: Shift_L, width: 15}
-      - {click: z, label: "ㄈ🆉", swipe_down: "z", width: 9}
-      - {click: x, label: "ㄌ🆇", swipe_down: "x", width: 9}
-      - {click: c, label: "ㄏ🅲", swipe_down: "c", width: 9}
-      - {click: v, label: "ㄒ🆅", swipe_down: "v", width: 9}
-      - {click: b, label: "ㄖ🅱", swipe_down: "b", width: 9}
-      - {click: n, label: "ㄙ🅽", swipe_down: "n", width: 9}
-      - {click: m, label: "ㄩ🅼", swipe_down: "m", width: 9}
+      - {click: z, label: "ㄈ", width: 9}
+      - {click: x, label: "ㄌ", width: 9}
+      - {click: c, label: "ㄏ", width: 9}
+      - {click: v, label: "ㄒ", width: 9}
+      - {click: b, label: "ㄖ", width: 9}
+      - {click: n, label: "ㄙ", width: 9}
+      - {click: m, label: "ㄩ", width: 9}
       - {click: ",", label: "ㄝ", width: 9}
       - {click:  ".", label: "ㄡ", width: 9}
       - {click: "/", label: "ㄥ", width: 9}
@@ -129,29 +129,29 @@ preset_keyboards:
       - {click: '0', width: 9}
       - {click: '@', width: 9}
       # 第二行
-      - {click: q, swipe_down: "!", width: 9}
-      - {click: w, swipe_down: "@", width: 9}
-      - {click: e, swipe_down: "#", width: 9}
-      - {click: r, swipe_down: "$", width: 9}
-      - {click: t, swipe_down: "%", width: 9}
-      - {click: y, swipe_down: "^", width: 9}
-      - {click: u, swipe_down: "&", width: 9}
-      - {click: i, swipe_down: "*", width: 9}
-      - {click: o, swipe_down: "(", width: 9}
-      - {click: p, swipe_down: ")", width: 9}
+      - {click: q, swipe_up: "!", width: 9}
+      - {click: w, swipe_up: "@", width: 9}
+      - {click: e, swipe_up: "#", width: 9}
+      - {click: r, swipe_up: "$", width: 9}
+      - {click: t, swipe_up: "%", width: 9}
+      - {click: y, swipe_up: "^", width: 9}
+      - {click: u, swipe_up: "&", width: 9}
+      - {click: i, swipe_up: "*", width: 9}
+      - {click: o, swipe_up: "(", width: 9}
+      - {click: p, swipe_up: ")", width: 9}
       - {click: BackSpace, width: 9}
       # 第三行
       - {click: '_', width: 9}
-      - {click: a, swipe_down: "\"", width: 9}
-      - {click: s, swipe_down: "'", width: 9}
-      - {click: d, swipe_down: "=", width: 9}
-      - {click: f, swipe_down: "<", width: 9}
-      - {click: g, swipe_down: ">", width: 9}
-      - {click: h, swipe_down: "[", width: 9}
-      - {click: j, swipe_down: "]", width: 9}
-      - {click: k, swipe_down: "{", width: 9}
-      - {click: l, swipe_down: "}", width: 9}
-      - {click: ";", swipe_down: ":", width: 9}
+      - {click: a, swipe_up: "\"", width: 9}
+      - {click: s, swipe_up: "'", width: 9}
+      - {click: d, swipe_up: "=", width: 9}
+      - {click: f, swipe_up: "<", width: 9}
+      - {click: g, swipe_up: ">", width: 9}
+      - {click: h, swipe_up: "[", width: 9}
+      - {click: j, swipe_up: "]", width: 9}
+      - {click: k, swipe_up: "{", width: 9}
+      - {click: l, swipe_up: "}", width: 9}
+      - {click: ";", swipe_up: ":", width: 9}
       # 第四行      
       - {click: Shift, width: 9}
       - {click: z, width: 9}
