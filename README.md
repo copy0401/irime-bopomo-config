@@ -16,7 +16,7 @@
 
 * 開啓後的畫面 （ 會顯示區網網址 例如: 192.168.xx.xx ）
 
-![](https://github.com/copy0401/irime-bopomo-config/raw/master/images/2_ipad2.jpg)
+![](https://github.com/copy0401/irime-bopomo-config/raw/master/images/2_ipad2.png)
 
 - - -
 
