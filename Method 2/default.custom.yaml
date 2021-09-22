@@ -8,9 +8,7 @@ patch:
   schema_list:
 ######## 洋蔥純注音版 ########
     - schema: bopomofo
-    # - schema: bopomofo_tw
-    # - schema: bopomofo_express
-    # - schema: terra_pinyin
+    - schema: terra_pinyin
     - schema: easy_en
 ##############################
 
