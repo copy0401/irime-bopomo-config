@@ -1,0 +1,465 @@
+# Trime default style settings
+# encoding: utf-8
+
+config_version: "0.9"
+name: 注音 #方案名称
+author: 䑝曻
+
+#键盘高度等
+height:
+  1: &jpgd1 44 #43.6 #符号键盘
+  2: &jpgd2 44 #41.5 #主键盘
+  3: &jpgd3 44 #41.5 #数字键盘
+  4: &jpgd4 12 #主键盘圆角
+  5: &jpgd5 36 #候选区高度
+  6: &jpgd6 0.5 #符号键盘行间距
+  7: &jpgd7 0.5 #符号键盘水平间距
+  8: &jpgd8 0.0 #符号键盘圆角
+  9: &jpgd9 11 #主键盘数字键盘行间距
+  10: &jpgd10 6 #主键盘数字键盘水平间距
+hide:
+  &hide true #false不显示候选窗或true显示候选窗
+
+style:
+  candidate_font: han.ttf #候选字型
+  candidate_padding: 14 #候选项内边距
+  candidate_spacing: 15 #候选间距
+  candidate_text_size: 24 #候选字号
+  candidate_use_cursor: true #高亮候选项
+  candidate_view_height: 44 #*jpgd5 #候选区高度
+  comment_height: 16 #编码提示区高度
+  comment_on_top: false #编码提示在上方或右侧
+  comment_text_size: 14 #编码提示字号
+  key_font: symbol.ttf #键盘字型
+  key_height: *jpgd2 #键高
+  key_long_text_size: 14 #长标签字号
+  key_text_size: 18 #键字号
+  key_width: 10.0 #键宽，占银幕宽的百分比
+  keyboards: [default, number, numberEn, symbols, symbolsEn, .symbols, english, .number] #键盘配置
+  label_text_size: 22 #标签字号
+  preview_text_size: 40 #按键提示字号
+  show_candidate: *hide #显示候选区
+  show_comment: true #显示提示区
+  show_preview: true #按键提示
+  symbol_text_size: 10 #符号字号
+  text_size: 12 #编码区字号
+  vertical_correction: -5
+  vertical_gap: *jpgd6 #键盘行距
+  text_height: 20 #编码框高度 默认值为：20
+  round_corner: 4 #值为0的话默认 iphone为4，ipad为8
+
+
+#键盘布局
+preset_keyboards:
+  default:
+    ascii_mode: 0
+    author: "䑝曻"
+    height: 39
+    horizontal_gap: *jpgd10
+    vertical_gap: 5
+    round_corner: *jpgd4
+    keys:
+      - {click: '1', label: 'ㄅ'}
+      - {click: '2', label: 'ㄉ'}
+      - {click: '3', label: 'ˇ'}
+      - {click: '4', label: 'ˋ'}
+      - {click: '5', label: 'ㄓ'}
+      - {click: '6', label: 'ˊ'}
+      - {click: '7', label: '˙'}
+      - {click: '8', label: 'ㄚ'}
+      - {click: '9', label: 'ㄞ'}
+      - {click: '0', label: 'ㄢ'}
+      - {click: "-", label: 'ㄦ'}
+      - {width: 4}
+      - {click: q, label: 'ㄆ'}
+      - {click: w, label: 'ㄊ'}
+      - {click: e, label: 'ㄍ'}
+      - {click: r, label: 'ㄐ'}
+      - {click: t, label: 'ㄔ'}
+      - {click: y, label: 'ㄗ'}
+      - {click: u, label: 'ㄧ'}
+      - {click: i, label: 'ㄛ'}
+      - {click: o, label: 'ㄟ'}
+      - {click: p, label: 'ㄣ'}
+      - {width: 5}
+      - {width: 5}
+      - {click: a, label: 'ㄇ'}
+      - {click: s, label: 'ㄋ'}
+      - {click: d, label: 'ㄎ'}
+      - {click: f, label: 'ㄑ'}
+      - {click: g, label: 'ㄕ'}
+      - {click: h, label: 'ㄘ'}
+      - {click: j, label: 'ㄨ'}
+      - {click: k, label: 'ㄜ'}
+      - {click: l, label: 'ㄠ'}
+      - {click: ';', label: 'ㄤ'}
+      - {width: 4}
+      - {click: z, label: 'ㄈ'}
+      - {click: x, label: 'ㄌ'}
+      - {click: c, label: 'ㄏ'}
+      - {click: v, label: 'ㄒ'}
+      - {click: b, label: 'ㄖ'}
+      - {click: n, label: 'ㄙ'}
+      - {click: m, label: 'ㄩ'}
+      - {click: ',', label: 'ㄝ'}
+      - {click: '.', label: 'ㄡ'}
+      - {click: '/', label: 'ㄥ'}
+      - {click: BackSpace}
+      - {click: number, width: 25}
+      - {click: space, width: 50}
+      - {click: Return, width: 25}
+    name: 註音鍵盤
+    width: 9
+
+  english:
+    ascii_mode: 1
+    author: "筋斗云"
+    height: *jpgd2
+    horizontal_gap: *jpgd10
+    vertical_gap: *jpgd9
+    round_corner: *jpgd4
+    keys: 
+      - {click: q, swipe_up: "1",  swipe_down: "一"}
+      - {click: w, swipe_up: "2",  swipe_down: "二"}
+      - {click: e, swipe_up: "3",  swipe_down: "三"}
+      - {click: r, swipe_up: "4",  swipe_down: "四"}
+      - {click: t, swipe_up: "5",  swipe_down: "五"}
+      - {click: y, swipe_up: "6",  swipe_down: "六"}
+      - {click: u, swipe_up: "7",  swipe_down: "七"}
+      - {click: i, swipe_up: "8",  swipe_down: "八"}
+      - {click: o, swipe_up: "9",  swipe_down: "九"}
+      - {click: p, swipe_up: "0",  swipe_down: "〇"}
+      - {width: 5}
+      - {click: a, swipe_up: "~", swipe_down: "~"}
+      - {click: s, swipe_up: "/", swipe_down: "/"}
+      - {click: d, swipe_up: ":", swipe_down: ":"}
+      - {click: f, swipe_up: ";", swipe_down: ";"}
+      - {click: g, swipe_up: bracket2, swipe_down: "("}
+      - {click: h, swipe_up: ")", swipe_down: ")"}
+      - {click: j, swipe_up: "@",  swipe_down: "@"}
+      - {click: k, swipe_up: quotationMarkHalf2,  swipe_down: '"'}
+      - {click: l, swipe_up: "”",  swipe_down: "'"}
+      - {width: 5}
+      - {click: Shift, width: 14}
+      - {width: 1}
+      - {click: z, swipe_up: "-",  swipe_down: "-"}
+      - {click: x, swipe_up: "_",  swipe_down: "_"}
+      - {click: c, swipe_up: "#",  swipe_down: "#"}
+      - {click: v, swipe_up: "?",  swipe_down: "?"}
+      - {click: b, swipe_up: "!",  swipe_down: "!"}
+      - {click: n, swipe_up: ",",  swipe_down: ","}
+      - {click: m, swipe_up: ".",  swipe_down: "."}
+      - {width: 1}
+      - {click: BackSpace, width: 14}
+      - {click: numberEn, width: 13}
+      - {click: DefaultKeyboard, width: 10}
+      - {click: .number, width: 10}
+      - {click: space, width: 42}
+      - {click: Return, width: 25}
+    name: "英文键盘"
+    width: 10
+
+  number:
+    ascii_mode: 1
+    author: "筋斗云"
+    height: *jpgd2
+    horizontal_gap: *jpgd10
+    vertical_gap: *jpgd9
+    round_corner: *jpgd4
+    keys: 
+      - {click: 1}
+      - {click: 2}
+      - {click: 3}
+      - {click: 4}
+      - {click: 5}
+      - {click: 6}
+      - {click: 7}
+      - {click: 8}
+      - {click: 9}
+      - {click: 0}
+      - {click: symbol12}
+      - {click: symbol24}
+      - {click: symbol25}
+      - {click: semicolon}
+      - {click: bracket}
+      - {click: bracket1}
+      - {click: symbol26}
+      - {click: at1}
+      - {click: quotationMarkFull}
+      - {click: quotationMarkFull1}
+      - {click: symbols, width: 14}
+      - {width: 3}
+      - {click: periodFull, width: 11}
+      - {click: commaFull, width: 11}
+      - {click: dunHalf, width: 11}
+      - {click: questionMark, width: 11}
+      - {click: point, width: 11}
+      - {click: periodHalf, width: 11}
+      - {width: 3}
+      - {click: BackSpace, width: 14}
+      - {click: DefaultKeyboard, width: 25}
+      - {click: space, width: 50}
+      - {click: Return, width: 25}
+    name: "苹果数字键盘"
+    width: 10
+
+  numberEn:
+    ascii_mode: 0
+    author: "筋斗云"
+    height: *jpgd2
+    horizontal_gap: *jpgd10
+    vertical_gap: *jpgd9
+    round_corner: *jpgd4
+    keys: 
+      - {click: 1}
+      - {click: 2}
+      - {click: 3}
+      - {click: 4}
+      - {click: 5}
+      - {click: 6}
+      - {click: 7}
+      - {click: 8}
+      - {click: 9}
+      - {click: 0}
+      - {click: "-"}
+      - {click: "/"}
+      - {click: ":"}
+      - {click: engsemicolon}
+      - {click: engbracket}
+      - {click: engbracket1}
+      - {click: symbol26}
+      - {click: engat1}
+      - {click: engquotationMarkFull}
+      - {click: engquotationMarkFull1}
+      - {click: symbolsEn, width: 14}
+      - {width: 3}
+      - {click: engperiodFull, width: 11}
+      - {click: engcommaHalf, width: 11}
+      - {click: engdunHalf, width: 11}
+      - {click: engquestionMark, width: 11}
+      - {click: engpoint, width: 11}
+      - {click: commit., width: 11}
+      - {width: 3}
+      - {click: BackSpace, width: 14}
+      - {click: english, width: 25}
+      - {click: space, width: 50}
+      - {click: Return, width: 25}
+    name: "苹果数字键盘"
+    width: 10
+
+  symbols:
+    ascii_mode: 1
+    author: "flypy.com"
+    height: *jpgd2
+    horizontal_gap: *jpgd10
+    vertical_gap: *jpgd9
+    round_corner: *jpgd4
+    keys: 
+      - {click: symbol1}
+      - {click: symbol2}
+      - {click: symbol3}
+      - {click: symbol4}
+      - {click: symbol5}
+      - {click: symbol6}
+      - {click: symbol7}
+      - {click: symbol8}
+      - {click: symbol9}
+      - {click: symbol10}
+      - {click: symbol11}
+      - {click: symbol12}
+      - {click: symbol13}
+      - {click: symbol14}
+      - {click: symbol28}
+      - {click: symbol15}
+      - {click: symbol16}
+      - {click: symbol27}
+      - {click: symbol17}
+      - {click: symbol18}
+      - {click: number, width: 14}
+      - {width: 3}
+      - {click: symbol29, width: 11}
+      - {click: symbol19, width: 11}
+      - {click: symbol20, width: 11}
+      - {click: symbol21, width: 11}
+      - {click: symbol22, width: 11}
+      - {click: symbol23, width: 11}
+      - {width: 3}
+      - {click: BackSpace, width: 14}
+      - {click: DefaultKeyboard, width: 25}
+      - {click: space, width: 50}
+      - {click: Return, width: 25}
+    name: "苹果符号键盘"
+    width: 10
+
+  symbolsEn:
+    ascii_mode: 0
+    author: "flypy.com"
+    height: *jpgd2
+    horizontal_gap: *jpgd10
+    vertical_gap: *jpgd9
+    round_corner: *jpgd4
+    keys: 
+      - {click: engsymbol1}
+      - {click: engsymbol2}
+      - {click: engsymbol3}
+      - {click: engsymbol4}
+      - {click: engsymbol5}
+      - {click: engsymbol6}
+      - {click: engsymbol7}
+      - {click: engsymbol8}
+      - {click: engsymbol9}
+      - {click: engsymbol10}
+      - {click: engsymbol11}
+      - {click: engsymbol12}
+      - {click: engsymbol13}
+      - {click: engsymbol14}
+      - {click: engsymbol28}
+      - {click: engsymbol15}
+      - {click: engsymbol16}
+      - {click: engsymbol27}
+      - {click: engsymbol17}
+      - {click: engsymbol18}
+      - {click: numberEn, width: 14}
+      - {width: 3}
+      - {click: engsymbol29, width: 11}
+      - {click: engsymbol19, width: 11}
+      - {click: engsymbol20, width: 11}
+      - {click: engsymbol21, width: 11}
+      - {click: engsymbol22, width: 11}
+      - {click: engsymbol23, width: 11}
+      - {width: 3}
+      - {click: BackSpace, width: 14}
+      - {click: english, width: 25}
+      - {click: space, width: 50}
+      - {click: Return, width: 25}
+    name: "苹果符号键盘"
+    width: 10
+
+preset_keys:
+  # 编辑
+  Shift: {label: Shift, send: Shift_L}
+  Return: {label: Enter, functional: false, send: Return}
+  BackSpace: {send: BackSpace}
+  space: {label: "空格", send: space}
+  number: {label: 123, send: Eisu_toggle, select: number}
+  numberEn: {label: 123, send: Eisu_toggle, select: numberEn}
+  symbols: {label: "#+=", send: Eisu_toggle, select: symbols}
+  symbolsEn: {label: "#+=", send: Eisu_toggle, select: symbolsEn}
+  .symbols: {label: "符号", send: Eisu_toggle, select: .symbols}
+  .number: {label: T9, send: Eisu_toggle, select: .number}
+  english: {label: "En", send: Eisu_toggle, select: english}
+  DefaultKeyboard: {label: 中, send: Eisu_toggle, select: default}
+  semicolon: {label: "；", text: ";{DefaultKeyboard}"} #先上屏；再跳转到default键盘
+  bracket: {label: "(", text: "(){Left}{DefaultKeyboard}"} #先上屏()光标往左移动一格再跳转到default键盘
+  bracket1: {label: ")", text: "){DefaultKeyboard}"} 
+  bracket2: {label: "(", text: "(){Left}"} #先上屏()光标往左移动一格
+  at1: {label: "@", text: "@{DefaultKeyboard}"} 
+  quotationMarkFull: {label: "〝", text: "〝〞{Left}{DefaultKeyboard}"} 
+  quotationMarkFull1: {label: "〞", text: "〞{DefaultKeyboard}"}
+  quotationMarkFull2: {label: "〝", text: "〝〞{Left}"} 
+  quotationMarkHalf1: {label: "\"", text: "\"{DefaultKeyboard}"} 
+  quotationMarkHalf2: {label: "\"", text: "“”{Left}"} 
+  periodFull: {label: "。", text: "。{DefaultKeyboard}"} #上屏全角句号再跳转到default键盘
+  periodHalf: {label: ".", text: ".{DefaultKeyboard}"} #直接上屏半角句号
+  commaHalf: {label: ",", commit: ","}
+  commaFull: {label: "，", text: "，{DefaultKeyboard}"}
+  dunHalf: {label: "、", text: "、{DefaultKeyboard}"}
+  questionMark: {label: "？", text: "？{DefaultKeyboard}"}
+  point: {label: "！", text: "！{DefaultKeyboard}"}
+  commit.: {label: ".", commit: "."}
+  commit1: {label: "1", commit: "1"}
+  commit2: {label: "2", commit: "2"}
+  commit3: {label: "3", commit: "3"}
+  commit4: {label: "4", commit: "4"}
+  commit5: {label: "5", commit: "5"}
+  commit6: {label: "6", commit: "6"}
+  commit7: {label: "7", commit: "7"}
+  commit8: {label: "8", commit: "8"}
+  commit9: {label: "9", commit: "9"}
+  commit0: {label: "0", commit: "0"}
+  commit～: {label: "～", commit: "～"}
+  commitgan: {label: "/", commit: "/"}
+  commit：: {label: "：", commit: "："}
+  commit；: {label: "；", commit: "；"}
+  commit）: {label: "）", commit: "）"}
+  commit@: {label: "@", commit: "@"}
+  commit-: {label: "-", commit: "-"}
+  commit_: {label: "_", commit: "_"}
+  commitJin: {label: "#", commit: "#"}
+  commit？: {label: "？", commit: "？"}
+  commit！: {label: "！", commit: "！"}
+  commit，: {label: "，", commit: "，"}
+  commit。: {label: "。", commit: "。"}
+  commit”: {label: "”", commit: "”"}
+  symbol1: {label: "【", text: "【{DefaultKeyboard}"}
+  symbol2: {label: "】", text: "】{DefaultKeyboard}"}
+  symbol3: {label: "{", text: "｛{DefaultKeyboard}"}
+  symbol4: {label: "}", text: "｝{DefaultKeyboard}"}
+  symbol5: {label: "#", text: "#{DefaultKeyboard}"}
+  symbol6: {label: "%", text: "%{DefaultKeyboard}"}
+  symbol7: {label: "^", text: "^{DefaultKeyboard}"}
+  symbol8: {label: "*", text: "*{DefaultKeyboard}"}
+  symbol9: {label: "+", text: "+{DefaultKeyboard}"}
+  symbol10: {label: "=", text: "={DefaultKeyboard}"}
+  symbol11: {label: "_", text: "_{DefaultKeyboard}"}
+  symbol12: {label: "-", text: "-{DefaultKeyboard}"}
+  symbol13: {label: "\\", text: "\\{DefaultKeyboard}"}
+  symbol14: {label: "|", text: "|{DefaultKeyboard}"}
+  symbol15: {label: "《", text: "《{DefaultKeyboard}"}
+  symbol16: {label: "》", text: "》{DefaultKeyboard}"}
+  symbol17: {label: "&", text: "&{DefaultKeyboard}"}
+  symbol18: {label: "·", text: "·{DefaultKeyboard}"}
+  symbol19: {label: "，", text: "，{DefaultKeyboard}"}
+  symbol20: {label: "^_^", text: "^_^{DefaultKeyboard}"}
+  symbol21: {label: "?", text: "?{DefaultKeyboard}"}
+  symbol22: {label: "!", text: "!{DefaultKeyboard}"}
+  symbol23: {label: "´", text: "´{DefaultKeyboard}"}
+  symbol24: {label: "/", text: "/{DefaultKeyboard}"}
+  symbol25: {label: "：", text: "：{DefaultKeyboard}"}
+  symbol26: {label: "¥", text: "￥{DefaultKeyboard}"}
+  symbol27: {label: "$", text: "${DefaultKeyboard}"}
+  symbol28: {label: "~", text: "~{DefaultKeyboard}"}
+  symbol29: {label: "…", text: "…{DefaultKeyboard}"}
+ #
+  engsemicolon: {label: "；", text: ";{english}"} #先上屏；再跳转到default键盘
+  engbracket: {label: "(", text: "(){Left}{english}"} #先上屏()光标往左移动一格再跳转到default键盘
+  engbracket1: {label: ")", text: "){english}"} 
+  engat1: {label: "@", text: "@{english}"} 
+  engquotationMarkFull: {label: "〝", text: "\"\"{Left}{english}"} 
+  engquotationMarkFull1: {label: "〞", text: "\"{english}"}
+  engperiodFull: {label: ".", text: ".{english}"} #上屏全角句号再跳转到default键盘
+  engcommaHalf: {label: ",", commit: ","}
+  engcommaFull: {label: "，", text: ",{english}"}
+  engdunHalf: {label: "、", text: "、{english}"}
+  engquestionMark: {label: "？", text: "?{english}"}
+  engpoint: {label: "！", text: "!{english}"}
+  engsymbol1: {label: "[", text: "[{english}"}
+  engsymbol2: {label: "]", text: "]{english}"}
+  engsymbol3: {label: "{", text: "｛{english}"}
+  engsymbol4: {label: "}", text: "｝{english}"}
+  engsymbol5: {label: "#", text: "#{english}"}
+  engsymbol6: {label: "%", text: "%{english}"}
+  engsymbol7: {label: "^", text: "^{english}"}
+  engsymbol8: {label: "*", text: "*{english}"}
+  engsymbol9: {label: "+", text: "+{english}"}
+  engsymbol10: {label: "=", text: "={english}"}
+  engsymbol11: {label: "_", text: "_{english}"}
+  engsymbol12: {label: "-", text: "-{english}"}
+  engsymbol13: {label: "\\", text: "\\{english}"}
+  engsymbol14: {label: "|", text: "|{english}"}
+  engsymbol15: {label: "<<", text: "<<{english}"}
+  engsymbol16: {label: ">>", text: ">>{english}"}
+  engsymbol17: {label: "&", text: "&{english}"}
+  engsymbol18: {label: ".", text: ".{english}"}
+  engsymbol19: {label: ",", text: ",{english}"}
+  engsymbol20: {label: "^_^", text: "^_^{english}"}
+  engsymbol21: {label: "?", text: "?{english}"}
+  engsymbol22: {label: "!", text: "!{english}"}
+  engsymbol23: {label: "´", text: "´{english}"}
+  engsymbol24: {label: "/", text: "/{english}"}
+  engsymbol25: {label: ":", text: ":{english}"}
+  engsymbol26: {label: "¥", text: "¥{english}"}
+  engsymbol27: {label: "$", text: "${english}"}
+  engsymbol28: {label: "~", text: "~{english}"}
+  engsymbol29: {label: "…", text: "…{english}"}
+  switchT9: {label: "T9", text: "　{.number}"}
