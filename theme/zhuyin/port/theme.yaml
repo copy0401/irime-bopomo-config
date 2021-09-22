@@ -108,7 +108,7 @@ preset_keyboards:
       - {click: number, width: 25}
       - {click: space, width: 50}
       - {click: Return, width: 25}
-    name: 註音鍵盤
+    name: 注音鍵盤
     width: 9
 
   english:
