@@ -82,8 +82,10 @@
 
 - - -
 
-* 本文所使用的注音輸入法 由 [洋蔥](https://github.com/oniondelta) 所製作的洋蔥純注音.
+* [iRime Github](https://github.com/jimmy54/iRime)
 
-* 本文所使用的嘸蝦米輸入法 由 [ianzhuo](https://github.com/ianzhuo/irime-liur)  所製作的蝦米_繁中/蝦米_簡中.
+* 本文所使用的注音輸入法 由 [洋蔥](https://github.com/oniondelta) 所製作.
+
+* 本文所使用的嘸蝦米輸入法 由 [ianzhuo](https://github.com/ianzhuo/irime-liur)  所製作.
 
 * 在此感謝 [Rime](https://github.com/rime) 作者 [佛振](https://github.com/lotem) 等人的付出與貢獻 .
