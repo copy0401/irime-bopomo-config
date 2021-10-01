@@ -2,8 +2,8 @@
 # encoding: utf-8
 
 config_version: "0.9"
-name: 苹果内置五笔键盘 #方案名称
-author: 筋斗云#作者资讯
+name: bopomo3 #方案名称
+author: copy0401
 
 #键盘高度等
 height:
@@ -59,7 +59,7 @@ preset_keyboards:
       - {click: p, label: "ㄣ", width: 9}
       - {click: BackSpace, width: 9}
       # 第三行
-      - {width: 9}
+      # - {width: 9}
       - {click: a, label: "ㄇ", width: 9}
       - {click: s, label: "ㄋ", width: 9}
       - {click: d, label: "ㄎ", width: 9}
@@ -70,9 +70,10 @@ preset_keyboards:
       - {click: k, label: "ㄜ", width: 9}
       - {click: l, label: "ㄠ", width: 9}
       - {click: ";", label: "ㄤ", width: 9}
+      - {click: commit←, width: 9}
       # 第四行
       # - {click: Shift_L, width: 15}
-      - {width: 9}
+      # - {width: 9}
       - {click: z, label: "ㄈ", width: 9}
       - {click: x, label: "ㄌ", width: 9}
       - {click: c, label: "ㄏ", width: 9}
@@ -83,57 +84,75 @@ preset_keyboards:
       - {click: ",", label: "ㄝ", width: 9}
       - {click:  ".", label: "ㄡ", width: 9}
       - {click: "/", label: "ㄥ", width: 9}
+      - {click: commit→, width: 9}
       # 第五行
-      - {click: K_symbols123, width: 18}
-      - {click: space, width: 64}
-      - {click: Return, width: 18}
+      - {click: english, width: 14}
+      - {click: K_symbols123, width: 12}
+      - {click: space, width: 54}
+      - {click: Return, width: 20}
     name: "26鍵2"
     width: 10
 
   english:
     ascii_mode: 1
-    author: "筋斗云"
+    author: copy0401
     height: *jpgd2
     horizontal_gap: *jpgd10
     vertical_gap: *jpgd9
     round_corner: *jpgd4
-    keys: 
-      - {click: q, swipe_up: "1",  swipe_down: "一"}
-      - {click: w, swipe_up: "2",  swipe_down: "二"}
-      - {click: e, swipe_up: "3",  swipe_down: "三"}
-      - {click: r, swipe_up: "4",  swipe_down: "四"}
-      - {click: t, swipe_up: "5",  swipe_down: "五"}
-      - {click: y, swipe_up: "6",  swipe_down: "六"}
-      - {click: u, swipe_up: "7",  swipe_down: "七"}
-      - {click: i, swipe_up: "8",  swipe_down: "八"}
-      - {click: o, swipe_up: "9",  swipe_down: "九"}
-      - {click: p, swipe_up: "0",  swipe_down: "〇"}
-      - {width: 5}
-      - {click: a, swipe_up: "～", swipe_down: "~"}
-      - {click: s, swipe_up: "／", swipe_down: "/"}
-      - {click: d, swipe_up: "：", swipe_down: ":"}
-      - {click: f, swipe_up: "；", swipe_down: ";"}
-      - {click: g, swipe_up: "（", swipe_down: "("}
-      - {click: h, swipe_up: "）", swipe_down: ")"}
-      - {click: j, swipe_up: "@",  swipe_down: "@"}
-      - {click: k, swipe_up: "“",  swipe_down: '"'}
-      - {click: l, swipe_up: "”",  swipe_down: "'"}
-      - {width: 5}
-      - {click: Shift, width: 14}
-      - {width: 1}
-      - {click: z, swipe_up: "-",  swipe_down: "-"}
-      - {click: x, swipe_up: "_",  swipe_down: "_"}
-      - {click: c, swipe_up: "#",  swipe_down: "#"}
-      - {click: v, swipe_up: "？",  swipe_down: "?"}
-      - {click: b, swipe_up: "！",  swipe_down: "!"}
-      - {click: n, swipe_up: "，",  swipe_down: ","}
-      - {click: m, swipe_up: "。",  swipe_down: "."}
-      - {width: 1}
-      - {click: BackSpace, width: 14}
-      - {click: symbols, width: 14}
-      - {click: .number, width: 12}
-      - {click: space, width: 42}
-      - {click: DefaultKeyboard2, width: 12}
+    keys:
+      # 第一行
+      - {click: '1', width: 9}
+      - {click: '2', width: 9}
+      - {click: '3', width: 9}
+      - {click: '4', width: 9}
+      - {click: '5', width: 9}
+      - {click: '6', width: 9}
+      - {click: '7', width: 9}
+      - {click: '8', width: 9}
+      - {click: '9', width: 9}
+      - {click: '0', width: 9}
+      - {click: '@', width: 9}
+      # 第二行
+      - {click: q, swipe_up: "!", swipe_down: "!", width: 9}
+      - {click: w, swipe_up: "@", swipe_down: "@", width: 9}
+      - {click: e, swipe_up: "#", swipe_down: "#", width: 9}
+      - {click: r, swipe_up: "$", swipe_down: "$", width: 9}
+      - {click: t, swipe_up: "%", swipe_down: "%", width: 9}
+      - {click: y, swipe_up: "^", swipe_down: "^", width: 9}
+      - {click: u, swipe_up: "&", swipe_down: "&", width: 9}
+      - {click: i, swipe_up: "*", swipe_down: "*", width: 9}
+      - {click: o, swipe_up: "(", swipe_down: "(", width: 9}
+      - {click: p, swipe_up: ")", swipe_down: ")", width: 9}
+      - {click: BackSpace, width: 9}
+      # 第三行
+      - {click: a, swipe_up: "\"", swipe_down: "\"", width: 9}
+      - {click: s, swipe_up: "'", swipe_down: "'", width: 9}
+      - {click: d, swipe_up: "=", swipe_down: "=", width: 9}
+      - {click: f, swipe_up: "<", swipe_down: "<", width: 9}
+      - {click: g, swipe_up: ">", swipe_down: ">", width: 9}
+      - {click: h, swipe_up: "[", swipe_down: "[", width: 9}
+      - {click: j, swipe_up: "]", swipe_down: "]", width: 9}
+      - {click: k, swipe_up: "{", swipe_down: "{", width: 9}
+      - {click: l, swipe_up: "}", swipe_down: "}", width: 9}
+      - {click: ";", swipe_up: ":", swipe_down: ":" , width: 9}
+      - {click: '_', swipe_up: "-", swipe_down: "-" , width: 9}
+      # 第四行      
+      - {click: Shift, width: 9}
+      - {click: z, width: 9}
+      - {click: x, width: 9}
+      - {click: c, width: 9}
+      - {click: v, width: 9}
+      - {click: b, width: 9}
+      - {click: n, width: 9}
+      - {click: m, width: 9}
+      - {click: ",", swipe_up: "~", swipe_down: "~", width: 9}
+      - {click: ".", swipe_up: "?", swipe_down: "?", width: 9}
+      - {click: "/", swipe_up: "|", swipe_down: "|", width: 9}
+      # 第五行      
+      - {click: DefaultKeyboard2, width: 14}
+      - {click: K_symbols123, width: 12}
+      - {click: space, width: 54}
       - {click: Return, width: 20}
     name: "英文键盘"
     width: 10
@@ -2772,4 +2791,6 @@ preset_keys:
   K_symbolsD1: {label: "▲", send: Eisu_toggle, select: symbolsD1}
   K_symbolsD2: {label: "▲", send: Eisu_toggle, select: symbolsD2}
   K_symbolsD2x: {label: "▼", send: Eisu_toggle, select: symbolsD2}
-
+  #左右移动光标
+  commit←: {label: "←", text: "{Left}"}
+  commit→: {label: "→", text: "{Right}"}
