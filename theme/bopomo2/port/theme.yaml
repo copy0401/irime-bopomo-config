@@ -38,7 +38,12 @@ style:
   comment_height: 16 #逐码高度 默认值为：16
   show_preview: true #是否显示气泡 默认显示
   round_corner: 0 #值为0的话默认 iphone为4，ipad为8
-  color_scheme: aqua #配色方案
+  # color_scheme: aqua #配色方案 目前系統黑色主題模式下 沒有作用
+  # aqua 藍底白字 推薦
+  # ink 黑底白字 推薦
+  # azure 藍底黃字 有些界面看不到 
+  # lost_temple 綠底黑字 選字爲深灰黑字 
+  # starcraft 黑底綠字 有些界面邊線看不到
 
 
 #键盘布局
