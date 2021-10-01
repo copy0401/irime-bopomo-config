@@ -38,11 +38,13 @@ style:
   comment_height: 16 #逐码高度 默认值为：16
   show_preview: true #是否显示气泡 默认显示
   round_corner: 0 #值为0的话默认 iphone为4，ipad为8
-  # color_scheme: aqua #配色方案 目前系統黑色主題模式下 沒有作用
+  # color_scheme: lost_temple2 #配色方案 目前系統黑色主題模式下 沒有作用
   # aqua 藍底白字 推薦
   # ink 黑底白字 推薦
   # azure 藍底黃字 有些界面看不到 
-  # lost_temple 綠底黑字 選字爲深灰黑字 
+  # lost_temple 綠底黑字 選字爲深灰黑字
+  # lost_temple2 綠底黑字 選字爲深灰黑字 
+  # dark_temple
   # starcraft 黑底綠字 有些界面邊線看不到
 
 
@@ -268,6 +270,17 @@ preset_color_schemes:
     hilited_back_color: 0x222222
     hilited_candidate_text_color: 0x000000
     hilited_candidate_back_color: 0xcae682
+
+  lost_temple2:
+    name: 孤寺／Lost Temple2
+    author: 佛振 <chen.sst@gmail.com>, based on ir_black
+    text_color: 0xf6f3e8 #黑
+    back_color: 0xeeeeec #灰
+    border_color: 0xe0e0e0 #灰
+    hilited_text_color: 0x222222 #深灰 小小的注音符號
+    hilited_back_color: 0xcae682 #綠
+    hilited_candidate_text_color: 0x000000 #黑 0x000000  被選中的字
+    hilited_candidate_back_color: 0xcae682 #綠 0xcae682
 
   dark_temple:
     name: 暗堂／Dark Temple
