@@ -108,11 +108,10 @@ preset_keyboards:
       - {click: "/", label: "ㄥ", width: 9}
       - {click: commit→, width: 9}
       # 第五行
-      - {click: english, width: 14}
-      - {click: number, width: 14}
-      - {click: space, width: 50}
-      - {click: Return, width: 20}
-      - {click: Return, width: 2}
+      - {click: english, width: 18}
+      - {click: number, width: 9}
+      - {click: space, width: 54}
+      - {click: Return, width: 18}
     name: "默认键盘"
     width: 10
 
@@ -175,10 +174,10 @@ preset_keyboards:
       - {click: ".", swipe_up: "}", swipe_down: "}", width: 9}
       - {click: "?", swipe_up: "!", swipe_down: "!", width: 9}
       # 第五行      
-      - {click: DefaultKeyboard2, width: 14}
-      - {click: number, width: 14}
-      - {click: space, width: 52}
-      - {click: Return, width: 20}
+      - {click: DefaultKeyboard2, width: 18}
+      - {click: number, width: 9}
+      - {click: space, width: 54}
+      - {click: Return, width: 18}
     name: "英文键盘"
     width: 10
 
@@ -242,10 +241,10 @@ preset_keyboards:
       - {click: "}", swipe_up: ".", swipe_down: ".", width: 9}
       - {click: "!", swipe_up: "?", swipe_down: "?", width: 9}
       # 第五行 
-      - {click: DefaultKeyboard, width: 14}
-      - {click: english, width: 14}
-      - {click: space, width: 52}
-      - {click: Return, width: 20}
+      - {click: DefaultKeyboard, width: 18}
+      - {click: english, width: 9}
+      - {click: space, width: 54}
+      - {click: Return, width: 18}
     name: "苹果数字键盘"
     width: 10
 
