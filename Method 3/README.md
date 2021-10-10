@@ -1,8 +1,13 @@
 2021/10/1 更新後已經有內建 注音輸入法
+
 而適用於注音輸入法的主題 iPadOS不會顯示該主題 ( iOS 能用 )
+
 需要將 /theme/zhuyin/info.yaml  下載
+
 內容 SupportPlatform: iOS  那行修改爲 SupportPlatform: iOS,iPadOS 
+
 刪除 原本的設定檔
+
 上傳 修改後的設定檔
 
 ---
