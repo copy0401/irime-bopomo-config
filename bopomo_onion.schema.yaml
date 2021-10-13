@@ -8,7 +8,7 @@ schema:
   author:
     - 『洋蔥』 # 以佛振注音支持聲韻亂序方案改編
   description: |
-    注音符號輸入，採用「大千式」鍵盤排列。
+    注音符號輸入,採用「大千式」鍵盤排列.
 
   dependencies:
     - cangjie5
