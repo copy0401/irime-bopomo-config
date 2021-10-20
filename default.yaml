@@ -141,8 +141,8 @@ schema_list:
   - schema: luna_pinyin_14
   - schema: bopomofo
   - schema: bopomo_onion
-  # - schema: terra_pinyin
-  # - schema: cangjie5
+  - schema: terra_pinyin
+  - schema: cangjie5
   # - schema: xiapin_mtc
   # - schema: xiapin_msc
 

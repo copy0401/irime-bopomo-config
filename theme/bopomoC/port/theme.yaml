@@ -68,7 +68,7 @@ preset_keyboards:
     vertical_gap: *jpgd9
     round_corner: *jpgd4
     keys:
-      - {click: '', label: '', width: 9 }
+      - {click: sendnil , width: 9 }
       - {click: '1', label: 'ㄅ' ,  width: 6.5  }
       - {click: '2', label: 'ㄉ' ,  width: 6.5  }
       - {click: '3', label: 'ˇ'  ,  width: 6.5  }
@@ -99,7 +99,7 @@ preset_keyboards:
       - {click: ']' , width: 6.5 }
       - {click: BackSpace, width: 10.5 }
       #
-      - {click: '', label: '', width: 13}
+      - {click: sendnil , width: 13}
       - {click: a,   label: 'ㄇ' , width: 6.5  }
       - {click: s,   label: 'ㄋ' , width: 6.5  }
       - {click: d,   label: 'ㄎ' , width: 6.5  }
@@ -111,7 +111,7 @@ preset_keyboards:
       - {click: l,   label: 'ㄠ' , width: 6.5  }
       - {click: ';', label: 'ㄤ' ,  width: 6.5  }
       - {click: commitgan ,  width: 6.5  }
-      - {click: '', label: '', width: 15.5 }
+      - {click: sendnil , width: 15.5 }
       #
       - {click: Shift, width: 15.5}
       - {click: z,   label: 'ㄈ' , width: 6.5 }
@@ -144,7 +144,7 @@ preset_keyboards:
     vertical_gap: *jpgd9
     round_corner: *jpgd4
     keys:
-      - {click: '', label: '', width: 9 }
+      - {click: sendnil , width: 9 }
       - {click: '1', swipe_down: commit! , swipe_up: commit! , width: 6.5}
       - {click: '2', swipe_down: commit@ , swipe_up: commit@ , width: 6.5}
       - {click: '3', swipe_down: commit# , swipe_up: commit# , width: 6.5}
@@ -175,7 +175,7 @@ preset_keyboards:
       - {click: ']' , swipe_down: '}' , swipe_up: '}', width: 6.5 }
       - {click: BackSpace, width: 10.5 }
       #
-      - {click: '', label: '', width: 13}
+      - {click: sendnil , width: 13}
       - {click: a  , swipe_down: commitA , swipe_up: commitA , width: 6.5}
       - {click: s  , swipe_down: commitS , swipe_up: commitS , width: 6.5}
       - {click: d  , swipe_down: commitD , swipe_up: commitD , width: 6.5}
@@ -187,7 +187,7 @@ preset_keyboards:
       - {click: l  , swipe_down: commitL , swipe_up: commitL , width: 6.5}
       - {click: ';', swipe_down: ':' , swipe_up: ':',  width: 6.5  }
       - {click: "'", swipe_down: '"' , swipe_up: '"',  width: 6.5  }
-      - {click: '',  label: '',width: 15.5 }
+      - {click: sendnil , width: 15.5 }
       #
       - {click: Shift, width: 15.5}
       - {click: z , swipe_down: commitZ , swipe_up: commitZ , width: 6.5}
@@ -512,5 +512,6 @@ preset_keys:
   commitCamma: {label: ",", commit: ","}
   commitDot: {label: ".", commit: "."}
   commitQuestion: {label: "?", commit: "?"}
-
-
+  send;: {label: ";", text: "；", send: DarkSpecialCharacter}
+  send.: {label: ".", text: ".", send: DarkSpecialCharacter}
+  sendnil: {label: "", text: "", send: DarkSpecialCharacter}
