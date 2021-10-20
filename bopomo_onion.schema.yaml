@@ -158,6 +158,7 @@ bpm_reverse_lookup:
   overwrite_comment: true
   dictionary: bopomo_onion.extended
   comment_format:
+    # - xform/.+// # test
     - xform/iu/iou/
     - xform/ui/uei/
     - xform/ong/ung/

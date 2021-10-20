@@ -15,8 +15,8 @@ height:
   6: &jpgd6 0.5 #符号键盘行间距
   7: &jpgd7 0.5 #符号键盘水平间距
   8: &jpgd8 0.0 #符号键盘圆角
-  9: &jpgd9 11 #主键盘数字键盘行间距
-  10: &jpgd10 13 #主键盘数字键盘水平间距
+  9: &jpgd9 11 #主键盘数字键盘 垂直间距 (行間距) 11
+  10: &jpgd10 13 #主键盘数字键盘 水平间距 13
 hide:
   &hide true #false不显示候选窗或true显示候选窗
 
@@ -45,7 +45,7 @@ style:
   text_size: 12 #编码区字号
   vertical_correction: -5
   vertical_gap: *jpgd6 #键盘行距
-  round_corner: 0 #圓角 值为0的话默认 iphone为4，ipad为8
+  round_corner: 0 #圓角 值为0的话默认 iphone为4，ipad为8，min=0.1
   #
   text_size: 12 #编码字体大小 默认值为：12
   #
@@ -69,61 +69,61 @@ preset_keyboards:
     round_corner: *jpgd4
     keys:
       - {click: sendnil , width: 9 }
-      - {click: '1', label: 'ㄅ ⓵' ,  width: 6.5  }
-      - {click: '2', label: 'ㄉ ⓶' ,  width: 6.5  }
+      - {click: '1', label: 'ㄅ⓵' ,  width: 6.5  }
+      - {click: '2', label: 'ㄉ⓶' ,  width: 6.5  }
       - {click: '3', label: 'ˇ'  ,  width: 6.5  }
       - {click: '4', label: 'ˋ'  ,  width: 6.5  }
-      - {click: '5', label: 'ㄓ ⓹' ,  width: 6.5  }
+      - {click: '5', label: 'ㄓ⓹' ,  width: 6.5  }
       - {click: '6', label: 'ˊ'  ,  width: 6.5  }
       - {click: '7', label: '˙'  ,  width: 6.5  }
-      - {click: '8', label: 'ㄚ ⓼' ,  width: 6.5  }
-      - {click: '9', label: 'ㄞ ⓽' ,  width: 6.5  }
-      - {click: '0', label: 'ㄢ ⓪' ,  width: 6.5  }
-      - {click: "-", label: 'ㄦ ⓪' ,  width: 6.5  }
+      - {click: '8', label: 'ㄚ⓼' ,  width: 6.5  }
+      - {click: '9', label: 'ㄞ⓽' ,  width: 6.5  }
+      - {click: '0', label: 'ㄢ⓪' ,  width: 6.5  }
+      - {click: "-", label: 'ㄦ⓪' ,  width: 6.5  }
       - {click: commaFull , width: 6.5 }
       - {click: periodFull , width: 6.5 }
       - {click: questionMark , width: 6.5 }
       #
       - {click: english, width: 11.5 }
-      - {click: q, label: 'ㄆ 🅀', width: 6.5 }
-      - {click: w, label: 'ㄊ 🅆', width: 6.5 }
-      - {click: e, label: 'ㄍ 🄴', width: 6.5 }
-      - {click: r, label: 'ㄐ 🅁', width: 6.5 }
-      - {click: t, label: 'ㄔ 🅃', width: 6.5 }
-      - {click: y, label: 'ㄗ 🅈', width: 6.5 }
-      - {click: u, label: 'ㄧ 🅄', width: 6.5 }
-      - {click: i, label: 'ㄛ 🄸', width: 6.5 }
-      - {click: o, label: 'ㄟ 🄾', width: 6.5 }
-      - {click: p, label: 'ㄣ 🄿', width: 6.5 }
+      - {click: q, label: 'ㄆ🅀', width: 6.5 }
+      - {click: w, label: 'ㄊ🅆', width: 6.5 }
+      - {click: e, label: 'ㄍ🄴', width: 6.5 }
+      - {click: r, label: 'ㄐ🅁', width: 6.5 }
+      - {click: t, label: 'ㄔ🅃', width: 6.5 }
+      - {click: y, label: 'ㄗ🅈', width: 6.5 }
+      - {click: u, label: 'ㄧ🅄', width: 6.5 }
+      - {click: i, label: 'ㄛ🄸', width: 6.5 }
+      - {click: o, label: 'ㄟ🄾', width: 6.5 }
+      - {click: p, label: 'ㄣ🄿', width: 6.5 }
       - {click: '[' , width: 6.5 }
       - {click: ']' , width: 6.5 }
       - {click: BackSpace, width: 10.5 }
       #
       - {click: sendnil , width: 13}
-      - {click: a,   label: 'ㄇ 🄰' , width: 6.5  }
-      - {click: s,   label: 'ㄋ 🅂' , width: 6.5  }
-      - {click: d,   label: 'ㄎ 🄳' , width: 6.5  }
-      - {click: f,   label: 'ㄑ 🄵' , width: 6.5  }
-      - {click: g,   label: 'ㄕ 🄶' , width: 6.5  }
-      - {click: h,   label: 'ㄘ 🄷' , width: 6.5  }
-      - {click: j,   label: 'ㄨ 🄹' , width: 6.5  }
-      - {click: k,   label: 'ㄜ 🄺' , width: 6.5  }
-      - {click: l,   label: 'ㄠ 🄻' , width: 6.5  }
-      - {click: ';', label: 'ㄤ ⓪' ,  width: 6.5  }
+      - {click: a,   label: 'ㄇ🄰' , width: 6.5  }
+      - {click: s,   label: 'ㄋ🅂' , width: 6.5  }
+      - {click: d,   label: 'ㄎ🄳' , width: 6.5  }
+      - {click: f,   label: 'ㄑ🄵' , width: 6.5  }
+      - {click: g,   label: 'ㄕ🄶' , width: 6.5  }
+      - {click: h,   label: 'ㄘ🄷' , width: 6.5  }
+      - {click: j,   label: 'ㄨ🄹' , width: 6.5  }
+      - {click: k,   label: 'ㄜ🄺' , width: 6.5  }
+      - {click: l,   label: 'ㄠ🄻' , width: 6.5  }
+      - {click: ';', label: 'ㄤ⓪' ,  width: 6.5  }
       - {click: commitgan ,  width: 6.5  }
       - {click: sendnil , width: 15.5 }
       #
       - {click: Shift, width: 15.5}
-      - {click: z,   label: 'ㄈ 🅉' , width: 6.5 }
-      - {click: x,   label: 'ㄌ 🅇' , width: 6.5 }
-      - {click: c,   label: 'ㄏ 🄲' , width: 6.5 }
-      - {click: v,   label: 'ㄒ 🅅' , width: 6.5 }
-      - {click: b,   label: 'ㄖ 🄱' , width: 6.5 }
-      - {click: n,   label: 'ㄙ 🄽' , width: 6.5 }
-      - {click: m,   label: 'ㄩ 🄼' , width: 6.5 }
-      - {click: ',', label: 'ㄝ ⓪' , width: 6.5 }
-      - {click: '.', label: 'ㄡ ⓪' , width: 6.5 }
-      - {click: '/', label: 'ㄥ ⓪' , width: 6.5 }
+      - {click: z,   label: 'ㄈ🅉' , width: 6.5 }
+      - {click: x,   label: 'ㄌ🅇' , width: 6.5 }
+      - {click: c,   label: 'ㄏ🄲' , width: 6.5 }
+      - {click: v,   label: 'ㄒ🅅' , width: 6.5 }
+      - {click: b,   label: 'ㄖ🄱' , width: 6.5 }
+      - {click: n,   label: 'ㄙ🄽' , width: 6.5 }
+      - {click: m,   label: 'ㄩ🄼' , width: 6.5 }
+      - {click: ',', label: 'ㄝ⓪' , width: 6.5 }
+      - {click: '.', label: 'ㄡ⓪' , width: 6.5 }
+      - {click: '/', label: 'ㄥ⓪' , width: 6.5 }
       # - {click: english, width: 19.5}
       - {click: Return, width: 19.5}
       #
