@@ -16,7 +16,7 @@ height:
   7: &jpgd7 0.5 #符号键盘水平间距
   8: &jpgd8 0.0 #符号键盘圆角
   9: &jpgd9 11 #主键盘数字键盘 垂直间距 (行間距) 11
-  10: &jpgd10 13 #主键盘数字键盘 水平间距 13
+  10: &jpgd10 5 #主键盘数字键盘 水平间距 13
 hide:
   &hide true #false不显示候选窗或true显示候选窗
 
@@ -69,61 +69,62 @@ preset_keyboards:
     round_corner: *jpgd4
     keys:
       - {click: sendnil , width: 9 }
-      - {click: '1', label: 'ㄅ⓵' ,  width: 6.5  }
-      - {click: '2', label: 'ㄉ⓶' ,  width: 6.5  }
-      - {click: '3', label: 'ˇ'  ,  width: 6.5  }
-      - {click: '4', label: 'ˋ'  ,  width: 6.5  }
-      - {click: '5', label: 'ㄓ⓹' ,  width: 6.5  }
-      - {click: '6', label: 'ˊ'  ,  width: 6.5  }
-      - {click: '7', label: '˙'  ,  width: 6.5  }
-      - {click: '8', label: 'ㄚ⓼' ,  width: 6.5  }
-      - {click: '9', label: 'ㄞ⓽' ,  width: 6.5  }
-      - {click: '0', label: 'ㄢ⓪' ,  width: 6.5  }
-      - {click: "-", label: 'ㄦ⓪' ,  width: 6.5  }
+      - {click: '1', label: 'ㄅ' , swipe_up: commit1 ,  width: 6.5  }
+      - {click: '2', label: 'ㄉ' , swipe_up: commit2 ,  width: 6.5  }
+      - {click: '3', label: 'ˇ'  , swipe_up: commit3 ,  width: 6.5  }
+      - {click: '4', label: 'ˋ'  , swipe_up: commit4 ,  width: 6.5  }
+      - {click: '5', label: 'ㄓ' , swipe_up: commit5 ,  width: 6.5  }
+      - {click: '6', label: 'ˊ'  , swipe_up: commit6 ,  width: 6.5  }
+      - {click: '7', label: '˙'  , swipe_up: commit7 ,  width: 6.5  }
+      - {click: '8', label: 'ㄚ' , swipe_up: commit8 ,  width: 6.5  }
+      - {click: '9', label: 'ㄞ' , swipe_up: commit9 ,  width: 6.5  }
+      - {click: '0', label: 'ㄢ' , swipe_up: commit0 ,  width: 6.5  }
+      - {click: "-", label: 'ㄦ' , swipe_up: commit- ,  width: 6.5  }
       - {click: commaFull , width: 6.5 }
-      - {click: periodFull , width: 6.5 }
-      - {click: questionMark , width: 6.5 }
+      - {click: periodFull ,  width: 6.5 }
+      - {click: questionMark ,  width: 6.5 }
       #
       - {click: english, width: 11.5 }
-      - {click: q, label: 'ㄆ🅀', width: 6.5 }
-      - {click: w, label: 'ㄊ🅆', width: 6.5 }
-      - {click: e, label: 'ㄍ🄴', width: 6.5 }
-      - {click: r, label: 'ㄐ🅁', width: 6.5 }
-      - {click: t, label: 'ㄔ🅃', width: 6.5 }
-      - {click: y, label: 'ㄗ🅈', width: 6.5 }
-      - {click: u, label: 'ㄧ🅄', width: 6.5 }
-      - {click: i, label: 'ㄛ🄸', width: 6.5 }
-      - {click: o, label: 'ㄟ🄾', width: 6.5 }
-      - {click: p, label: 'ㄣ🄿', width: 6.5 }
+      - {click: q, label: 'ㄆ', swipe_up: commitQ, width: 6.5 }
+      - {click: w, label: 'ㄊ', swipe_up: commitW, width: 6.5 }
+      - {click: e, label: 'ㄍ', swipe_up: commitE, width: 6.5 }
+      - {click: r, label: 'ㄐ', swipe_up: commitR, width: 6.5 }
+      - {click: t, label: 'ㄔ', swipe_up: commitT, width: 6.5 }
+      - {click: y, label: 'ㄗ', swipe_up: commitY, width: 6.5 }
+      - {click: u, label: 'ㄧ', swipe_up: commitU, width: 6.5 }
+      - {click: i, label: 'ㄛ', swipe_up: commitI, width: 6.5 }
+      - {click: o, label: 'ㄟ', swipe_up: commitO, width: 6.5 }
+      - {click: p, label: 'ㄣ', swipe_up: commitP, width: 6.5 }
       - {click: '[' , width: 6.5 }
       - {click: ']' , width: 6.5 }
       - {click: BackSpace, width: 10.5 }
       #
       - {click: sendnil , width: 13}
-      - {click: a,   label: 'ㄇ🄰' , width: 6.5  }
-      - {click: s,   label: 'ㄋ🅂' , width: 6.5  }
-      - {click: d,   label: 'ㄎ🄳' , width: 6.5  }
-      - {click: f,   label: 'ㄑ🄵' , width: 6.5  }
-      - {click: g,   label: 'ㄕ🄶' , width: 6.5  }
-      - {click: h,   label: 'ㄘ🄷' , width: 6.5  }
-      - {click: j,   label: 'ㄨ🄹' , width: 6.5  }
-      - {click: k,   label: 'ㄜ🄺' , width: 6.5  }
-      - {click: l,   label: 'ㄠ🄻' , width: 6.5  }
-      - {click: ';', label: 'ㄤ⓪' ,  width: 6.5  }
+      - {click: a,   label: 'ㄇ', swipe_up: commitA , width: 6.5  }
+      - {click: s,   label: 'ㄋ', swipe_up: commitS , width: 6.5  }
+      - {click: d,   label: 'ㄎ', swipe_up: commitD , width: 6.5  }
+      - {click: f,   label: 'ㄑ', swipe_up: commitF , width: 6.5  }
+      - {click: g,   label: 'ㄕ', swipe_up: commitG , width: 6.5  }
+      - {click: h,   label: 'ㄘ', swipe_up: commitH , width: 6.5  }
+      - {click: j,   label: 'ㄨ', swipe_up: commitJ , width: 6.5  }
+      - {click: k,   label: 'ㄜ', swipe_up: commitK , width: 6.5  }
+      - {click: l,   label: 'ㄠ', swipe_up: commitL , width: 6.5  }
+      - {click: ';', label: 'ㄤ' ,swipe_up: ':',  width: 6.5  }
       - {click: commitgan ,  width: 6.5  }
       - {click: sendnil , width: 15.5 }
       #
-      - {click: Shift, width: 15.5}
-      - {click: z,   label: 'ㄈ🅉' , width: 6.5 }
-      - {click: x,   label: 'ㄌ🅇' , width: 6.5 }
-      - {click: c,   label: 'ㄏ🄲' , width: 6.5 }
-      - {click: v,   label: 'ㄒ🅅' , width: 6.5 }
-      - {click: b,   label: 'ㄖ🄱' , width: 6.5 }
-      - {click: n,   label: 'ㄙ🄽' , width: 6.5 }
-      - {click: m,   label: 'ㄩ🄼' , width: 6.5 }
-      - {click: ',', label: 'ㄝ⓪' , width: 6.5 }
-      - {click: '.', label: 'ㄡ⓪' , width: 6.5 }
-      - {click: '/', label: 'ㄥ⓪' , width: 6.5 }
+      # - {click: Shift, width: 15.5}
+      - {click: sendnil , width: 15.5}
+      - {click: z,   label: 'ㄈ', swipe_up: commitZ , width: 6.5 }
+      - {click: x,   label: 'ㄌ', swipe_up: commitX , width: 6.5 }
+      - {click: c,   label: 'ㄏ', swipe_up: commitC , width: 6.5 }
+      - {click: v,   label: 'ㄒ', swipe_up: commitV , width: 6.5 }
+      - {click: b,   label: 'ㄖ', swipe_up: commitB , width: 6.5 }
+      - {click: n,   label: 'ㄙ', swipe_up: commitN , width: 6.5 }
+      - {click: m,   label: 'ㄩ', swipe_up: commitM , width: 6.5 }
+      - {click: ',', label: 'ㄝ', width: 6.5 }
+      - {click: '.', label: 'ㄡ', width: 6.5 }
+      - {click: '/', label: 'ㄥ', width: 6.5 }
       # - {click: english, width: 19.5}
       - {click: Return, width: 19.5}
       #
@@ -220,6 +221,94 @@ preset_keyboards:
     name: "英文鍵盤"
     width: 10
 
+  number:
+    ascii_mode: 0
+    author: "筋斗云"
+    height: *jpgd2
+    horizontal_gap: *jpgd10
+    vertical_gap: *jpgd9
+    round_corner: *jpgd4
+    keys: 
+      - { click: 1 }
+      - { click: 2 }
+      - { click: 3 }
+      - { click: 4 }
+      - { click: 5 }
+      - { click: 6 }
+      - { click: 7 }
+      - { click: 8 }
+      - { click: 9 }
+      - { click: 0 }
+      - { click: "-" }
+      - { click: "/" }
+      - { click: ":" }
+      - { click: semicolon }
+      - { click: bracket }
+      - { click: bracket1 }
+      - { click: "¥" }
+      - { click: "@" }
+      - { click: quotationMarkFull }
+      - { click: quotationMarkFull1 }
+      - { click: .symbols1, width: 14 }
+      - { width: 3 }
+      - { click: periodFull, width: 11 }
+      - { click: commaFull, width: 11 }
+      - { click: dunHalf, width: 11 }
+      - { click: questionMark, width: 11 }
+      - { click: point, width: 11 }
+      - { click: ., width: 11 }
+      - { width: 3 }
+      - { click: BackSpace, width: 14 }
+      - { click: DefaultKeyboard, width: 25 }
+      - { click: space, width: 50 }
+      - { click: Return, width: 25 }
+    name: "number"
+    width: 10
+
+  .number:
+    ascii_mode: 0
+    author: "筋斗云"
+    height: *jpgd2
+    horizontal_gap: *jpgd10
+    vertical_gap: *jpgd9
+    round_corner: *jpgd4
+    keys: 
+      - { click: 1 }
+      - { click: 2 }
+      - { click: 3 }
+      - { click: 4 }
+      - { click: 5 }
+      - { click: 6 }
+      - { click: 7 }
+      - { click: 8 }
+      - { click: 9 }
+      - { click: 0 }
+      - { click: "-" }
+      - { click: "/" }
+      - { click: ":" }
+      - { click: semicolon }
+      - { click: bracket }
+      - { click: bracket1 }
+      - { click: "¥" }
+      - { click: "@" }
+      - { click: quotationMarkFull }
+      - { click: quotationMarkFull1 }
+      - { click: .symbols1, width: 14 }
+      - { width: 3 }
+      - { click: periodFull, width: 11 }
+      - { click: commaFull, width: 11 }
+      - { click: dunHalf, width: 11 }
+      - { click: questionMark, width: 11 }
+      - { click: point, width: 11 }
+      - { click: ., width: 11 }
+      - { width: 3 }
+      - { click: BackSpace, width: 14 }
+      - { click: DefaultKeyboard, width: 25 }
+      - { click: space, width: 50 }
+      - { click: Return, width: 25 }
+    name: "_number"
+    width: 10
+
 
 preset_color_schemes:
   aqua:
@@ -311,11 +400,14 @@ preset_keys:
   BackSpace: {send: BackSpace}
   space: {label: "", send: space}
   number: {label: "ϟ12", send: Eisu_toggle, select: english}
+  .number: {label: "ϟ12", send: Eisu_toggle, select: english}
   symbols: {label: "ϟ12", send: Eisu_toggle, select: english}
   .symbols: {label: "ϟ12", send: Eisu_toggle, select: english}
+  .symbols1: {label: "ϟ12", send: Eisu_toggle, select: english}
   .number: {label: T9, send: Eisu_toggle, select: english}
   english: {label: "中/ En", send: Eisu_toggle, select: english}
   DefaultKeyboard: {label: "中/ En", send: Eisu_toggle, select: default}
+  DefaultKeyboard2: {label: "中/ En", send: Eisu_toggle, select: default}
   semicolon: {label: "；", text: ";{DefaultKeyboard}"} #先上屏；再跳转到default键盘
   bracket: {label: "(", text: "(){Left}{DefaultKeyboard}"} #先上屏()光标往左移动一格再跳转到default键盘
   bracket1: {label: ")", text: "){DefaultKeyboard}"} 
@@ -529,4 +621,33 @@ preset_keys:
   # DarkRegular DarkRegularCharacter
   # LightSpecial LightSpecialCharacter
   # DarkSpecial DarkSpecialCharacter
+  commitQQ: {label: "🅀", text: "."}
+  commitWW: {label: "🅆", text: "."}
+  commitEE: {label: "🄴", text: "."}
+  commitRR: {label: "🅁", text: "."}
+  commitTT: {label: "🅃", text: "."}
+  commitYY: {label: "🅈", text: "."}
+  commitUU: {label: "🅄", text: "."}
+  commitII: {label: "🄸", text: "."}
+  commitOO: {label: "🄾", text: "."}
+  commitPP: {label: "🄿", text: "."}
+  #
+  commitAA: {label: "🄰", text: "."}
+  commitSS: {label: "🅂", text: "."}
+  commitDD: {label: "🄳", text: "."}
+  commitFF: {label: "🄵", text: "."}
+  commitGG: {label: "🄶", text: "."}
+  commitHH: {label: "🄷", text: "."}
+  commitJJ: {label: "🄹", text: "."}
+  commitKK: {label: "🄺", text: "."}
+  commitLL: {label: "🄻", text: "."}
+  #
+  commitZZ: {label: "🅉", text: "."}
+  commitXX: {label: "🅇", text: "."}
+  commitCC: {label: "🄲", text: "."}
+  commitVV: {label: "🅅", text: "."}
+  commitBB: {label: "🄱", text: "."}
+  commitNN: {label: "🄽", text: "."}
+  commitMM: {label: "🄼", text: "."}
+  
   
