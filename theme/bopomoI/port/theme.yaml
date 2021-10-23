@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 config_version: "0.9"
-name: bopomoG #方案名称
+name: bopomoI #方案名称
 author: copy0401
 
 #键盘高度等
@@ -139,8 +139,8 @@ preset_keyboards:
       - {click: space, width: 30 }
       - {click: commit←, width: 9 }
       - {click: commit→, width: 9 }
-      - {click: Return, width: 13}
       - {width: 13}
+      - {click: Return, width: 13}
       #
     name: 注音鍵盤
     width: 10
@@ -212,8 +212,8 @@ preset_keyboards:
       - {click: space, width: 30 }
       - {click: commit←, width: 9 }
       - {click: commit→, width: 9 }
-      - {click: Return, width: 13}
       - {width: 13}
+      - {click: Return, width: 13}
       #
     name: "英文鍵盤"
     width: 10
