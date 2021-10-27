@@ -1,4 +1,4 @@
-# Rime table
+# Rime table ✿《洋蔥純注音版－標記》✿
 # coding: utf-8
 #@/db_name  bopomo_onion_phrase.txt
 #@/db_type	tabledb
@@ -17,6 +17,5 @@
 #中文標點符號新增與移前起始
 # no comment
 https://www.youtube.com/	youtube
-✿《洋蔥純注音版－標記》✿	11
-
+https://www.google.com/	google
 
