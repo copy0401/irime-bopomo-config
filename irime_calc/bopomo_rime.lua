@@ -1494,4 +1494,4 @@ function mytranslator(input, seg)
 end
 
 calculator_translator = require("calculator_translator")
--- calculator_translator = require("preedit")
+preedit_filter = require("preedit")

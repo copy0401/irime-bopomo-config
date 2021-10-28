@@ -1,7 +1,7 @@
 __build_info:
   rime_version: 1.7.3
   timestamps:
-    default: 1630761904
+    default: 1635346794
     default.custom: 0
 ascii_composer:
   good_old_caps_lock: true
@@ -131,7 +131,6 @@ schema_list:
   - schema: wubi86
   - schema: wubi091
   - schema: wubi98
-  - schema: flypy
   - schema: jyutping
   - schema: quick5
   - schema: xqzm
@@ -143,9 +142,8 @@ schema_list:
   - schema: bopomo_onion
   - schema: terra_pinyin
   - schema: cangjie5
-  # - schema: xiapin_mtc
-  # - schema: xiapin_msc
-
+  - schema: xiapin_mtc
+  - schema: xiapin_msc
 switcher:
   abbreviate_options: true
   caption: "〔方案選單〕"

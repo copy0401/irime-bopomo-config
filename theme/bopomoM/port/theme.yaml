@@ -24,7 +24,7 @@ style:
   candidate_font: han.ttf #候选字型
   candidate_padding: 14 #候选项内边距
   candidate_spacing: 15 #候选间距
-  candidate_text_size: 36 #候选字号 24
+  candidate_text_size: 28 #候选字号 24
   candidate_use_cursor: true #高亮候选项
   candidate_view_height: 44 #*jpgd5 #候选区高度
   comment_height: 16 #编码提示区高度 16
