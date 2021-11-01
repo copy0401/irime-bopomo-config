@@ -3,7 +3,7 @@
 
 schema:
   schema_id: iridium_bpmf
-  name: '銥 [Ir] 注音'
+  name: '注音 iridium'
   version: '1.0.0-beta3'
   author:
     - 佛振 <chen.sst@gmail.com>
@@ -17,7 +17,7 @@ schema:
 switches:
   - name: ascii_mode
     states: [ '中文', '英數' ]
-    reset: 1
+    reset: 0 # cctext 
   - name: full_shape
     states: [ '半形', '全形' ]
   - options: [ 'zh_hant_tw', 'zh_hans' ]
@@ -51,7 +51,7 @@ engine:
     - uniquifier
 
 menu:
-  alternative_select_keys: '1234567890'
+  alternative_select_keys: '1234567890' # 可能可以改
 
 speller:
   alphabet: '1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/- 6347'

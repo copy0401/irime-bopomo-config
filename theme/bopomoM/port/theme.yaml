@@ -480,7 +480,7 @@ preset_keys:
   spuer: {label: "super", text: "{Super_L}"}
   hyper: {label: "hyper", text: "{Hyper_L}"}
   caps: {label: "caps", text: "{Caps_Lock}"}
-  mata: {label: "mata", text: "{Meta_L}"}
+  meta: {label: "meta", text: "{Meta_L}"}
   end: {label: "end", text: "{End}"}
   begin: {label: "begin", text: "{Begin}"}
   alt: {label: "alt", text: "{Alt_L}"}

@@ -356,9 +356,9 @@ preset_keys:
   symbols: {label: "ϟ12", send: Eisu_toggle, select: english}
   .symbols: {label: "ϟ12", send: Eisu_toggle, select: english}
   .symbols1: {label: "ϟ12", send: Eisu_toggle, select: english}
-  english: {label: "🈚", send: Eisu_toggle, select: english}
-  DefaultKeyboard: {label: "🈚", send: Eisu_toggle, select: default}
-  DefaultKeyboard2: {label: "🈚", send: Eisu_toggle, select: default} # 🌐🌏🌍🌎🈚
+  english: {label: "中", send: Eisu_toggle, select: english}
+  DefaultKeyboard: {label: "En", send: Eisu_toggle, select: default}
+  DefaultKeyboard2: {label: "En", send: Eisu_toggle, select: default} # 🌐🌏🌍🌎🈚
   semicolon: {label: "；", text: ";{DefaultKeyboard}"} #先上屏；再跳转到default键盘
   bracket: {label: "(", text: "(){Left}{DefaultKeyboard}"} #先上屏()光标往左移动一格再跳转到default键盘
   bracket1: {label: ")", text: "){DefaultKeyboard}"} 
@@ -489,7 +489,7 @@ preset_keys:
   spuer: {label: "super", text: "{Super_L}"}
   hyper: {label: "hyper", text: "{Hyper_L}"}
   caps: {label: "caps", text: "{Caps_Lock}"}
-  mata: {label: "mata", text: "{Meta_L}"}
+  meta: {label: "meta", text: "{Meta_L}"}
   end: {label: "end", text: "{End}"}
   begin: {label: "begin", text: "{Begin}"}
   alt: {label: "alt", text: "{Alt_L}"}

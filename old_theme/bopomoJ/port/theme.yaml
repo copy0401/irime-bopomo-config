@@ -1,0 +1,619 @@
+# Trime default style settings
+# encoding: utf-8
+
+config_version: "0.9"
+name: bopomoJ #方案名称
+author: copy0401
+
+#键盘高度等
+height:
+  1: &jpgd1 54 #符号键盘
+  2: &jpgd2 54 #主键盘 74 54
+  3: &jpgd3 54 #数字键盘
+  4: &jpgd4 12 #主键盘圆角
+  5: &jpgd5 36 #候选区高度
+  6: &jpgd6 0.5 #符号键盘行间距
+  7: &jpgd7 0.5 #符号键盘水平间距
+  8: &jpgd8 0.0 #符号键盘圆角
+  9: &jpgd9 11 #主键盘数字键盘 垂直间距 (行間距) 11
+  10: &jpgd10 6 #主键盘数字键盘 水平间距 13
+hide:
+  &hide true #false不显示候选窗或true显示候选窗
+
+style:
+  candidate_font: han.ttf #候选字型
+  candidate_padding: 14 #候选项内边距
+  candidate_spacing: 15 #候选间距
+  candidate_text_size: 24 #候选字号
+  candidate_use_cursor: true #高亮候选项
+  candidate_view_height: 44 #*jpgd5 #候选区高度
+  comment_height: 16 #编码提示区高度 16
+  comment_on_top: false #编码提示在上方或右侧 false = top
+  comment_text_size: 14 #编码提示字号 14
+  key_font: symbol.ttf #键盘字型
+  text_height: 20 #编码框高度 默认值为：20 # *jpgd2 #键高
+  key_long_text_size: 14 #长标签字号
+  key_text_size: 18 #键字号 18
+  key_width: 10.0 #键宽，占银幕宽的百分比
+  keyboards: [default, english] #键盘配置
+  label_text_size: 22 #标签字号 22
+  preview_text_size: 40 #按键提示字号 40
+  show_candidate: *hide #显示候选区
+  show_comment: true #显示提示区
+  show_preview: true #按键提示
+  symbol_text_size: 10 #符号字号 10
+  text_size: 12 #编码区字号
+  vertical_correction: -5 # -5
+  vertical_gap: *jpgd6 #键盘行距
+  round_corner: 4 #圓角 值为0的话默认 iphone为4，ipad为8，min=0.1
+  #
+  text_size: 12 #编码字体大小 默认值为：12
+  #
+  color_scheme: cc1 #配色方案 目前系統黑色主題模式下 沒有作用
+  # cc1 紫底黑字 選字爲深灰黑字  
+  # cc2 綠底黑字 選字爲深灰黑字
+  # aqua 藍底白字 推薦
+  # ink 黑底白字 推薦
+  # azure 藍底黃字 有些界面看不到 
+  # lost_temple 綠底黑字 選字爲深灰黑字
+  # dark_temple
+  # starcraft 黑底綠字 有些界面邊線看不到
+
+#键盘布局
+preset_keyboards:
+  default:
+    ascii_mode: 0
+    author: "copy0401"
+    height: *jpgd2
+    horizontal_gap: *jpgd10
+    vertical_gap: *jpgd9
+    round_corner: *jpgd4
+    keys:
+      - {width: 1 }
+      - {click: '1', label: 'ㄅ' , swipe_up: commit_1 ,  width: 9  }
+      - {click: '2', label: 'ㄉ' , swipe_up: commit_2 ,  width: 9  }
+      - {click: '3', label: 'ˇ'  , swipe_up: commit_3 ,  width: 9  }
+      - {click: '4', label: 'ˋ'  , swipe_up: commit_4 ,  width: 9  }
+      - {click: '5', label: 'ㄓ' , swipe_up: commit_5 ,  width: 9  }
+      - {click: '6', label: 'ˊ'  , swipe_up: commit_6 ,  width: 9  }
+      - {click: '7', label: '˙'  , swipe_up: commit_7 ,  width: 9  }
+      - {click: '8', label: 'ㄚ' , swipe_up: commit_8 ,  width: 9  }
+      - {click: '9', label: 'ㄞ' , swipe_up: commit_9 ,  width: 9  }
+      - {click: '0', label: 'ㄢ' , swipe_up: commit_0 ,  width: 9  }
+      - {click: "-", label: 'ㄦ' , swipe_up: commit_24 ,  width: 9  }
+      # - {click: commaFull , width: 6.5 }
+      # - {click: periodFull ,  width: 6.5 }
+      # - {click: questionMark ,  width: 6.5 }
+      #
+      - {width: 1 }
+      - {click: q, label: 'ㄆ', swipe_up: commit_Q, width: 9 }
+      - {click: w, label: 'ㄊ', swipe_up: commit_W, width: 9 }
+      - {click: e, label: 'ㄍ', swipe_up: commit_E, width: 9 }
+      - {click: r, label: 'ㄐ', swipe_up: commit_R, width: 9 }
+      - {click: t, label: 'ㄔ', swipe_up: commit_T, width: 9 }
+      - {click: y, label: 'ㄗ', swipe_up: commit_Y, width: 9 }
+      - {click: u, label: 'ㄧ', swipe_up: commit_U, width: 9 }
+      - {click: i, label: 'ㄛ', swipe_up: commit_I, width: 9 }
+      - {click: o, label: 'ㄟ', swipe_up: commit_O, width: 9 }
+      - {click: p, label: 'ㄣ', swipe_up: commit_P, width: 9 }
+      # - {click: '[' , width: 6.5 }
+      # - {click: ']' , width: 6.5 }
+      - {click: BackSpace, width: 9 }
+      #
+      # - {click: sendnil , width: 13}
+      - {width: 1 }
+      - {width: 4.5 }
+      - {click: a,   label: 'ㄇ', swipe_up: commit_A , width: 9  }
+      - {click: s,   label: 'ㄋ', swipe_up: commit_S , width: 9  }
+      - {click: d,   label: 'ㄎ', swipe_up: commit_D , width: 9  }
+      - {click: f,   label: 'ㄑ', swipe_up: commit_F , width: 9  }
+      - {click: g,   label: 'ㄕ', swipe_up: commit_G , width: 9  }
+      - {click: h,   label: 'ㄘ', swipe_up: commit_H , width: 9  }
+      - {click: j,   label: 'ㄨ', swipe_up: commit_J , width: 9  }
+      - {click: k,   label: 'ㄜ', swipe_up: commit_K , width: 9  }
+      - {click: l,   label: 'ㄠ', swipe_up: commit_L , width: 9  }
+      - {click: ';', label: 'ㄤ' ,swipe_up: commit_25,  width: 9  }
+      - {width: 4.5 }
+      # - {click: commitgan ,  width: 6.5  }
+      # - {click: sendnil , width: 15.5 }
+      # - {click: Shift, width: 9}      
+      #
+      - {width: 1 }
+      - {width: 9 }
+      - {click: z,   label: 'ㄈ', swipe_up: commit_Z , width: 9 }
+      - {click: x,   label: 'ㄌ', swipe_up: commit_X , width: 9 }
+      - {click: c,   label: 'ㄏ', swipe_up: commit_C , width: 9 }
+      - {click: v,   label: 'ㄒ', swipe_up: commit_V , width: 9 }
+      - {click: b,   label: 'ㄖ', swipe_up: commit_B , width: 9 }
+      - {click: n,   label: 'ㄙ', swipe_up: commit_N , width: 9 }
+      - {click: m,   label: 'ㄩ', swipe_up: commit_M , width: 9 }
+      - {click: ',', label: 'ㄝ', swipe_up: commit， , width: 9 }
+      - {click: '.', label: 'ㄡ', swipe_up: commit。 , width: 9 }
+      - {click: '/', label: 'ㄥ', swipe_up: commit？ , width: 9 }
+      - {width: 0.0 }
+      #
+      # - {click: english, width: 19.5}
+      # - {click: Return, width: 19.5}
+      #
+      - {width: 13 }
+      - {click: english, width: 13 }
+      - {click: space, width: 30 }
+      - {click: commit←, width: 9 }
+      - {click: commit→, width: 9 }
+      - {width: 13}
+      - {click: Return, width: 13}
+      #
+      - {width: 100 }
+      - {width: 100 }
+    name: 注音鍵盤
+    width: 10
+
+  english:
+    ascii_mode: 1
+    author: "copy0401"
+    height: *jpgd2
+    horizontal_gap: *jpgd10
+    vertical_gap: *jpgd9
+    round_corner: *jpgd4
+    keys:
+      - {width: 1 }
+      - {click: '1' , swipe_up: commit! , width: 9}
+      - {click: '2' , swipe_up: commit@ , width: 9}
+      - {click: '3' , swipe_up: commit# , width: 9}
+      - {click: '4' , swipe_up: commit$ , width: 9}
+      - {click: '5' , swipe_up: commit% , width: 9}
+      - {click: '6' , swipe_up: commit^ , width: 9}
+      - {click: '7' , swipe_up: commit& , width: 9}
+      - {click: '8' , swipe_up: commit* , width: 9}
+      - {click: '9' , swipe_up: commit( , width: 9}
+      - {click: '0' , swipe_up: commit) , width: 9}
+      - {click: '-' , swipe_up: '_', width: 9 }
+      #
+      # - {click: DefaultKeyboard, width: 11.5 }
+      - {width: 1 }
+      - {click: q   , swipe_up: '~'  , swipe_down: commitQ , width: 9 }
+      - {click: w   , swipe_up: '`'  , swipe_down: commitW , width: 9 }
+      - {click: e   , swipe_up: ''  , swipe_down: commitE , width: 9 }
+      - {click: r   , swipe_up: ''  , swipe_down: commitR , width: 9 }
+      - {click: t   , swipe_up: ''  , swipe_down: commitT , width: 9 }
+      - {click: y   , swipe_up: ''  , swipe_down: commitY , width: 9 }
+      - {click: u   , swipe_up: '['  , swipe_down: commitU , width: 9 }
+      - {click: i   , swipe_up: ']'  , swipe_down: commitI , width: 9 }
+      - {click: o   , swipe_up: '{'  , swipe_down: commitO , width: 9 }
+      - {click: p   , swipe_up: '}'  , swipe_down: commitP , width: 9 }
+      - {click: BackSpace, width: 9 }
+      #
+      - {width: 1 }
+      - {width: 4.5 }
+      - {click: a  , swipe_up: '€' , swipe_down: commitA , width: 9 }
+      - {click: s  , swipe_up: '£' , swipe_down: commitS , width: 9 }
+      - {click: d  , swipe_up: '¥' , swipe_down: commitD , width: 9 }
+      - {click: f  , swipe_up: '' , swipe_down: commitF , width: 9 }
+      - {click: g  , swipe_up: '' , swipe_down: commitG , width: 9 }
+      - {click: h  , swipe_up: '+' , swipe_down: commitH , width: 9 }
+      - {click: j  , swipe_up: '=' , swipe_down: commitJ , width: 9 }
+      - {click: k  , swipe_up: '"' , swipe_down: commitK , width: 9 }
+      - {click: l  , swipe_up: "'" , swipe_down: commitL , width: 9 }
+      - {click: ';', swipe_up: ':'     , swipe_down: ':',  width: 9  }
+      - {width: 4.5 }
+      #
+      - {width: 1 }
+      - {click: Shift, width: 9 }
+      - {click: z ,  swipe_up: '§' , swipe_down: commitZ , width: 9 }
+      - {click: x ,  swipe_up: '…' , swipe_down: commitX , width: 9 }
+      - {click: c ,  swipe_up: '' , swipe_down: commitC , width: 9 }
+      - {click: v ,  swipe_up: '' , swipe_down: commitV , width: 9 }
+      - {click: b ,  swipe_up: '' , swipe_down: commitB , width: 9 }
+      - {click: n ,  swipe_up: '|' , swipe_down: commitN , width: 9 }
+      - {click: m ,  swipe_up: '\' , swipe_down: commitM , width: 9 }
+      - {click: ',', swipe_up: '<', width: 9 }
+      - {click: '.', swipe_up: '>', width: 9 }
+      - {click: '/', swipe_up: '?', width: 9 }
+      #
+      - {width: 13 }
+      - {click: DefaultKeyboard, width: 13 }
+      - {click: space, width: 30 }
+      - {click: commit←, width: 9 }
+      - {click: commit→, width: 9 }
+      - {width: 13}
+      - {click: Return, width: 13}
+      #
+      - {width: 100 }
+      - {width: 100 }
+    name: "英文鍵盤"
+    width: 10
+
+preset_color_schemes:
+  cc1:
+    name: cc／cc1
+    author: cc <copy0401@gmail.com>
+    text_color: 0xffffff #白
+    back_color: 0xeeeeec #灰
+    border_color: 0xe0e0e0 #灰
+    hilited_text_color: 0x222222 #深灰 # 小小的注音符號
+    hilited_back_color: 0x855f98 #淡紫
+    hilited_candidate_text_color: 0xffffff #白 #被選中的字
+    hilited_candidate_back_color: 0x855f98 #淡紫
+
+  cc2:
+    name: cc／cc2
+    author: cc <copy0401@gmail.com>
+    text_color: 0xf6f3e8 #黑
+    back_color: 0xeeeeec #灰
+    border_color: 0xe0e0e0 #灰
+    hilited_text_color: 0x222222 #深灰 小小的注音符號
+    hilited_back_color: 0xcae682 #綠
+    hilited_candidate_text_color: 0x000000 #黑 0x000000  被選中的字
+    hilited_candidate_back_color: 0xcae682 #綠 0xcae682
+
+  aqua:
+    name: 碧水／Aqua
+    author: 佛振 <chen.sst@gmail.com>
+    text_color: 0x000000
+    back_color: 0xeeeeec
+    border_color: 0xe0e0e0
+    hilited_text_color: 0x000000
+    hilited_back_color: 0xd4d4d4
+    hilited_candidate_text_color: 0xffffff
+    hilited_candidate_back_color: 0x0a3afa
+
+  ink:
+    name: 墨池／Ink
+    author: 佛振 <chen.sst@gmail.com>
+    text_color: 0x000000
+    back_color: 0xffffff
+    border_color: 0x000000
+    hilited_text_color: 0x000000
+    hilited_back_color: 0xdddddd
+    hilited_candidate_text_color: 0xffffff
+    hilited_candidate_back_color: 0x000000
+
+  azure:
+    name: 青天／Azure
+    author: 佛振 <chen.sst@gmail.com>
+    text_color: 0xcae8ff
+    candidate_text_color: 0xeef8ff
+    back_color: 0x014e8b
+    border_color: 0x014e8b
+    hilited_text_color: 0xeef8ff
+    hilited_back_color: 0x014e8b
+    hilited_candidate_text_color: 0xfffe7f
+    hilited_candidate_back_color: 0x015ea9
+    comment_text_color: 0x6496c6
+
+  lost_temple:
+    name: 孤寺／Lost Temple
+    author: 佛振 <chen.sst@gmail.com>, based on ir_black
+    text_color: 0xf6f3e8
+    back_color: 0x444444
+    border_color: 0x444444
+    hilited_text_color: 0xcae682
+    hilited_back_color: 0x222222
+    hilited_candidate_text_color: 0x000000
+    hilited_candidate_back_color: 0xcae682
+
+  dark_temple:
+    name: 暗堂／Dark Temple
+    author: 佛振 <chen.sst@gmail.com>, based on ir_black
+    text_color: 0xdaf692
+    candidate_text_color: 0xe6e3d8
+    back_color: 0x222222
+    border_color: 0x222222
+    hilited_text_color: 0x9acfff
+    hilited_back_color: 0x222222
+    hilited_candidate_text_color: 0xdaf692
+    hilited_candidate_back_color: 0x333333
+    comment_text_color: 0xff6c60
+
+  starcraft:
+    name: 星際我爭霸／StarCraft
+    author: Contralisk <contralisk@gmail.com>, original artwork by Blizzard Entertainment
+    text_color: 0x88aacc
+    candidate_text_color: 0x55bb30
+    back_color: 0x000000
+    border_color: 0xa01010
+    hilited_text_color: 0x96cbfe
+    hilited_back_color: 0x000000
+    hilited_candidate_text_color: 0xa8ff60
+    hilited_candidate_back_color: 0x000000
+
+preset_keys:
+  # 编辑
+  Shift: {send: Shift_L}
+  Return: {label: Enter, send: Return}
+  BackSpace: {send: BackSpace}
+  space: {label: "", send: space}
+  number: {label: "ϟ12", send: Eisu_toggle, select: english}
+  .number: {label: "ϟ12", send: Eisu_toggle, select: english}
+  symbols: {label: "ϟ12", send: Eisu_toggle, select: english}
+  .symbols: {label: "ϟ12", send: Eisu_toggle, select: english}
+  .symbols1: {label: "ϟ12", send: Eisu_toggle, select: english}
+  .number: {label: T9, send: Eisu_toggle, select: english}
+  english: {label: "中/ En", send: Eisu_toggle, select: english}
+  DefaultKeyboard: {label: "中/ En", send: Eisu_toggle, select: default}
+  DefaultKeyboard2: {label: "中/ En", send: Eisu_toggle, select: default}
+  semicolon: {label: "；", text: ";{DefaultKeyboard}"} #先上屏；再跳转到default键盘
+  bracket: {label: "(", text: "(){Left}{DefaultKeyboard}"} #先上屏()光标往左移动一格再跳转到default键盘
+  bracket1: {label: ")", text: "){DefaultKeyboard}"} 
+  bracket2: {label: "(", text: "(){Left}"} #先上屏()光标往左移动一格
+  bracket3: {label: "(", text: "("} 
+  bracket4: {label: ")", text: ")"}
+  at1: {label: "@", text: "@{DefaultKeyboard}"} 
+  quotationMarkFull: {label: "〝", text: "〝〞{Left}{DefaultKeyboard}"} 
+  quotationMarkFull1: {label: "〞", text: "〞{DefaultKeyboard}"}
+  quotationMarkFull2: {label: "〝", text: "〝〞{Left}"} 
+  quotationMarkHalf1: {label: "\"", text: "\"{DefaultKeyboard}"} 
+  quotationMarkHalf2: {label: "\"", text: "“”{Left}"} 
+  periodFull: {label: "。", text: "。{DefaultKeyboard}"} #上屏全角句号再跳转到default键盘
+  periodHalf: {label: ".", text: ".{DefaultKeyboard}"} #直接上屏半角句号
+  commaHalf: {label: ",", commit: ","}
+  commaFull: {label: "，", text: "，{DefaultKeyboard}"}
+  dunHalf: {label: "、", text: "、{DefaultKeyboard}"}
+  questionMark: {label: "？", text: "？{DefaultKeyboard}"}
+  point: {label: "！", text: "！{DefaultKeyboard}"}
+  commit.: {label: ".", commit: "."}
+  commit;: {label: ";", commit: ";"}
+  commit1: {label: "1", commit: "1"}
+  commit2: {label: "2", commit: "2"}
+  commit3: {label: "3", commit: "3"}
+  commit4: {label: "4", commit: "4"}
+  commit5: {label: "5", commit: "5"}
+  commit6: {label: "6", commit: "6"}
+  commit7: {label: "7", commit: "7"}
+  commit8: {label: "8", commit: "8"}
+  commit9: {label: "9", commit: "9"}
+  commit0: {label: "0", commit: "0"}
+  commit～: {label: "～", commit: "～"}
+  commitgan: {label: "/", commit: "/"}
+  commit：: {label: "：", commit: "："}
+  commit；: {label: "；", commit: "；"}
+  commit）: {label: "）", commit: "）"}
+  commit@: {label: "@", commit: "@"}
+  commit-: {label: "-", commit: "-"}
+  commit+: {label: "+", commit: "+"}
+  commit_: {label: "_", commit: "_"}
+  commitJin: {label: "#", commit: "#"}
+  commit？: {label: "？", commit: "？"}
+  commit！: {label: "！", commit: "！"}
+  commit，: {label: "，", commit: "，"}
+  commit。: {label: "。", commit: "。"}
+  commit”: {label: "”", commit: "”"}
+  symbol1: {label: "【", text: "【{DefaultKeyboard}"}
+  symbol2: {label: "】", text: "】{DefaultKeyboard}"}
+  symbol3: {label: "{", text: "｛{DefaultKeyboard}"}
+  symbol4: {label: "}", text: "｝{DefaultKeyboard}"}
+  symbol5: {label: "#", text: "#{DefaultKeyboard}"}
+  symbol6: {label: "%", text: "%{DefaultKeyboard}"}
+  symbol7: {label: "^", text: "^{DefaultKeyboard}"}
+  symbol8: {label: "*", text: "*{DefaultKeyboard}"}
+  symbol9: {label: "+", text: "+{DefaultKeyboard}"}
+  symbol10: {label: "=", text: "={DefaultKeyboard}"}
+  symbol11: {label: "_", text: "_{DefaultKeyboard}"}
+  symbol12: {label: "-", text: "-{DefaultKeyboard}"}
+  symbol13: {label: "\\", text: "\\{DefaultKeyboard}"}
+  symbol14: {label: "|", text: "|{DefaultKeyboard}"}
+  symbol15: {label: "《", text: "《{DefaultKeyboard}"}
+  symbol16: {label: "》", text: "》{DefaultKeyboard}"}
+  symbol17: {label: "&", text: "&{DefaultKeyboard}"}
+  symbol18: {label: "·", text: "·{DefaultKeyboard}"}
+  symbol19: {label: "，", text: "，{DefaultKeyboard}"}
+  symbol20: {label: "^_^", text: "^_^{DefaultKeyboard}"}
+  symbol21: {label: "?", text: "?{DefaultKeyboard}"}
+  symbol22: {label: "!", text: "!{DefaultKeyboard}"}
+  symbol23: {label: "´", text: "´{DefaultKeyboard}"}
+  symbol24: {label: "/", text: "/{DefaultKeyboard}"}
+  symbol25: {label: "：", text: "：{DefaultKeyboard}"}
+  symbol26: {label: "¥", text: "￥{DefaultKeyboard}"}
+  symbol27: {label: "$", text: "${DefaultKeyboard}"}
+  symbol28: {label: "~", text: "~{DefaultKeyboard}"}
+  symbol29: {label: "…", text: "…{DefaultKeyboard}"}
+  #
+  engsemicolon: {label: "；", text: ";{english}"} #先上屏；再跳转到default键盘
+  engbracket: {label: "(", text: "(){Left}{english}"} #先上屏()光标往左移动一格再跳转到default键盘
+  engbracket1: {label: ")", text: "){english}"} 
+  engat1: {label: "@", text: "@{english}"} 
+  engquotationMarkFull: {label: "〝", text: "\"\"{Left}{english}"} 
+  engquotationMarkFull1: {label: "〞", text: "\"{english}"}
+  engperiodFull: {label: ".", text: ".{english}"} #上屏全角句号再跳转到default键盘
+  engcommaHalf: {label: ",", commit: ","}
+  engcommaFull: {label: "，", text: ",{english}"}
+  engdunHalf: {label: "、", text: "、{english}"}
+  engquestionMark: {label: "？", text: "?{english}"}
+  engpoint: {label: "！", text: "!{english}"}
+  engsymbol1: {label: "[", text: "[{english}"}
+  engsymbol2: {label: "]", text: "]{english}"}
+  engsymbol3: {label: "{", text: "｛{english}"}
+  engsymbol4: {label: "}", text: "｝{english}"}
+  engsymbol5: {label: "#", text: "#{english}"}
+  engsymbol6: {label: "%", text: "%{english}"}
+  engsymbol7: {label: "^", text: "^{english}"}
+  engsymbol8: {label: "*", text: "*{english}"}
+  engsymbol9: {label: "+", text: "+{english}"}
+  engsymbol10: {label: "=", text: "={english}"}
+  engsymbol11: {label: "_", text: "_{english}"}
+  engsymbol12: {label: "-", text: "-{english}"}
+  engsymbol13: {label: "\\", text: "\\{english}"}
+  engsymbol14: {label: "|", text: "|{english}"}
+  engsymbol15: {label: "<<", text: "<<{english}"}
+  engsymbol16: {label: ">>", text: ">>{english}"}
+  engsymbol17: {label: "&", text: "&{english}"}
+  engsymbol18: {label: ".", text: ".{english}"}
+  engsymbol19: {label: ",", text: ",{english}"}
+  engsymbol20: {label: "^_^", text: "^_^{english}"}
+  engsymbol21: {label: "?", text: "?{english}"}
+  engsymbol22: {label: "!", text: "!{english}"}
+  engsymbol23: {label: "´", text: "´{english}"}
+  engsymbol24: {label: "/", text: "/{english}"}
+  engsymbol25: {label: ":", text: ":{english}"}
+  engsymbol26: {label: "¥", text: "¥{english}"}
+  engsymbol27: {label: "$", text: "${english}"}
+  engsymbol28: {label: "~", text: "~{english}"}
+  engsymbol29: {label: "…", text: "…{english}"}
+  switchT9: {label: "T9", text: "　{.number}"}
+  #左右移動光標
+  commit←: {label: "←", text: "{Left}"}
+  commit→: {label: "→", text: "{Right}"}
+  # test
+  escape: {label: "esc", text: "{Escape}"}
+  control: {label: "ctrl", text: "{Control_L}"}
+  tab: {label: "tab", text: "{Tab}"}
+  up: {label: "up", text: "{Up}"}
+  down: {label: "dn", text: "{Down}"}
+  spuer: {label: "super", text: "{Super_L}"}
+  hyper: {label: "hyper", text: "{Hyper_L}"}
+  caps: {label: "caps", text: "{Caps_Lock}"}
+  meta: {label: "meta", text: "{Meta_L}"}
+  end: {label: "end", text: "{End}"}
+  begin: {label: "begin", text: "{Begin}"}
+  alt: {label: "alt", text: "{Alt_L}"}
+  #
+  commitA: {label: "A", commit: "A"}
+  commitB: {label: "B", commit: "B"}
+  commitC: {label: "C", commit: "C"}
+  commitD: {label: "D", commit: "D"}
+  commitE: {label: "E", commit: "E"}
+  commitF: {label: "F", commit: "F"}
+  commitG: {label: "G", commit: "G"}
+  commitH: {label: "H", commit: "H"}
+  commitI: {label: "I", commit: "I"}
+  commitJ: {label: "J", commit: "J"}
+  commitK: {label: "K", commit: "K"}
+  commitL: {label: "L", commit: "L"}
+  commitM: {label: "M", commit: "M"}
+  commitN: {label: "N", commit: "N"}
+  commitO: {label: "O", commit: "O"}
+  commitP: {label: "P", commit: "P"}
+  commitQ: {label: "Q", commit: "Q"}
+  commitR: {label: "R", commit: "R"}
+  commitS: {label: "S", commit: "S"}
+  commitT: {label: "T", commit: "T"}
+  commitU: {label: "U", commit: "U"}
+  commitV: {label: "V", commit: "V"}
+  commitW: {label: "W", commit: "W"}
+  commitX: {label: "X", commit: "X"}
+  commitY: {label: "Y", commit: "Y"}
+  commitZ: {label: "Z", commit: "Z"}
+  #
+  # only show uper_text lable
+  commit_1: {label: "1", commit: ""}
+  commit_2: {label: "2", commit: ""}
+  commit_3: {label: "3", commit: ""}
+  commit_4: {label: "4", commit: ""}
+  commit_5: {label: "5", commit: ""}
+  commit_6: {label: "6", commit: ""}
+  commit_7: {label: "7", commit: ""}
+  commit_8: {label: "8", commit: ""}
+  commit_9: {label: "9", commit: ""}
+  commit_0: {label: "0", commit: ""}
+  commit_-: {label: "-", commit: ""}
+  commit_24: {label: "/", text: "/"}
+  commit_25: {label: ":", text: ":"}
+  commit_A: {label: "A", commit: "" }
+  commit_B: {label: "B", commit: "" }
+  commit_C: {label: "C", commit: "" }
+  commit_D: {label: "D", commit: "" }
+  commit_E: {label: "E", commit: "" }
+  commit_F: {label: "F", commit: "" }
+  commit_G: {label: "G", commit: "" }
+  commit_H: {label: "H", commit: "" }
+  commit_I: {label: "I", commit: "" }
+  commit_J: {label: "J", commit: "" }
+  commit_K: {label: "K", commit: "" }
+  commit_L: {label: "L", commit: "" }
+  commit_M: {label: "M", commit: "" }
+  commit_N: {label: "N", commit: "" }
+  commit_O: {label: "O", commit: "" }
+  commit_P: {label: "P", commit: "" }
+  commit_Q: {label: "Q", commit: "" }
+  commit_R: {label: "R", commit: "" }
+  commit_S: {label: "S", commit: "" }
+  commit_T: {label: "T", commit: "" }
+  commit_U: {label: "U", commit: "" }
+  commit_V: {label: "V", commit: "" }
+  commit_W: {label: "W", commit: "" }
+  commit_X: {label: "X", commit: "" }
+  commit_Y: {label: "Y", commit: "" }
+  commit_Z: {label: "Z", commit: "" }
+  #
+  commita: {label: "a", commit: "a"}
+  commitb: {label: "b", commit: "b"}
+  commitc: {label: "c", commit: "c"}
+  commitd: {label: "d", commit: "d"}
+  commite: {label: "e", commit: "e"}
+  commitf: {label: "f", commit: "f"}
+  commitg: {label: "g", commit: "g"}
+  commith: {label: "h", commit: "h"}
+  commiti: {label: "i", commit: "i"}
+  commitj: {label: "j", commit: "j"}
+  commitk: {label: "k", commit: "k"}
+  commitl: {label: "l", commit: "l"}
+  commitm: {label: "m", commit: "m"}
+  commitn: {label: "n", commit: "n"}
+  commito: {label: "o", commit: "o"}
+  commitp: {label: "p", commit: "p"}
+  commitq: {label: "q", commit: "q"}
+  commitr: {label: "r", commit: "r"}
+  commits: {label: "s", commit: "s"}
+  committ: {label: "t", commit: "t"}
+  commitu: {label: "u", commit: "u"}
+  commitv: {label: "v", commit: "v"}
+  commitw: {label: "w", commit: "w"}
+  commitx: {label: "x", commit: "x"}
+  commity: {label: "y", commit: "y"}
+  commitz: {label: "z", commit: "z"}
+  #
+  commit!: {label: "!", commit: "!"}
+  commit@: {label: "@", commit: "@"}
+  commit#: {label: "#", commit: "#"}
+  commit$: {label: "$", commit: "$"}
+  commit%: {label: "%", commit: "%"}
+  commit^: {label: "^", commit: "^"}
+  commit&: {label: "&", commit: "&"}
+  commit*: {label: "*", commit: "*"}
+  commit(: {label: "(", commit: "("}
+  commit): {label: ")", commit: ")"}
+  commit|: {label: "|", commit: "|"}
+  commit~: {label: "~", commit: "~"}
+  #
+  commitCamma: {label: ",", commit: ","}
+  commitDot: {label: ".", commit: "."}
+  commitQuestion: {label: "?", commit: "?"}
+  send;: {label: ";", text: "；", send: DarkSpecialCharacter}
+  send.: {label: ".", text: ".", send: DarkSpecialCharacter}
+  sendnil: {label: "", text: "", send: DarkSpecialCharacter}
+  send←: {label: "←", text: "{Left}", send: DarkSpecialCharacter}
+  send→: {label: "→", text: "{Right}", send: DarkSpecialCharacter}
+  #
+  # DarkRegular DarkRegularCharacter
+  # LightSpecial LightSpecialCharacter
+  # DarkSpecial DarkSpecialCharacter
+  # commitQQ: {label: "🅀", text: "."}
+  # commitWW: {label: "🅆", text: "."}
+  # commitEE: {label: "🄴", text: "."}
+  # commitRR: {label: "🅁", text: "."}
+  # commitTT: {label: "🅃", text: "."}
+  # commitYY: {label: "🅈", text: "."}
+  # commitUU: {label: "🅄", text: "."}
+  # commitII: {label: "🄸", text: "."}
+  # commitOO: {label: "🄾", text: "."}
+  # commitPP: {label: "🄿", text: "."}
+  # #
+  # commitAA: {label: "🄰", text: "."}
+  # commitSS: {label: "🅂", text: "."}
+  # commitDD: {label: "🄳", text: "."}
+  # commitFF: {label: "🄵", text: "."}
+  # commitGG: {label: "🄶", text: "."}
+  # commitHH: {label: "🄷", text: "."}
+  # commitJJ: {label: "🄹", text: "."}
+  # commitKK: {label: "🄺", text: "."}
+  # commitLL: {label: "🄻", text: "."}
+  # #
+  # commitZZ: {label: "🅉", text: "."}
+  # commitXX: {label: "🅇", text: "."}
+  # commitCC: {label: "🄲", text: "."}
+  # commitVV: {label: "🅅", text: "."}
+  # commitBB: {label: "🄱", text: "."}
+  # commitNN: {label: "🄽", text: "."}
+  # commitMM: {label: "🄼", text: "."}
+  
+  

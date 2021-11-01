@@ -7,9 +7,9 @@ author: copy0401
 
 #键盘高度等
 height:
-  1: &jpgd1 54 #符号键盘
-  2: &jpgd2 54 #主键盘 74 54
-  3: &jpgd3 54 #数字键盘
+  1: &jpgd1 66 #符号键盘
+  2: &jpgd2 66 #主键盘 74 54
+  3: &jpgd3 66 #数字键盘
   4: &jpgd4 12 #主键盘圆角
   5: &jpgd5 36 #候选区高度
   6: &jpgd6 0.5 #符号键盘行间距
@@ -24,7 +24,7 @@ style:
   candidate_font: han.ttf #候选字型
   candidate_padding: 14 #候选项内边距
   candidate_spacing: 15 #候选间距
-  candidate_text_size: 24 #候选字号
+  candidate_text_size: 28 #候选字号 24
   candidate_use_cursor: true #高亮候选项
   candidate_view_height: 44 #*jpgd5 #候选区高度
   comment_height: 16 #编码提示区高度 16
@@ -38,9 +38,9 @@ style:
   keyboards: [default, english] #键盘配置
   label_text_size: 22 #标签字号 22
   preview_text_size: 40 #按键提示字号 40
-  show_candidate: *hide #显示候选区
-  show_comment: true #显示提示区
-  show_preview: true #按键提示
+  show_candidate: *hide #显示候选区 *hide
+  show_comment: false #显示提示区 true #cctestok 減少卡鍵bug
+  show_preview: false #按键提示 true  #cctestok 減少卡鍵bug
   symbol_text_size: 10 #符号字号 10
   text_size: 12 #编码区字号
   vertical_correction: -5 # -5
@@ -83,7 +83,7 @@ preset_keyboards:
       - {click: '9', label: 'ㄞ' , swipe_up: commit9 ,  width: 7  }
       - {click: '0', label: 'ㄢ' , swipe_up: commit0 ,  width: 7  }
       #
-      - {width: 2 }
+      - {width: 1 }
       # - {click: commit7     ,  width: 7  }
       # - {click: commit8     ,  width: 7  }
       # - {click: commit9     ,  width: 7  }
@@ -92,6 +92,7 @@ preset_keyboards:
       - {click: 8   ,                width: 7  }
       - {click: 9   ,                width: 7  }
       - {click: '/' , swipe_up: '%' ,width: 7  }
+      - {width: 1 }
       #
       # - {width: 20  }
       - {click: q, label: 'ㄆ', swipe_up: commit_Q, width: 7 }
@@ -105,7 +106,7 @@ preset_keyboards:
       - {click: o, label: 'ㄟ', swipe_up: commit_O, width: 7 }
       - {click: p, label: 'ㄣ', swipe_up: commit_P, width: 7 }
       #
-      - {width: 2 }
+      - {width: 1 }
       # - {click: commit4   ,  width: 7  }
       # - {click: commit5   ,  width: 7  }
       # - {click: commit6   ,  width: 7  }
@@ -113,7 +114,8 @@ preset_keyboards:
       - {click: 4   ,  width: 7  }
       - {click: 5   ,  width: 7  }
       - {click: 6   ,  width: 7  } 
-      - {click: '*' , swipe_up: '^' , width: 7  }
+      - {click: '*' ,  swipe_up: '^' , width: 7  }
+      - {width: 1 }
       #
       # - {width: 20  }
       - {click: a,   label: 'ㄇ', swipe_up: commit_A , width: 7  }
@@ -127,7 +129,7 @@ preset_keyboards:
       - {click: l,   label: 'ㄠ', swipe_up: commit_L , width: 7  }
       - {click: ';', label: 'ㄤ' ,swipe_up: commit24,  width: 7  } # /
       #
-      - {width: 2 }
+      - {width: 1 }
       # - {click: commit1   ,  width: 7  }
       # - {click: commit2   ,  width: 7  }
       # - {click: commit3   ,  width: 7  }
@@ -136,6 +138,7 @@ preset_keyboards:
       - {click: 2   ,                   width: 7  }
       - {click: 3   ,                   width: 7  }
       - {click: '-' ,  swipe_up: '\' ,  width: 7  }
+      - {width: 1 }
       #
       # - {width: 20  }
       - {click: z,   label: 'ㄈ', swipe_up: commit_Z , width: 7  }
@@ -149,7 +152,7 @@ preset_keyboards:
       - {click: '.', label: 'ㄡ', swipe_up: commit。 , width: 7  }
       - {click: '/', label: 'ㄥ', swipe_up: commit？ , width: 7  }
       #
-      - {width: 2 }
+      - {width: 1 }
       # - {click: commit0  ,  width: 7  }
       # - {click: commit.  ,  width: 7  }
       # - {click: symbol10 ,  width: 7  } # =
@@ -159,31 +162,37 @@ preset_keyboards:
       # - {click: '=' ,    width: 7  }    # sendEqua
       - {click: sendEqua ,                  width: 7  } # sendEqua
       - {click: '+'      , swipe_up: '|' ,  width: 7  }
+      - {width: 1 }
       #
       # - {width: 20  }
       # - {click: sendOpenbracket, width: 5 }
       # - {click: sendClosebracket, width: 5 }
-      - {click: snedLogo2 ,                 width: 7  }
+      # - {click: Shift ,                     width: 7  }
+      - {click: snedLogo2 ,                 width: 7  } # Clear, CLR, CLS ⌧
       - {click: english,                    width: 7  }
+      # - {click: LanguageSwitch,             width: 7  }
       - {click: space,                      width: 28 }
+      # - {click: space,                      width: 7 }
+      # - {click: snedLogo4,                  width: 21 }
       # - {click: commit←, width: 6 }
       # - {click: commit→, width: 6 }
-      - {click: "-" , label: 'ㄦ' , swipe_up: commit22 ,  width: 7 }
-      - {click: '<' , label: '，' , swipe_up: commit27 ,  width: 7 } 
-      - {click: BackSpace, width: 7 }
+      - {click: "-" , label: 'ㄦ' , swipe_up: "`" ,  width: 7 } # commit22 commit23
+      # - {click: '<' , label: '，' , swipe_up: commit27 ,  width: 7 } 
+      - {click: BackSpace, width: 14 }
       - {click: Return,    width: 7 }
       #
-      - {width: 2 }
+      - {width: 1 }
       - {click: commit←,                     width: 7 }
       - {click: commit→,                     width: 7 }
       # - {click: bracket3    ,  width: 7  }
       # - {click: bracket4    ,  width: 7  }
       - {click: '(' , swipe_up: '{'  ,       width: 7  }
       - {click: ')' , swipe_up: '}'  ,       width: 7  }
+      - {width: 1 }
       #
       # - {width: 100 }
-      - {width: 100 }
-      - {click: snedLogo3 , width: 100 }
+      # - {width: 100 }
+      - {click: sneddef , width: 100 }
     name: 注音鍵盤
     width: 10
 
@@ -207,11 +216,12 @@ preset_keyboards:
       - {click: '9' , swipe_up: commit( , width: 7 }
       - {click: '0' , swipe_up: commit) , width: 7 }
       #
-      - {width: 2 }
+      - {width: 1 }
       - {click: commit7     ,  width: 7 }
       - {click: commit8     ,  width: 7 }
       - {click: commit9     ,  width: 7 }
       - {click: commitgan   ,  width: 7 }
+      - {width: 1 }
       #
       # - {width: 20  }
       - {click: q   , swipe_up: '_'   , width: 7 }
@@ -225,68 +235,76 @@ preset_keyboards:
       - {click: o   , swipe_up: '{'   , width: 7 }
       - {click: p   , swipe_up: '}'   , width: 7 }
       #
-      - {width: 2 }
+      - {width: 1 }
       - {click: commit4   ,  width: 7  }
       - {click: commit5   ,  width: 7  }
       - {click: commit6   ,  width: 7  } 
       - {click: commit*   ,  width: 7  } 
+      - {width: 1 }
       #
       # - {width: 20  }
       - {click: a  , swipe_up: '`' , width: 7 }
-      - {click: s  , swipe_up: ''  , width: 7 }
+      - {click: s  , width: 7 }
       - {click: d  , swipe_up: '~' , width: 7 }
       - {click: f  , swipe_up: '!' , width: 7 }
-      - {click: g  , swipe_up: ''  , width: 7 }
-      - {click: h  , swipe_up: ''  , width: 7 }
-      - {click: j  , swipe_up: ''  , width: 7 }
-      - {click: k  , swipe_up: ''  , width: 7 }
-      - {click: l  , swipe_up: ''  , width: 7 }
+      - {click: g  , width: 7 }
+      - {click: h  , width: 7 }
+      - {click: j  , width: 7 }
+      - {click: k  , width: 7 }
+      - {click: l  , width: 7 }
       - {click: ';', swipe_up: ':' , width: 7 }
       #
-      - {width: 2 }
+      - {width: 1 }
       - {click: commit1   ,  width: 7  }
       - {click: commit2   ,  width: 7  }
       - {click: commit3   ,  width: 7  }
       - {click: commit-   ,  width: 7  }
+      - {width: 1 }
       #
       # - {width: 20  }
-      - {click: z ,  swipe_up: '' , width: 7 }
-      - {click: x ,  swipe_up: '' , width: 7 }
-      - {click: c ,  swipe_up: '' , width: 7 }
-      - {click: v ,  swipe_up: '' , width: 7 }
-      - {click: b ,  swipe_up: '' , width: 7 }
-      - {click: n ,  swipe_up: '' , width: 7 }
-      - {click: m ,  swipe_up: '' , width: 7 }
-      - {click: ',', swipe_up: '<', width: 7 }
-      - {click: '.', swipe_up: '>', width: 7 }
-      - {click: '/', swipe_up: '?', width: 7 }
+      - {click: z , width: 7 }
+      - {click: x , width: 7 }
+      - {click: c , width: 7 }
+      - {click: v , width: 7 }
+      - {click: b , width: 7 }
+      - {click: n , width: 7 }
+      - {click: m ,  swipe_up: "'" , width: 7 }
+      - {click: ',', swipe_up: '<',  width: 7 }
+      - {click: '.', swipe_up: '>',  width: 7 }
+      - {click: '/', swipe_up: '?',  width: 7 }
       #
-      - {width: 2 }
+      - {width: 1 }
       - {click: commit0  ,         width: 7  }
       - {click: commit.  ,         width: 7  }
       - {click: engsymbol10 ,      width: 7  }
       - {click: commit+  ,         width: 7  }
+      - {width: 1 }
       #
       # - {width: 20  }
       - {click: Shift ,            width: 7  }
-      - {click: DefaultKeyboard,   width: 7  }
+      - {click: DefaultKeyboard,   width: 7 }
       - {click: space,             width: 28 }
       # - {click: commit←, width: 6 }
       # - {click: commit→, width: 6 }
       - {click: "-" , swipe_up: '"' ,          width: 7 }
-      - {click: '@' , swipe_up: commitDotCOM , width: 7 }
-      - {click: BackSpace,                     width: 7 }
+      # - {click: '@' , swipe_up: commitDotCOM , width: 7 }
+      - {click: BackSpace,                     width: 14 }
       - {click: Return,                        width: 7 }
       #
-      - {width: 2 }
+      - {width: 1 }
       - {click: commit←,       width: 7 }
       - {click: commit→,       width: 7 }
       - {click: bracket3    ,  width: 7 }
       - {click: bracket4    ,  width: 7 }
+      - {width: 1 }
       #
       # - {width: 100 }
-      - {width: 100 }
-      - {click: snedLogo3 , width: 100 }
+      # - {width: 100 }
+      - {click: snedeng , width: 100 }
+      # - {click: snedeng , width: 70 }
+      # - {width: 1 }
+      # - {click: snedeng , width: 28 }
+      # - {width: 1 }
     name: "英文鍵盤"
     width: 10
 
@@ -413,16 +431,16 @@ preset_keys:
   Return: {label: Enter, send: Return}
   BackSpace: {send: BackSpace}
   BackSpace2: {label: "DEL" , functional: false, send: BackSpace}
-  space: {label: "", send: space}
+  space: {label: "␣", send: space}
   Clear: {label: "Reset", send: Escape}
   number: {label: "ϟ12", send: Eisu_toggle, select: english}
   .number: {label: "ϟ12", send: Eisu_toggle, select: english}
   symbols: {label: "ϟ12", send: Eisu_toggle, select: english}
   .symbols: {label: "ϟ12", send: Eisu_toggle, select: english}
   .symbols1: {label: "ϟ12", send: Eisu_toggle, select: english}
-  english: {label: "🌀", send: Eisu_toggle, select: english}
-  DefaultKeyboard: {label: "🌀", send: Eisu_toggle, select: default}
-  DefaultKeyboard2: {label: "🌀", send: Eisu_toggle, select: default} # 🌐🌏🌍🌎🈚🌀⚪⚫⬜⬛🔶🔷🃏🀄🎴
+  english: {label: "中", send: Eisu_toggle, select: english}
+  DefaultKeyboard: {label: "En", send: Eisu_toggle, select: default}
+  DefaultKeyboard2: {label: "En", send: Eisu_toggle, select: default} # 🌐🌏🌍🌎🈚🌀⚪⚫⬜⬛🔶🔷🃏🀄🎴
   semicolon: {label: "；", text: ";{DefaultKeyboard}"} #先上屏；再跳转到default键盘
   bracket: {label: "(", text: "(){Left}{DefaultKeyboard}"} #先上屏()光标往左移动一格再跳转到default键盘
   bracket1: {label: ")", text: "){DefaultKeyboard}"} 
@@ -556,7 +574,7 @@ preset_keys:
   spuer: {label: "super", text: "{Super_L}"}
   hyper: {label: "hyper", text: "{Hyper_L}"}
   caps: {label: "caps", text: "{Caps_Lock}"}
-  mata: {label: "mata", text: "{Meta_L}"}
+  meta: {label: "meta", text: "{Meta_L}"}
   end: {label: "end", text: "{End}"}
   begin: {label: "begin", text: "{Begin}"}
   alt: {label: "alt", text: "{Alt_L}"}
@@ -689,8 +707,11 @@ preset_keys:
   send←: {label: "←", text: "{Left}", send: DarkSpecialCharacter}
   send→: {label: "→", text: "{Right}", send: DarkSpecialCharacter}
   snedLogo1: { label: "mini", text: "{DefaultKeyboard}" } # 會觸發 輸出字
-  snedLogo2: { label: "CLR", send: Escape } # 會清空 輸入字符
+  snedLogo2: { label: "⌧", send: Escape } # 會清空 輸入字符 # Clear, CLR, CLS ⌧
   snedLogo3: { label: "", send: Escape }
+  snedLogo4: { label: "首選項", text: "{DefaultKeyboard}" } # 會觸發 輸出字
+  sneddef: { label: "", text: "{DefaultKeyboard}" } # 會觸發 輸出字
+  snedeng: { label: "", text: "{english}" } # 會觸發 輸出字
   #
   sendAt: {label: "@", text: "@", send: DarkSpecialCharacter}
   sendEqua: {label: "=", text: '=', send: DarkSpecialCharacter}
@@ -729,5 +750,50 @@ preset_keys:
   # commitBB: {label: "🄱", text: "."}
   # commitNN: {label: "🄽", text: "."}
   # commitMM: {label: "🄼", text: "."}
-  
-  
+  text111: {label: "ㄅ", text: "" }
+  text222: {label: "ㄉ", text: "" }
+  text333: {label: "ˇ", text: "" }
+  text444: {label: "ˋ", text: "" }
+  text555: {label: "ㄓ", text: "" }
+  text666: {label: "ˊ", text: "" }
+  text777: {label: "˙", text: "" }
+  text888: {label: "ㄚ", text: "" }
+  text999: {label: "ㄞ", text: "" }
+  text000: {label: "ㄢ", text: "" }
+  #
+  text---: {label: "ㄦ", text: "-" }
+  #
+  textQQQ: {label: "ㄆ", text: "" }
+  textWWW: {label: "ㄊ", text: "" }
+  textEEE: {label: "ㄍ", text: "" }
+  textRRR: {label: "ㄐ", text: "" }
+  textTTT: {label: "ㄔ", text: "" }
+  textYYY: {label: "ㄗ", text: "" }
+  textUUU: {label: "ㄧ", text: "" }
+  textIII: {label: "ㄛ", text: "" }
+  textOOO: {label: "ㄟ", text: "" }
+  textPPP: {label: "ㄣ", text: "" }
+  #
+  textAAA: {label: "ㄇ", text: "" }
+  textSSS: {label: "ㄋ", text: "" }
+  textDDD: {label: "ㄎ", text: "" }
+  textFFF: {label: "ㄑ", text: "" }
+  textGGG: {label: "ㄕ", text: "" }
+  textHHH: {label: "ㄘ", text: "" }
+  textJJJ: {label: "ㄨ", text: "" }
+  textKKK: {label: "ㄜ", text: "" }
+  textLLL: {label: "ㄠ", text: "" }
+  #
+  text____: {label: "ㄤ", text: ";" }
+  #
+  textZZZ: {label: "ㄈ", text: "" }
+  textXXX: {label: "ㄌ", text: "" }
+  textCCC: {label: "ㄏ", text: "" }
+  textVVV: {label: "ㄒ", text: "" }
+  textBBB: {label: "ㄖ", text: "" }
+  textNNN: {label: "ㄙ", text: "" }
+  textMMM: {label: "ㄩ", text: "" }
+  #
+  text_:   {label: "ㄝ", text: "，" }
+  text__:  {label: "ㄡ", text: "。" }
+  text___: {label: "ㄥ", text: "/" }
