@@ -98,11 +98,11 @@ default.yaml 替換 /bulid/default.yaml
 
 * 自訂主題 (自訂鍵盤樣式) 可以參考以下檔案內容差異 製作出符合自己需求的鍵盤樣式
 
- [theme/bopomo/port/theme.yaml](<https://github.com/copy0401/irime-bopomo-config/raw/master/theme/bopomo/port/theme.yaml>)
+ [theme/bopomoM/port/theme.yaml](<https://github.com/copy0401/irime-bopomo-config/raw/master/theme/bopomoM/port/theme.yaml>)
  
- [theme/flypy/port/theme.yaml](<https://github.com/copy0401/irime-bopomo-config/raw/master/theme/flypy/port/theme.yaml>)
+ [other_theme/flypycc3/port/theme.yaml](<https://github.com/copy0401/irime-bopomo-config/raw/master/other_theme/flypycc3/port/theme.yaml>)
  
- [theme/microsoft/port/theme.yaml](<https://github.com/copy0401/irime-bopomo-config/raw/master/theme/microsoft/port/theme.yaml>)
+ [other_theme/zhuyin/port/theme.yaml](<https://github.com/copy0401/irime-bopomo-config/raw/master/other_theme/zhuyin/port/theme.yaml>)
 
 
 - - -
