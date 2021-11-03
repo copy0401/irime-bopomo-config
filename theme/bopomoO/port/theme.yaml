@@ -140,12 +140,16 @@ preset_keyboards:
       - {click: '^' , swipe_up: "~"  , width: 5.48 }
       - {click: '%' , swipe_up: ","  , width: 5.48 }
       # 
-      - {click: snedLogo2 ,           width: 6.6  } # Clear, CLR, CLS ⌧
+      - {click: snedLogo2 ,          width: 6.6  } # Clear, CLR, CLS ⌧
       # - {click: LanguageSwitch ,   width: 9 }
       - {click: english,             width: 13.2 }
       - {click: space,               width: 33   }
       - {click: Return,              width: 19.8 }
-      - {click: sneddef ,            width: 27.4 }
+      
+      # - {click: sneddef ,          width: 27.4 }
+      - {click: Shift ,              width: 9.2 }
+      - {click: sneddef ,            width: 9.2 }
+      - {click: LanguageSwitch ,     width: 9 }
       #
       # - {click: sneddef , width: 100 }
     name: 注音鍵盤

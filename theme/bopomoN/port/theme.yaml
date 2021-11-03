@@ -82,6 +82,13 @@ preset_keyboards:
       # - {click: '%' , swipe_up: ","  , width: 9}
       # - {click: .   , swipe_up: '`'  , width: 10}
       #
+      # ①②③④⑤ 𝓐𝓑𝓒𝓓𝓔
+      # - {click: ① , width: 20}
+      # - {click: ② , width: 20}
+      # - {click: ③ , width: 20}
+      # - {click: ④ , width: 20}
+      # - {click: ⑤ , width: 20}
+      #
       - {click: '1',  label: 'ㄅ' , swipe_up: commit_1 , width: 9}
       - {click: '2',  label: 'ㄉ' , swipe_up: commit_2 , width: 9}
       - {click: '3',  label: 'ˇ'  , swipe_up: commit_3 , width: 9}
@@ -402,10 +409,16 @@ preset_keys:
   # commit/: {label: "/", commit: "/"}
   commit_: {label: "_", commit: "_"}
   commitJin: {label: "#", commit: "#"}
-  commit？: {label: "？", commit: "？"}
   commit！: {label: "！", commit: "！"}
-  commit，: {label: "，", commit: "，"}
-  commit。: {label: "。", commit: "。"}
+  #
+  # commit，: {label: "，", commit: "，"}
+  # commit。: {label: "。", commit: "。"}
+  # commit？: {label: "？", commit: "？"}
+  # 改成先送出 首選項 在送出符號
+  commit，: {label: "，", text: "{DefaultKeyboard}，"}
+  commit。: {label: "。", text: "{DefaultKeyboard}。"}
+  commit？: {label: "？", text: "{DefaultKeyboard}？"}
+  #
   commit”: {label: "”", commit: "”"}
   symbol1: {label: "【", text: "【{DefaultKeyboard}"}
   symbol2: {label: "】", text: "】{DefaultKeyboard}"}

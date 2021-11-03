@@ -48,6 +48,8 @@ key_binder:
     - {accept: "Shift+space", toggle: full_shape, when: always}
     - {accept: "Control+period", toggle: ascii_punct, when: always}
 menu:
+  # alternative_select_labels: [ ①, ②, ③, ④, ⑤ ]
+  # alternative_select_keys: ①②③④⑤
   page_size: 5
 punctuator:
   full_shape:

@@ -64,9 +64,19 @@ engine:
     - script_translator
     - lua_translator@calculator_translator # cctest 計算機功能
 
-menu:
-  alternative_select_keys: "123456789"
-  page_size: 6
+# menu:
+  # alternative_select_keys: "123456789"
+  # page_size: 6
+  # alternative_select_labels: [ ６, ７, ８, ９, ０ ]
+  # alternative_select_keys: 67890
+  # page_size: 6
+  # alternative_select_labels: [ ①, ②, ③, ④, ⑤ ]
+  # alternative_select_keys: ①②③④⑤
+  # page_size: 5
+
+# label_format: '%s'   # cctest
+# inline_preedit: true # cctest
+#
 ############################### 濾鏡 ##################################
 simplifier:
   tips: all

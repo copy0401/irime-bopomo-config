@@ -1,26 +1,18 @@
-# default.custom.yaml
-# save it to:
-#   ~/.config/ibus/rime  (linux)
-#   ~/Library/Rime       (macos)
-#   %APPDATA%\Rime       (windows)
-
 patch:
   schema_list:
-######## 洋蔥純注音版 ########
-    - schema: bopomo_onion
-    - schema: terra_pinyin
+    # - schema: flypy
+    - schema: bopomo_onion # 內建
     - schema: easy_en
+    - schema: terra_pinyin
     - schema: cangjie5
+    - schema: luna_pinyin # 內建 xiapin 依賴
     - schema: xiapin_mtc
     - schema: xiapin_msc
-##############################
-
-  switcher/fix_schema_list_order: true #固定方案選單順序
+  # switcher/fix_schema_list_order: true #固定方案選單順序
   switcher/hotkeys:
     # - Control+grave
     # - Control+Shift+grave
     # - F4
-
   key_binder/bindings:
     - { when: composing, accept: Control+p, send: Up }
     - { when: composing, accept: Control+n, send: Down }
@@ -63,7 +55,6 @@ patch:
     - { when: always, accept: Control+period, toggle: full_shape }
     - { when: always, accept: Control+semicolon, toggle: simplification }
     - { when: always, accept: Control+slash, toggle: ascii_punct }
-
 #  ascii_composer:
 #    good_old_caps_lock: false
 #  ascii_composer/switch_key:
