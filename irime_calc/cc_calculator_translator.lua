@@ -1,5 +1,4 @@
--- 改一下日期跟時間輸出 cctest
--- 
+-- 修改於 baopaau 版本
 -- Rime Script >https://github.com/baopaau/rime-lua-collection/blob/master/calculator_translator.lua
 -- 簡易計算器（執行任何Lua表達式）
 --
@@ -337,8 +336,9 @@ path = function ()
   return debug.getinfo(1).source:match("@?(.*/)")
 end
 
-tt=os.date("%H:%M:%S") --  cctest
-dd=os.date("%Y/%m/%d") --  cctest
+-- cct=os.date("%H:%M:%S") --  cctest 時間 注意 不會每次更新
+-- ccd=os.date("%Y/%m/%d") --  cctest 日期 注意 不會每次更新
+-- ccr=math.random         --  cctest 隨機
 
 local function serialize(obj)
   local type = type(obj)
@@ -378,6 +378,7 @@ local function calculator_translator(input, seg)
   -- 空格輸入可能
   exp = exp:gsub("#", " ")
   
+  -- yield(Candidate("number", seg.start, seg._end, exp, "表達式"))
        
   if not expfin then return end
   
@@ -391,7 +392,7 @@ local function calculator_translator(input, seg)
       expe, count = expe:gsub("\\%s*([%a%d%s,_]-)%s*%.(.-)|", " (function (%1) return %2 end) ")
     until count == 0
   end
-  --yield(Candidate("number", seg.start, seg._end, expe, "展開"))
+  -- yield(Candidate("number", seg.start, seg._end, expe, "展開"))
   
   -- 防止危險操作，禁用os和io命名空間
   if expe:find("i?os?%.") then return end
@@ -400,7 +401,9 @@ local function calculator_translator(input, seg)
   if result == nil then return end
   
   result = serialize(result)
-  yield(Candidate("number", seg.start, seg._end, exp.."="..result, ""))
+  yield(Candidate("number", seg.start, seg._end, exp.."="..result, "等式"))
+  yield(Candidate("number", seg.start, seg._end, result, "答案"))
+
 end
 
 return calculator_translator

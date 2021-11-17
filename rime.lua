@@ -79,16 +79,52 @@ end
 function t_translator(input, seg)
   if (string.match(input, "`")~=nil) then
       -- Candidate(type, start, end, text, comment)
+
+
+
+
+  if (input == "`") then
+    yield(Candidate("	", seg.start, seg._end, "	" , "TAB")) 
+    yield(Candidate("	", seg.start, seg._end, "#"   , "yaml")) 
+    yield(Candidate("	", seg.start, seg._end, "--"  , "lua")) 
+    yield(Candidate("	", seg.start, seg._end, "//"  , "c")) 
+    -- yield(Candidate("	", seg.start, seg._end, "if()\nthen\nelse\nend" , "demo"))
+    yield(Candidate("	", seg.start, seg._end, "copy0401@gmail.com" , "id")) 
+    return
+  end
+
+  if (input == "`q") then
+    yield(Candidate("	", seg.start, seg._end, "	" , "TAB")) 
+    return
+  end
+
+  if (input == "`w") then
+    yield(Candidate("	", seg.start, seg._end, "	" , "TAB")) 
+    return
+  end
+
   if (input == "`t") then
     yield(Candidate("time", seg.start, seg._end, os.date("%H:%M:%S"), " 現在時間 (時:分:秒)"))
     -- yield(Candidate("time", seg.start, seg._end, os.date("%H:%M"), " 現在時間 (時:分) ~m"))
     return
   end
 
-  -- if (input == "`tm") then
-  --   yield(Candidate("time", seg.start, seg._end, os.date("%H:%M"), " 現在時間 (時:分)"))
-  --   return
-  -- end
+  if (input == "`g") then
+    yield(Candidate("time", seg.start, seg._end, os.date("%H:%M:%S"), " 現在時間 (時:分:秒)"))
+    -- yield(Candidate("time", seg.start, seg._end, os.date("%H:%M"), " 現在時間 (時:分) ~m"))
+    return
+  end
+
+  if (input == "`gza") then
+    yield(Candidate("time", seg.start, seg._end, os.date("%H:%M:%S"), " 現在時間 (時:分:秒)"))
+    -- yield(Candidate("time", seg.start, seg._end, os.date("%H:%M"), " 現在時間 (時:分) ~m"))
+    return
+  end
+
+  if (input == "`tm") then
+    yield(Candidate("time", seg.start, seg._end, os.date("%H:%M"), " 現在時間 (時:分)"))
+    return
+  end
 
   if (input == "`n") then
     yield(Candidate("time", seg.start, seg._end, os.date("%H:%M"), " 現在時間 (時:分)"))
@@ -102,9 +138,41 @@ function t_translator(input, seg)
   -- end
 
   if (input == "`f") then
+    yield(Candidate("date", seg.start, seg._end, os.date("%Y/%m/%d"), "〔年月日〕 ~s"))
     yield(Candidate("date", seg.start, seg._end, os.date("%Y年%m月%d日"), "〔年月日〕 ~c"))
     yield(Candidate("date", seg.start, seg._end, os.date("%Y%m%d"), "〔年月日〕 ~d"))
+    yield(Candidate("date", seg.start, seg._end, os.date("%Y-%m-%d"), "〔年月日〕 ~m"))
+    yield(Candidate("date", seg.start, seg._end, os.date("%Y_%m_%d"), "〔年月日〕 ~u"))
+    yield(Candidate("date", seg.start, seg._end, rqzdx1(), "〔年月日〕 ~z"))
+    return
+  end
+
+-- 年月日 
+  if (input == "`smb") then
     yield(Candidate("date", seg.start, seg._end, os.date("%Y/%m/%d"), "〔年月日〕 ~s"))
+    yield(Candidate("date", seg.start, seg._end, os.date("%Y年%m月%d日"), "〔年月日〕 ~c"))
+    yield(Candidate("date", seg.start, seg._end, os.date("%Y%m%d"), "〔年月日〕 ~d"))
+    yield(Candidate("date", seg.start, seg._end, os.date("%Y-%m-%d"), "〔年月日〕 ~m"))
+    yield(Candidate("date", seg.start, seg._end, os.date("%Y_%m_%d"), "〔年月日〕 ~u"))
+    yield(Candidate("date", seg.start, seg._end, rqzdx1(), "〔年月日〕 ~z"))
+    return
+  end
+
+  if (input == "`s") then
+    yield(Candidate("date", seg.start, seg._end, os.date("%Y/%m/%d"), "〔年月日〕 ~s"))
+    yield(Candidate("date", seg.start, seg._end, os.date("%Y年%m月%d日"), "〔年月日〕 ~c"))
+    yield(Candidate("date", seg.start, seg._end, os.date("%Y%m%d"), "〔年月日〕 ~d"))
+    yield(Candidate("date", seg.start, seg._end, os.date("%Y-%m-%d"), "〔年月日〕 ~m"))
+    yield(Candidate("date", seg.start, seg._end, os.date("%Y_%m_%d"), "〔年月日〕 ~u"))
+    yield(Candidate("date", seg.start, seg._end, rqzdx1(), "〔年月日〕 ~z"))
+    return
+  end
+
+
+  if (input == "`b") then
+    yield(Candidate("date", seg.start, seg._end, os.date("%Y/%m/%d"), "〔年月日〕 ~s"))
+    yield(Candidate("date", seg.start, seg._end, os.date("%Y年%m月%d日"), "〔年月日〕 ~c"))
+    yield(Candidate("date", seg.start, seg._end, os.date("%Y%m%d"), "〔年月日〕 ~d"))
     yield(Candidate("date", seg.start, seg._end, os.date("%Y-%m-%d"), "〔年月日〕 ~m"))
     yield(Candidate("date", seg.start, seg._end, os.date("%Y_%m_%d"), "〔年月日〕 ~u"))
     yield(Candidate("date", seg.start, seg._end, rqzdx1(), "〔年月日〕 ~z"))
@@ -639,13 +707,13 @@ function t_translator(input, seg)
   end
 
   if(input=="`") then
----    yield(Candidate("date", seg.start, seg._end, "" , "擴充模式"))
-    yield(Candidate("date", seg.start, seg._end, "┃ f〔年月日〕┇ ym〔年月〕┇ md〔月日〕┇ fw〔年月日週〕┇ mdw〔月日週〕" , ""))
-    yield(Candidate("date", seg.start, seg._end, "┃ y〔年〕┇ m〔月〕┇ d〔日〕┇ w〔週〕┇ n〔時:分〕┇ t〔時:分:秒〕" , ""))
-    yield(Candidate("date", seg.start, seg._end, "┃ fn〔年月日 時:分〕┇ ft〔年月日 時:分:秒〕" , ""))
-    yield(Candidate("date", seg.start, seg._end, "┃ fwn〔年月日週 時:分〕┇ fwt〔年月日週 時:分:秒〕" , ""))
-    yield(Candidate("date", seg.start, seg._end, "┃ */*/*〔 * 年 * 月 * 日〕┇ */*〔 * 月 * 日〕" , ""))
-    yield(Candidate("date", seg.start, seg._end, "┃ *-*-*〔*年*月*日〕┇ *-*〔*月*日〕" , ""))
+    -- yield(Candidate("date", seg.start, seg._end, "" , "擴充模式"))
+    -- yield(Candidate("date", seg.start, seg._end, "┃ f〔年月日〕┇ ym〔年月〕┇ md〔月日〕┇ fw〔年月日週〕┇ mdw〔月日週〕" , ""))
+    -- yield(Candidate("date", seg.start, seg._end, "┃ y〔年〕┇ m〔月〕┇ d〔日〕┇ w〔週〕┇ n〔時:分〕┇ t〔時:分:秒〕" , ""))
+    -- yield(Candidate("date", seg.start, seg._end, "┃ fn〔年月日 時:分〕┇ ft〔年月日 時:分:秒〕" , ""))
+    -- yield(Candidate("date", seg.start, seg._end, "┃ fwn〔年月日週 時:分〕┇ fwt〔年月日週 時:分:秒〕" , ""))
+    -- yield(Candidate("date", seg.start, seg._end, "┃ */*/*〔 * 年 * 月 * 日〕┇ */*〔 * 月 * 日〕" , ""))
+    -- yield(Candidate("date", seg.start, seg._end, "┃ *-*-*〔*年*月*日〕┇ *-*〔*月*日〕" , ""))
     return
   end
 
@@ -1436,9 +1504,13 @@ function single_char_filter(input)
    end
 end
 
-
 --- reverse_lookup_filter
+-- bopomo_onion.extended.reverse.bin
+-- cangjie5.reverse.bin
+-- liur_TradToSimp.reverse.bin
+-- liur_Trad.reverse.bin
 pydb = ReverseDb("build/terra_pinyin.reverse.bin")
+-- pydb = ReverseDb("build/liur_Trad.reverse.bin")
 
 function xform_py(inp)
    if inp == "" then return "" end
@@ -1494,3 +1566,4 @@ function mytranslator(input, seg)
 end
 
 calculator_translator = require("calculator_translator")
+preedit_preview = require("preedit_preview")

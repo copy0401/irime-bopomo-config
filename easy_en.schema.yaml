@@ -1,0 +1,75 @@
+# Rime schema
+# vim: set sw=2 sts=2 et:
+# encoding: utf-8
+
+schema:
+  schema_id: easy_en
+  name: easy_en
+  version: "0.1"
+  author:
+    - Patrick <ipatrickmac@gmail.com>
+  description: "内置英文方案"
+
+switches:
+  - name: ascii_mode
+    reset: 0
+    states: [ On, Off ]
+  - name: full_shape
+    states: [ 半角, 全角 ]
+  - name: extended_charset
+    reset: 1
+    states: [ 常用, 增廣 ]
+  - name: ascii_punct
+    states: [ 。，, ．， ]
+
+engine:
+  processors:
+    - ascii_composer
+    - key_binder
+    - speller
+    - recognizer
+    - punctuator
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - matcher
+    - ascii_segmentor
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - table_translator
+    - punct_translator
+  filters:
+    - uniquifier
+
+speller:
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA-_
+  delimiter: " '"
+
+translator:
+  dictionary: easy_en
+  spelling_hints: 9
+  
+
+key_binder:
+  import_preset: default
+  bindings: 
+    - { when: composing, accept: Return, send: Escape }
+    - { when: always, accept: "Control+Shift+dollar", toggle: zhs_zht }
+    - { when: always, accept: "Control+Shift+percent", toggle: encode }
+    - { when: has_menu, accept: comma, send: comma }
+    - { when: has_menu, accept: period, send: period }
+    - { when: has_menu, accept: semicolon, send: 2 }
+    - { when: has_menu, accept: apostrophe, send: 3 }
+    - { when: has_menu, accept: "#", toggle: emoji_cn }   # 在输入过程中，切换Emoji开关的快捷键，这里用井号切换
+
+recognizer:
+  import_preset: default
+  patterns:
+    email: "^[a-z][-_.0-9a-z]*@.*$"
+    url: "^(www[.]|https?:|ftp:|mailto:).*$"
+    punct: "^/([0-9]0?|[a-z]+)$" #配合symbols.yaml中的特殊字符輸入
+menu:
+  page_size: 6 #選單每䈎顯示個數

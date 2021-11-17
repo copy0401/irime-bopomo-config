@@ -3,7 +3,7 @@
 # 《洋蔥純注音版 設定頁》
 schema:
   schema_id: bopomo_onion
-  name: "注音 onion"
+  name: "␣" # 注音 onion
   version: "202010"
   author:
     - 『洋蔥』
@@ -12,12 +12,13 @@ schema:
 
   dependencies:
     - cangjie5
+    - easy_en # cctest 中英混打
 
 switches:
   - name: ascii_mode
     reset: 0
     states: ["中文", "英文"]
-  - name: full_shape
+  # - name: full_shape
   #   reset: 0
   #   states: ["半形", "全形"]
   # - name: ascii_punct
@@ -32,6 +33,11 @@ switches:
   #     - UTF-8
   #     - BIG5
   #     - GBK
+  # - name: extended_charset # test 不確定有沒有作用
+  #   reset: 0 # 如果不需要生僻字設0
+  #   states: ["常用", "擴增"]
+
+
 
 engine:
   filters:
@@ -40,6 +46,10 @@ engine:
     - simplifier
     - reverse_lookup_filter@bpm_reverse_lookup
     - uniquifier
+    - lua_translator@single_char_filter # cctest rime.lua 
+    # - cjk_minifier # cctest 不需要生僻字 不確定有沒有作用
+    # - charset_filter # cctest 不需要生僻字 不確定有沒有作用
+    - lua_filter@preedit_preview # 顯示首選項
   processors:
     - ascii_composer
     - recognizer
@@ -62,21 +72,30 @@ engine:
     - table_translator@bopomo_onion_phrase
     - script_translator@reverse2_lookup
     - script_translator
+    - table_translator@english  # cctest 中英混打
+    - lua_translator@t_translator # cctest rime.lua
+    - lua_translator@t_translator # cctest rime.lua
+    - lua_translatordate_translator # cctest rime.lua
     - lua_translator@calculator_translator # cctest 計算機功能
 
-# menu:
-  # alternative_select_keys: "123456789"
-  # page_size: 6
-  # alternative_select_labels: [ ６, ７, ８, ９, ０ ]
-  # alternative_select_keys: 67890
-  # page_size: 6
+menu:
+  # alternative_select_labels: [A,B,C,D,E]
+  # alternative_select_keys: ABCDE
+  #
+  # alternative_select_labels: [1,2,3,4,6]
+  # alternative_select_keys: 12345
+  #
+  # alternative_select_labels: [ā,ē,ī,ō,ū]
+  alternative_select_keys: āēīōū
+  #
   # alternative_select_labels: [ ①, ②, ③, ④, ⑤ ]
   # alternative_select_keys: ①②③④⑤
-  # page_size: 5
-
+  #
+  page_size: 5 # default 5
+  #
 # label_format: '%s'   # cctest
 # inline_preedit: true # cctest
-#
+
 ############################### 濾鏡 ##################################
 simplifier:
   tips: all
@@ -87,13 +106,13 @@ simplifier:
 #   tags: [ abc ]
 ############################## 拼寫正則 #####################################
 speller:
-  alphabet: "1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/-3467 "
-  initials: "1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/-"
-  finals: " 6347"
-  delimiter: "\\"
-  use_space: true
+  alphabet: "1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/-3467 " # 定義本方案輸入鍵
+  initials: "1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/-" # 定義僅作始碼之鍵
+  finals: " 6347" # 定義僅作末碼之鍵
+  delimiter: "\\" # 上屛時的音節間分音符
+  use_space: true # 以空格作輸入碼〔true或false〕
   algebra:
-    - xform/iu/iou/
+    - xform/iu/iou/ # xform --改寫〔不保留原形〕
     - xform/ui/uei/
     - xform/ong/ung/
     - xform/yi?/i/
@@ -117,21 +136,21 @@ speller:
     - xform/eh/E/
     - xform/([iv])e/$1E/
 ##############字母簡化############
-    - abbrev/^([bpmfdtnlgkhjqxZCSrzcsiuvaoeEAIOUMNKGR]).+$/$1/
+    - abbrev/^([bpmfdtnlgkhjqxZCSrzcsiuvaoeEAIOUMNKGR]).+$/$1/  # abbrev --簡拼〔出字優先級較上兩組更低〕
     - abbrev/^([bpmfdtnlgkhjqxZCSrzcsiuv])([iuvaoeEAIOUMNKGR])\d$/$1$2/
     - abbrev/^([bpmfdtnlgkhjqxZCSrzcs])([iuv])([aoeEAIOUMNKGR])\d$/$1$2$3/
 #    - abbrev/^([bpmfdtnlgkhjqxZCSrzcsiuv]).+(\d)$/$1$2/ #使得ㄎˇㄈˇ（可否）可以打的出來 #新增iuv，使得ㄧˊㄉˊ（贏得）可以打出
 #    - abbrev/^([bpmfdtnlgkhjqxZCSrzcs]).+(\d)$/$1$2/ #同上，但少了ㄧㄨㄩ
     - abbrev/^([bpmfdtnlgkhjqx]).+(\d)$/$1$2/ #同上，但再少了ㄓㄔㄕㄖㄗㄘㄙ
 ##########注音聲韻母亂序##########
-    - derive/^([bpmfdtnlgkhjqxZCSrzcs])([iuv])/$2$1/
+    - derive/^([bpmfdtnlgkhjqxZCSrzcs])([iuv])/$2$1/ # derive --衍生〔保留原形〕
     - derive/^([iuv])([aoeEAIOUMNKGR])/$2$1/
     - derive/^([bpmfdtnlgkhjqxZCSrzcs])([aoeEAIOUMNKGR])/$2$1/
     - derive/^([bpmfdtnlgkhjqxZCSrzcs])([iuv])([aoeEAIOUMNKGR])/$3$2$1/
     - derive/^([bpmfdtnlgkhjqxZCSrzcs])([iuv])([aoeEAIOUMNKGR])/$3$1$2/
     - derive/^([bpmfdtnlgkhjqxZCSrzcs])([iuv])([aoeEAIOUMNKGR])/$2$3$1/
     - derive/^([bpmfdtnlgkhjqxZCSrzcs])([iuv])([aoeEAIOUMNKGR])/$1$3$2/
-    - 'xlit|bpmfdtnlgkhjqxZCSrzcsiuvaoeEAIOUMNKGR12345|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/- 6347|'
+    - 'xlit|bpmfdtnlgkhjqxZCSrzcsiuvaoeEAIOUMNKGR12345|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/- 6347|' # xlit --變換〔適合大量一對一變換〕
 ################################### 主翻譯器 ###################################
 translator:
   dictionary: bopomo_onion.extended
@@ -162,6 +181,14 @@ reverse2_lookup:
     - "xlit|abcdefghijklmnopqrstuvwxyz|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜符|"
     - xform/^/《反查》/
     - 'xform/\\/ /'
+
+# english 翻譯器的設定項
+english:
+  dictionary: easy_en
+  spelling_hints: 9
+  enable_completion: true
+  enable_sentence: false
+  initial_quality: -3
 
 bpm_reverse_lookup:
   tags: [ reverse2_lookup ]
@@ -197,57 +224,57 @@ bpm_reverse_lookup:
 punctuator:
   import_preset: bopomo_onion_symbols
   full_shape:
-    "=" : [ "＝", "々", "〃", "〻" ]
-    "[" : [ "「", 〈, 〔, "‘", ［, ｛, ＜, （, ﹝, ﹛, ﹤, ﹙, ‹, ˂, "⁽", "₍", "⁅", "｢", "[", "{", "<", "(" ]
-    "]" : [ "」", 〉, 〕, "’", ］, ｝, ＞, ）, ﹞, ﹜, ﹥, ﹚, ›, ˃, "⁾", "₎", "⁆", "｣", "]", "}", ">", ")" ]
-    "{" : { commit: "『" }
-    "}" : { commit: "』" }
-    ":" : { commit: "：" }
-    "'" : [ "、","—", "──", "——", "⸺", "‧", "·", "●", "•", "・", "･" ]
-    "\"" : { commit: "；" }
-    "<" : { commit: "，" }
-    ">" : { commit: "。" }
-    "?" : { commit: "？" }
-    "\\" : [ "＼", "\\", "﹨" ]
-    "|" : [ "｜", "|", "︱", "§", "¶", "⁋", "❡", "⁌", "⁍", "∣", "︳", "│", "┃", "¦", "╎", "╏", "┆", "┇", "┊", "┋", "‖", "║", "‖", "∥", "᱿", "᰼" ]
-    "`" : [ "｀" ]
+    # "=" : [ "＝", "々", "〃", "〻" ]
+    # "[" : [ "「", 〈, 〔, "‘", ［, ｛, ＜, （, ﹝, ﹛, ﹤, ﹙, ‹, ˂, "⁽", "₍", "⁅", "｢", "[", "{", "<", "(" ]
+    # "]" : [ "」", 〉, 〕, "’", ］, ｝, ＞, ）, ﹞, ﹜, ﹥, ﹚, ›, ˃, "⁾", "₎", "⁆", "｣", "]", "}", ">", ")" ]
+    # "{" : { commit: "『" }
+    # "}" : { commit: "』" }
+    # ":" : { commit: "：" }
+    # "'" : [ "、","—", "──", "——", "⸺", "‧", "·", "●", "•", "・", "･" ]
+    # "\"" : { commit: "；" }
+    # "<" : { commit: "，" }
+    # ">" : { commit: "。" }
+    # "?" : { commit: "？" }
+    # "\\" : [ "＼", "\\", "﹨" ]
+    # "|" : [ "｜", "|", "︱", "§", "¶", "⁋", "❡", "⁌", "⁍", "∣", "︳", "│", "┃", "¦", "╎", "╏", "┆", "┇", "┊", "┋", "‖", "║", "‖", "∥", "᱿", "᰼" ]
+    # "`" : [ "｀" ]
   half_shape:
-    "<" : { commit: "，" }
-    ">" : { commit: "。" }
-    "?" : { commit: "？" }
-    ":" : { commit: "：" }
-    "'" : [ "、","—", "──", "——", "⸺", "‧", "·", "●", "•", "・", "･" ]
-    "\"" : { commit: "、" }
-    "\\" : [ "\\", "＼", "﹨" ]
-    "|" : [ "|", "｜", "︱", "§", "¶", "⁋", "❡", "⁌", "⁍", "∣", "︳", "│", "┃", "¦", "╎", "╏", "┆", "┇", "┊", "┋", "‖", "║", "‖", "∥", "᱿", "᰼" ]
-    "`" : [ "`" ]
-#    "`" : [ "`", "  ※ 輸入【項目】每字第一個注音，調出相關符號。", "【表情】【自然】【飲食】【活動】【旅遊】【物品】【符號】", "【國旗】【微笑】【大笑】【冒汗】【喜愛】【討厭】【無奈】", "【哭泣】【冷淡】【驚訝】【生氣】【懷疑】【大頭】【人物】", "【獸面】【貓頭】【怪物】【五官】【手勢】【亞裔】【白人】", "【黑人】【天氣】【下雪】【天體】【夜空】【地球】【景色】", "【景點】【名勝】【日本】【美國】【法國】【建築】【節日】", "【娛樂】【遊戲】【運動】【球具】【獎項】【獎牌】【食物】", "【正飯】【午餐】【早餐】【早點】【中餐】【西餐】【快餐】", "【速食】【米飯】【麵包】【捲物】【串物】【甜點】【零食】", "【飲料】【熱飲】【酒精】【酒類】【植物】【水果】【蔬菜】", "【粗糧】【花卉】【葉子】【肉類】【肉品】【牲畜】【畜牲】", "【禽類】【鳥類】【魚圖】【鳥圖】【衣物】【衣服】【褲子】", "【帽子】【包包】【頭髮】【膚色】【化妝】【愛情】【愛心】", "【兩性】【效果】【色塊】【宗教】【音樂】【樂器】【時鐘】", "【標誌】【圖示】【圖標】【箭標】【指示】【回收】【有害】", "【科學】【通訊】【電腦】【電子】【武器】【象棋】【麻將】", "【骰子】【撲克】【船隻】【飛機】【汽車】【車輛】【公交】", "【城軌】【捷運】【火車】【錢財】【鈔票】【紙鈔】【紙幣】", "【貨幣】【單位】【數學】【分數】【打勾】【星號】【箭頭】", "【線段】【幾何】【三角】【方塊】【圓形】【填色】【文化】", "【占星】【星座】【易經】【八卦】【卦名】【天干】【地支】", "【干支】【節氣】【月份】【日期】【曜日】【時間】【符碼】", "【標點】【合字】【部首】【偏旁】【筆畫】【倉頡】【結構】", "【拼音】【注音】【聲調】【上標】【下標】【羅馬】【希臘】", "【俄語】【韓文】【(平)假名】", "【幾何圖】【鞋子圖】【眼鏡圖】【工具圖】【電器圖】【甜食圖】", "【餐具圖】【動物圖】【生肖圖】【家禽圖】【魚類圖】【精怪圖】", "【月相圖】【交通圖】【飛行器】【黃種人】【拉美裔】【棕色人】", "【白種人】【阿拉伯】【動物臉】【猴子頭】【咧嘴笑】【做運動】", "【日本菜】【食物捲】【辦公室】【警消護】【大自然】【遊樂園】", "【撲克牌】【西洋棋】【輸入法】【日用品】【單線框】【雙線框】", "【色塊心】【色塊方】【色塊圓】【十字架】【星座名】【十二宮】", "【太玄經】【蘇州碼】【標點直】【羅馬大】【希臘大】【俄語大】", "【字母圈】【字母括】【字母方】【字母框】【數字圈】【數字括】", "【數字點】【數字標】【漢字圈】【漢字框】【漢字括】【韓文圈】【韓文括】", "【假名圈】【片假名】【IRO(いろは順)】【假名半(形)】【日本年】【填色塊】", "【猴子表情】【十二生肖】【交通工具】【公共運輸】【日式料理】", "【日本料理】【日本星期】【羅馬數字】【數字圈黑】【數字黑圈】", "【字母圈大】【字母括大】【字母黑圈】【字母圈黑】【字母黑方】", "【字母方黑】【字母框黑】【字母黑框】【易經卦名】【六十四卦】", "【六十四卦名】【羅馬數字大】", "【運動ㄋㄩ(女)】【運動ㄋㄢ(男)】【精怪ㄋㄩ(女)】【精怪ㄋㄢ(男)】", "【 a 假名】【 i 假名】【 u 假名】【 e 假名】【 o 假名】", "【 k 假名】【 g 假名】【 s 假名】【 z 假名】【 t 假名】【 d 假名】", "【 n 假名】【 h 假名】【 b 假名】【 p 假名】【 m 假名】【 y 假名】", "【 r 假名】【 w 假名】｢圈｣｢框｣｢括｣數字字母：【 0 ~ 9 】【 1-0 ~ 5-0 】【 a ~ z 】" ]
-    "~" : { commit: "～" }
-    "!" : { commit: "！" }
-    "@" : { commit: "@" }
-    "#" : { commit: "#" }
-    "%" : { commit: "%" }
-    "$" : { commit: "$" }
-    "^" : { commit: "^" }
-    "&" : { commit: "&" }
-    "*" : { commit: "*" }
-    "(" : { commit: （ }
-    ")" : { commit: ） }
-    "_" : { commit: "_" }
-    "+" : { commit: "+" }
-    "=" : [ "=", "々", "〃", "〻" ]
-    "[" : [ "「", 〈, 〔, "‘", ［, ｛, ＜, （, ﹝, ﹛, ﹤, ﹙, ‹, ˂, "⁽", "₍", "⁅", "｢", "[", "{", "<", "(" ]
-    "]" : [ "」", 〉, 〕, "’", ］, ｝, ＞, ）, ﹞, ﹜, ﹥, ﹚, ›, ˃, "⁾", "₎", "⁆", "｣", "]", "}", ">", ")" ]
-    "{" : { commit: "『" }
-    "}" : { commit: "』" }
-#    "3" : [ "https://", "http://", "ftp://", "mailto://", "file://" ]
-#    "4" : [ "www.", "line.me/", "/Users/", "/Library/", "C:\\>", "D:\\>", '<a href=""></a>', '<img sre=""></img>', '<a href="mailto:"></a>', '<a href=""><img src="" border="0"></a>' ]
-#    "6" : [ ".com", ".org", ".net", ".co", ".gov", ".edu", ".info" ]
-#    "7" : [ ".tw", ".jp", ".kr", ".hk", ".cn", ".uk", ".us", ".de", ".fr", ".cc" ]
+    # "<" : { commit: "，" }
+    # ">" : { commit: "。" }
+    # "?" : { commit: "？" }
+    # ":" : { commit: "：" }
+    # "'" : [ "、","—", "──", "——", "⸺", "‧", "·", "●", "•", "・", "･" ]
+    # "\"" : { commit: "、" }
+    # "\\" : [ "\\", "＼", "﹨" ]
+    # "|" : [ "|", "｜", "︱", "§", "¶", "⁋", "❡", "⁌", "⁍", "∣", "︳", "│", "┃", "¦", "╎", "╏", "┆", "┇", "┊", "┋", "‖", "║", "‖", "∥", "᱿", "᰼" ]
+    # "`" : [ "`" ]
+    # "~" : { commit: "～" }
+    # "!" : { commit: "！" }
+    # "@" : { commit: "@" }
+    # "#" : { commit: "#" }
+    # "%" : { commit: "%" }
+    # "$" : { commit: "$" }
+    # "^" : { commit: "^" }
+    # "&" : { commit: "&" }
+    # "*" : { commit: "*" }
+    # "(" : { commit: （ }
+    # ")" : { commit: ） }
+    # "_" : { commit: "_" }
+    # "+" : { commit: "+" }
+    # "=" : [ "=", "々", "〃", "〻" ]
+    # "[" : [ "「", 〈, 〔, "‘", ［, ｛, ＜, （, ﹝, ﹛, ﹤, ﹙, ‹, ˂, "⁽", "₍", "⁅", "｢", "[", "{", "<", "(" ]
+    # "]" : [ "」", 〉, 〕, "’", ］, ｝, ＞, ）, ﹞, ﹜, ﹥, ﹚, ›, ˃, "⁾", "₎", "⁆", "｣", "]", "}", ">", ")" ]
+    # "{" : { commit: "『" }
+    # "}" : { commit: "』" }
+    # "3" : [ "https://", "http://", "ftp://", "mailto://", "file://" ]
+    # "4" : [ "www.", "line.me/", "/Users/", "/Library/", "C:\\>", "D:\\>", '<a href=""></a>', '<img sre=""></img>', '<a href="mailto:"></a>', '<a href=""><img src="" border="0"></a>' ]
+    # "6" : [ ".com", ".org", ".net", ".co", ".gov", ".edu", ".info" ]
+    # "7" : [ ".tw", ".jp", ".kr", ".hk", ".cn", ".uk", ".us", ".de", ".fr", ".cc" ]
 ################################# 按鍵處理 ######################################
 key_binder:
   import_preset: default
   bindings:
+    # - {accept: "˙", toggle: ascii_mode, when: always}  # cctest
 ### 避大千注音鍵位和 RIME 原設定鍵位衝突 ###
     - {accept: comma, send: comma, when: has_menu}
     - {accept: period, send: period, when: has_menu}

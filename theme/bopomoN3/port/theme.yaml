@@ -22,20 +22,20 @@ hide:
 
 style:
   candidate_font: han.ttf #候选字型
-  candidate_padding: 14 #候选项内边距
-  candidate_spacing: 15 #候选间距
+  candidate_padding: 14 #候选项内边距 14
+  candidate_spacing: 15 #候选间距 15
   candidate_text_size: 28 #候选字号 24
   candidate_use_cursor: true #高亮候选项
-  candidate_view_height: 44 #*jpgd5 #候选区高度
+  candidate_view_height: 44 # *jpgd5 # 候选区高度 44
   comment_height: 16 #编码提示区高度 16
   comment_on_top: false #编码提示在上方或右侧 false = top
   comment_text_size: 14 #编码提示字号 14
   key_font: symbol.ttf #键盘字型
-  text_height: 20 #编码框高度 默认值为：20 # *jpgd2 #键高
+  text_height: 12 #编码框高度 默认值为：20 # *jpgd2 #键高
   key_long_text_size: 14 #长标签字号
   key_text_size: 18 #键字号 18
   key_width: 10.0 #键宽，占银幕宽的百分比 # 10.0
-  keyboards: [default , english , number] #键盘配置
+  keyboards: [default , english , number , number2 , number3] #键盘配置
   label_text_size: 22 #标签字号 22
   preview_text_size: 40 #按键提示字号 40
   show_candidate: *hide #显示候选区 *hide
@@ -80,6 +80,7 @@ preset_keyboards:
     horizontal_gap: *jpgd10
     vertical_gap: *jpgd9
     round_corner: *jpgd4
+    width: 10
     keys:
       # - {width: 8.3 }
       # - {click: '=' ,                                     width: 8.3 } # sendEqua
@@ -146,7 +147,8 @@ preset_keyboards:
       #
       # - {width: 8.3 }
       # - {click: snedLogo2 ,        width: 8.3  } # Clear, CLR, CLS ⌧
-      - {click: number       ,     width:  8.3 } # 8.3 16.6 24.9
+      - {click: toN1 , width:  8.3 } # 8.3 16.6 24.9
+      #
       - {click: z,   label: '       ㄈ', swipe_up: commit_Z  , width: 8.3 }
       - {click: x,   label: '       ㄌ', swipe_up: commit_X  , width: 8.3 }
       - {click: c,   label: '       ㄏ', swipe_up: commit_C  , width: 8.3 }
@@ -157,23 +159,23 @@ preset_keyboards:
       - {click: ',', label: '       ㄝ', swipe_up: commit，  , swipe_down: commit， , width: 8.3 }
       - {click: '.', label: '       ㄡ', swipe_up: commit。  , swipe_down: commit。 , width: 8.3 }
       - {click: '/', label: '       ㄥ', swipe_up: commit？  , swipe_down: commit？ , width: 8.3 }
-      - {width: 8.7 }
+      - {click: space, label: '␣',   width: 8.7 }
       # - {click: sneddef,   width: 8.7 }
-      # 
       #
+      - {click: english       ,    width: 8.3  } # 8.3 16.6 24.9
+      # - {width: 8.3 }
+      # - {width: 8.3 }
       # - {click: Shift,           width: 8.3  }
-      - {click: english       ,    width: 24.9 } # 8.3 16.6 24.9
       # - {click: LanguageSwitch,  width: 8.3  }
       # - {click: Shift,           width: 8.3  }
-      - {click: sneddef,           width: 41.5 } # 49.8
-      - {click: space, label: '␣',   width: 8.3 }
+      - {click: sneddef,           width: 83  } # 49.8 83 66.4
       # - {click: space,           width: 66.4 } # 45 27
       # - {click: Shift2,          width: 8.3  }
-      - {click: Return,            width: 25.3 } 
-      #
+      # - {width: 8.3 }
+      # - {width: 8.3 }
+      - {click: Return,            width: 8.7  }  # height: 60
       # - {click: sneddef , width: 100 }
     name: 注音鍵盤
-    width: 10
 
   english:
     ascii_mode: 1
@@ -182,6 +184,7 @@ preset_keyboards:
     horizontal_gap: *jpgd10
     vertical_gap: *jpgd9
     round_corner: *jpgd4
+    width: 10
     keys:
       # - {width: 8.3 }
       # - {click: '=' ,                                     width: 8.3 } # sendEqua
@@ -205,7 +208,7 @@ preset_keyboards:
       # (8.3x11)+8.7
       #
       # - {width: 0 }
-      - {click: '1' , label: '       1' ,  swipe_up: commit! , width: 8.3 }
+      - {click: '1' , label: '       1' , swipe_up: commit! , width: 8.3 }
       - {click: '2' , label: '       2' , swipe_up: commit@ , width: 8.3 }
       - {click: '3' , label: '       3' , swipe_up: commit# , width: 8.3 }
       - {click: '4' , label: '       4' , swipe_up: commit$ , width: 8.3 }
@@ -260,20 +263,21 @@ preset_keyboards:
       - {click: '/',  label: '       /' , swipe_up: '?' ,  width: 8.3 }
       # - {width: 0 }
       # - {click: sneddef,   width: 8.7 }
-      - {width: 8.7 }
+      - {click: space, label: '␣',   width: 8.7 }
       # 
-      #
-      - {click: DefaultKeyboard ,  width: 24.9 } # 8.3 16.6 24.9
+      - {click: DefaultKeyboard ,  width: 8.3  } # 8.3 16.6 24.9
+      # - {width: 8.3  }
+      # - {width: 8.3  }
       # - {click: snedLogo2 ,      width: 8.3  } # Clear, CLR, CLS ⌧
       # - {click: LanguageSwitch,  width: 8.3  }
       # - {click: Shift,           width: 8.3  }
-      - {click: space,             width: 49.8 } # 45 27 66.4
+      - {click: space,             width: 83 } # 49.8 45 27 66.4
       # - {click: Shift2,          width: 8.3  }
-      - {click: Return,            width: 25.3 } 
-      #
+      # - {width: 8.3  }
+      # - {width: 8.3  }
+      - {click: Return,             width: 8.7 } 
       # - {click: sneddef , width: 100 }
     name: 英文鍵盤
-    width: 10
 
   number:
     ascii_mode: 0
@@ -290,15 +294,13 @@ preset_keyboards:
       - {click: '' , label: '' ,    width: 8.3 }
       - {click: '' , label: '' ,    width: 8.3 }
       - {click: '' , label: '' ,    width: 8.3 }
-      - {click: '' , label: '' ,    width: 8.3 }
-      - {click: '' , label: '' ,    width: 8.3 }
       - {click: '(' ,               width: 8.3 }
       - {click: ')' ,               width: 8.3 }
       - {click: '^' ,               width: 8.3 }
+      - {click: '/' , label: '÷' ,  width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
       - {click: BackSpace,          width: 8.7 }
-      #
-      - {click: '' , label: '' ,    width: 8.3 }
-      - {click: '' , label: '' ,    width: 8.3 }
+      # 
       - {click: '' , label: '' ,    width: 8.3 }
       - {click: '' , label: '' ,    width: 8.3 }
       - {click: '' , label: '' ,    width: 8.3 }
@@ -308,8 +310,83 @@ preset_keyboards:
       - {click: '7' , label: '7' ,  width: 8.3 }
       - {click: '8' , label: '8' ,  width: 8.3 }
       - {click: '9' , label: '9' ,  width: 8.3 }
-      - {click: '/' , label: '÷' ,  width: 8.7 }
+      - {click: '*' , label: 'x' ,  width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.7 }
+      # 
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '4' , label: '4' ,  width: 8.3 }
+      - {click: '5' , label: '5' ,  width: 8.3 }
+      - {click: '6' , label: '6' ,  width: 8.3 }
+      - {click: '-' , label: '-' ,  width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.7 }
       #
+      - {click: DefaultKeyboard2  , width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '1' , label: '1'  , width: 8.3 }
+      - {click: '2' , label: '2'  , width: 8.3 }
+      - {click: '3' , label: '3'  , width: 8.3 }
+      - {click: '+' , label: '+'  , width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.7 }
+      #
+      # - {width: 8.3 }
+      - {click: '' , label: '' , width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '0' , label: '0'  , width: 8.3 }
+      - {click: '.' ,               width: 8.3 }
+      - {click: sendEqua ,          width: 8.3 }
+      - {click: '%' , label: '%'  , width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: Return,             width: 8.7 } 
+      # 
+      # - {click: snedLogo2 ,      width: 8.3  } # Clear, CLR, CLS ⌧
+      # - {click: sneddef,           width: 100 } # 49.8
+      # - {click: DefaultKeyboard2 ,  width: 24.9 } # 8.3 16.6 24.9
+      # - {click: space,             width: 49.8 } # 45 27 66.4
+      # - {click: sendEqua,          width: 75 }
+      # - {width: 75 }
+      # - {click: Return,            width: 16.7 }
+    name: 計算鍵盤
+    width: 10
+
+  number2:
+    ascii_mode: 0
+    author: "copy0401"
+    height: *jpgd2
+    horizontal_gap: *jpgd10
+    vertical_gap: *jpgd9
+    round_corner: *jpgd4
+    keys:
+      #
+      - {click: '2' , label: '2' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      #
+      - {click: '(' ,               width: 8.3 }
+      - {click: ')' ,               width: 8.3 }
+      - {click: '^' ,               width: 8.3 }
+      - {click: BackSpace,          width: 8.7 }
+      # 
       - {click: '' , label: '' ,    width: 8.3 }
       - {click: '' , label: '' ,    width: 8.3 }
       - {click: '' , label: '' ,    width: 8.3 }
@@ -318,6 +395,21 @@ preset_keyboards:
       - {click: '' , label: '' ,    width: 8.3 }
       - {click: '' , label: '' ,    width: 8.3 }
       - {click: '' , label: '' ,    width: 8.3 }
+      #
+      - {click: '7' , label: '7' ,  width: 8.3 }
+      - {click: '8' , label: '8' ,  width: 8.3 }
+      - {click: '9' , label: '9' ,  width: 8.3 }
+      - {click: '/' , label: '÷' ,  width: 8.7 }
+      # 
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      #
       - {click: '4' , label: '4' ,  width: 8.3 }
       - {click: '5' , label: '5' ,  width: 8.3 }
       - {click: '6' , label: '6' ,  width: 8.3 }
@@ -357,8 +449,97 @@ preset_keyboards:
       # - {click: sendEqua,          width: 75 }
       # - {width: 75 }
       # - {click: Return,            width: 16.7 }
-    name: 計算鍵盤
+    name: 計算鍵盤2
     width: 10
+
+  number3:
+    ascii_mode: 0
+    author: "copy0401"
+    height: *jpgd2
+    horizontal_gap: *jpgd10
+    vertical_gap: *jpgd9
+    round_corner: *jpgd4
+    keys:
+      #
+      - {click: '3' , label: '3' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      #
+      - {click: '(' ,               width: 8.3 }
+      - {click: ')' ,               width: 8.3 }
+      - {click: '^' ,               width: 8.3 }
+      - {click: BackSpace,          width: 8.7 }
+      # 
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      #
+      - {click: '7' , label: '7' ,  width: 8.3 }
+      - {click: '8' , label: '8' ,  width: 8.3 }
+      - {click: '9' , label: '9' ,  width: 8.3 }
+      - {click: '/' , label: '÷' ,  width: 8.7 }
+      # 
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      #
+      - {click: '4' , label: '4' ,  width: 8.3 }
+      - {click: '5' , label: '5' ,  width: 8.3 }
+      - {click: '6' , label: '6' ,  width: 8.3 }
+      - {click: '*' , label: '×' ,  width: 8.7 }
+      #
+      - {click: DefaultKeyboard2  , width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '1' , label: '1'  , width: 8.3 }
+      - {click: '2' , label: '2'  , width: 8.3 }
+      - {click: '3' , label: '3'  , width: 8.3 }
+      - {click: '-' ,               width: 8.7 }
+      #
+      # - {width: 8.3 }
+      - {click: '%' ,  label: "%" , width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '' , label: '' ,    width: 8.3 }
+      - {click: '0' , label: '0'  , width: 8.3 }
+      - {click: '.' ,               width: 8.3 }
+      - {click: sendEqua ,          width: 8.3 }
+      - {click: '+' ,               width: 8.7 }
+      # 
+      # - {click: snedLogo2 ,      width: 8.3  } # Clear, CLR, CLS ⌧
+      # - {click: sneddef,           width: 100 } # 49.8
+      # - {click: DefaultKeyboard2 ,  width: 24.9 } # 8.3 16.6 24.9
+      # - {click: space,             width: 49.8 } # 45 27 66.4
+      # - {click: sendEqua,          width: 75 }
+      # - {width: 75 }
+      # - {click: Return,            width: 16.7 }
+    name: 計算鍵盤3
+    width: 10
+
 
 preset_color_schemes:
   cc1:
@@ -477,6 +658,9 @@ preset_color_schemes:
     hilited_candidate_back_color: 0x000000
 
 preset_keys:
+  toN1: {label: "calc" , send: Eisu_toggle , select: number }
+  toN2: {label: "calc2" , send: Eisu_toggle , select: number2 }
+  toN3: {label: "calc3" , send: Eisu_toggle , select: number3 }
   # 编辑
   LanguageSwitch: {send: LANGUAGE_SWITCH}
   Shift: {send: Shift_L}
