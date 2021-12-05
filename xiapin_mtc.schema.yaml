@@ -69,7 +69,7 @@ menu:
 
 speller:
   alphabet: "abcdefghijklmnopqrstuvwxyz[];',.`"
-  delimiter: "|" # "`" # cctest 執行 `` lime.lua
+  delimiter: "`"
   algebra:
     - xform/^~(.*)$/$1
 #為了加強造詞準確性，在字典中，以「~」前綴標記非標準拆字，再透過拼寫語法去除「~」後，送入辭典查詢
