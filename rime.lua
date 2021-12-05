@@ -80,16 +80,50 @@ function t_translator(input, seg)
   if (string.match(input, "`")~=nil) then
       -- Candidate(type, start, end, text, comment)
 
-
-
-
-  if (input == "`") then
-    yield(Candidate("	", seg.start, seg._end, "	" , "TAB")) 
+  if (input == "``") then
+    if (os.date("%w") == "0") then
+      weekstr = "日"
+    end
+    if (os.date("%w") == "1") then
+      weekstr = "一"
+    end
+    if (os.date("%w") == "2") then
+      weekstr = "二"
+    end
+    if (os.date("%w") == "3") then
+      weekstr = "三"
+    end
+    if (os.date("%w") == "4") then
+      weekstr = "四"
+    end
+    if (os.date("%w") == "5") then
+      weekstr = "五"
+    end
+    if (os.date("%w") == "6") then
+      weekstr = "六"
+    end
+    yield(Candidate("	", seg.start, seg._end, os.date("%Y/%m/%d("..weekstr..")"), "date"))
+    yield(Candidate("	", seg.start, seg._end, os.date("%H:%M:%S"), "time"))
+    yield(Candidate("	", seg.start, seg._end, "	" , "tab"))
+    yield(Candidate("	", seg.start, seg._end, "copy0401@gmail.com" , "email"))
     yield(Candidate("	", seg.start, seg._end, "#"   , "yaml")) 
     yield(Candidate("	", seg.start, seg._end, "--"  , "lua")) 
     yield(Candidate("	", seg.start, seg._end, "//"  , "c")) 
-    -- yield(Candidate("	", seg.start, seg._end, "if()\nthen\nelse\nend" , "demo"))
-    yield(Candidate("	", seg.start, seg._end, "copy0401@gmail.com" , "id")) 
+    yield(Candidate("	", seg.start, seg._end, "default.yaml"  , "iRime")) 
+    yield(Candidate("	", seg.start, seg._end, "default.custom.yaml"  , "iRime"))
+    yield(Candidate("	", seg.start, seg._end, "SharedSupport"  , "iRime")) 
+    yield(Candidate("	", seg.start, seg._end, "sync"  , "iRime")) 
+    yield(Candidate("	", seg.start, seg._end, "sync_dir"  , "iRime")) 
+    yield(Candidate("	", seg.start, seg._end, "squirrel"  , "iRime")) 
+    yield(Candidate("	", seg.start, seg._end, "iRime"  , "iRime")) 
+    yield(Candidate("	", seg.start, seg._end, "installation.yaml"  , "iRime")) 
+    yield(Candidate("	", seg.start, seg._end, "installation_id"  , "iRime")) 
+    yield(Candidate("	", seg.start, seg._end, ".dict.yaml"  , "iRime")) 
+    yield(Candidate("	", seg.start, seg._end, ".custom.yaml"  , "iRime")) 
+    yield(Candidate("	", seg.start, seg._end, ".schema.yaml"  , "iRime")) 
+    yield(Candidate("	", seg.start, seg._end, "bopomo_onion.userdb.txt"  , "iRime")) 
+    yield(Candidate("	", seg.start, seg._end, "bopomo_onion.schema.yaml"  , "iRime")) 
+    yield(Candidate("	", seg.start, seg._end, "/theme/你的主題/port/theme.yaml"  , "iRime")) 
     return
   end
 
@@ -1567,3 +1601,4 @@ end
 
 calculator_translator = require("calculator_translator")
 preedit_preview = require("preedit_preview")
+add_tag = require("add_tag")

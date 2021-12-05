@@ -4,14 +4,17 @@
 #
 schema:
   schema_id: xiapin_mtc
-  name: 蝦米_繁中 # 加計算機功能
+  name: 蝦米 # TC 加計算機功能
   version: "20180628"
   author:
     - 制作人
   description: |
-    蝦米-拼音輸入
+    蝦米-注音輸入
   dependencies:
     - luna_pinyin
+    - bopomofo_tw
+    # - easy_en # cctest 中英混打
+
 switches:
   - name: ascii_mode
     reset: 0
@@ -20,33 +23,53 @@ switches:
     states: [ 半形, 全形 ]
   - name: simplification
     states: [ 繁體, 简体 ]
+  - name: liu_w2c
+    reset: 1
+    states: [ 正常 ,反查 ]
+  - name: extended_charset
+    states: [ 常用, 擴充字集 ]
+    reset: 1
 
 engine:
-  processors:
-    - ascii_composer
-    - recognizer
-    - key_binder
-    - speller
-    - selector
-    - navigator
-    - express_editor
-  segmentors:
-    - ascii_segmentor
-    - matcher
-    - abc_segmentor
-    - fallback_segmentor
+  processors: # 一、這批組件處理各類按鍵消息
+    - ascii_composer # ※ 處理西文模式及中西文切換
+    - recognizer # ※ 與 matcher 搭配，處理符合特定規則的輸入碼，如網址、反查等
+    - key_binder # ※ 在特定條件下將按鍵綁定到其他按鍵，如重定義逗號、句號爲候選翻頁鍵
+    - speller # ※ 拼寫處理器，接受字符按鍵，編輯輸入碼
+    - selector # ※ 選字處理器，處理數字選字鍵、上、下候選定位、換頁鍵
+    - navigator # ※ 處理輸入欄內的光標移動鍵
+    - express_editor # ※ 編輯器，處理空格、回車上屏、回退鍵等
+  segmentors: # 二、這批組件識別不同內容類型，將輸入碼分段
+    - ascii_segmentor # ※ 標識西文段落
+    - matcher # ※ 標識符合特定規則的段落，如網址、反查等
+    - abc_segmentor # ※ 標識常規的文字段落
+    - affix_segmentor@pinyin # cctest 拼音反查嘸蝦米
+    - fallback_segmentor # ※ 標識其他未標識段落
   translators:
-    - reverse_lookup_translator
-    - table_translator
+    - reverse_lookup_translator # cctest 注音用  注音反查嘸蝦米
+    - script_translator@pinyin # cctest 拼音用  拼音反查嘸蝦米
+    - table_translator # 碼表翻譯器，用於倉頡、五筆等基於碼表的輸入方案
+    # - table_translator@english  # cctest 中英混打
+    - lua_translator@t_translator # cctest rime.lua
+    - lua_translator@t2_translator # cctest rime.lua
+    - lua_translator@date_translator # cctest rime.lua
     - lua_translator@calculator_translator # cctest 計算機功能
   filters:
-    - simplifier
-    - uniquifier	#過濾重複的候選字，有可能來自繁簡轉換
+    - simplifier # ※ 繁簡轉換
+    - simplifier@liu_w2c  # cctest 無蝦米字碼反查
+    - uniquifier  #過濾重複的候選字，有可能來自繁簡轉換
     - single_char_filter  #單字優先
+    - reverse_lookup_filter@phonetic_reverse_lookup # cctest 打字時 標出注音
+    - lua_translator@single_char_filter # cctest rime.lua 
+
+menu:
+  alternative_select_labels: [0,1,2,3,4,5,6,7,8,9,0]
+  alternative_select_keys: 01234567890
+  page_size: 10 # 候選視窗每頁項目數 default 5  ## 電腦設 5 手機設 16 
 
 speller:
-  alphabet: "abcdefghijklmnopqrstuvwxyz[];',."
-  delimiter: "`"
+  alphabet: "abcdefghijklmnopqrstuvwxyz[];',.`"
+  delimiter: "|" # "`" # cctest 執行 `` lime.lua
   algebra:
     - xform/^~(.*)$/$1
 #為了加強造詞準確性，在字典中，以「~」前綴標記非標準拆字，再透過拼寫語法去除「~」後，送入辭典查詢
@@ -54,33 +77,106 @@ speller:
 translator:
   dictionary: liur_Trad
   db_class: tabledb
-  enable_user_dict: false
-  enable_sentence: false
-  enable_encoder: false
-  enable_charset_filter: true
-  encode_commit_history: false
+  enable_user_dict: false # 是否開啓用戶詞典
+  enable_sentence: true # 是否開啓自動造句 default false
+  auto_select: false # 自動上屛〔true或false〕
+  enable_encoder: false # 是否開啓自動造詞 default false
+  enable_charset_filter: true # 是否開啓字符集過濾〔僅table_translator有效〕
+  encode_commit_history: false # 是否對已上屛詞自動成詞 default false
   max_phrase_length: 10
-  enable_completion: false
-  comment_format:
-    - xform/^~(.+)$/>[$1]   #將提示碼改為較美觀的型式
+  enable_completion: true # default false 关闭后英文不会有提示，只会在打全时才会显示，体验不是很好
+  # comment_format:
+    # - xform/^~(.+)$/>[$1]   #將提示碼改為較美觀的型式 
   disable_user_dict_for_patterns:
     - "^[',.].*$"
 
-reverse_lookup:
+# english: # 英文混打
+#   dictionary: easy_en
+#   spelling_hints: 9
+#   enable_completion: true
+#   enable_sentence: false
+#   initial_quality: -3
+
+liu_w2c:
+  opencc_config: liu_w2c.json
+  option_name: liu_w2c
+  show_in_comment: true
+  tags: [pinyin , reverse_lookup ]
+  tips: all
+
+# reverse_lookup:
+pinyin:
+  tag: pinyin
   dictionary: luna_pinyin
-  prefix: "zz"
+  prefix: ";p"
   suffix: "'"
-  tips: "〔拼音〕"
+  tips: "【拼音】"
   preedit_format: &pinyin
     - xform/([nl])v/$1ü/
     - xform/([nl])ue/$1üe/
     - xform/([jqxy])v/$1u/
 
+reverse_lookup:
+  prefix: ";;"
+  suffix: "'"
+  dictionary: terra_pinyin
+  prism: bopomofo_tw
+  preedit_format:	#menu反查之輸入法 顯示
+    - "xlit|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/- 6347'|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙ |"
+  comment_format:	#menu 提示 字碼 顯示
+    # - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|abcdefghijklmnopqrstuvwxyz[];',.|"
+    # - "xlit|abcdefghijklmnopqrstuvwxyz,.'[]|ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ，．’〔〕"
+    - xform/\b(\w{1,3})\b/\U$1\E/ # 把 1-3 碼字改為大寫顯示
+  tips: 【注音】
+  closing_tips: 【蝦米】
+  initial_quality: 1.1	# 調整該編譯器出字優先度
+
+phonetic_reverse_lookup:
+  dictionary: terra_pinyin
+  overwrite_comment: true  # 覆蓋其他提示 true
+  comment_format:
+    - "xform/e?r5$/er5/"
+    - "xform/iu/iou/"
+    - "xform/ui/uei/"
+    - "xform/ong/ung/"
+    - "xform/yi?/i/"
+    - "xform/wu?/u/"
+    - "xform/iu/v/"
+    - "xform/([jqx])u/$1v/"
+    - "xform/([iuv])n/$1en/"
+    - "xform/zh/Z/"
+    - "xform/ch/C/"
+    - "xform/sh/S/"
+    - "xform/ai/A/"
+    - "xform/ei/I/"
+    - "xform/ao/O/"
+    - "xform/ou/U/"
+    - "xform/ang/K/"
+    - "xform/eng/G/"
+    - "xform/an/M/"
+    - "xform/en/N/"
+    - "xform/er/R/"
+    - "xform/eh/E/"
+    - "xform/([iv])e/$1E/"
+    - "xform/1//"
+    - "xlit|bpmfdtnlgkhjqxZCSrzcsiuvaoeEAIOUMNKGR2345|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˊˇˋ˙|"
+    - xform/ /} {/
+    - xform/^/ {
+    - xform/$/}/
+
+
 punctuator:
-#  import_preset: default
+  # import_preset: default
 
 key_binder:
   import_preset: default
+
+editor:
+  bindings:
+    # space: commit_composition #使用 fluency_editor 時開啟
+    Return: confirm #使用 express_editor 時開啟
+    Shift+Return: commit_raw_input # 上屏原始輸入
+    Control+Return: commit_script_text # 上屏變換後輸入
 
 recognizer:
   import_preset: default
@@ -88,5 +184,7 @@ recognizer:
   patterns:
     email: ^[a-z][-_.0-9a-z]*@.*$
     url: ^(www[.]|https?:|ftp:|mailto:).*$
-    reverse_lookup: "zz[a-z]*'?$|[a-z]+'$"
+    pinyin: ";p[a-z]*'?$|[a-z]+'$" # 拼音反查嘸蝦米編碼
+    # reverse_lookup: ";;[-,.;/a-z0-9]*'?$" # 注音反查嘸蝦米編碼
+    reverse_lookup: ";;[1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/6347-]*'?$" # 注音反查嘸蝦米編碼
     expression: "^=.*$" #cctest 計算機功能

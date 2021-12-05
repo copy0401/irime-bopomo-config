@@ -12,6 +12,7 @@ schema:
 
   dependencies:
     - cangjie5
+    - liur_Trad # cctest 嘸蝦米混打
     - easy_en # cctest 中英混打
 
 switches:
@@ -38,60 +39,70 @@ switches:
   #   states: ["常用", "擴增"]
 
 
-
-engine:
-  filters:
+engine: # 輸入引擎設定，即掛接組件的「處方」
+  filters: # 四、這批組件過濾翻譯的結果
     # - charset_filter@big5
     # - charset_filter@gbk
-    - simplifier
+    - simplifier # ※ 繁簡轉換
     - reverse_lookup_filter@bpm_reverse_lookup
-    - uniquifier
     - lua_translator@single_char_filter # cctest rime.lua 
     # - cjk_minifier # cctest 不需要生僻字 不確定有沒有作用
     # - charset_filter # cctest 不需要生僻字 不確定有沒有作用
-    - lua_filter@preedit_preview # 顯示首選項
-  processors:
-    - ascii_composer
-    - recognizer
-    - key_binder
-    - speller
-    - punctuator
-    - selector
-    - navigator
-    - express_editor
-#    - fluency_editor
-  segmentors:
-    - ascii_segmentor
-    - matcher
-    - abc_segmentor
+    # - lua_filter@preedit_preview # 顯示首選項
+    # - lua_filter@add_tag # 後選項 tag
+    - uniquifier # ※ 過濾重複的候選字，有可能來自繁簡轉換
+    - single_char_filter  #單字優先 cctest
+  processors: # 一、這批組件處理各類按鍵消息
+    - ascii_composer # ※ 處理西文模式及中西文切換
+    - recognizer # ※ 與 matcher 搭配，處理符合特定規則的輸入碼，如網址、反查等
+    - key_binder # ※ 在特定條件下將按鍵綁定到其他按鍵，如重定義逗號、句號爲候選翻頁鍵
+    - speller # ※ 拼寫處理器，接受字符按鍵，編輯輸入碼
+    # - punctuator # ※ 句讀處理器，將單個字符按鍵直接映射爲文字符號
+    - selector # ※ 選字處理器，處理數字選字鍵、上、下候選定位、換頁鍵
+    - navigator # ※ 處理輸入欄內的光標移動鍵
+    - express_editor # ※ 編輯器，處理空格、回車上屏、回退鍵等
+   # - fluid_editor      # ※ 句式編輯器，用於以空格斷詞、回車上屏的【注音】、【語句流】等輸入方案，替換 express_editor，也可以寫作 fluency_editor
+   # - chord_composer    # ※ 和絃作曲家或曰並擊處理器，用於【宮保拼音】等多鍵並擊的輸入方案
+   # - table_translator  # ※ 碼表翻譯器，用於倉頡、五筆等基於碼表的輸入方案，替換 script_translator
+  segmentors: # 二、這批組件識別不同內容類型，將輸入碼分段
+    - ascii_segmentor # ※ 標識西文段落
+    - matcher # ※ 標識符合特定規則的段落，如網址、反查等
+    - abc_segmentor # ※ 標識常規的文字段落
     - affix_segmentor@reverse2_lookup
-    - punct_segmentor
-    - fallback_segmentor
-  translators:
-    - punct_translator
+    - punct_segmentor # ※ 標識句讀段落
+    - fallback_segmentor # ※ 標識其他未標識段落
+  translators: # 三、這批組件翻譯特定類型的編碼段爲一組候選文字
+    - punct_translator # ※ 轉換標點符號
     - table_translator@bopomo_onion_phrase
     - script_translator@reverse2_lookup
-    - script_translator
+    - script_translator # ※ 腳本翻譯器，用於拼音等基於音節表的輸入方案
+    - table_translator@liur  # cctest 嘸蝦米混打
     - table_translator@english  # cctest 中英混打
     - lua_translator@t_translator # cctest rime.lua
-    - lua_translator@t_translator # cctest rime.lua
-    - lua_translatordate_translator # cctest rime.lua
+    - lua_translator@t2_translator # cctest rime.lua
+    - lua_translator@date_translator # cctest rime.lua
     - lua_translator@calculator_translator # cctest 計算機功能
+    # - spelling_hints
 
 menu:
-  # alternative_select_labels: [A,B,C,D,E]
-  # alternative_select_keys: ABCDE
+  alternative_select_labels: [Z,X,C,V,B,N,M,A,S,D,F,G,H,J,K,L]
+  alternative_select_keys: ZXCVBNMASDFGHJKL
+  # alternative_select_labels: [A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P]
+  # alternative_select_keys: ABCDEFGHIJKLMNOP
   #
-  # alternative_select_labels: [1,2,3,4,6]
-  # alternative_select_keys: 12345
+  # alternative_select_labels: [1,2,3,4,5,6,7,8,9,0]
+  # alternative_select_keys: 1234567890
   #
   # alternative_select_labels: [ā,ē,ī,ō,ū]
-  alternative_select_keys: āēīōū
+  # alternative_select_keys: āēīōū
+  #
+  # alternative_select_labels: [0,1,2,3,4,5,6,7,8,9]
+  # alternative_select_keys: 0123456789
   #
   # alternative_select_labels: [ ①, ②, ③, ④, ⑤ ]
   # alternative_select_keys: ①②③④⑤
   #
-  page_size: 5 # default 5
+  page_size: 16 # 候選視窗每頁項目數 default 5
   #
 # label_format: '%s'   # cctest
 # inline_preedit: true # cctest
@@ -99,7 +110,6 @@ menu:
 ############################### 濾鏡 ##################################
 simplifier:
   tips: all
-
 # big5:
 #   tags: [ abc ]
 # gbk:
@@ -151,14 +161,19 @@ speller:
     - derive/^([bpmfdtnlgkhjqxZCSrzcs])([iuv])([aoeEAIOUMNKGR])/$2$3$1/
     - derive/^([bpmfdtnlgkhjqxZCSrzcs])([iuv])([aoeEAIOUMNKGR])/$1$3$2/
     - 'xlit|bpmfdtnlgkhjqxZCSrzcsiuvaoeEAIOUMNKGR12345|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/- 6347|' # xlit --變換〔適合大量一對一變換〕
+
 ################################### 主翻譯器 ###################################
 translator:
+  spelling_hints: 4 # 最多顯示四個中文字的拼音
   dictionary: bopomo_onion.extended
   prism: bopomo_onion
   initial_quality: "0"
   preedit_format:
-    - "xlit|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/- 6347|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙|"
-    - 'xform/\\/ /' #全形空格　 #半形空格  #| #⁞ #⁝ #⋮ #¦ #┆
+    # - "xlit|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/- 6347|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙|"
+    # - "xlit|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/- 6347|"
+    - 'xform/\\//' #全形空格　 #半形空格  #| #⁞ #⁝ #⋮ #¦ #┆
+    # - 'xform/\\/ /' #全形空格　 #半形空格  #| #⁞ #⁝ #⋮ #¦ #┆
+
 ############################## 以下為短語 ##########################################
 bopomo_onion_phrase:
   dictionary: ""
@@ -166,7 +181,7 @@ bopomo_onion_phrase:
   db_class: stabledb
   enable_completion: false
   enable_sentence: false
-################################ 以下為使用ooo反查注音 #############################
+################################ 以下為使用 倉解碼 反查 注音 #############################
 reverse2_lookup:
   tag: reverse2_lookup
   dictionary: cangjie5
@@ -182,13 +197,25 @@ reverse2_lookup:
     - xform/^/《反查》/
     - 'xform/\\/ /'
 
+# liur 翻譯器的設定項
+liur:
+  dictionary: liur_Trad
+  ## spelling_hints: 9
+  enable_completion: true # 关闭后英文不会有提示，只会在打全时才会显示，体验不是很好
+  enable_sentence: false # 連打 造詞 ## 電腦連打 手機不連打
+  initial_quality: -1 # 手機 -1 電腦設 -1 # 调节单词在候选项中显示的位置  默认设置为 -1 可以尝试 0 到 0.5 左右的数值  数值越大，单词出现的就越靠前。
+
 # english 翻譯器的設定項
 english:
   dictionary: easy_en
   spelling_hints: 9
-  enable_completion: true
+  enable_completion: true # 关闭后英文不会有提示，只会在打全时才会显示，体验不是很好
   enable_sentence: false
   initial_quality: -3
+  # 设置为 1 或 大于 1 时，英语与中文将拥有同样的权重，在输入单个文字时，如「a」「de」，大量的英文单词会冲到汉字前面，造成选取困难。
+  # 设置为 0 或负数时，同时会有单编码时被英文占据第一候选项的问题，建议在 custom_phrase 中设置单编码固顶字来解决这个问题
+  # 设置为 0 的另外一个问题：如「internet」，直到输入完成，该单词才变为第一候选项（「interne」时的结果是「一奈特人」）
+  # 不过总的来说，还是设置为 0 比较合适。
 
 bpm_reverse_lookup:
   tags: [ reverse2_lookup ]
@@ -280,6 +307,7 @@ key_binder:
     - {accept: period, send: period, when: has_menu}
     - {accept: minus, send: minus, when: has_menu}
     - {accept: equal, send: equal, when: has_menu}
+    #
 ### 切分移位 ###
     - {accept: Up, send: KP_Left, when: composing} #左移一個注音
     - {accept: Up, send: Up, when: paging} #修正上條目出現的bug
@@ -327,7 +355,7 @@ key_binder:
 ##    - {accept: Control+Shift+7, toggle: emoji_segestion, when: always} #誤按沒警示，避免誤按，可關閉！（開關跟隨的emoji）
 ##    - {accept: Control+Shift+8, toggle: back_mark, when: always} #誤按沒警示，避免誤按，可關閉！（開關標註）
 ##    - {accept: Return, send: space, when: has_menu}
-### 避聲調重複按 ###
+## 避聲調重複按 ###
     - {accept: 3, send: Escape, when: composing}
     - {accept: 3, send: 3, when: has_menu}
     - {accept: 4, send: Escape, when: composing}
@@ -340,7 +368,12 @@ key_binder:
 #    - {accept: "Control+comma", send: "less", when: always} #「逗號」#接受「Contol」+「,」直出「<」
 #    - {accept: "Control+period", send: "greater", when: always} #「句號」#接受「Contol」+「.」直出「>」
 #    - {accept: "Control+slash", send: "question", when: always} #「問號」#接受「Contol」+「/」直出「？」
-#    - {accept: "Control+apostrophe", send: "quotedbl", when: always} #「頓號」#接受「Contol」+「'」直出「"」
+   # - {accept: "Control+apostrophe", send: "quotedbl", when: always} #「頓號」#接受「Contol」+「'」直出「"」
+    #
+    # cctest
+    # - {accept: \ , send: Down , when: has_menu}   # 選重 可用
+    # - {accept: \ , send: Down , when: composing}  # 選重 可用
+    #
 
 editor:
   bindings:
@@ -355,6 +388,7 @@ recognizer:
     url: "^(https?:|ftp:|mailto:|file:).*$"
     email: "^[a-z][-_.0-9a-z]*@.*$"
     punct: "(?<![=`])`[`]?[-,;/0-9a-z]*$|[[][[]?[']?$|[]][]]?[']?$|[[][]]$|[[][[][]][]]$|[[]['][]][']$|[[][[]['][]][]][']$|[']['][']?$|[=][=][=]?$|[=][`][`]?$|[=]['][']?$|[=]['][']?[=]['][']?$|[=][][][][]?$|[=][][][][]?[=][][][][]?$|[=][-,./;][-,./;]? ?$|[=][,][,][=][.][.] ?$|[=][0-9] ?$|[=][9][=][0] ?$|[=][=][].,90'[]+ ?$"
+    # punct: "^/([0-9]0?|[A-Za-z]+)$"
     reverse2_lookup: "=[a-z]* ?$"
-#    lua: "^'/[a-z0-9/-]*$"
+    # lua: "^'/[a-z0-9/-]*$" 
     expression: "^=.*$" #cctest 計算機功能

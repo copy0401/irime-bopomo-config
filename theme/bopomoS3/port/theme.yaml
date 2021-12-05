@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 config_version: "0.9"
-name: bopomoS3 #方案名称 for calc for piano 
+name: bopomoS3 #方案名称 only one keyboard
 author: copy0401
 
 #键盘高度等
@@ -77,7 +77,7 @@ hide:
 
 style:
   # candidate_font: han.ttf #候选字型
-  candidate_padding: 14 #候选项内边距 14
+  candidate_padding: 7 #候选项内边距 14
   candidate_spacing: 15 #候选间距 15
   candidate_text_size: 28 #候选字号 24
   candidate_use_cursor: true #高亮候选项
@@ -86,7 +86,7 @@ style:
   comment_on_top: false #编码提示在上方或右侧 false = top
   comment_text_size: 14 #编码提示字号 14
   # key_font: symbol.ttf #键盘字型
-  text_height: 12 #编码框高度 默认值为：20 # *jpgd2 #键高
+  text_height: 0 #编码框高度 默认值为：20 # *jpgd2 #键高
   key_long_text_size: 14 #长标签字号
   key_text_size: 18 #键字号 18
   key_width: 10.0 #键宽，占银幕宽的百分比 # 10.0
@@ -102,11 +102,16 @@ style:
   vertical_gap: *jpgd6 #键盘行距
   round_corner: 0.001 #圓角 值为0的话默认 iphone为4，ipad为8，min=0.01 4 6
   sound: "mnc.caf" # zhong.aiff # 全域預設 按鍵聲音
-  color_scheme: cc4 #配色方案 目前系統黑色主題模式下 沒有作用
-  # cc1 紫底 黑字 / 深灰 黑字  
-  # cc2 綠底 黑字 / 深灰 黑字
-  # cc3 橘底 白字 / 黑底 白字
-  # cc4 淡藍 黑字 / 深灰 黑字 類似預設主題
+  color_scheme: cc1 #配色方案 目前系統黑色主題模式下 沒有作用
+  # cc1 紫底 黑字 / 深灰 黑字  類似 yahoo keykey輸入法 配色
+  # cc2 綠底 黑字 / 深灰 黑字  類似 淡綠底黑字
+  # cc3 黑底 白字 / 橘底 黑字  類似 p站配色
+  # cc4 淡藍 黑字 / 深灰 黑字  類似 squirrel預設主題
+  # cc5 藍底 白字 / 藍底 灰字  類似 DOS 倚天系統
+  # cc6 綠底 白字 / 深灰 黑字  類似 漢音輸入法
+  # cc7 灰底 黑字 / 灰底 深灰字
+  
+
 
 #键盘布局
 preset_keyboards:
@@ -196,11 +201,28 @@ preset_keyboards:
       - { click: '@', label: '⊙' , width: 7.142 } # ＠ @ ⊙
       - { click: '`', label: '⊛' , width: 7.142 }
       - {click: Shift     ,        width: 7.142 }
-      - {click: space    ,         width: 57.136 } #
-      - {click: Return   ,         width: 7.142  } # 21.426
+      - {click: space    ,         width: 57.136} #
+      - {click: Return   ,         width: 7.142 } # 21.426
       - {click: commitToL ,        width: 7.142 }
       - {click: commitToR ,        width: 7.142 }
       - {width: 0.012 }
+      #  測試 Shift + A 選字用
+      # - {click: A,   width: 7.142 }
+      # - {click: B,   width: 7.142 }
+      # - {click: C,   width: 7.142 }
+      # - {click: D,   width: 7.142 }
+      # - {click: E,   width: 7.142 }
+      # - {click: F,   width: 7.142 }
+      # - {click: G,   width: 7.142 }
+      # - {click: H,   width: 7.142 }
+      # - {click: I,   width: 7.142 }
+      # - {click: J,   width: 7.142 }
+      # - {click: K,   width: 7.142 }
+      # - {click: L,   width: 7.142 }
+      # - {click: M,   width: 7.142 }
+      # - {click: N,   width: 7.142 }
+      # - {width: 0.012 }
+      #
     name: 注音鍵盤
 
 preset_color_schemes:
@@ -214,6 +236,7 @@ preset_color_schemes:
     hilited_back_color: 0x855f98 #淡紫
     hilited_candidate_text_color: 0xffffff #白 #被選中的字
     hilited_candidate_back_color: 0x855f98 #淡紫
+    candidate_text_color: 0x000000 # 黑 候選欄 字色
 
   cc2:
     name: cc／cc2
@@ -225,6 +248,7 @@ preset_color_schemes:
     hilited_back_color: 0xcae682 #綠
     hilited_candidate_text_color: 0x000000 #黑 0x000000  被選中的字
     hilited_candidate_back_color: 0xcae682 #綠 0xcae682
+    candidate_text_color: 0x000000 # 黑 候選欄 字色
 
   cc3:
     name: cc／cc3
@@ -236,6 +260,7 @@ preset_color_schemes:
     hilited_back_color: 0x1b1b1b #黑 沒作用
     hilited_candidate_text_color: 0xffffff #白   被選中的字
     hilited_candidate_back_color: 0x1b1b1b #黑
+    candidate_text_color: 0x000000 # 黑 候選欄 字色
 
   cc4:
     name: cc／cc4
@@ -247,6 +272,42 @@ preset_color_schemes:
     hilited_back_color: 0xb9d7fb #淡藍 沒作用
     hilited_candidate_text_color: 0x000000 #白  #被選中的字
     hilited_candidate_back_color: 0xb9d7fb #淡藍
+    candidate_text_color: 0x000000 # 黑 候選欄 字色
+
+  cc5:
+    name: cc／cc5
+    author: cc <copy0401@gmail.com>
+    text_color: 0xff0000 # 沒作用
+    back_color: 0x0000a0 # ffffff白底  eeeeec灰底   候選欄背景色
+    border_color: 0xff0000 # 沒作用
+    hilited_text_color: 0x222222 # 小小的注音符號
+    hilited_back_color: 0xff0000 # 沒作用  
+    hilited_candidate_text_color: 0xeeeeec # ffffff白 首選項字色
+    hilited_candidate_back_color: 0x0000a0 # 底色 藍  首選項背景色
+    candidate_text_color: 0xacacac # 黑 候選欄 字色
+
+  cc6:
+    name: cc／cc6
+    author: cc <copy0401@gmail.com>
+    text_color: 0xffffff #白
+    back_color: 0xeeeeec #灰
+    border_color: 0xe0e0e0 #灰
+    hilited_text_color: 0x222222 #深灰 # 小小的注音符號
+    hilited_back_color: 0x855f98 #淡紫
+    hilited_candidate_text_color: 0xffffff #白 #被選中的字
+    hilited_candidate_back_color: 0x367e7f #綠
+    candidate_text_color: 0x000000 # 黑 候選欄 字色
+
+  cc7:
+    name: cc／cc7
+    author: cc <copy0401@gmail.com>
+    hilited_text_color: 0x000000 #深灰 # 小小的注音符號
+    hilited_candidate_text_color: 0x000000 # 首選項 字色
+    hilited_candidate_back_color: 0xeeeeec # 首選項 背景色
+    candidate_text_color: 0xacacac # 候選欄 字色
+    back_color:           0xeeeeec # 候選欄 背景色
+
+
 
 preset_keys:
   toN: {label: "±" , send: Eisu_toggle , select: default }
