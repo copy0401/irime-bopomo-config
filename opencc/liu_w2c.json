@@ -16,7 +16,10 @@
       }, {
         "type": "text",
         "file": "liu_w2cExt.txt"
-      }]
+      }, {
+        "type": "text",
+        "file": "liu_w2cJp.txt"
+    }]
     }
   }]
 }
