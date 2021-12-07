@@ -64,8 +64,8 @@ engine:
     - lua_translator@single_char_filter # cctest rime.lua 
 
 menu:
-  alternative_select_labels: [0,1,2,3,4,5,6,7,8,9,0]
-  alternative_select_keys: 01234567890
+  alternative_select_labels: [1,2,3,4,5,6,7,8,9,0]
+  alternative_select_keys: 1234567890
   page_size: 10 # 候選視窗每頁項目數 default 5  ## 電腦設 5 手機設 16 
 
 speller:
@@ -135,7 +135,7 @@ reverse_lookup:
 
 phonetic_reverse_lookup:
   dictionary: terra_pinyin
-  overwrite_comment: true  # 覆蓋其他提示 true
+  overwrite_comment: false  # 覆蓋其他提示  # 保留 逐碼+注音 設 false # 只留注音設 true
   comment_format:
     - "xform/e?r5$/er5/"
     - "xform/iu/iou/"

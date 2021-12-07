@@ -19,39 +19,21 @@ switches:
   - name: ascii_mode
     reset: 0
     states: ["中文", "英文"]
-  # - name: full_shape
-  #   reset: 0
-  #   states: ["半形", "全形"]
-  # - name: ascii_punct
-  #   reset: 0
-  #   states: ["。，", "．，"]
-  # - name: simplification
-  #   reset: 0
-  #   states: ["原體", "简体"]
+  - name: full_shape # Control+Shift+3
+    states: [ 半形, 全形 ]
+  - name: simplification # Control+Shift+5
+    states: [ 繁體, 简体 ]
+  - name: extended_charset # Control+Shift+6
+    states: [ 常用, 擴充字集 ]
+    reset: 1
   # - options: [ utf8, big5, gbk ]
   #   reset: 0
   #   states:
   #     - UTF-8
   #     - BIG5
   #     - GBK
-  # - name: extended_charset # test 不確定有沒有作用
-  #   reset: 0 # 如果不需要生僻字設0
-  #   states: ["常用", "擴增"]
-
 
 engine: # 輸入引擎設定，即掛接組件的「處方」
-  filters: # 四、這批組件過濾翻譯的結果
-    # - charset_filter@big5
-    # - charset_filter@gbk
-    - simplifier # ※ 繁簡轉換
-    - reverse_lookup_filter@bpm_reverse_lookup
-    - lua_translator@single_char_filter # cctest rime.lua 
-    # - cjk_minifier # cctest 不需要生僻字 不確定有沒有作用
-    # - charset_filter # cctest 不需要生僻字 不確定有沒有作用
-    # - lua_filter@preedit_preview # 顯示首選項
-    # - lua_filter@add_tag # 後選項 tag
-    - uniquifier # ※ 過濾重複的候選字，有可能來自繁簡轉換
-    - single_char_filter  #單字優先 cctest
   processors: # 一、這批組件處理各類按鍵消息
     - ascii_composer # ※ 處理西文模式及中西文切換
     - recognizer # ※ 與 matcher 搭配，處理符合特定規則的輸入碼，如網址、反查等
@@ -64,7 +46,7 @@ engine: # 輸入引擎設定，即掛接組件的「處方」
    # - fluid_editor      # ※ 句式編輯器，用於以空格斷詞、回車上屏的【注音】、【語句流】等輸入方案，替換 express_editor，也可以寫作 fluency_editor
    # - chord_composer    # ※ 和絃作曲家或曰並擊處理器，用於【宮保拼音】等多鍵並擊的輸入方案
    # - table_translator  # ※ 碼表翻譯器，用於倉頡、五筆等基於碼表的輸入方案，替換 script_translator
-  segmentors: # 二、這批組件識別不同內容類型，將輸入碼分段
+  segmentors: # 二、這批組件識別不同內容類型，將輸入碼分段 並加上tag
     - ascii_segmentor # ※ 標識西文段落
     - matcher # ※ 標識符合特定規則的段落，如網址、反查等
     - abc_segmentor # ※ 標識常規的文字段落
@@ -73,8 +55,8 @@ engine: # 輸入引擎設定，即掛接組件的「處方」
     - fallback_segmentor # ※ 標識其他未標識段落
   translators: # 三、這批組件翻譯特定類型的編碼段爲一組候選文字
     - punct_translator # ※ 轉換標點符號
-    - table_translator@bopomo_onion_phrase
-    - script_translator@reverse2_lookup
+    - table_translator@bopomo_onion_phrase # 短語
+    - script_translator@reverse2_lookup # 使用 倉解反查
     - script_translator # ※ 腳本翻譯器，用於拼音等基於音節表的輸入方案
     - table_translator@liur  # cctest 嘸蝦米混打
     - table_translator@english  # cctest 中英混打
@@ -83,6 +65,18 @@ engine: # 輸入引擎設定，即掛接組件的「處方」
     - lua_translator@date_translator # cctest rime.lua
     - lua_translator@calculator_translator # cctest 計算機功能
     # - spelling_hints
+  filters: # 四、這批組件過濾翻譯的結果
+    # - charset_filter@big5
+    # - charset_filter@gbk
+    - simplifier # ※ 繁簡轉換
+    - reverse_lookup_filter@bpm_reverse_lookup #用倉頡碼查時 顯示注音
+    # - cjk_minifier # cctest 不需要生僻字 不確定有沒有作用
+    # - charset_filter # cctest 不需要生僻字 不確定有沒有作用
+    - uniquifier # ※ 過濾重複的候選字，有可能來自繁簡轉換
+    # - lua_filter@preedit_preview # 顯示首選項
+    # - lua_filter@add_tag # 後選項 tag
+    # - lua_filter@single_char_filter # cctest rime.lua 〔僅table_translator有效〕
+    # - single_char_filter  #單字優先 〔僅table_translator有效〕
 
 menu:
   alternative_select_labels: [Z,X,C,V,B,N,M,A,S,D,F,G,H,J,K,L]
@@ -102,7 +96,7 @@ menu:
   # alternative_select_labels: [ ①, ②, ③, ④, ⑤ ]
   # alternative_select_keys: ①②③④⑤
   #
-  page_size: 16 # 候選視窗每頁項目數 default 5
+  page_size: 9 # 候選視窗每頁項目數 default 5
   #
 # label_format: '%s'   # cctest
 # inline_preedit: true # cctest
@@ -169,7 +163,7 @@ translator:
   prism: bopomo_onion
   initial_quality: "0"
   preedit_format:
-    # - "xlit|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/- 6347|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙|"
+    - "xlit|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/- 6347|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙|"
     # - "xlit|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/- 6347|"
     - 'xform/\\//' #全形空格　 #半形空格  #| #⁞ #⁝ #⋮ #¦ #┆
     # - 'xform/\\/ /' #全形空格　 #半形空格  #| #⁞ #⁝ #⋮ #¦ #┆
@@ -188,7 +182,7 @@ reverse2_lookup:
   enable_completion: false
   enable_sentence: false
   enable_user_dict: true
-  prefix: "="
+  prefix: ";;"
   suffix: " "
   tips: "《反查》"
   preedit_format:
@@ -389,6 +383,6 @@ recognizer:
     email: "^[a-z][-_.0-9a-z]*@.*$"
     punct: "(?<![=`])`[`]?[-,;/0-9a-z]*$|[[][[]?[']?$|[]][]]?[']?$|[[][]]$|[[][[][]][]]$|[[]['][]][']$|[[][[]['][]][]][']$|[']['][']?$|[=][=][=]?$|[=][`][`]?$|[=]['][']?$|[=]['][']?[=]['][']?$|[=][][][][]?$|[=][][][][]?[=][][][][]?$|[=][-,./;][-,./;]? ?$|[=][,][,][=][.][.] ?$|[=][0-9] ?$|[=][9][=][0] ?$|[=][=][].,90'[]+ ?$"
     # punct: "^/([0-9]0?|[A-Za-z]+)$"
-    reverse2_lookup: "=[a-z]* ?$"
+    reverse2_lookup: ";;[a-z]* ?$" #  倉解碼 反查 注音
     # lua: "^'/[a-z0-9/-]*$" 
     expression: "^=.*$" #cctest 計算機功能

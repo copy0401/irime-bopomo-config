@@ -30,28 +30,31 @@
 
 上傳到 /
 
+```bash
 bopomo_onion.schema.yaml
-
 bopomo_onion_symbols.yaml
-
 bopomo_onion.extended.dict.yaml
-
 terra_pinyin.schema.yaml
-
 terra_pinyin.dict.yaml
-
 terra_pinyin_onion.dict.yaml
-
 terra_pinyin_onion_add.dict.yaml
-
 phrases.cht.dict.yaml
-
 phrases.chtp.dict.yaml
+```
 
-上傳到 /bulid/
+~~上傳到 /bulid/~~
+~~default.yaml 替換 /bulid/default.yaml~~
 
-default.yaml 替換 /bulid/default.yaml
 
+建立一個 default.custom.yaml  內容如下
+
+```yaml  
+patch:
+  schema_list:
+    - schema: bopomo_onion
+```
+
+也上傳到  /
 
 ![](https://github.com/copy0401/irime-bopomo-config/raw/master/images/4_pc2.png)
 
