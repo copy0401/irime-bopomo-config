@@ -3,7 +3,7 @@
 # 《洋蔥純注音版 設定頁》
 schema:
   schema_id: bopomo_onion
-  name: "␣" # 注音 onion
+  name: "注音" # 注音 onion "␣" 
   version: "202010"
   author:
     - 『洋蔥』
@@ -73,14 +73,15 @@ engine: # 輸入引擎設定，即掛接組件的「處方」
     # - cjk_minifier # cctest 不需要生僻字 不確定有沒有作用
     # - charset_filter # cctest 不需要生僻字 不確定有沒有作用
     - uniquifier # ※ 過濾重複的候選字，有可能來自繁簡轉換
-    # - lua_filter@preedit_preview # 顯示首選項
+    # - lua_filter@preedit_preview #  /lua/preedit_preview.lua 顯示首選項  
+    # - lua_filter@preedit_preview2 #  /lua/preedit_preview.lua  顯示首選項  + 編碼 
     # - lua_filter@add_tag # 後選項 tag
     # - lua_filter@single_char_filter # cctest rime.lua 〔僅table_translator有效〕
     # - single_char_filter  #單字優先 〔僅table_translator有效〕
 
 menu:
-  alternative_select_labels: [Z,X,C,V,B,N,M,A,S,D,F,G,H,J,K,L]
-  alternative_select_keys: ZXCVBNMASDFGHJKL
+  alternative_select_labels: [A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z]
+  alternative_select_keys: ABCDEFGHIJKLMNOPQRSTUVWXYZ
   # alternative_select_labels: [A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P]
   # alternative_select_keys: ABCDEFGHIJKLMNOP
   #
@@ -193,11 +194,20 @@ reverse2_lookup:
 
 # liur 翻譯器的設定項
 liur:
-  dictionary: liur_Trad
+  # dictionary: liur_Trad
+  dictionary: liur.extended
   ## spelling_hints: 9
   enable_completion: true # 关闭后英文不会有提示，只会在打全时才会显示，体验不是很好
   enable_sentence: false # 連打 造詞 ## 電腦連打 手機不連打
   initial_quality: -1 # 手機 -1 電腦設 -1 # 调节单词在候选项中显示的位置  默认设置为 -1 可以尝试 0 到 0.5 左右的数值  数值越大，单词出现的就越靠前。
+  comment_format:
+    - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|ABCDEFGHIJKLMNOPQRSTUVWXYZ[];',.|" # 顯示大寫
+    - xform/^~(.+)$/>[$1]   # 將提示碼改為較美觀的型式
+  disable_user_dict_for_patterns:
+    - "^[',.].*$"
+  preedit_format:
+    - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|ABCDEFGHIJKLMNOPQRSTUVWXYZ[];',.|" # 組字時顯示大寫
+    - 'xform/\\//' #全形空格　 #半形空格  #| #⁞ #⁝ #⋮ #¦ #┆
 
 # english 翻譯器的設定項
 english:

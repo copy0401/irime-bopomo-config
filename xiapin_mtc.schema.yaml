@@ -3,16 +3,16 @@
 # encoding: utf-8
 #
 schema:
-  schema_id: xiapin_mtc
-  name: 蝦米 # TC 加計算機功能
+  schema_id: xiapin_mtc # xiapin_mtc    liur
+  name: 蝦米 # TC 加計算機功能 #  "␠"  "⍽"
   version: "20180628"
   author:
     - 制作人
   description: |
     蝦米-注音輸入
   dependencies:
-    - luna_pinyin
-    - bopomofo_tw
+    # - luna_pinyin
+    # - bopomofo_tw
     # - easy_en # cctest 中英混打
 
 switches:
@@ -29,7 +29,8 @@ switches:
   - name: liu_w2c # Control+Shift+7 # 嘸蝦米方案中 注音/拼音顯示反查的嘸蝦米編碼
     reset: 1
     states: [ 正常 ,反查 ]
-
+  # - name: zh_tw
+  #   reset: 1
 
 engine:
   processors: # 一、這批組件處理各類按鍵消息
@@ -44,13 +45,26 @@ engine:
     - ascii_segmentor # ※ 標識西文段落
     - matcher # ※ 標識符合特定規則的段落，如網址、反查等
     - abc_segmentor # ※ 標識常規的文字段落
+    #
+    - affix_segmentor@mkst # cctest 開啓造句(造詞引導 )
+    - affix_segmentor@liurqry # cctest 反查讀音
+    #
     - affix_segmentor@pinyin # cctest 拼音反查嘸蝦米
+    - affix_segmentor@phonetic # cctest 注音反查嘸蝦米
+    #
     - fallback_segmentor # ※ 標識其他未標識段落
   translators:
-    - reverse_lookup_translator # cctest 注音用  注音反查嘸蝦米
-    - script_translator@pinyin # cctest 拼音用  拼音反查嘸蝦米
+    - table_translator@mkst # cctest  開啓造句(造詞引導)
+    - table_translator@fixed # cctest 打開 開啓自動造詞 開啓用戶詞典
+    - table_translator@liurqry # cctest 反查讀音
+    #
     - table_translator # 碼表翻譯器，用於倉頡、五筆等基於碼表的輸入方案
-    # - table_translator@english  # cctest 中英混打
+    #
+    - script_translator@pinyin # cctest 拼音反查嘸蝦米
+    - script_translator@phonetic # cctest 注音反查嘸蝦米
+    - reverse_lookup_translator # cctest 注音反查嘸蝦米 只能查單字
+    #
+    # - table_translator@english  # cctest 中英混打 (暫時停用)
     - lua_translator@t_translator # cctest rime.lua
     - lua_translator@t2_translator # cctest rime.lua
     - lua_translator@date_translator # cctest rime.lua
@@ -58,39 +72,144 @@ engine:
   filters:
     - simplifier # ※ 繁簡轉換
     - simplifier@liu_w2c  # cctest 無蝦米字碼反查
-    - uniquifier  #過濾重複的候選字，有可能來自繁簡轉換
+    #
+    - lua_translator@single_char_filter # cctest rime.lua
     - single_char_filter  #單字優先
+    - uniquifier  #過濾重複的候選字，有可能來自繁簡轉換
     - reverse_lookup_filter@phonetic_reverse_lookup # cctest 打字時 標出注音
-    - lua_translator@single_char_filter # cctest rime.lua 
+    # - lua_filter@preedit_preview #  /lua/preedit_preview.lua
+    - lua_filter@preedit_preview2 #  /lua/preedit_preview2.lua 
+    # - single_char_filter  #單字優先
 
+# abc_segmentor:
+  # extra_tags:
+    # - liurqry
+ 
 menu:
   alternative_select_labels: [1,2,3,4,5,6,7,8,9,0]
   alternative_select_keys: 1234567890
   page_size: 10 # 候選視窗每頁項目數 default 5  ## 電腦設 5 手機設 16 
 
+# speller:
+#   alphabet: "abcdefghijklmnopqrstuvwxyz[];',.`"
+#   delimiter: "`"
+#   algebra:
+#     - xform/^~(.*)$/$1
+# #為了加強造詞準確性，在字典中，以「~」前綴標記非標準拆字，再透過拼寫語法去除「~」後，送入辭典查詢
+
 speller:
-  alphabet: "abcdefghijklmnopqrstuvwxyz[];',.`"
-  delimiter: "`"
+  # alphabet: "abcdefghijklmnopqrstuvwxyz[];',." #  def
+  alphabet: "abcdefghijklmnopqrstuvwxyz[];',.?`"  # 萬用碼 ?`
+  delimiter: "`" 
   algebra:
-    - xform/^~(.*)$/$1
-#為了加強造詞準確性，在字典中，以「~」前綴標記非標準拆字，再透過拼寫語法去除「~」後，送入辭典查詢
+    # 為了加強造詞準確性，在字典中，
+    # 以「~」前綴標記非標準拆字，
+    # 再透過拼寫語法去除「~」後，送入辭典查詢     - xform/^~(.*)$/$1
+    # xform --改寫〔不保留原形〕
+    - xform/^~(.*)$/$1/
+    #
+    # "?"萬用字元
+    # 取消符號功能
+    # erase --刪除
+    # - erase/?.*/
+    # - erase/?{3}.*/
+    #
+    # 單字用單個通配符
+    # 通配符在尾  # derive --衍生〔保留原形〕
+    - derive/^([a-z])[a-z]{1,4}$/$1?/
+    - derive/^([a-z]{2})[a-z]{1,3}$/$1?/
+    - derive/^([a-z]{3})[a-z]{1,2}$/$1?/
+    - derive/^([a-z]{4})[a-z]$/$1?/
+    # 通配符在首
+    - derive/^[a-z]{1,4}([a-z])$/?$1/
+    - derive/^[a-z]{1,3}([a-z]{2})$/?$1/
+    - derive/^[a-z]{1,2}([a-z]{3})$/?$1/
+    - derive/^[a-z]([a-z]{4})$/?$1/
+    # 通配符在身，替一碼
+    - derive/^([a-z]{1,3})[a-z]([a-z])$/$1?$2/
+    - derive/^([a-z])[a-z]([a-z]{2,3})$/$1?$2/
+    - derive/^([a-z]{2})[a-z]([a-z]{2})$/$1?$2/
+    # 通配符在身，替二碼
+    - derive/^([a-z])[a-z]{2}([a-z]{1,2})$/$1?$2/
+    - derive/^([a-z]{2})[a-z]{2}([a-z])$/$1?$2/
+    # 通配符在身，替三碼
+    - derive/^([a-z])[a-z]{3}([a-z])$/$1?$2/
+    # 單字用多個通配符
+    # 二通配符，在首尾
+    - derive/^[a-z]{1,3}([a-z])[a-z]$/?$1?/
+    - derive/^[a-z]{1,2}([a-z])[a-z]{2}$/?$1?/
+    - derive/^[a-z]([a-z])[a-z]{3}$/?$1?/
+    - derive/^[a-z]([a-z]{3})[a-z]$/?$1?/
+    - derive/^[a-z]{1,2}([a-z]{2})[a-z]$/?$1?/
+    - derive/^[a-z]([a-z]{2})[a-z]{2}$/?$1?/
+    # 二通配符，其一在首
+    - derive/^[a-z]{1,2}([a-z])[a-z]([a-z])$/?$1?$2/
+    - derive/^[a-z]([a-z])[a-z]{2}([a-z])$/?$1?$2/
+    - derive/^[a-z]([a-z]{2})[a-z]([a-z])$/?$1?$2/
+    - derive/^[a-z]([a-z])[a-z]([a-z]{2})$/?$1?$2/
+    # 二通配符，其一在尾
+    - derive/^([a-z])[a-z]{1,2}([a-z])[a-z]$/$1?$2?/
+    - derive/^([a-z])[a-z]([a-z])[a-z]{2}$/$1?$2?/
+    - derive/^([a-z]{2})[a-z]([a-z])[a-z]$/$1?$2?/
+    - derive/^([a-z])[a-z]([a-z]{2})[a-z]$/$1?$2?/
+    # 二通配符，不在首尾
+    - derive/^([a-z])[a-z]([a-z])[a-z]([a-z])$/$1?$2?$3/
+    # 三通配符
+    - derive/^[a-z]([a-z])[a-z]([a-z])[a-z]$/?$1?$2?/
+
+
+simplifier:
+  tips: all  # 簡化字模式下提示對應的傳統漢字
 
 translator:
   # dictionary: liur_Trad
   dictionary: liur.extended
-  db_class: tabledb
-  enable_user_dict: false # 是否開啓用戶詞典
-  enable_sentence: true # 是否開啓自動造句 default false
+  db_class: tabledb  # defualt is tabledb  liur.txt  # userdb liur.userdb
+  enable_user_dict: true # 是否開啓用戶詞典 # default false # 讀 liur.txt or liuruserdb
+  enable_sentence: false # 是否開啓自動造句 default false # 連打 
   auto_select: false # 自動上屛〔true或false〕
-  enable_encoder: false # 是否開啓自動造詞 default false
+  enable_encoder: true # 是否開啓自動造詞 default false cctest   # 必須打開這樣 也能顯示有enc前綴的詞 , 才能消除enc前綴 
   enable_charset_filter: true # 是否開啓字符集過濾〔僅table_translator有效〕
-  encode_commit_history: false # 是否對已上屛詞自動成詞 default false
+  encode_commit_history: false # 是否對已上屛詞自動成詞 default false  
   max_phrase_length: 10
   enable_completion: true # default false 关闭后英文不会有提示，只会在打全时才会显示，体验不是很好
-  # comment_format:
-    # - xform/^~(.+)$/>[$1]   #將提示碼改為較美觀的型式 
+  comment_format:
+    - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|ABCDEFGHIJKLMNOPQRSTUVWXYZ[];',.|" # 顯示大寫
+    - xform/^~(.+)$/>[$1]   # 將提示碼改為較美觀的型式
   disable_user_dict_for_patterns:
     - "^[',.].*$"
+  initial_quality: 1000
+  preedit_format:
+    - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|ABCDEFGHIJKLMNOPQRSTUVWXYZ[];',.|" # 組字時顯示大寫
+    - 'xform/\\//' #全形空格　 #半形空格  #| #⁞ #⁝ #⋮ #¦ #┆
+    # - 'xform/\\/ /' #全形空格　 #半形空格  #| #⁞ #⁝ #⋮ #¦ #┆
+
+fixed:
+  __include: /translator
+  enable_user_dict: true # 開啓用戶詞典
+  enable_encoder: true #  開啓造詞功能
+  enable_sentence: true # # 是否開啓自動造句 default false # 連打 
+  initial_quality: 100
+  enable_completion: true # 若设为false，则无法造词
+  disable_user_dict_for_patterns: # cctest
+    - '.*'   # 对所有编码禁用用户词典（不调频，不读取用户词，但不影响自造词写入用户词典）# cctest
+  tag: fixed # cctest
+
+mkst: #開啓造句(造詞引導) # 會加到 liur.txt 會出現 del enc us 前綴
+  __include: /translator
+  enable_sentence: true  # 自動造句 # 連打
+  prefix: ';' #####################################################################
+  tips: "【造詞】"
+  tag: mkst
+  initial_quality: 10
+
+liu_w2c: # 反查字的 嘸蝦米編碼
+  opencc_config: liu_w2c.json # 要檢查 opencc 裏面有沒有這個檔案
+  option_name: liu_w2c
+  show_in_comment: true
+  tags: [ pinyin , phonetic ]
+  # all [ pinyin , reverse_lookup ]  # pinyin , phonetic , mkst
+  tips: all
 
 # english: # 英文混打
 #   dictionary: easy_en
@@ -99,41 +218,69 @@ translator:
 #   enable_sentence: false
 #   initial_quality: -3
 
-liu_w2c:
-  opencc_config: liu_w2c.json
-  option_name: liu_w2c
-  show_in_comment: true
-  tags: [pinyin , reverse_lookup ]
-  tips: all
+# zh_tw:  #只針對拼音及注音反查進行台灣用語轉換
+#   opencc_config: t2tw.json # 要檢查 opencc 裏面有沒有這個檔案
+#   option_name: zh_tw
+#   tags: [ pinyin, phonetic ] #[ pinyin, reverse_lookup ]
 
-# reverse_lookup:
-pinyin:
+
+liurqry: # 反查字的 反查讀音 #####################################################################
+  __include: /translator
+  prefix: ";;" #####################################################################
+  suffix: "'"
+  tips: 【反查讀音】
+  closing_tips: 【蝦米】
+  initial_quality: 300	# 調整該編譯器出字優先度
+  tag: liurqry
+
+pinyin:  # 拼音反查 嘸蝦米編碼 #####################################################################
   tag: pinyin
   dictionary: luna_pinyin
-  prefix: ";p"
+  prefix: ";;;" #####################################################################
   suffix: "'"
-  tips: "【拼音】"
   preedit_format: &pinyin
     - xform/([nl])v/$1ü/
     - xform/([nl])ue/$1üe/
     - xform/([jqxy])v/$1u/
+  tips: 【拼音】
+  closing_tips: 【蝦米】
+  initial_quality: 0.2  # 調整該編譯器出字優先度
 
-reverse_lookup:
-  prefix: ";;"
+
+reverse_lookup: # 注音反查 嘸蝦米編碼 只能查單字
+  tag: reverse_lookup
+  prefix: ";;;;" # ####################################################################
   suffix: "'"
   dictionary: terra_pinyin
   prism: bopomofo_tw
   preedit_format:	#menu反查之輸入法 顯示
     - "xlit|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/- 6347'|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙ |"
-  comment_format:	#menu 提示 字碼 顯示
-    # - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|abcdefghijklmnopqrstuvwxyz[];',.|"
-    # - "xlit|abcdefghijklmnopqrstuvwxyz,.'[]|ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ，．’〔〕"
+  comment_format:  #menu 提示 字碼 顯示
     - xform/\b(\w{1,3})\b/\U$1\E/ # 把 1-3 碼字改為大寫顯示
   tips: 【注音】
   closing_tips: 【蝦米】
   initial_quality: 1.1	# 調整該編譯器出字優先度
 
-phonetic_reverse_lookup:
+
+phonetic: # 注音反查 嘸蝦米編碼 ##############################################
+  tag: phonetic
+  prefix: "';" # ####################################################################
+  suffix: "'"
+  dictionary: terra_pinyin
+  prism: bopomofo_tw
+  preedit_format:	#menu反查之輸入法 顯示
+    - "xlit|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/- 6347'|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙ |"
+  # comment_format:  #menu 提示 字碼 顯示
+    # - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|abcdefghijklmnopqrstuvwxyz[];',.|"
+    # - "xlit|abcdefghijklmnopqrstuvwxyz,.'[]|ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ，．’〔〕"
+    # - xform/\b(\w{1,3})\b/\U$1\E/ # 把 1-3 碼字改為大寫顯示
+  tips: 【注音】
+  closing_tips: 【蝦米】
+  initial_quality: 1.1	# 調整該編譯器出字優先度
+
+
+phonetic_reverse_lookup: # 顯示注音符號
+  tag: phonetic_reverse_lookup
   dictionary: terra_pinyin
   overwrite_comment: false  # 覆蓋其他提示  # 保留 逐碼+注音 設 false # 只留注音設 true
   comment_format:
@@ -167,7 +314,7 @@ phonetic_reverse_lookup:
     - xform/$/}/
 
 
-punctuator:
+# punctuator:
   # import_preset: default
 
 key_binder:
@@ -182,11 +329,17 @@ editor:
 
 recognizer:
   import_preset: default
-
   patterns:
     email: ^[a-z][-_.0-9a-z]*@.*$
     url: ^(www[.]|https?:|ftp:|mailto:).*$
-    pinyin: ";p[a-z]*'?$|[a-z]+'$" # 拼音反查嘸蝦米編碼
-    # reverse_lookup: ";;[-,.;/a-z0-9]*'?$" # 注音反查嘸蝦米編碼
-    reverse_lookup: ";;[1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/6347-]*'?$" # 注音反查嘸蝦米編碼
+    #
+    liurqry:  ";;[a-z']*'?$" # 讀音反查引導鍵
+    #
+    pinyin: ";;;[a-z']*'?$" # 拼音反查嘸蝦米編碼
+    #
+    mkst: "^;[a-z,.'`]*$" # 造詞引導
+    #
+    phonetic:       "';[1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/6347-]*'?$" # 注音反查嘸蝦米編碼 
+    reverse_lookup: ";;;;[1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/6347-]*'?$" # 注音反查嘸蝦米編碼 只能查單字 
+    #
     expression: "^=.*$" #cctest 計算機功能

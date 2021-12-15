@@ -80,7 +80,7 @@ function t_translator(input, seg)
   if (string.match(input, "`")~=nil) then
       -- Candidate(type, start, end, text, comment)
 
-  if (input == "``") then
+  if (input == "``" or input == "`;" or input == "`fn") then
     if (os.date("%w") == "0") then
       weekstr = "日"
     end
@@ -1601,4 +1601,5 @@ end
 
 calculator_translator = require("calculator_translator")
 preedit_preview = require("preedit_preview")
-add_tag = require("add_tag")
+preedit_preview2 = require("preedit_preview2")
+-- add_tag = require("add_tag")

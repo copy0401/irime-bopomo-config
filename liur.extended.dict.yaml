@@ -2,6 +2,8 @@
 # encoding: utf-8
 #
 # 最簡單的(無蝦米)輸入方案
+# 手動編碼建議加到 liur_customWords.dict.yaml
+# 自動編碼建議加到 liur.extended.dict.yaml
 ---
 name: liur.extended
 version: "1"
@@ -9,34 +11,34 @@ sort: original	#按 字詞  排序 輸入original,以 字詞頻  排序 輸入 b
 #字碼格式: 字<Tab>字碼<Tab>權重
 encoder:
   exclude_patterns:
-#    - '^z.*$'
-  rules:
-#"AaAzBaBz代表字1字2首、尾碼
+    # - '^z.*$'
+  rules: 
     - length_equal: 2
-      formula: "AaBaBaBa"
+      formula: "AaBaBaBa" # "1首+2首+2首+2首"
     - length_equal: 3
-      formula: "AaBaCaCa"
+      formula: "AaBaCaCa" # "1首+2首+3首+3首"
     - length_in_range: [4, 10]
-      formula: "AaBaCaZa"
+      formula: "AaBaCaZa" # "1首+2首+3首+n首"
+# 
+# Aa 代表 字1字 首碼 
+# Az 代表 字1字 尾碼
+# Ba 代表 字2字 首碼
+# Bz 代表 字2字 尾碼
+#
+# 自動編碼
+# 兩碼詞：「字1」首碼+「字2」首碼 X 3
+# 如 國家→ onnn 
+# 三碼詞：「字1」首碼+「字2」首碼+「字3」首碼 X 2 
+# 如 交通部→ onnn 
+# 四至十碼詞：「字1、字2、字3」首碼+「最後一字」首碼
+# 如「無蝦米輸入法」   輸入vcmw (「無」：首碼，「蝦」：首碼，「米」：首碼，「法」：首碼)
+# 如「中華女子代表隊」 輸入cagb (「中」：首碼，「華」：首碼，「女」：首碼，「隊」：首碼)
+# 如「台北市政府」     輸入ufll (「台」：首碼，「北」：首碼，「市」：首碼，「府」：首碼)
+# 備註: 有些字有重碼 自動編碼造出來的碼 可能就會有些不如逾期的編碼
 import_tables:
   - liur_Trad
   - liur_TradExt
   - liur_customWords
-  # - liur_Japan
-# 如果要啟動日文漢字就取消註解
+  - liur_Japan # 如果要啟動日文漢字就取消註解
 ...
-#人工編碼詞，適合超長句子，或包含數字的詞
-嘸蝦米	liu
 
-#自動編碼
-#兩碼詞：「字1」首碼+「字2」首碼 X 3，如國家→ onnn 
-國家
-#三碼詞：「字1」首碼+「字2」首碼+「字3」首碼 X 2
-交通部
-#四至十碼詞：「字1、字2、字3」首碼+「最後一字」首碼
-# 如「無蝦米輸入法」輸入vcmw (「無」：首碼，「蝦」：首碼，「米」：首碼，「法」：首碼)
-# 如「中華女子代表隊」輸入cagb (「中」：首碼，「華」：首碼，「女」：首碼，「隊」：首碼)
-# 如「台北市政府」輸入ufll (「台」：首碼，「北」：首碼，「市」：首碼，「府」：首碼)
-無蝦米輸入法
-中華女子代表隊
-台北市政府

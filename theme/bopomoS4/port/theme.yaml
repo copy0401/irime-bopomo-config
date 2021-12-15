@@ -193,7 +193,8 @@ preset_keyboards:
       - {click: Shift     ,        width: 7.142 }
       - {click: '`', label: '⊛' ,swipe_up: "'",  width: 7.142 }
       - {click: toE             ,  width: 7.142 } # ＠ @ ⊙
-      - {click: space    ,         width: 57.136} #
+      - {click: space    ,         width: 49.994} # 57.136
+      - {click: '?', label: '?' , swipe_up: ';'  , swipe_down: ';' , width: 7.142 }
       - {click: Return   ,         width: 7.142 } # 21.426
       - {click: '*', label: 'x' , swipe_up: '('  , swipe_down: '(' , width: 7.142 }
       - {click: '+' ,             swipe_up: ')'  , swipe_down: ')' , width: 7.142 }
@@ -278,7 +279,8 @@ preset_keyboards:
       - {click: Shift ,                             width: 7.142 }
       - {click: '@' , label: '@　　　',             width: 7.142 }
       - {click: toD      ,                          width: 7.142 } # ＠ @ ⊙
-      - {click: space    ,                          width: 57.136} #
+      - {click: space    ,         width: 49.994} # 57.136
+      - {click: '?', label: '?' , swipe_up: ';'  , swipe_down: ';' , width: 7.142 }
       - {click: Return   ,                          width: 7.142 } # 21.426
       - {click: '*', label: 'x' , swipe_up: '('  ,  width: 7.142 }
       - {click: '+' ,  swipe_up: ')'  ,             width: 7.142 }
