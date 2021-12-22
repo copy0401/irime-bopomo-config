@@ -10,16 +10,15 @@ version: "1"
 sort: original	#按 字詞  排序 輸入original,以 字詞頻  排序 輸入 by_weight
 #字碼格式: 字<Tab>字碼<Tab>權重
 encoder:
-  exclude_patterns:
+  exclude_patterns: # 排除某編碼 造詞規則
     # - '^z.*$'
   rules: 
-    - length_equal: 2
+    - length_equal: 2 # 對於二字詞
       formula: "AaBaBaBa" # "1首+2首+2首+2首"
-    - length_equal: 3
+    - length_equal: 3 #對於三字詞
       formula: "AaBaCaCa" # "1首+2首+3首+3首"
-    - length_in_range: [4, 10]
+    - length_in_range: [4, 10] # 對於四至十字詞
       formula: "AaBaCaZa" # "1首+2首+3首+n首"
-# 
 # Aa 代表 字1字 首碼 
 # Az 代表 字1字 尾碼
 # Ba 代表 字2字 首碼
@@ -36,9 +35,13 @@ encoder:
 # 如「台北市政府」     輸入ufll (「台」：首碼，「北」：首碼，「市」：首碼，「府」：首碼)
 # 備註: 有些字有重碼 自動編碼造出來的碼 可能就會有些不如逾期的編碼
 import_tables:
-  - liur_Trad
-  - liur_TradExt
-  - liur_customWords
-  - liur_Japan # 如果要啟動日文漢字就取消註解
+  # - liur_Trad
+  # - liur_TradExt
+  # - liur_customWords
+  # - liur_Japan # 如果要啟動日文漢字就取消註解
+  #
+  - openxiami_TCJP
+  - openxiami_TradExt
+  - openxiami_CustomWord
 ...
 

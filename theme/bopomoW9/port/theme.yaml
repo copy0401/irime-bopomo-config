@@ -1,0 +1,673 @@
+# Trime default style settings
+# encoding: utf-8
+
+config_version: "0.9"
+name: bopomoW9 #方案名称 for 精簡主題
+author: copy0401
+
+#键盘高度等
+height:
+  1: &jpgd1 48  #符号键盘
+  2: &jpgd2 48  #主键盘 74 66 54
+  3: &jpgd3 48  #数字键盘
+  # 4: &jpgd4 0.01  #主键盘圆角 12
+  5: &jpgd5 36  #候选区高度 36
+  6: &jpgd6 0.0 #符号键盘行间距 0.5
+  7: &jpgd7 0.0 #符号键盘水平间距 0.5
+  8: &jpgd8 0.0 #符号键盘圆角
+  9: &jpgd9 0.0   #主键盘数字键盘 垂直间距 (行間距) 11 2 (ipad 5) 2 5 目前設0 還是會有間距
+  10: &jpgd10 0.1 #主键盘数字键盘 水平间距 13 4          (ipad 8) 3 7 有跨行按鍵設1 or 0.1
+  11: &soundc "mnc.caf"  # key  key_press_click.caf
+  12: &soundd "mnd.caf"  # bs   key_press_delete
+  13: &soundm "mnm.caf"  # shift space   key_press_modifier
+  14: &sound0 "mn0.aiff" # 
+  15: &sound1 "mn1.aiff" # Do
+  16: &sound2 "mn2.aiff" # Re
+  17: &sound3 "mn3.aiff" # Mi
+  18: &sound4 "mn4.aiff" # 
+  19: &sound5 "mn5.aiff" # 
+  20: &sound6 "mn6.aiff" # 
+  21: &sound7 "mn7.aiff" # 
+  22: &sound8 "mn8.aiff" # 
+  23: &sound9 "mn9.aiff" # 
+  #
+  101: &sound101 "1.aiff" #   F2
+  102: &sound102 "2.aiff" #   Gb2  #
+  103: &sound103 "3.aiff" #   G2
+  104: &sound104 "4.aiff" #   Ab2  #
+  105: &sound105 "5.aiff" #   A2
+  106: &sound106 "6.aiff" #   Bb2  #
+  107: &sound107 "7.aiff" #   B2
+  #
+  108: &sound108 "8.aiff" #   C3
+  109: &sound109 "9.aiff" #   Db3  #
+  110: &sound110 "10.aiff" #  D3
+  111: &sound111 "11.aiff" #  Eb3  #
+  112: &sound112 "12.aiff" #  E3
+  113: &sound113 "13.aiff" #  F3
+  114: &sound114 "14.aiff" #  Gb3  #
+  115: &sound115 "15.aiff" #  G3
+  116: &sound116 "16.aiff" #  Ab3  #
+  117: &sound117 "17.aiff" #  A3
+  118: &sound118 "18.aiff" #  Bb3  #
+  119: &sound119 "19.aiff" #  B3
+  #
+  120: &sound120 "20.aiff" #  C4
+  121: &sound121 "21.aiff" #  Db4  #
+  122: &sound122 "22.aiff" #  D4
+  123: &sound123 "23.aiff" #  Eb4  #
+  124: &sound124 "24.aiff" #  E4
+  125: &sound125 "25.aiff" #  F4
+  126: &sound126 "26.aiff" #  Gb4  #
+  127: &sound127 "27.aiff" #  G4
+  128: &sound128 "28.aiff" #  Ab4  #
+  129: &sound129 "29.aiff" #  A4
+  130: &sound130 "30.aiff" #  Bb4  #
+  131: &sound131 "31.aiff" #  B4
+  #
+  132: &sound132 "32.aiff" #  C5
+  133: &sound133 "33.aiff" #  Db5  #
+  134: &sound134 "34.aiff" #  D5
+  135: &sound135 "35.aiff" #  Eb5  #
+  136: &sound136 "36.aiff" #  E5
+  137: &sound137 "37.aiff" #  F5
+
+hide:
+  &hide true #false不显示候选窗或true显示候选窗
+
+style:
+  # candidate_font: han.ttf #候选字型
+  candidate_padding: 14 #候选项内边距 14
+  candidate_spacing: 15 #候选间距 15
+  candidate_text_size: 28 #候选字号 24
+  candidate_use_cursor: true #高亮候选项
+  candidate_view_height: 48 # *jpgd5 # 候选区高度 44
+  comment_height: 16 #编码提示区高度 16
+  comment_on_top: false #编码提示在上方或右侧 false = top
+  comment_text_size: 14 #编码提示字号 14
+  # key_font: symbol.ttf #键盘字型
+  text_height: 0.0 #编码框高度 默认值为：20 # *jpgd2 #键高 設0可以隱藏
+  key_long_text_size: 14 #长标签字号
+  key_text_size: 18 #键字号 18
+  key_width: 10.0 #键宽，占银幕宽的百分比 # 10.0
+  keyboards: [default ] #键盘配置  english , symbols , .number .symbols #
+  label_text_size: 22 #标签字号 22
+  preview_text_size: 40 #按键提示字号 40
+  show_candidate: *hide #显示候选区 *hide
+  show_comment: false #显示提示区 true #cctestok 減少卡鍵bug
+  show_preview: false #按键提示 true  #cctestok 減少卡鍵bug
+  symbol_text_size: 10 #符号字号 10
+  text_size: 12 #编码字体大小 默认值为：12  注音符號大小 有作用
+  vertical_correction: -5 # -5
+  vertical_gap: *jpgd6 #键盘行距
+  round_corner: 6 #圓角 值为0的话默认 iphone为4，ipad为8，min=0.01 4 6 -13
+  sound: "mnc.caf" # zhong.aiff # 全域預設 按鍵聲音
+  color_scheme: cc10 #配色方案 目前系統黑色主題模式下 沒有作用
+  #         首選項    候選項   
+  # cc1 紫底 黑字 / 深灰 黑字  類似 yahoo keykey輸入法 配色
+  # cc2 綠底 黑字 / 深灰 黑字  類似 淡綠底黑字
+  # cc3 黑底 白字 / 橘底 黑字  類似 p站配色
+  # cc4 淡藍 黑字 / 深灰 黑字  類似 squirrel預設主題
+  # cc5 藍底 白字 / 藍底 灰字  類似 DOS 倚天系統
+  # cc6 綠底 白字 / 深灰 黑字  類似 漢音輸入法
+  # cc7 灰底 黑字 / 灰底 深灰  
+  # cc8 灰底 藍字 / 灰底 淡藍
+  # cc9 yahookeykey + 橘
+  # cc10 
+  # cc11 
+
+#键盘布局
+preset_keyboards:
+  default:
+    ascii_mode: 0
+    author: "copy0401"
+    height: *jpgd2
+    horizontal_gap: *jpgd10
+    vertical_gap: *jpgd9
+    width: 10
+    keys:
+      - {width: 100 , height: 6 } #
+      # 水平間距設1
+      # 當間距的按鍵寬度設   1%
+      # 一排 24鍵  有11個當間距的按鍵 ((100-(11x1))/24)x1 = 3.7083
+      # 一排 12鍵  有11個當間距的按鍵 ((100-(11x1))/12)x1 = 7.4166
+      # ############################################################################################
+      - {                                                                        width: 14.5 ,  height: 48 } #
+      - {click: '1',  label: '1'  ,   swipe_up: cm2_1    ,  swipe_down: '!' ,    width: 5 ,     height: 48 } #
+      - {                                                                        width: 1     , height: 48 } #
+      - {click: '2',  label: '2'  ,   swipe_up: cm2_2    ,  swipe_down: '@' ,    width: 5 ,     height: 48 }
+      - {                                                                        width: 1     , height: 48 } #
+      - {click: '3',  label: '3'  ,   swipe_up: cm2_3    ,  swipe_down: '#' ,    width: 5 ,     height: 48 } #
+      - {                                                                        width: 1     , height: 48 } #
+      - {click: '4',  label: '4'  ,   swipe_up: cm2_4    ,  swipe_down: '$' ,    width: 5 ,     height: 48 }
+      - {                                                                        width: 1     , height: 48 } #
+      - {click: '5',  label: '5'  ,   swipe_up: cm2_5    ,  swipe_down: '%' ,    width: 5 ,     height: 48 } #
+      - {                                                                        width: 1     , height: 48 } #
+      - {click: '6',  label: '6'  ,   swipe_up: cm2_6    ,  swipe_down: '^' ,    width: 5 ,     height: 48 }
+      - {                                                                        width: 1     , height: 48 } #
+      - {click: '7',  label: '7'  ,   swipe_up: cm2_7    ,  swipe_down: '&' ,    width: 5 ,     height: 48 } #
+      - {                                                                        width: 1     , height: 48 } #
+      - {click: '8',  label: '8'  ,   swipe_up: cm2_8    ,  swipe_down: '*' ,    width: 5 ,     height: 48 }
+      - {                                                                        width: 1     , height: 48 } #
+      - {click: '9',  label: '9'  ,   swipe_up: cm2_9    ,  swipe_down: '(' ,    width: 5 ,     height: 48 } #
+      - {                                                                        width: 1     , height: 48 } #
+      - {click: '0',  label: '0'  ,   swipe_up: cm2_0    ,  swipe_down: ')' ,    width: 5 ,     height: 48 }
+      - {                                                                        width: 1     , height: 48 } #
+      - {click: '-',  label: '-'  ,  swipe_up: cm2_Dash   ,  swipe_down: '_' ,   width: 5 ,     height: 48 }
+      - {                                                                        width: 1     , height: 48 } # 
+      - {click: '=',  label: '='  ,  swipe_up: '+'    ,  swipe_down: '+' ,       width: 5 ,     height: 48 } #
+      - {                                                                        width: 1     , height: 48 } #
+      - {click: '\',  label: '\'  ,  swipe_up: '|'    ,  swipe_down: '' ,        width: 5 ,     height: 48 }
+      - {                                                                        width: 1     , height: 48 } # 
+      - {click: '`',  label: '`'  ,  swipe_up: '~'    ,  swipe_down: '' ,        width: 5 ,     height: 48 } #
+      - {                                                                        width: 2.5 ,   height: 48 } #
+      # ####################
+      # ####################
+      - {width: 100 , height: 6 } #
+      # ############################################################################################
+      # qwertyuiop
+      # ############################################################################################
+      - {                                                                       width: 14.5 ,  height: 48 } #
+      # + 2.5
+      - {                                                                       width: 2.5 ,  height: 48 } #
+      - {click: 'q',  label: 'Q'  ,   swipe_up: cm2_q    ,  swipe_down: '' ,    width: 5 ,     height: 48 } #
+      - {                                                                       width: 1     , height: 48 } #
+      - {click: 'w',  label: 'W'  ,   swipe_up: cm2_w    ,  swipe_down: '' ,    width: 5 ,     height: 48 }
+      - {                                                                       width: 1     , height: 48 } #
+      - {click: 'e',  label: 'E'  ,   swipe_up: cm2_e    ,  swipe_down: '' ,    width: 5 ,     height: 48 } #
+      - {                                                                       width: 1     , height: 48 } #
+      - {click: 'r',  label: 'R'  ,   swipe_up: cm2_r    ,  swipe_down: '' ,    width: 5 ,     height: 48 }
+      - {                                                                       width: 1     , height: 48 } #
+      - {click: 't',  label: 'T'  ,   swipe_up: cm2_t    ,  swipe_down: '' ,    width: 5 ,     height: 48 } #
+      - {                                                                       width: 1     , height: 48 } #
+      - {click: 'y',  label: 'Y'  ,   swipe_up: cm2_y    ,  swipe_down: '' ,    width: 5 ,     height: 48 }
+      - {                                                                       width: 1     , height: 48 } #
+      - {click: 'u',  label: 'U'  ,   swipe_up: cm2_u    ,  swipe_down: '' ,    width: 5 ,     height: 48 } #
+      - {                                                                       width: 1     , height: 48 } #
+      - {click: 'i',  label: 'I'  ,   swipe_up: cm2_i    ,  swipe_down: '' ,    width: 5 ,     height: 48 }
+      - {                                                                       width: 1     , height: 48 } #
+      - {click: 'o',  label: 'O'  ,   swipe_up: cm2_o    ,  swipe_down: '' ,    width: 5 ,     height: 48 } #
+      - {                                                                       width: 1     , height: 48 } #
+      - {click: 'p',  label: 'P'  ,   swipe_up: cm2_p    ,  swipe_down: '' ,    width: 5 ,     height: 48 }
+      - {                                                                       width: 1     , height: 48 } # 
+      - {click: '[',  label: '['  ,  swipe_up: '{'    ,  swipe_down: '' ,       width: 5 ,     height: 48 } #
+      - {                                                                       width: 1     , height: 48 } #
+      - {click: ']',  label: ']'  ,  swipe_up: '}'    ,  swipe_down: '' ,       width: 5 ,     height: 48 } #
+      - {                                                                       width: 1     , height: 48 } #
+      - {click: BackSpace  ,                                                    width: 5 ,     height: 48 } # 
+      # - {                                                                       width: 14.5 ,  height: 48 } #
+      # -2.5
+      - {                                                                       width: 6 ,  height: 48 } #
+      # ####################
+      # ####################
+      - {width: 100 , height: 6 } #
+      # ############################################################################################
+      # asdfghjkl;
+      # ############################################################################################
+      - {                                                                        width: 14.5 ,  height: 48 } #
+      - {                                                                        width: 3.75 ,  height: 48 } #
+      - {click: 'a',  label: 'A'  ,   swipe_up: cm2_a    ,  swipe_down: '' ,     width: 5 ,     height: 48 } #
+      - {                                                                        width: 1     , height: 48 } #
+      - {click: 's',  label: 'S'  ,   swipe_up: cm2_s    ,  swipe_down: '' ,     width: 5 ,     height: 48 }
+      - {                                                                        width: 1     , height: 48 } #
+      - {click: 'd',  label: 'D'  ,   swipe_up: cm2_d    ,  swipe_down: '' ,     width: 5 ,     height: 48 } #
+      - {                                                                        width: 1     , height: 48 } #
+      - {click: 'f',  label: 'F'  ,   swipe_up: cm2_f    ,  swipe_down: '' ,     width: 5 ,     height: 48 }
+      - {                                                                        width: 1     , height: 48 } #
+      - {click: 'g',  label: 'G'  ,   swipe_up: cm2_g    ,  swipe_down: '' ,     width: 5 ,     height: 48 } #
+      - {                                                                        width: 1     , height: 48 } #
+      - {click: 'h',  label: 'H'  ,   swipe_up: cm2_h    ,  swipe_down: '' ,     width: 5 ,     height: 48 }
+      - {                                                                        width: 1     , height: 48 } #
+      - {click: 'j',  label: 'J'  ,   swipe_up: cm2_j    ,  swipe_down: '' ,     width: 5 ,     height: 48 } #
+      - {                                                                        width: 1     , height: 48 } #
+      - {click: 'k',  label: 'K'  ,   swipe_up: cm2_k    ,  swipe_down: '' ,     width: 5 ,     height: 48 }
+      - {                                                                        width: 1     , height: 48 } #
+      - {click: 'l',  label: 'L'  ,   swipe_up: cm2_l    ,  swipe_down: '' ,     width: 5 ,     height: 48 } #
+      - {                                                                        width: 1     , height: 48 } #
+      - {click: ';',  label: ';'  ,  swipe_up: cm2_slash    ,  swipe_down: '' ,  width: 5 ,     height: 48 }
+      - {                                                                        width: 1     , height: 48 } # 
+      - {click: "'",  label: "'"  ,   swipe_up: '"'    ,  swipe_down: '' ,       width: 5 ,     height: 48 }
+      - {                                                                        width:  1     , height: 48 } #
+      - {click: Return  ,                                                        width:  5 ,     height: 48 } #
+      # - {                                                                        width: 14.5 ,  height: 48 } #
+      - {                                                                        width: 10.75 ,  height: 48 } #
+      
+      # ####################
+      # ####################
+      - {width: 100 , height: 6 } #
+      # ############################################################################################
+      # zxcvbnm,./
+      # ############################################################################################
+      - {                                                                                               width: 14.5 ,  height: 48 } #
+      - {                                                                                               width:  6.25,  height: 48 } #
+      - {click: 'z',  label: 'Z'  ,   swipe_up: cm2_z    ,  swipe_down: '' ,                            width: 5 ,     height: 48 } #
+      - {                                                                                               width: 1     , height: 48 } #
+      - {click: 'x',  label: 'X'  ,   swipe_up: cm2_x    ,  swipe_down: '' ,                            width: 5 ,     height: 48 }
+      - {                                                                                               width: 1     , height: 48 } #
+      - {click: 'c',  label: 'C'  ,   swipe_up: cm2_c    ,  swipe_down: '' ,                            width: 5 ,     height: 48 } #
+      - {                                                                                               width: 1     , height: 48 } #
+      - {click: 'v',  label: 'V'  ,   swipe_up: cm2_v    ,  swipe_down: '' ,                            width: 5 ,     height: 48 }
+      - {                                                                                               width: 1     , height: 48 } #
+      - {click: 'b',  label: 'B'  ,   swipe_up: cm2_b    ,  swipe_down: '' ,                            width: 5 ,     height: 48 } #
+      - {                                                                                               width: 1     , height: 48 } #
+      - {click: 'n',  label: 'N'  ,   swipe_up: cm2_n    ,  swipe_down: '' ,                            width: 5 ,     height: 48 }
+      - {                                                                                               width: 1     , height: 48 } #
+      - {click: 'm',  label: 'M'  ,   swipe_up: cm2_m    ,  swipe_down: '' ,                            width: 5 ,     height: 48 } #
+      - {                                                                                               width: 1     , height: 48 } 
+      - {click: ',',  label: ','  , swipe_up: commit2comma , swipe_down: '<' ,                 width: 5 ,     height: 48 } # commitcomma 全形逗號
+      - {                                                                                               width: 1     , height: 48 } 
+      - {click: '.',  label: '.'  , swipe_up: commit2period, swipe_down: '>' ,                width: 5 ,     height: 48 } # commitperiod 全形句號
+      - {                                                                                               width: 1     , height: 48 } 
+      - {click: '/',  label: '/'  , swipe_up: commit2questionmark, swipe_down: '?' ,    width: 5 ,     height: 48 } # commit4questionmark 全形問號
+      - {                                                                                               width: 1     , height: 48 } #
+      - {click: Shift  ,                                                                                width: 5 ,     height: 48 } # 
+      # - {                                                                                               width: 14.5 , height: 48 } #
+      - {                                                                                               width: 14.25 , height: 48 } #
+      # ####################
+      # ####################
+      - {width: 100 , height: 6 } #
+      # - {click: sendnil , width: 100 , height: 0.001 } #
+      # ############################################################################################
+      # shift synbols english  fn  space ? enter = x +
+      # ############################################################################################
+      - {                                                                       width: 20.5 ,   height: 48 } #
+      - {                                                                       width:  5 ,     height: 48 } #
+      - {                                                                       width:  1     , height: 48 } #
+      - {                                                                       width:  5 ,     height: 48 } #
+      # - {                                                                       width:  1     , height: 48 } #
+      # - {click: LanguageSwitch      ,                                           width:  5 ,     height: 48 } #
+      - {                                                                       width:  1     , height: 48 } #
+      - {click: space  ,                                                        width: 29  ,    height: 48 } # space 7.416 15.832 # 3
+      - {                                                                       width:  1     , height: 48 } #
+      - {click: commitToL  ,                                                    width:  5 ,     height: 48 } #
+      - {                                                                       width:  1     , height: 48 } #
+      - {click: commitToR  ,                                                    width:  5 ,     height: 48 } #
+      # - {                                                                       width:  1     , height: 48 } #
+      # - {click: '?'  ,                                                          width:  5 ,     height: 48 } #
+      - {                                                                       width:  1     , height: 48 } #
+      - {                                                                       width:  5 ,     height: 48 } #
+      # - {                                                                       width:  1     , height: 48 } #
+      # - {click: toD  ,                                                          width:  5 ,     height: 48 } #
+      # - {                                                                       width:  1     , height: 48 } #
+      # - {                                                                       width:  5 ,     height: 48 } #
+      - {                                                                       width: 20.5 ,   height: 48 } #
+      # ####################
+      # - {click: sendnil , width: 100 , height: 0.001 } #
+      - {width: 100 , height: 6 } #
+      # - {click: sendnil , width: 100 , height: 0.001 } #
+      - {width: 100 , height: 48 } #
+    name: 注音鍵盤
+
+preset_color_schemes:
+  cc1: # cc1 紫底 黑字 / 深灰 黑字  類似 yahoo keykey輸入法 配色
+    name: cc／cc1
+    author: cc <copy0401@gmail.com>
+    # comment_text_color: 0x000000       # 黑 # 右下 後面拼音符號  # trime 候选项注释  #
+    comment_text_color: 0x222222       # 灰 # 右下 後面拼音符號  # trime 候选项注释  #
+    # comment_text_color: 0xbc9adb       # 粉 # 右下 後面拼音符號  # trime 候选项注释  #
+    # comment_text_color: 0x729a44       # 綠 # 右下 後面拼音符號  # trime 候选项注释  #
+    # comment_text_color: 0xf19737       # 橘 # 右下 後面拼音符號  # trime 候选项注释  #
+    text_color: 0xffffff #白
+    back_color: 0xeeeeec #灰  如果設00ffffff變鍵盤底色  # 0xeeeeec
+    # border_color: 0xe0e0e0 #灰 沒作用
+    hilited_text_color: 0x222222 # 0x222222 深灰 # 小小的注音符號
+    # hilited_back_color: 0x855f98 #淡紫  沒作用
+    hilited_candidate_text_color: 0xffffff #白 #被選中的字
+    hilited_candidate_back_color: 0x855f98 #淡紫
+    candidate_text_color: 0x000000 # 黑 候選欄 字色
+
+  cc2: # cc2 綠底 黑字 / 深灰 黑字  類似 淡綠底黑字
+    name: cc／cc2
+    author: cc <copy0401@gmail.com>
+    comment_text_color: 0x000000           # 黑 # 右下 後面拼音符號  # trime 候选项注释  #
+    text_color: 0xf6f3e8 #黑
+    back_color: 0xeeeeec #灰
+    # border_color: 0xe0e0e0 #灰
+    hilited_text_color: 0x222222 #深灰 小小的注音符號
+    # hilited_back_color: 0xcae682 #綠
+    hilited_candidate_text_color: 0x000000 #黑 0x000000  被選中的字
+    hilited_candidate_back_color: 0xcae682 #綠 0xcae682
+    candidate_text_color: 0x000000 # 黑 候選欄 字色
+
+  cc3: # cc3 黑底 白字 / 橘底 黑字  類似 p站配色
+    name: cc／cc3
+    author: cc <copy0401@gmail.com>
+    #
+    # candidate_separator_color: 0xff0000  # trime 候选分割线
+    # hilited_comment_text_color: 0xff0000 # trime 高亮候选项注释
+    # text_back_color: 0xff0000 # trime 编码区背景 支持背景图  ※ 仅当style/layout/background设置失效时才会起作用（当background生效时，text_back_color就会失效）
+    # hilited_key_back_color: 0xff0000 # trime 高亮按键背景（按下按键时
+    # hilited_key_text_color: 0xff0000 # trime 高亮按键文本
+    # hilited_key_symbol_color: 0xff0000 # trime 高亮按键符号（
+    # hilited_off_key_back_color: 0xff0000 # trime 功能键高亮背景（按下时）
+    # hilited_on_key_back_color: 0xff0000 # trime shift键锁定时的高亮背景（按下时）
+    # hilited_off_key_text_color: 0xff0000 # trime 能键高亮文本 ※ 在没有特别指定的时候，功能键的long_click和hint颜色与普通按键一样
+    # hilited_on_key_text_color: 0xff0000 # trime shift键锁定时的高亮文本 ※ shift键锁定时的这四种颜色不会因为functional: false而失效
+    # key_back_color: 0xff0000 # trime 按键背景
+    # key_border_color: 0xff0000 # trime 按键边框*(暂无)
+    # key_text_color: 0xff0000 # trime 按键文本（click）
+    # key_symbol_color: 0xff0000 # trime 按键符号（long_click和hint）
+    # keyboard_back_color: 0xff0000 # trime 键盘背景
+    # label_color: 0xff0000 # trime 悬浮窗候选项序号
+    # off_key_back_color: 0xff0000 # trime 功能键背景
+    # off_key_text_color: 0xff0000 # trime 功能键文本
+    # on_key_back_color: 0xff0000 # trime  shift键锁定时背景
+    # on_key_text_color: 0xff0000 # trime  shift键锁定时文本
+    # preview_back_color: 0xff0000 # trime  按键气泡背景
+    # preview_text_color: 0xff0000 # trime  按键气泡文本
+    # shadow_color: 0xff0000 # trime  按键文字阴影（阴影半径在shadow_radius中设定）
+    # candidate_background # trime 候选区整体背景
+    # liquid_keyboard_background # trime liquidKeyboard的键盘背景
+    # long_text_back_color # trime 包含长文本的按键背景（比如剪贴板）
+    #
+    # text_color: 0x0000ff         # 沒作用 # trime 编码（位于光标插入点右边的编码，或者是拼音类方案中无法正常解析的空码，比如全拼时输入hau，u就属于这种）
+    # border_color: 0x0000ff       # 沒作用 # trime悬浮窗边框
+    # hilited_back_color: 0x0000ff # 沒作用 # trime 高亮编码背景 ※ 非高亮的编码背景与back_color相同
+    #
+    comment_text_color: 0xffffff           # 白 # 右下 後面拼音符號  # trime 候选项注释  #
+    hilited_text_color: 0x1b1b1b           # 黑 # 小小的注音符號  # trime 高亮编码（一般是位于光标插入点左边的编码）
+    hilited_candidate_text_color: 0xffffff # 白 # 首選項 字色   # trime 高亮候选文本
+    hilited_candidate_back_color: 0x1b1b1b # 黑 # 首選項 背景色 # trime 高亮候选背景（候选项被选中时）
+    candidate_text_color: 0x000000         # 黑 # 候選欄 字色   # trime 候选文本（包括悬浮窗候选）
+    back_color: 0xf29d38                   # 橘 # 候選欄 背景色 # trime 候选区背景*
+
+  cc4: # cc4 淡藍 黑字 / 深灰 黑字  類似 squirrel預設主題
+    name: cc／cc4
+    author: cc <copy0401@gmail.com>
+    comment_text_color: 0x333333 # 黑 # 右下 後面拼音符號  # trime 候选项注释  #
+    hilited_text_color: 0x333333 #深灰 # 小小的注音符號
+    hilited_candidate_text_color: 0x000000 #白   # 首選項 字色
+    hilited_candidate_back_color: 0xb9d7fb #淡藍 # 首選項 背景色
+    candidate_text_color: 0x000000 # 黑 候選欄 字色
+    back_color: 0xeeeeec #灰       # 候選欄 背景色
+
+  cc5: # cc5 藍底 白字 / 藍底 灰字  類似 DOS 倚天系統
+    name: cc／cc5
+    author: cc <copy0401@gmail.com>
+    comment_text_color: 0xeeeeec           # 右下 後面拼音符號  # trime 候选项注释  #
+    back_color: 0x0000a0 # ffffff白底  eeeeec灰底   候選欄背景色
+    hilited_text_color: 0x222222 # 小小的注音符號
+    hilited_candidate_text_color: 0xeeeeec # ffffff白 首選項字色
+    hilited_candidate_back_color: 0x0000a0 # 底色 藍  首選項背景色
+    candidate_text_color: 0xacacac # 黑 候選欄 字色
+
+  cc6: # cc6 綠底 白字 / 深灰 黑字  類似 漢音輸入法
+    name: cc／cc6
+    author: cc <copy0401@gmail.com>
+    comment_text_color: 0x000000           # 黑 # 右下 後面拼音符號  # trime 候选项注释  #
+    text_color: 0xffffff #白
+    back_color: 0xeeeeec #灰
+    # border_color: 0xe0e0e0 #灰
+    hilited_text_color: 0x222222 #深灰 # 小小的注音符號
+    # hilited_back_color: 0x855f98 #淡紫
+    hilited_candidate_text_color: 0xffffff #白 #被選中的字
+    hilited_candidate_back_color: 0x367e7f #綠
+    candidate_text_color: 0x000000 # 黑 候選欄 字色
+
+  cc7: # cc7 灰底 黑字 / 灰底 深灰  
+    name: cc／cc7
+    author: cc <copy0401@gmail.com> # 0xfbfbfd 0xf2f1f6 
+    comment_text_color: 0x000000  # 黑 # 右下 後面拼音符號  # trime 候选项注释  #
+    hilited_text_color: 0x000000  # 小小的注音符號
+    hilited_candidate_text_color: 0x000000 # 首選項 字色
+    hilited_candidate_back_color: 0xeeeeec # 首選項 背景色
+    candidate_text_color: 0xacacac # 候選欄 字色
+    back_color:           0xeeeeec # 候選欄 背景色
+
+  cc8:  # cc8 灰底 藍字 / 灰底 淡藍
+    name: cc／cc8 
+    author: cc <copy0401@gmail.com> 
+    comment_text_color: 0x0034ce # 右下 後面拼音符號  # trime 候选项注释  #
+    hilited_text_color: 0x0034ce # 小小的注音符號  0x0034ce
+    hilited_candidate_text_color: 0x0034ce # 首選項 字色 
+    hilited_candidate_back_color: 0xfbfbfd # 首選項 背景色
+    candidate_text_color: 0x2f82f7 # 候選欄 字色 
+    back_color:           0xfbfbfd # 候選欄 背景色
+
+  cc9: # cc9 yahoo + orange
+    name: cc／cc9
+    author: cc <copy0401@gmail.com>
+    comment_text_color: 0x000000       # 黑 # 右下 後面拼音符號  # trime 候选项注释  #
+    back_color: 0xeeeeec # 灰  如果設00ffffff變鍵盤底色
+    hilited_text_color: 0x000000 # 黑 # 小小的注音符號
+    hilited_candidate_text_color: 0x000000 # 黑 #被選中的字
+    hilited_candidate_back_color: 0x8bdc6e # 綠 微信綠 0x8bdc6e 
+    candidate_text_color: 0x000000 # 黑 候選欄 字色
+
+  cc10: # cc10 
+    name: cc／cc10
+    author: cc <copy0401@gmail.com>
+    #
+    hilited_candidate_text_color: 0xffffff # 首選項 字
+    hilited_candidate_back_color: 0x7f5ab5 # 首選項 底
+    #
+    candidate_text_color: 0x76319f # 候選項 字
+    back_color: 0xf0ebdd           # 候選項 底
+    #
+    hilited_text_color: 0x3f3b3b  # 左上 小小的注音符號  
+    comment_text_color: 0x3f3b3b  # 右下 後面拼音符號  # trime 候选项注释  
+
+  cc11: # cc11
+    name: cc／cc11
+    author: cc <copy0401@gmail.com>
+    #
+    hilited_candidate_text_color: 0x7f0056 # 首選項 字
+    hilited_candidate_back_color: 0xbad6fd # 首選項 底 
+    #
+    candidate_text_color: 0x000000 # 候選項 字
+    back_color: 0xeeeeee           # 候選項 底
+    #
+    hilited_text_color: 0x557f5f  # 左上 小小的注音符號 
+    comment_text_color: 0x0000ff  # 右下 後面拼音符號  # trime 候选项注释  #
+
+
+preset_keys:
+  key_ : {text: ""} # 編輯時測試用
+  cm2_ : {label: "", text: "" } # 編輯時測試用
+  toN: {label: "±" , send: Eisu_toggle , select: default }
+  toM: {label: "♪" , send: Eisu_toggle , select: default } 
+  toE: {label: "A" , send: Eisu_toggle , select: english } # english
+  toD: {label: "ㄓ", send: Eisu_toggle , select: default } # default
+  toS: {label: "@",  send: Eisu_toggle , select: symbols } # symbols
+  # 编辑
+  LanguageSwitch: {send: LANGUAGE_SWITCH}
+  Shift: {send: Shift_L}
+  # Shift2: {send: Shift_R}
+  Return: {label: Enter, send: Return}
+  BackSpace: {send: BackSpace}
+  # BackSpace2: {label: "⌫" , functional: false, send: BackSpace}
+  space: {label: "␣", send: space}
+  Clear: {label: "AC", send: Escape}
+  Clear2: {label: "Reset", send: Escape}
+  number: {label: "±", send: Eisu_toggle, select: default}
+  .number: {label: "±", send: Eisu_toggle, select: default}
+  symbols: {label: "±", send: Eisu_toggle, select: default}
+  .symbols: {label: "±", send: Eisu_toggle, select: default}
+  .symbols1: {label: "±", send: Eisu_toggle, select: default}
+  english: {label: "A", send: Eisu_toggle, select: english}
+  DefaultKeyboard: {label: "ㄓ", send: Eisu_toggle, select: default}
+  DefaultKeyboard2: {label: "ㄓ", send: Eisu_toggle, select: default}
+  #
+  semicolon: {label: "；", text: ";{DefaultKeyboard}"} #先上屏；再跳转到default键盘
+  bracket: {label: "(", text: "(){Left}{DefaultKeyboard}"} #先上屏()光标往左移动一格再跳转到default键盘
+  bracket1: {label: ")", text: "){DefaultKeyboard}"} 
+  bracket2: {label: "()", text: "(){Left}"} #先上屏()光标往左移动一格
+  bracket3: {label: "(", text: "("} 
+  bracket4: {label: ")", text: ")"}
+  at1: {label: "@", text: "@{DefaultKeyboard}"} 
+  quotationMarkHalf1: {label: "\"", text: "\"{DefaultKeyboard}"} 
+  quotationMarkHalf2: {label: "\"", text: "“”{Left}"} 
+  #
+  commitHalfcomma: {label: ",", text: "{DefaultKeyboard},"} # 有用到
+  commitHalfperiod: {label: ".", text: "{DefaultKeyboard}."} # 有用到
+  commitHalfquestionmark: {label: "?", text: "{DefaultKeyboard}?"} # 有用到
+  #
+  engsemicolon: {label: "；", text: ";{english}"} #先上屏；再跳转到default键盘
+  engbracket: {label: "(", text: "(){Left}{english}"} #先上屏()光标往左移动一格再跳转到default键盘
+  engbracket1: {label: ")", text: "){english}"} 
+  engat1: {label: "@", text: "@{english}"} 
+  engquotationMarkFull: {label: "〝", text: "\"\"{Left}{english}"} 
+  engquotationMarkFull1: {label: "〞", text: "\"{english}"}
+  engperiodFull: {label: ".", text: ".{english}"} #上屏全角句号再跳转到default键盘
+  engcommaHalf: {label: ",", commit: ","}
+  engcommaFull: {label: "，", text: ",{english}"}
+  engdunHalf: {label: "、", text: "、{english}"}
+  engquestionMark: {label: "？", text: "?{english}"}
+  engpoint: {label: "！", text: "!{english}"}
+  #左右移動光標
+  commitToL: {label: "◃　　　", text: "{Left}" } # 有用到 ◃ ◀
+  commitToR: {label: "▹　　　", text: "{Right}"} # 有用到 ▹ ▶
+  commitToR2: {label: "", text: "{Right}"} 
+  commitDotCOM: {label: ".com", text: ".com{english}"} 
+  #
+  commit22: {label: "`", text: "`"}
+  commit23: {label: "-", commit: "-"}
+  commit25: {label: ":", text: ":"}
+  commit26: {label: ",", text: "<"}
+  commit27: {label: ".", text: "。"} # 。  test ok
+  #
+  #
+  sendnil: {label: "", text: "", send: DarkSpecialCharacter}
+  sendbracket: {label: "()", text: "(){Left}" , send: DarkSpecialCharacter}
+  sendbracket2: {label: "()", text: "(){Left}"}
+  snedLogo1: { label: "mini", text: "{DefaultKeyboard}" } # 會觸發 輸出字
+  snedLogo2: { label: "⌧", send: Escape } # 會清空 輸入字符 # Clear, CLR, CLS ⌧
+  snedLogo3: { label: "", send: Escape }
+  snedLogo4: { label: "首選項", text: "{DefaultKeyboard}" } # 會觸發 輸出字
+  sneddef: { label: "◰", text: "{DefaultKeyboard}" } # 會觸發 輸出字
+  snedeng: { label: "◰", text: "{english}" } # 會觸發 輸出字
+  #
+  sendAt: {label: "@", text: "@", send: DarkSpecialCharacter}
+  sendEqua: {label: "=", text: '=', send: DarkSpecialCharacter}
+  sendOpenbracket: {label: "[", text: "[", send: DarkSpecialCharacter}
+  sendClosebracket: {label: "]", text: "]", send: DarkSpecialCharacter}
+  sendSlash: {label: "/", text: "/", send: DarkSpecialCharacter}
+  # test 
+  escape: {label: "esc", text: "{Escape}"}
+  control: {label: "ctrl", text: "{Control_L}"}
+  tab: {label: "tab", text: "{Tab}"}
+  up: {label: "up", text: "{Up}"}
+  down: {label: "dn", text: "{Down}"}
+  spuer: {label: "super", text: "{Super_L}"}
+  hyper: {label: "hyper", text: "{Hyper_L}"}
+  caps: {label: "caps", text: "{Caps_Lock}"}
+  meta: {label: "meta", text: "{Meta_L}"}
+  end: {label: "end", text: "{End}"}
+  begin: {label: "begin", text: "{Begin}"}
+  alt: {label: "alt", text: "{Alt_L}"}
+  # test
+  # cm_00:    {label: ㄅ , commit: 1 ,  send: DarkSpecialCharacter}
+  # cm_01:    {text: 1   , send: DarkSpecialCharacter}
+  # cm_10:    {label: ㄅ , send: DarkSpecialCharacter }
+  # cm_11:    {label: ㄅ , text: 1 , send: DarkSpecialCharacter}
+  #
+  commit24: {label: "/", text: "/"} # 有用到
+  commitcomma: {label: "，"        , text: "{DefaultKeyboard}，" } 
+  commitperiod: {label: "。"       , text: "{DefaultKeyboard}。" } 
+  commitquestionmark: {label: "？" , text: "{DefaultKeyboard}？" } 
+  commit4questionmark: {label: "/" , text: "{DefaultKeyboard}？" } 
+  #
+  e_commitcomma: {label: "，"        , text: "{english}，" } 
+  e_commitperiod: {label: "。"       , text: "{english}。" } 
+  e_commitquestionmark: {label: "？" , text: "{english}？" } 
+  e_commit4questionmark: {label: "/" , text: "{english}？" } 
+  #
+  ###############################
+  #
+  cm2_dot:  {label: ".", commit: "."}
+  cm2_1:    {label: "ㄅ !", commit: "1"}
+  cm2_2:    {label: "ㄉ @", commit: "2"}
+  cm2_3:    {label: "ˇ #", commit: "3"}
+  cm2_4:    {label: "ˋ $", commit: "4"}
+  cm2_5:    {label: "ㄓ %", commit: "5"}
+  cm2_6:    {label: "ˊ ^", commit: "6"}
+  cm2_7:    {label: "˙ &", commit: "7"}
+  cm2_8:    {label: "ㄚ *", commit: "8"}
+  cm2_9:    {label: "ㄞ (", commit: "9"}
+  cm2_0:    {label: "ㄢ )", commit: "0"}
+  cm2_Dash: {label: "ㄦ _", commit: "_"}
+  cm3_Dash: {label: "ㄦ _", commit: "-"}
+  cm2_equals: {label: "+",  text: "+"}  #=+
+  cm2_Backslash: {label: '|', text: "|"}  #\|
+  cm2_graveaccent: {label: "~", text: "~"} #`~
+  # cm2_dot:  {label: ".", commit: "."}
+  # cm2_1:    {label: "1", commit: "1"}
+  # cm2_2:    {label: "2", commit: "2"}
+  # cm2_3:    {label: "3", commit: "3"}
+  # cm2_4:    {label: "4", commit: "4"}
+  # cm2_5:    {label: "5", commit: "5"}
+  # cm2_6:    {label: "6", commit: "6"}
+  # cm2_7:    {label: "7", commit: "7"}
+  # cm2_8:    {label: "8", commit: "8"}
+  # cm2_9:    {label: "9", commit: "9"}
+  # cm2_0:    {label: "0", commit: "0"}
+  # cm2_Dash: {label: "-", commit: "-"}
+  # cm2_equals: {label: "+",  text: "+"}  #=+
+  # cm2_Backslash: {label: '|', text: "|"}  #\|
+  # cm2_graveaccent: {label: "~", text: "~"} #`~
+  #
+  cm2_q: {label: "ㄆ", commit: "q"}
+  cm2_w: {label: "ㄊ", commit: "w"}
+  cm2_e: {label: "ㄍ", commit: "e"}
+  cm2_r: {label: "ㄐ", commit: "r"}
+  cm2_t: {label: "ㄔ", commit: "t"}
+  cm2_y: {label: "ㄗ", commit: "y"}
+  cm2_u: {label: "ㄧ", commit: "u"}
+  cm2_i: {label: "ㄛ", commit: "i"}
+  cm2_o: {label: "ㄟ", commit: "o"}
+  cm2_p: {label: "ㄣ", commit: "p"}
+  cm2_squarebrackets1: {label: "{", commit: "{"} # [{ send {
+  cm2_squarebrackets2: {label: "}", commit: "}"} # ]} send }
+  # cm2_q: {label: "Q", commit: "q"}
+  # cm2_w: {label: "W", commit: "w"}
+  # cm2_e: {label: "E", commit: "e"}
+  # cm2_r: {label: "R", commit: "r"}
+  # cm2_t: {label: "T", commit: "t"}
+  # cm2_y: {label: "Y", commit: "y"}
+  # cm2_u: {label: "U", commit: "u"}
+  # cm2_i: {label: "I", commit: "i"}
+  # cm2_o: {label: "O", commit: "o"}
+  # cm2_p: {label: "P", commit: "p"}
+  # cm2_squarebrackets1: {label: "{", commit: "{"} # [{ send {
+  # cm2_squarebrackets2: {label: "}", commit: "}"} # ]} send }
+  #
+  cm2_a:     {label: "ㄇ", commit: "a"}
+  cm2_s:     {label: "ㄋ", commit: "s"}
+  cm2_d:     {label: "ㄎ", commit: "d"}
+  cm2_f:     {label: "ㄑ", commit: "f"}
+  cm2_g:     {label: "ㄕ", commit: "g"}
+  cm2_h:     {label: "ㄘ", commit: "h"}
+  cm2_j:     {label: "ㄨ", commit: "j"}
+  cm2_k:     {label: "ㄜ", commit: "k"}
+  cm2_l:     {label: "ㄠ", commit: "l"}
+  cm2_slash: {label: "ㄤ :", text: ":"}        # ; : send :
+  cm3_slash: {label: "ㄤ ;", text: ";"}       # ; : send ;
+  cm2_apostrophe: {label: '"' , text: '"'}   # ' "
+  # cm2_a:     {label: "A", commit: "a"}
+  # cm2_s:     {label: "S", commit: "s"}
+  # cm2_d:     {label: "D", commit: "d"}
+  # cm2_f:     {label: "F", commit: "f"}
+  # cm2_g:     {label: "G", commit: "g"}
+  # cm2_h:     {label: "H", commit: "h"}
+  # cm2_j:     {label: "J", commit: "j"}
+  # cm2_k:     {label: "K", commit: "k"}
+  # cm2_l:     {label: "L", commit: "l"}
+  # cm2_slash: {label: ":", text: ":"}        # ; : send :
+  # cm3_slash: {label: ";", commit: ";"}      # ; : send ;
+  # cm2_apostrophe: {label: '"' , text: '"'}  # ' "
+  #
+  cm2_z:               {label: "ㄈ", commit: "z"}
+  cm2_x:               {label: "ㄌ", commit: "x"}
+  cm2_c:               {label: "ㄏ", commit: "c"}
+  cm2_v:               {label: "ㄒ", commit: "v"}
+  cm2_b:               {label: "ㄖ", commit: "b"}
+  cm2_n:               {label: "ㄙ", commit: "n"}
+  cm2_m:               {label: "ㄩ", commit: "m"}
+  commit2comma:        {label: "ㄝ <", text: "<"} # , <
+  commit2period:       {label: "ㄡ >", text: ">"} # . >
+  commit2questionmark: {label: "ㄥ ?", text: "?"} # / ?
+  commit3comma:        {label: "ㄝ ,", text: ","} # , <
+  commit3period:       {label: "ㄡ .", text: "."} # . >
+  commit3questionmark: {label: "ㄥ /", text: "/"} # / ?
+  #  "　"
+  

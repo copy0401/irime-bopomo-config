@@ -76,7 +76,7 @@ engine: # 輸入引擎設定，即掛接組件的「處方」
     # - lua_filter@preedit_preview #  /lua/preedit_preview.lua 顯示首選項  
     # - lua_filter@preedit_preview2 #  /lua/preedit_preview.lua  顯示首選項  + 編碼 
     # - lua_filter@add_tag # 後選項 tag
-    # - lua_filter@single_char_filter # cctest rime.lua 〔僅table_translator有效〕
+    # - lua_filter@single_char_filter # cctest rime.lua 〔僅table_translator有效〕 #單字優先
     # - single_char_filter  #單字優先 〔僅table_translator有效〕
 
 menu:

@@ -1,0 +1,80 @@
+# Rime schema
+# encoding: utf-8
+
+schema:
+  schema_id: unicode
+  name: u13 # "統一碼";
+  version: "13.0"
+  author:
+    - 原作：Netanyahu
+    - Unicode13.0于2020年3月10日发布
+  description: 
+    - "（理论上🙄）可输入Unicode13.0全部字符"
+  dependencies:
+    - luna_pinyin
+
+switches:
+  - name: ascii_mode
+    reset: 0
+    states: [ 中文, 西文 ]
+  - name: half_shape
+    states: [ 全角, 半角 ]
+    reset: 1
+  - options: [ _key_Left ]
+    states: [ ← ] 
+  - options: [ _key_Right ]
+    states: [ → ]
+  - options: [_key_Hide]
+    states: [   ▽   ]
+
+engine:
+  processors:
+    - ascii_composer
+    - recognizer
+    - key_binder
+    - speller
+    - punctuator
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - ascii_segmentor
+    - matcher
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - punct_translator
+    - table_translator
+    - reverse_lookup_translator
+
+speller:
+  alphabet: "0123456789abcdef"
+  initials: "0123456789abcdef"
+  finals: ""
+  auto_select: true
+
+translator:
+  dictionary: unicode
+  spelling_hints: 15
+
+reverse_lookup:
+  dictionary: luna_pinyin
+  prefix: "`"
+  suffix: "'"
+  tips: 〔拼音〕
+  preedit_format:
+    - xform/([nl])v/$1ü/
+    - xform/([nl])ue/$1üe/
+    - xform/([jqxy])v/$1u/
+
+punctuator:
+  import_preset: default
+
+key_binder:
+  import_preset: default
+
+recognizer:
+  import_preset: default
+  patterns:
+    reverse_lookup: "`[a-z]*'?$"
