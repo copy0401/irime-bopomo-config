@@ -53,6 +53,25 @@
 ### 以上的 前導符 可能會更改 詳細設定請看  [xiapin_mtc.schema.yaml](https://github.com/copy0401/irime-bopomo-config/blob/master/schema/xiapin/xiapin_mtc.schema.yaml)
 
 
+---
+
+### 可依需求調整使用的碼表 (修改 liur.extended.dict.yaml  內容)
+
+```yaml
+import_tables:
+  # - liur_Trad
+  # - liur_TradExt
+  # - liur_customWords
+  # - liur_Japan # 如果要啟動日文漢字就取消註解
+  # - liur_TradToSimp # 如果要啟動簡體漢字就取消註解
+  - openxiami_TCJP
+  - openxiami_TradExt
+  - openxiami_CustomWord
+  # - liur_English # 以英語詞庫 小於三碼補 ; 
+```
+
+---
+
 ### 上述功能參考下列方案
 
 ### [shewer/whaleliu](https://github.com/shewer/whaleliu/blob/master/cangjie6liu.schema.yaml)
@@ -65,4 +84,6 @@
 ### [brianhsu/rime-liur-lua](https://github.com/brianhsu/rime-liur-lua)
 
 ### [ianzhuo/rime-liur-lua](https://github.com/ianzhuo/rime-liur-lua)
+
+### [openxiami](https://bit.ly/2OcAvu6)
 
