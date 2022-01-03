@@ -1,6 +1,6 @@
 2021/10/1 更新後已經有內建 注音輸入法 ( 還是推薦使用 洋蔥注音 )
 
-而適用於注音輸入法的主題 iPadOS不會顯示該主題 ( iOS 能用 )
+而適用於注音輸入法的主題 iPadOS 不會顯示該主題 ( iOS 能用 )
 
 需要將 /theme/zhuyin/info.yaml  下載
 
@@ -45,3 +45,7 @@
 ![](https://github.com/copy0401/irime-bopomo-config/raw/master/images/Method3_4.jpg)
 
 ![](https://github.com/copy0401/irime-bopomo-config/raw/master/images/Method3_5.jpg)
+
+---
+
+修改 iRime 鍵盤主題 可以參考教學影片 [60秒學會修改 iRime 主題](https://www.bilibili.com/video/BV1744y1a7jz)
