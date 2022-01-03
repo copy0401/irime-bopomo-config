@@ -22,7 +22,7 @@
 
 例如:
 
-輸入 caur bp wyu
+輸入 caur bp
 
 => cbbb
 
@@ -36,18 +36,18 @@
 
 ```
 
-### ;; 反查讀音
+### ```;;``` 反查讀音
 
-### ;;; 拼音輸入法 (依賴 luna_pinyin )
+### ```;;;``` 拼音輸入法 (依賴 luna_pinyin )
 
-### ;;;; 統一碼(依賴unicode)
+### ```;;;;``` 統一碼(依賴unicode)
 
-### ;;;;; 注音模式輸入 只能查單字/單詞的 蝦米碼 (使用 = 符號 輸入一聲 ,  依賴 bopomofo_liu ) 
+### ```;;;;;``` 注音模式輸入 只能查單字/單詞的 蝦米碼 (使用 = 符號 輸入一聲 ,  依賴 bopomofo_liu ) 
 
-### '; 注音模式輸入  可以連打注音 查蝦米碼 (使用 = 符號 輸入一聲 ,  依賴 bopomofo_liu )
+### ```';``` 注音模式輸入  可以連打注音 查蝦米碼 (使用 = 符號 輸入一聲 ,  依賴 bopomofo_liu )
 
-### 使用 ? 符號 當通配符 .  ( 例如: 國 oaqe 可以輸入 oa?e / o?e / ?aqe / oaq? )
+### 使用 ```?``` 符號 當通配符 .  ( 例如: 國 oaqe 可以輸入 oa?e / o?e / ?aqe / oaq? )
 
-### 反查蝦米碼 使用 /opnecc/liu_w2c.json
+### 反查蝦米碼 使用 ```/opnecc/liu_w2c.json```
 
 ### 以上的 前導符 可能會更改 詳細設定請看  [xiapin_mtc.schema.yaml](https://github.com/copy0401/irime-bopomo-config/blob/master/schema/xiapin/xiapin_mtc.schema.yaml)
