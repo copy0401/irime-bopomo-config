@@ -336,9 +336,9 @@ path = function ()
   return debug.getinfo(1).source:match("@?(.*/)")
 end
 
-cct=os.date("%H:%M:%S") --  cctest 時間 注意 不會每次更新
-ccd=os.date("%Y/%m/%d") --  cctest 日期 注意 不會每次更新
-ccr=math.random         --  cctest 隨機
+-- cct=os.date("%H:%M:%S") --  cctest 時間 注意 不會每次更新
+-- ccd=os.date("%Y/%m/%d") --  cctest 日期 注意 不會每次更新
+-- ccr=math.random         --  cctest 隨機
 
 local function serialize(obj)
   local type = type(obj)

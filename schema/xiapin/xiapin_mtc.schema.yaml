@@ -1,0 +1,399 @@
+#錯誤查看%TEMP%\rime.weasel
+# Rime schema settings
+# encoding: utf-8
+#
+schema:
+  schema_id: xiapin_mtc # xiapin_mtc    liur
+  name: 蝦米 # TC 加計算機功能 #  "␠"  "⍽"
+  version: "20180628"
+  author:
+    - 制作人
+  description: |
+    蝦米-注音輸入
+  dependencies:
+    # 反查方案
+    - luna_pinyin #  
+    # - easy_en # cctest 中英混打
+    # - bopomofo_tw #  注音
+    - bopomofo_liu #  符號 = 替代 空白鍵 的 注音
+    - terra_pinyin # 
+    - unicode #  
+
+switches:
+  - name: ascii_mode # Control+Shift+2
+    reset: 0
+    states: [ 中文, 英文 ]
+  - name: full_shape # Control+Shift+3
+    states: [ 半形, 全形 ]
+  - name: simplification # Control+Shift+5
+    states: [ 繁體, 简体 ]
+  - name: extended_charset # Control+Shift+6
+    states: [ 常用, 擴充字集 ]
+    reset: 1
+  - name: liu_w2c # Control+Shift+7 # 嘸蝦米方案中 注音/拼音顯示反查的嘸蝦米編碼
+    reset: 1
+    states: [ 正常 ,反查 ]
+  # - name: zh_tw # 對應下面 simplifier
+  #   reset: 1
+
+simplifier:
+  tips: all  # 簡化字模式下提示對應的傳統漢字
+  # opencc_config: t2tw.json
+  # option_name: zh_tw
+
+engine:
+  processors: # 一、這批組件處理各類按鍵消息
+    - ascii_composer # ※ 處理西文模式及中西文切換
+    - recognizer # ※ 與 matcher 搭配，處理符合特定規則的輸入碼，如網址、反查等
+    - key_binder # ※ 在特定條件下將按鍵綁定到其他按鍵，如重定義逗號、句號爲候選翻頁鍵
+    - speller # ※ 拼寫處理器，接受字符按鍵，編輯輸入碼
+    - selector # ※ 選字處理器，處理數字選字鍵、上、下候選定位、換頁鍵
+    - navigator # ※ 處理輸入欄內的光標移動鍵
+    - express_editor # ※ 編輯器，處理空格、回車上屏、回退鍵等
+  segmentors: # 二、這批組件識別不同內容類型，將輸入碼分段
+    - ascii_segmentor # ※ 標識西文段落
+    - matcher # ※ 標識符合特定規則的段落，如網址、反查等
+    - abc_segmentor # ※ 標識常規的文字段落
+    #
+    - affix_segmentor@mkst # cctest 開啓造句(造詞引導 )
+    - affix_segmentor@liurqry # cctest 反查讀音
+    #
+    - affix_segmentor@unicode # cctest unicode
+    - affix_segmentor@pinyin # cctest 拼音反查嘸蝦米
+    - affix_segmentor@phonetic # cctest 注音反查嘸蝦米
+    #
+    - fallback_segmentor # ※ 標識其他未標識段落
+  translators:
+    - table_translator@mkst # cctest  開啓造句(造詞引導)
+    - table_translator@fixed # cctest 打開 開啓自動造詞 開啓用戶詞典
+    - table_translator@liurqry # cctest 反查讀音
+    #
+    - table_translator # 碼表翻譯器，用於倉頡、五筆等基於碼表的輸入方案
+    #
+    - script_translator@unicode # cctest unicode
+    - script_translator@pinyin # cctest 拼音反查嘸蝦米
+    - script_translator@phonetic # cctest 注音反查嘸蝦米
+    - reverse_lookup_translator # cctest 注音反查嘸蝦米 只能查單字
+    #
+    # - table_translator@english  # cctest 中英混打 (暫時停用)
+    - lua_translator@t_translator # cctest rime.lua
+    - lua_translator@t2_translator # cctest rime.lua
+    - lua_translator@date_translator # cctest rime.lua
+    - lua_translator@calculator_translator # cctest 計算機功能
+    - history_translator@repeat_history # cctest # 重复上次上屏内容
+  filters:
+    - simplifier # ※ 繁簡轉換
+    - simplifier@liu_w2c  # cctest 無蝦米字碼反查
+    #
+    # - lua_translator@single_char_filter # cctest rime.lua
+    # - single_char_filter  #單字優先
+    #
+    # - lua_translator@charset_filter # cctest rime.lua 滤除含 CJK 扩展汉字的候选项
+    # - lua_translator@charset_comment_filter # cctest rime.lua 为候选项加上其所属字符集的注释
+    - uniquifier  #過濾重複的候選字，有可能來自繁簡轉換
+    - reverse_lookup_filter@phonetic_reverse_lookup # cctest 打字時 標出注音
+    # - lua_filter@preedit_preview #  /lua/preedit_preview.lua
+    - lua_filter@preedit_preview2 #  /lua/preedit_preview2.lua 
+
+# abc_segmentor:
+  # extra_tags:
+    # - liurqry
+ 
+menu:
+  alternative_select_labels: [1,2,3,4,5,6,7,8,9,0]
+  alternative_select_keys: 1234567890
+  page_size: 10 # 候選視窗每頁項目數 default 5  ## 電腦設 5 手機設 16 
+
+# speller:
+#   alphabet: "abcdefghijklmnopqrstuvwxyz[];',.`"
+#   delimiter: "`"
+#   algebra:
+#     - xform/^~(.*)$/$1
+# #為了加強造詞準確性，在字典中，以「~」前綴標記非標準拆字，再透過拼寫語法去除「~」後，送入辭典查詢
+
+speller:
+  # max_code_length: 5                   # cctest 形碼最大碼長，超過則頂字上屛〔number〕
+  # auto_clear: max_length               # cctest 自動清屏
+  # auto_select: true                    # cctest 自動上屛〔true或false〕
+  # auto_select_unique_candidate: true   # cctest 唯一碼上屏
+  # auto_select_pattern: 自動上屏規則，以正則表達式描述，當輸入串可以被匹配時自動頂字上屏。
+  # use_space: 以空格作輸入碼〔true或false〕
+  # finals: 定義僅作末碼之鍵
+  # initials: 定義僅作始碼之鍵
+  #
+  # alphabet: "abcdefghijklmnopqrstuvwxyz[];',." #  def
+  alphabet: "abcdefghijklmnopqrstuvwxyz[];',.?`"  # 萬用碼 ?` # 定義本方案輸入鍵
+  delimiter: "`"  #  上屛時的音節間分音符
+  algebra: # 拼寫運算規則，由之算出的拼寫匯入prism中
+    # 為了加強造詞準確性，在字典中，
+    # 以「~」前綴標記非標準拆字，
+    # 再透過拼寫語法去除「~」後，送入辭典查詢     - xform/^~(.*)$/$1
+    # xform --改寫〔不保留原形〕
+    - xform/^~(.*)$/$1/
+    #
+    # 以「?」鍵作通配符，可替代一碼或多碼
+    # 參考 https://gist.github.com/LEOYoon-Tsaw/5786646
+    # 單字用單個通配符
+    # 通配符在尾  # derive --衍生〔保留原形〕 x?
+    - derive/^([a-z])[a-z]{1,4}$/$1?/
+    - derive/^([a-z]{2})[a-z]{1,3}$/$1?/
+    - derive/^([a-z]{3})[a-z]{1,2}$/$1?/
+    - derive/^([a-z]{4})[a-z]$/$1?/
+    # 通配符在首 ?x
+    - derive/^[a-z]{1,4}([a-z])$/?$1/
+    - derive/^[a-z]{1,3}([a-z]{2})$/?$1/
+    - derive/^[a-z]{1,2}([a-z]{3})$/?$1/
+    - derive/^[a-z]([a-z]{4})$/?$1/
+    # 通配符在身，替一碼 x?x
+    - derive/^([a-z]{1,3})[a-z]([a-z])$/$1?$2/
+    - derive/^([a-z])[a-z]([a-z]{2,3})$/$1?$2/
+    - derive/^([a-z]{2})[a-z]([a-z]{2})$/$1?$2/
+    # 通配符在身，替二碼 x?x
+    - derive/^([a-z])[a-z]{2}([a-z]{1,2})$/$1?$2/
+    - derive/^([a-z]{2})[a-z]{2}([a-z])$/$1?$2/
+    # 通配符在身，替三碼 x?x
+    - derive/^([a-z])[a-z]{3}([a-z])$/$1?$2/
+    #
+    # 單字用多個通配符
+    # 二通配符，在首尾 ?xx?
+    - derive/^[a-z]{1,3}([a-z])[a-z]$/?$1?/
+    - derive/^[a-z]{1,2}([a-z])[a-z]{2}$/?$1?/
+    - derive/^[a-z]([a-z])[a-z]{3}$/?$1?/
+    - derive/^[a-z]([a-z]{3})[a-z]$/?$1?/
+    - derive/^[a-z]{1,2}([a-z]{2})[a-z]$/?$1?/
+    - derive/^[a-z]([a-z]{2})[a-z]{2}$/?$1?/
+    # 二通配符，其一在首 ?x?x
+    - derive/^[a-z]{1,2}([a-z])[a-z]([a-z])$/?$1?$2/
+    - derive/^[a-z]([a-z])[a-z]{2}([a-z])$/?$1?$2/
+    - derive/^[a-z]([a-z]{2})[a-z]([a-z])$/?$1?$2/
+    - derive/^[a-z]([a-z])[a-z]([a-z]{2})$/?$1?$2/
+    # 二通配符，其一在尾 x?x?
+    - derive/^([a-z])[a-z]{1,2}([a-z])[a-z]$/$1?$2?/
+    - derive/^([a-z])[a-z]([a-z])[a-z]{2}$/$1?$2?/
+    - derive/^([a-z]{2})[a-z]([a-z])[a-z]$/$1?$2?/
+    - derive/^([a-z])[a-z]([a-z]{2})[a-z]$/$1?$2?/
+    # 二通配符，不在首尾 x?x?x
+    - derive/^([a-z])[a-z]([a-z])[a-z]([a-z])$/$1?$2?$3/
+    # 三通配符 ?x?x?
+    - derive/^[a-z]([a-z])[a-z]([a-z])[a-z]$/?$1?$2?/
+    #
+    # # 頭尾？ 查碼 
+    # 參考 https://github.com/shewer/whaleliu/blob/master/cangjie6liu.schema.yaml
+    # - derive/^([a-z;,]).([a-z;,])$/$1$2\?/        # 取首尾二碼 爲反查三碼字  qk? 查 qek張
+    # - derive/^([a-z;,])..([a-z;,])$/$1$2\?\?/     # 取首尾二碼 爲速成碼反查四碼字
+    # - derive/^([a-z;,])...([a-z;,])$/$1$2\?\?\?/  # 取首尾二碼 爲速成碼反查五碼字
+
+
+translator:
+  # dictionary: liur_Trad
+  dictionary: liur.extended
+  # db_class 設定用戶詞典類型，可設tabledb〔文本〕或userdb〔二進制〕
+  db_class: tabledb  # defualt is tabledb  liur.txt  # userdb liur.userdb
+  enable_user_dict: true # 是否開啓用戶詞典 # default false # 讀 liur.txt or liuruserdb
+  enable_sentence: false # 是否開啓自動造句 default false # 連打 
+  enable_encoder: true # 是否開啓自動造詞 default false cctest   # 必須打開這樣 也能顯示有enc前綴的詞 , 才能消除enc前綴 
+  enable_charset_filter: true # 是否開啓字符集過濾〔僅table_translator有效〕
+  encode_commit_history: false # 是否對已上屛詞自動成詞 default false  
+  max_phrase_length: 10 # 最大自動成詞詞長〔僅table_translator有效〕
+  enable_completion: true # 提前顯示尚未輸入完整碼的字〔僅table_translator有效〕
+  comment_format: # 提示碼自定義
+    - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|ABCDEFGHIJKLMNOPQRSTUVWXYZ[];',.|" # 顯示大寫
+    - xform/^~(.+)$/>[$1]   # 將提示碼改為較美觀的型式
+  disable_user_dict_for_patterns: # 禁止某些編碼錄入用戶詞典
+    - "^[',.].*$"
+  initial_quality: 1000 # 設定此翻譯器出字優先級
+  preedit_format: # 上屛碼自定義
+    - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|ABCDEFGHIJKLMNOPQRSTUVWXYZ[];',.|" # 組字時顯示大寫
+    - 'xform/\\//' #全形空格　 #半形空格  #| #⁞ #⁝ #⋮ #¦ #┆
+    # - 'xform/\\/ /' #全形空格　 #半形空格  #| #⁞ #⁝ #⋮ #¦ #┆
+
+repeat_history: # 重复上次上屏内容
+  input: "''"
+  size: 1
+  initial_quality: 10000
+
+fixed:
+  __include: /translator
+  enable_user_dict: true # 開啓用戶詞典
+  enable_encoder: true #  開啓造詞功能
+  enable_sentence: true # # 是否開啓自動造句 default false # 連打 
+  initial_quality: 100
+  enable_completion: true # 若设为false，则无法造词
+  disable_user_dict_for_patterns: # cctest
+    - '.*'   # 对所有编码禁用用户词典（不调频，不读取用户词，但不影响自造词写入用户词典）# cctest
+  tag: fixed # cctest 設定此翻譯器針對的tag。可不塡，不塡則僅針對abc
+
+mkst: #開啓造句(造詞引導) # 會加到 liur.txt 會出現 del enc us 前綴
+  __include: /translator
+  enable_sentence: true  # 自動造句 # 連打
+  prefix: ';' #####################################################################
+  tips: "【造詞】"
+  tag: mkst
+  initial_quality: 10
+
+liu_w2c: # 反查字的 嘸蝦米編碼
+  opencc_config: liu_w2c.json # 要檢查 opencc 裏面有沒有這個檔案  用字轉換定義文件
+  option_name: liu_w2c # 對應swiches中設定的切換項名
+  show_in_comment: true
+  tags: [ pinyin , phonetic , unicode ] # 設定轉換範圍
+  # all [ pinyin , reverse_lookup ]  # pinyin , phonetic , mkst , abc, unicode
+  tips: all # 設定是否提示轉換前的字，可塡none〔或不塡〕、char〔僅對單字有效〕、all
+
+# english: # 英文混打
+#   dictionary: easy_en
+#   spelling_hints: 9
+#   enable_completion: true
+#   enable_sentence: false
+#   initial_quality: -3
+
+# zh_tw:  #只針對拼音及注音反查進行台灣用語轉換
+#   opencc_config: t2tw.json # 要檢查 opencc 裏面有沒有這個檔案
+#   option_name: zh_tw
+#   tags: [ pinyin, phonetic ] #[ pinyin, reverse_lookup ]
+
+
+liurqry: # 反查字的 反查讀音 #####################################################################
+  __include: /translator
+  prefix: ";;" #####################################################################
+  suffix: "'"
+  tips: 【反查讀音】
+  closing_tips: 【蝦米】
+  initial_quality: 300	# 調整該編譯器出字優先度
+  tag: liurqry
+
+pinyin:  # 拼音反查 嘸蝦米編碼 #####################################################################
+  tag: pinyin
+  dictionary: luna_pinyin # irime內建
+  prefix: ";;;" #####################################################################
+  suffix: "'"
+  preedit_format: &pinyin
+    - xform/([nl])v/$1ü/
+    - xform/([nl])ue/$1üe/
+    - xform/([jqxy])v/$1u/
+  tips: 【拼音】
+  closing_tips: 【蝦米】
+  initial_quality: 0.2  # 調整該編譯器出字優先度
+
+
+reverse_lookup: # 注音反查 嘸蝦米編碼 只能查單字
+  tag: reverse_lookup
+  prefix: ";;;;;" # ####################################################################
+  suffix: "'"
+  dictionary: terra_pinyin
+  prism: bopomofo_liu # bopomofo_tw # irime內建
+  preedit_format:	#menu反查之輸入法 顯示
+    # - "xlit|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/- 6347'|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙ |"
+    - "xlit|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/-=6347'|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙ |" # 使用 = 當空白鍵
+  comment_format:  #menu 提示 字碼 顯示
+    - xform/\b(\w{1,3})\b/\U$1\E/ # 把 1-3 碼字改為大寫顯示
+  tips: 【注音】
+  closing_tips: 【蝦米】
+  initial_quality: 1.1	# 調整該編譯器出字優先度
+
+
+phonetic: # 注音反查 嘸蝦米編碼 ##############################################
+  tag: phonetic
+  prefix: "';" # ####################################################################
+  suffix: "'"
+  dictionary: terra_pinyin # irime內建
+  prism: bopomofo_liu #  bopomofo_tw
+  preedit_format:	#menu反查之輸入法 顯示
+    # - "xlit|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/- 6347'|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙ |"
+    - "xlit|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/-=6347'|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙ |" # 使用 = 當空白鍵
+  # comment_format:  #menu 提示 字碼 顯示
+    # - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|abcdefghijklmnopqrstuvwxyz[];',.|"
+    # - "xlit|abcdefghijklmnopqrstuvwxyz,.'[]|ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ，．’〔〕"
+    # - xform/\b(\w{1,3})\b/\U$1\E/ # 把 1-3 碼字改為大寫顯示
+  tips: 【注音】
+  closing_tips: 【蝦米】
+  initial_quality: 1.1	# 調整該編譯器出字優先度
+
+
+unicode: # cctest
+  tag: unicode
+  enable_user_dict: false #  用戶詞典 停用
+  prefix: ";;;;" # ####################################################################
+  suffix: ""
+  dictionary: unicode
+  tips: 【unicode】"
+  closing_tips: 【蝦米】
+  initial_quality: 1.1	# 調整該編譯器出字優先度
+
+
+phonetic_reverse_lookup: # 顯示注音符號
+  tag: phonetic_reverse_lookup
+  dictionary: terra_pinyin
+  overwrite_comment: false  # 覆蓋其他提示  # 保留 逐碼+注音 設 false # 只留注音設 true
+  comment_format:
+    - "xform/e?r5$/er5/"
+    - "xform/iu/iou/"
+    - "xform/ui/uei/"
+    - "xform/ong/ung/"
+    - "xform/yi?/i/"
+    - "xform/wu?/u/"
+    - "xform/iu/v/"
+    - "xform/([jqx])u/$1v/"
+    - "xform/([iuv])n/$1en/"
+    - "xform/zh/Z/"
+    - "xform/ch/C/"
+    - "xform/sh/S/"
+    - "xform/ai/A/"
+    - "xform/ei/I/"
+    - "xform/ao/O/"
+    - "xform/ou/U/"
+    - "xform/ang/K/"
+    - "xform/eng/G/"
+    - "xform/an/M/"
+    - "xform/en/N/"
+    - "xform/er/R/"
+    - "xform/eh/E/"
+    - "xform/([iv])e/$1E/"
+    - "xform/1//"
+    - "xlit|bpmfdtnlgkhjqxZCSrzcsiuvaoeEAIOUMNKGR2345|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˊˇˋ˙|"
+    - xform/ /} {/
+    - xform/^/ {
+    - xform/$/}/
+
+
+# punctuator:
+  # import_preset: default
+
+key_binder:
+  import_preset: default
+  bindings: 
+    ### 刪除鍵 ###
+    # - {accept: BackSpace, send: Escape, when: has_menu} #〔關〕刪除前一個拼音字符〔開〕：刪除整組拼音字符（一個字）
+    # - {accept: Shift+BackSpace, send: BackSpace, when: has_menu}
+    # - {accept: backslash, send: BackSpace, when: has_menu} #「\」鍵位刪除一個拼音字符。
+
+
+editor:
+  bindings:
+    # space: commit_composition #使用 fluency_editor 時開啟
+    Return: confirm # 使用 express_editor 時開啟 # iRime 可以設 commit_raw_input
+    Shift+Return: commit_raw_input # 上屏原始輸入
+    Control+Return: commit_script_text # 上屏變換後輸入
+
+recognizer:
+  # import_preset: default # 預設能大寫組字 改成 patterns/punct 
+  patterns:
+    punct: "^;([A-Z|a-z]*|[0-9]|10)$" # 大寫直接上屏不組字
+    #
+    email: ^[a-z][-_.0-9a-z]*@.*$
+    url: ^(www[.]|https?:|ftp:|mailto:).*$
+    #
+    liurqry:  ";;[a-z']*'?$" # 讀音反查引導鍵
+    #
+    pinyin: ";;;[a-z']*'?$" # 拼音反查嘸蝦米編碼
+    #
+    mkst: "^;[a-z,.'`]*$" # 造詞引導
+    #
+    unicode: ";;;;[0123456789abcdef']*'?$" # unicode
+    #
+    # phonetic:       "';[1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/6347-]*'?$" # 注音反查嘸蝦米編碼
+    phonetic:       "';[1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/=6347-]*'?$" # 注音反查嘸蝦米編碼 使用 = 當空白鍵
+    #
+    # reverse_lookup: ";;;;;[1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/6347-]*'?$" # 注音反查嘸蝦米編碼 只能查單字 
+    reverse_lookup: ";;;;;[1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/=6347-]*'?$" # 注音反查嘸蝦米編碼 只能查單字 使用 = 當空白鍵
+    #
+    expression: "^=.*$" #cctest 計算機功能

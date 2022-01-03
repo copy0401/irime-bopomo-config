@@ -1,0 +1,414 @@
+# Trime default style settings
+# encoding: utf-8
+
+config_version: "0.9"
+name: 默认键盘 #方案名称
+author: 筋斗云#作者资讯
+
+#键盘高度等
+height:
+  1: &jpgd1 43.6 #符号键盘
+  2: &jpgd2 46 #主键盘
+  3: &jpgd3 41.5 #数字键盘
+  4: &jpgd4 12 #主键盘圆角
+  5: &jpgd5 36 #候选区高度
+  6: &jpgd6 0.5 #符号键盘行间距
+  7: &jpgd7 0.5 #符号键盘水平间距
+  8: &jpgd8 0.0 #符号键盘圆角
+  9: &jpgd9 11 #主键盘数字键盘行间距
+  10: &jpgd10 4 #主键盘数字键盘水平间距
+
+style:
+  key_height: *jpgd2 #键高
+  keyboards: [default, number, .symbols, english, .number] #键盘配置,所有跳转键盘都需要在这里配置，不然会出错
+  text_size: 12 #编码字体大小 默认值为：12
+  text_height: 20 #编码框高度 默认值为：20
+  candidate_text_size: 24 #候选字体大小 默认值为：24
+  candidate_view_height: 44 #候选高度 默认值为：44
+  candidate_padding: 14 #候选间距 默认值为：14
+  comment_text_size: 14 #逐码字体大小 默认值为：14
+  comment_height: 16 #逐码高度 默认值为：16
+  show_preview: true #是否显示气泡 默认显示
+  round_corner: 0 #值为0的话默认 iphone为4，ipad为8
+  color_scheme: cc1 #配色方案 cc1/cc2/cc3/cc4/cc5/cc6/cc7/cc8
+  # aqua/ink/azure/lost_temple/dark_temple/starcraft
+  #       首選項      候選字   
+  # cc1 紫底 黑字 / 深灰 黑字  類似 yahoo keykey輸入法 配色
+  # cc2 綠底 黑字 / 深灰 黑字  類似 淡綠底黑字
+  # cc3 黑底 白字 / 橘底 黑字  類似 p站配色
+  # cc4 淡藍 黑字 / 深灰 黑字  類似 squirrel預設主題
+  # cc5 藍底 白字 / 藍底 灰字  類似 DOS 倚天系統
+  # cc6 綠底 白字 / 深灰 黑字  類似 漢音輸入法
+  # cc7 灰底 黑字 / 灰底 深灰
+  # cc8 灰底 藍字 / 灰底 淡藍
+
+#键盘布局
+preset_keyboards:
+  default:
+    ascii_mode: 0
+    author: "筋斗云"
+    height: *jpgd2
+    horizontal_gap: *jpgd10
+    vertical_gap: *jpgd9
+    round_corner: *jpgd4
+#现在只支持配置click,swipe_up,swipe_down键盘
+    keys: 
+      - {click: q, swipe_up: commit1,  swipe_down: "一"}
+      - {click: w, swipe_up: commit2,  swipe_down: "二"}
+      - {click: e, swipe_up: commit3,  swipe_down: "三"}
+      - {click: r, swipe_up: commit4,  swipe_down: "四"}
+      - {click: t, swipe_up: commit5,  swipe_down: "五"}
+      - {click: y, swipe_up: commit6,  swipe_down: "六"}
+      - {click: u, swipe_up: commit7,  swipe_down: "七"}
+      - {click: i, swipe_up: commit8,  swipe_down: "八"}
+      - {click: o, swipe_up: commit9,  swipe_down: "九"}
+      - {click: p, swipe_up: commit0,  swipe_down: "〇"}
+      - {width: 5}
+      - {click: a, swipe_up: commit～, swipe_down: "~"}
+      - {click: s, swipe_up: commitgan, swipe_down: "/"}
+      - {click: d, swipe_up: commit：, swipe_down: ":"}
+      - {click: f, swipe_up: commit；, swipe_down: ";"}
+      - {click: g, swipe_up: bracket2, swipe_down: "("}
+      - {click: h, swipe_up: commit）, swipe_down: ")"}
+      - {click: j, swipe_up: commit@,  swipe_down: "@"}
+      - {click: k, swipe_up: quotationMarkFull2,  swipe_down: '"'}
+      - {click: l, swipe_up: commit”,  swipe_down: "'"}
+      - {width: 5}
+      - {click: Shift, width: 14}
+      - {width: 1}
+      - {click: z, swipe_up: commit-,  swipe_down: "-"}
+      - {click: x, swipe_up: commit_,  swipe_down: "_"}
+      - {click: c, swipe_up: commitJin,  swipe_down: "#"}
+      - {click: v, swipe_up: commit？,  swipe_down: "?"}
+      - {click: b, swipe_up: commit！,  swipe_down: "!"}
+      - {click: n, swipe_up: "，",  swipe_down: commaHalf}
+      - {click: m, swipe_up: "。",  swipe_down: periodHalf}
+      - {width: 1}
+      - {click: BackSpace, width: 14}
+      - {click: symbols, width: 14}
+      - {click: .number, width: 12}
+      - {click: space, width: 42}
+      - {click: english, width: 12}
+      - {click: Return, width: 20}
+    name: "默认键盘"
+    width: 10
+
+  english:
+    ascii_mode: 1
+    author: "筋斗云"
+    height: *jpgd2
+    horizontal_gap: *jpgd10
+    vertical_gap: *jpgd9
+    round_corner: *jpgd4
+    keys: 
+      - {click: q, swipe_up: "1",  swipe_down: "一"}
+      - {click: w, swipe_up: "2",  swipe_down: "二"}
+      - {click: e, swipe_up: "3",  swipe_down: "三"}
+      - {click: r, swipe_up: "4",  swipe_down: "四"}
+      - {click: t, swipe_up: "5",  swipe_down: "五"}
+      - {click: y, swipe_up: "6",  swipe_down: "六"}
+      - {click: u, swipe_up: "7",  swipe_down: "七"}
+      - {click: i, swipe_up: "8",  swipe_down: "八"}
+      - {click: o, swipe_up: "9",  swipe_down: "九"}
+      - {click: p, swipe_up: "0",  swipe_down: "〇"}
+      - {width: 5}
+      - {click: a, swipe_up: "~", swipe_down: "~"}
+      - {click: s, swipe_up: "/", swipe_down: "/"}
+      - {click: d, swipe_up: ":", swipe_down: ":"}
+      - {click: f, swipe_up: ";", swipe_down: ";"}
+      - {click: g, swipe_up: bracket2, swipe_down: "("}
+      - {click: h, swipe_up: ")", swipe_down: ")"}
+      - {click: j, swipe_up: "@",  swipe_down: "@"}
+      - {click: k, swipe_up: quotationMarkHalf2,  swipe_down: '"'}
+      - {click: l, swipe_up: "”",  swipe_down: "'"}
+      - {width: 5}
+      - {click: Shift, width: 14}
+      - {width: 1}
+      - {click: z, swipe_up: "-",  swipe_down: "-"}
+      - {click: x, swipe_up: "_",  swipe_down: "_"}
+      - {click: c, swipe_up: "#",  swipe_down: "#"}
+      - {click: v, swipe_up: "?",  swipe_down: "?"}
+      - {click: b, swipe_up: "!",  swipe_down: "!"}
+      - {click: n, swipe_up: ",",  swipe_down: ","}
+      - {click: m, swipe_up: ".",  swipe_down: "."}
+      - {width: 1}
+      - {click: BackSpace, width: 14}
+      - {click: symbols, width: 14}
+      - {click: .number, width: 12}
+      - {click: ., swipe_up: ",", width: 10}
+      - {click: space, width: 34}
+      - {click: DefaultKeyboard2, width: 10}
+      - {click: Return, width: 20}
+    name: "英文键盘"
+    width: 10
+
+  number:
+    ascii_mode: 0
+    author: "筋斗云"
+    height: *jpgd2
+    horizontal_gap: *jpgd10
+    vertical_gap: *jpgd9
+    round_corner: *jpgd4
+    keys: 
+      - {click: 1}
+      - {click: 2}
+      - {click: 3}
+      - {click: 4}
+      - {click: 5}
+      - {click: 6}
+      - {click: 7}
+      - {click: 8}
+      - {click: 9}
+      - {click: 0}
+      - {click: "-"}
+      - {click: "/"}
+      - {click: ":"}
+      - {click: semicolon}
+      - {click: bracket}
+      - {click: bracket1}
+      - {click: "¥"}
+      - {click: "@"}
+      - {click: quotationMarkFull}
+      - {click: quotationMarkFull1}
+      - {click: .symbols1, width: 14}
+      - {width: 3}
+      - {click: periodFull, width: 11}
+      - {click: commaFull, width: 11}
+      - {click: dunHalf, width: 11}
+      - {click: questionMark, width: 11}
+      - {click: point, width: 11}
+      - {click: ., width: 11}
+      - {width: 3}
+      - {click: BackSpace, width: 14}
+      - {click: DefaultKeyboard, width: 25}
+      - {click: space, width: 50}
+      - {click: Return, width: 25}
+    name: "苹果数字键盘"
+    width: 10
+
+
+preset_color_schemes:
+  cc1:   # cc1 紫底 黑字 / 深灰 黑字  類似 yahoo keykey輸入法 配色
+    name: cc／cc1
+    author: cc <copy0401@gmail.com>
+    comment_text_color: 0x000000           # 黑 # 右下 後面拼音符號  # trime 候选项注释  #
+    text_color: 0xffffff #白
+    back_color: 0xeeeeec #灰
+    border_color: 0xe0e0e0 #灰
+    hilited_text_color: 0x222222 #深灰 # 小小的注音符號
+    hilited_back_color: 0x855f98 #淡紫
+    hilited_candidate_text_color: 0xffffff #白 #被選中的字
+    hilited_candidate_back_color: 0x855f98 #淡紫
+    candidate_text_color: 0x000000 # 黑 候選欄 字色
+
+  cc2:   # cc2 綠底 黑字 / 深灰 黑字  類似 淡綠底黑字
+    name: cc／cc2
+    author: cc <copy0401@gmail.com>
+    comment_text_color: 0x000000           # 黑 # 右下 後面拼音符號  # trime 候选项注释  #
+    text_color: 0xf6f3e8 #黑
+    back_color: 0xeeeeec #灰
+    border_color: 0xe0e0e0 #灰
+    hilited_text_color: 0x222222 #深灰 小小的注音符號
+    hilited_back_color: 0xcae682 #綠
+    hilited_candidate_text_color: 0x000000 #黑 0x000000  被選中的字
+    hilited_candidate_back_color: 0xcae682 #綠 0xcae682
+    candidate_text_color: 0x000000 # 黑 候選欄 字色
+
+  cc3: # cc3 黑底 白字 / 橘底 黑字  類似 p站配色
+    name: cc／cc3
+    author: cc <copy0401@gmail.com>
+    comment_text_color: 0xffffff           # 白 # 右下 後面拼音符號  # trime 候选项注释  #
+    hilited_text_color: 0x1b1b1b           # 黑 # 小小的注音符號  # trime 高亮编码（一般是位于光标插入点左边的编码）
+    hilited_candidate_text_color: 0xffffff # 白 # 首選項 字色   # trime 高亮候选文本
+    hilited_candidate_back_color: 0x1b1b1b # 黑 # 首選項 背景色 # trime 高亮候选背景（候选项被选中时）
+    candidate_text_color: 0x000000         # 黑 # 候選欄 字色   # trime 候选文本（包括悬浮窗候选）
+    back_color: 0xf29d38                   # 橘 # 候選欄 背景色 # trime 候选区背景*
+
+  cc4: # cc4 淡藍 黑字 / 深灰 黑字  類似 squirrel預設主題
+    name: cc／cc4
+    author: cc <copy0401@gmail.com>
+    comment_text_color: 0x333333 # 黑 # 右下 後面拼音符號  # trime 候选项注释  #
+    hilited_text_color: 0x333333 #深灰 # 小小的注音符號
+    hilited_candidate_text_color: 0x000000 #白   # 首選項 字色
+    hilited_candidate_back_color: 0xb9d7fb #淡藍 # 首選項 背景色
+    candidate_text_color: 0x000000 # 黑 候選欄 字色
+    back_color: 0xeeeeec #灰       # 候選欄 背景色
+
+  cc5: # cc5 藍底 白字 / 藍底 灰字  類似 DOS 倚天系統
+    name: cc／cc5
+    author: cc <copy0401@gmail.com>
+    comment_text_color: 0xeeeeec           # 右下 後面拼音符號  # trime 候选项注释  #
+    back_color: 0x0000a0 # ffffff白底  eeeeec灰底   候選欄背景色
+    hilited_text_color: 0x222222 # 小小的注音符號
+    hilited_candidate_text_color: 0xeeeeec # ffffff白 首選項字色
+    hilited_candidate_back_color: 0x0000a0 # 底色 藍  首選項背景色
+    candidate_text_color: 0xacacac # 黑 候選欄 字色
+
+  cc6: # cc6 綠底 白字 / 深灰 黑字  類似 漢音輸入法
+    name: cc／cc6
+    author: cc <copy0401@gmail.com>
+    comment_text_color: 0x000000           # 黑 # 右下 後面拼音符號  # trime 候选项注释  #
+    text_color: 0xffffff #白
+    back_color: 0xeeeeec #灰
+    border_color: 0xe0e0e0 #灰
+    hilited_text_color: 0x222222 #深灰 # 小小的注音符號
+    hilited_back_color: 0x855f98 #淡紫
+    hilited_candidate_text_color: 0xffffff #白 #被選中的字
+    hilited_candidate_back_color: 0x367e7f #綠
+    candidate_text_color: 0x000000 # 黑 候選欄 字色
+
+  cc7: # cc7 灰底 黑字 / 灰底 深灰  
+    name: cc／cc7
+    author: cc <copy0401@gmail.com> # 0xfbfbfd 0xf2f1f6 
+    comment_text_color: 0x000000  # 黑 # 右下 後面拼音符號  # trime 候选项注释  #
+    hilited_text_color: 0x000000  # 小小的注音符號
+    hilited_candidate_text_color: 0x000000 # 首選項 字色
+    hilited_candidate_back_color: 0xeeeeec # 首選項 背景色
+    candidate_text_color: 0xacacac # 候選欄 字色
+    back_color:           0xeeeeec # 候選欄 背景色
+
+  cc8: # cc8 灰底 藍字 / 灰底 淡藍
+    name: cc／cc8 
+    author: cc <copy0401@gmail.com> 
+    comment_text_color: 0x0034ce # 右下 後面拼音符號  # trime 候选项注释  #
+    hilited_text_color: 0x0034ce # 小小的注音符號  0x0034ce
+    hilited_candidate_text_color: 0x0034ce # 首選項 字色 
+    hilited_candidate_back_color: 0xfbfbfd # 首選項 背景色
+    candidate_text_color: 0x2f82f7 # 候選欄 字色 
+    back_color:           0xfbfbfd # 候選欄 背景色
+  
+  aqua:
+    name: 碧水／Aqua
+    author: 佛振 <chen.sst@gmail.com>
+    text_color: 0x000000
+    back_color: 0xeeeeec
+    border_color: 0xe0e0e0
+    hilited_text_color: 0x000000
+    hilited_back_color: 0xd4d4d4
+    hilited_candidate_text_color: 0xffffff
+    hilited_candidate_back_color: 0x0a3afa
+
+  ink:
+    name: 墨池／Ink
+    author: 佛振 <chen.sst@gmail.com>
+    text_color: 0x000000
+    back_color: 0xffffff
+    border_color: 0x000000
+    hilited_text_color: 0x000000
+    hilited_back_color: 0xdddddd
+    hilited_candidate_text_color: 0xffffff
+    hilited_candidate_back_color: 0x000000
+
+  azure:
+    name: 青天／Azure
+    author: 佛振 <chen.sst@gmail.com>
+    text_color: 0xcae8ff
+    candidate_text_color: 0xeef8ff
+    back_color: 0x014e8b
+    border_color: 0x014e8b
+    hilited_text_color: 0xeef8ff
+    hilited_back_color: 0x014e8b
+    hilited_candidate_text_color: 0xfffe7f
+    hilited_candidate_back_color: 0x015ea9
+    comment_text_color: 0x6496c6
+
+  lost_temple:
+    name: 孤寺／Lost Temple
+    author: 佛振 <chen.sst@gmail.com>, based on ir_black
+    text_color: 0xf6f3e8
+    back_color: 0x444444
+    border_color: 0x444444
+    hilited_text_color: 0xcae682
+    hilited_back_color: 0x222222
+    hilited_candidate_text_color: 0x000000
+    hilited_candidate_back_color: 0xcae682
+
+  dark_temple:
+    name: 暗堂／Dark Temple
+    author: 佛振 <chen.sst@gmail.com>, based on ir_black
+    text_color: 0xdaf692
+    candidate_text_color: 0xe6e3d8
+    back_color: 0x222222
+    border_color: 0x222222
+    hilited_text_color: 0x9acfff
+    hilited_back_color: 0x222222
+    hilited_candidate_text_color: 0xdaf692
+    hilited_candidate_back_color: 0x333333
+    comment_text_color: 0xff6c60
+
+  starcraft:
+    name: 星際我爭霸／StarCraft
+    author: Contralisk <contralisk@gmail.com>, original artwork by Blizzard Entertainment
+    text_color: 0x88aacc
+    candidate_text_color: 0x55bb30
+    back_color: 0x000000
+    border_color: 0xa01010
+    hilited_text_color: 0x96cbfe
+    hilited_back_color: 0x000000
+    hilited_candidate_text_color: 0xa8ff60
+    hilited_candidate_back_color: 0x000000
+
+
+preset_keys:
+  # 键盘类型需要在这里跳转，目前只支持下面的配置。
+  # 只支持 Shift Return BackSpace  space 特殊键盘配置
+  # 现在text的命令只支持:
+  #   1,Left(光标向左移动一格);
+  #   2,Right(光标向右移动一格)
+  #   3,跳转到指定键盘;
+  #   其它暂时不支持,具体看事例;
+  # 现在支持commit命令,直接上屏指定字符
+  #
+  Shift: {label: Shift, send: Shift_L}
+  Return: {label: Enter, send: Return}
+  BackSpace: {send: BackSpace}
+  space: {label: "空格", send: space}
+  number: {label: 123, send: Eisu_toggle, select: number}
+  english: {label: "abc", send: Eisu_toggle, select: english}
+  symbols: {label: "符", send: Eisu_toggle, select: number}
+  .symbols: {label: "更多", send: Eisu_toggle, select: .symbols} #默认的符号键盘
+  .symbols1: {label: "更多", text: "{.symbols}{DefaultKeyboard}"} #默认的符号键盘
+  .number: {label: 123, send: Eisu_toggle, select: .number} #默认的9宫格数据键盘
+  DefaultKeyboard: {label: 中, send: Eisu_toggle, select: default}
+  DefaultKeyboard2: {label: 中, send: Eisu_toggle, select: default}
+  periodHalf: {label: ".", commit: "."} #直接上屏半角句号
+  periodFull: {label: "。", text: "。{DefaultKeyboard}"} #上屏全角句号再跳转到default键盘
+  commaHalf: {label: ",", commit: ","}
+  commaFull: {label: "，", text: "，{DefaultKeyboard}"}
+  dunHalf: {label: "、", text: "、{DefaultKeyboard}"}
+  questionMark: {label: "？", text: "？{DefaultKeyboard}"}
+  point: {label: "！", text: "！{DefaultKeyboard}"}
+  semicolon: {label: "；", text: ";{DefaultKeyboard}"} #先上屏；再跳转到default键盘
+  bracket: {label: "(", text: "(){Left}{DefaultKeyboard}"} #先上屏()光标往左移动一格再跳转到default键盘
+  bracket2: {label: "(", text: "(){Left}"} #先上屏()光标往左移动一格
+  bracket1: {label: ")", text: "){DefaultKeyboard}"} #先上屏)再跳转到default键盘
+  quotationMarkFull: {label: "〝", text: "〝〞{Left}{DefaultKeyboard}"} 
+  quotationMarkFull1: {label: "〞", text: "〞＂{Left}{DefaultKeyboard}"}
+  quotationMarkFull2: {label: "〝", text: "〝〞{Left}"} 
+  quotationMarkHalf１: {label: "\"", text: "\"{DefaultKeyboard}"} 
+  quotationMarkHalf2: {label: "\"", text: "“”{Left}"} 
+  quotationMarkFull１: {label: "\"", text: "＂{DefaultKeyboard}"} 
+  commit1: {label: "1", commit: "1"}
+  commit2: {label: "2", commit: "2"}
+  commit3: {label: "3", commit: "3"}
+  commit4: {label: "4", commit: "4"}
+  commit5: {label: "5", commit: "5"}
+  commit6: {label: "6", commit: "6"}
+  commit7: {label: "7", commit: "7"}
+  commit8: {label: "8", commit: "8"}
+  commit9: {label: "9", commit: "9"}
+  commit0: {label: "0", commit: "0"}
+  commit～: {label: "～", commit: "～"}
+  commitgan: {label: "/", commit: "/"}
+  commit：: {label: "：", commit: "："}
+  commit；: {label: "；", commit: "；"}
+  commit）: {label: "）", commit: "）"}
+  commit@: {label: "@", commit: "@"}
+  commit-: {label: "-", commit: "-"}
+  commit_: {label: "_", commit: "_"}
+  commitJin: {label: "#", commit: "#"}
+  commit？: {label: "？", commit: "？"}
+  commit！: {label: "！", commit: "！"}
+  commit，: {label: "，", commit: "，"}
+  commit。: {label: "。", commit: "。"}
+  commit”: {label: "”", commit: "”"}

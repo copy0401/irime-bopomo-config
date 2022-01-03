@@ -1,0 +1,204 @@
+# Rime schema
+# encoding: utf-8
+
+__include: bopomofo.schema:/
+
+# 默認的opencc字形轉換選項設爲臺灣字形標準
+__patch:
+  - switches/@2/reset: 2
+  - bopomofo_tw.custom:/patch?
+
+schema:
+  schema_id: bopomofo_tw
+  name: 注音 # "ˉ"
+  version: '1.8'
+  author:
+    - 佛振 <chen.sst@gmail.com>
+  description: |
+    注音符號輸入，採用「大千式」鍵盤排列，輸出臺灣正體字形。
+
+    本方案採用「無模式」設計，以大寫字母鍵或上下方向鍵、回車鍵選詞；
+    空格鍵輸入第一聲，標記爲「ˉ」。也可省略聲調或韻母部份。
+  dependencies:
+    # - cangjie5 # cctest
+    # - liur_Trad # cctest 嘸蝦米混打
+    - liur.extended # cctest 嘸蝦米混打
+
+
+engine:
+  processors:
+    - ascii_composer
+    - recognizer
+    - key_binder
+    - speller
+    - punctuator
+    - selector
+    - navigator
+    - express_editor # ※ 編輯器，處理空格、回車上屏、回退鍵等
+  segmentors:
+    - ascii_segmentor
+    - matcher
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - punct_translator
+    - table_translator@custom_phrase
+    - reverse_lookup_translator
+    - table_translator@liur  # cctest 嘸蝦米混打
+    - script_translator
+  filters:
+    - simplifier@zh_hans
+    - simplifier@zh_hant_tw
+    - uniquifier
+    - reverse_lookup_filter@phonetic_reverse_lookup # cctest 打字時 標出注音
+    # - lua_filter@quad_filter
+
+# speller:
+#   algebra:
+#     __patch:
+#       - zhuyin:/pinyin_to_zhuyin
+#       - zhuyin:/abbreviation
+#       - zhuyin:/keymap_bopomofo
+
+custom_phrase:
+  dictionary: ""
+  user_dict: custom_phrase
+  db_class: stabledb
+  enable_completion: false
+  enable_sentence: false
+  initial_quality: 1
+
+
+speller:
+  alphabet: "1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/-3467 " # 定義本方案輸入鍵
+  initials: "1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/-" # 定義僅作始碼之鍵
+  finals: " 6347" # 定義僅作末碼之鍵
+  delimiter: "\\" # 上屛時的音節間分音符
+  use_space: true # 以空格作輸入碼〔true或false〕
+  algebra:
+    - xform/iu/iou/ # xform --改寫〔不保留原形〕
+    - xform/ui/uei/
+    - xform/ong/ung/
+    - xform/yi?/i/
+    - xform/wu?/u/
+    - xform/iu/v/
+    - xform/([jqx])u/$1v/
+    - xform/([iuv])n/$1en/
+    - xform/zhi?/Z/
+    - xform/chi?/C/
+    - xform/shi?/S/
+    - xform/([zcsr])i/$1/
+    - xform/ai/A/
+    - xform/ei/I/
+    - xform/ao/O/
+    - xform/ou/U/
+    - xform/ang/K/
+    - xform/eng/G/
+    - xform/an/M/
+    - xform/en/N/
+    - xform/er/R/
+    - xform/eh/E/
+    - xform/([iv])e/$1E/
+##############字母簡化############
+    - abbrev/^([bpmfdtnlgkhjqxZCSrzcsiuvaoeEAIOUMNKGR]).+$/$1/  # abbrev --簡拼〔出字優先級較上兩組更低〕
+    - abbrev/^([bpmfdtnlgkhjqxZCSrzcsiuv])([iuvaoeEAIOUMNKGR])\d$/$1$2/
+    - abbrev/^([bpmfdtnlgkhjqxZCSrzcs])([iuv])([aoeEAIOUMNKGR])\d$/$1$2$3/
+#    - abbrev/^([bpmfdtnlgkhjqxZCSrzcsiuv]).+(\d)$/$1$2/ #使得ㄎˇㄈˇ（可否）可以打的出來 #新增iuv，使得ㄧˊㄉˊ（贏得）可以打出
+#    - abbrev/^([bpmfdtnlgkhjqxZCSrzcs]).+(\d)$/$1$2/ #同上，但少了ㄧㄨㄩ
+    - abbrev/^([bpmfdtnlgkhjqx]).+(\d)$/$1$2/ #同上，但再少了ㄓㄔㄕㄖㄗㄘㄙ
+##########注音聲韻母亂序##########
+    - derive/^([bpmfdtnlgkhjqxZCSrzcs])([iuv])/$2$1/ # derive --衍生〔保留原形〕
+    - derive/^([iuv])([aoeEAIOUMNKGR])/$2$1/
+    - derive/^([bpmfdtnlgkhjqxZCSrzcs])([aoeEAIOUMNKGR])/$2$1/
+    - derive/^([bpmfdtnlgkhjqxZCSrzcs])([iuv])([aoeEAIOUMNKGR])/$3$2$1/
+    - derive/^([bpmfdtnlgkhjqxZCSrzcs])([iuv])([aoeEAIOUMNKGR])/$3$1$2/
+    - derive/^([bpmfdtnlgkhjqxZCSrzcs])([iuv])([aoeEAIOUMNKGR])/$2$3$1/
+    - derive/^([bpmfdtnlgkhjqxZCSrzcs])([iuv])([aoeEAIOUMNKGR])/$1$3$2/
+    - 'xlit|bpmfdtnlgkhjqxZCSrzcsiuvaoeEAIOUMNKGR12345|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/- 6347|' # xlit --變換〔適合大量一對一變換〕
+
+# translator:
+#   prism: bopomofo_tw
+  
+  
+translator:
+  # spelling_hints: 1 # 最多顯示1個中文字的拼音
+  prism: bopomofo_tw
+  initial_quality: "0"
+  preedit_format:
+    - "xlit|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/- 6347|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙|"
+    # - "xlit|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/- 6347|"
+    - 'xform/\\/ /' #全形空格　 #半形空格  #| #⁞ #⁝ #⋮ #¦ #┆
+
+# liur 翻譯器的設定項
+liur:
+  # dictionary: liur_Trad
+  dictionary: liur.extended
+  # spelling_hints: 1
+  enable_completion: true # 关闭后英文不会有提示，只会在打全时才会显示，体验不是很好
+  enable_sentence: false # 連打 造詞
+  initial_quality: 100
+  comment_format:
+    - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|ABCDEFGHIJKLMNOPQRSTUVWXYZ[];',.|" # 顯示大寫
+    - xform/^~(.+)$/>[$1]   # 將提示碼改為較美觀的型式
+  disable_user_dict_for_patterns:
+    - "^[',.].*$"
+  preedit_format:
+    - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|ABCDEFGHIJKLMNOPQRSTUVWXYZ[];',.|" # 組字時顯示大寫
+    - 'xform/\\//' #全形空格　 #半形空格  #| #⁞ #⁝ #⋮ #¦ #┆
+
+
+
+phonetic_reverse_lookup: # 顯示注音符號
+  tag: phonetic_reverse_lookup
+  dictionary: terra_pinyin
+  overwrite_comment: false  # 覆蓋其他提示  # 保留 逐碼+注音 設 false # 只留注音設 true
+  comment_format:
+    - "xform/e?r5$/er5/"
+    - "xform/iu/iou/"
+    - "xform/ui/uei/"
+    - "xform/ong/ung/"
+    - "xform/yi?/i/"
+    - "xform/wu?/u/"
+    - "xform/iu/v/"
+    - "xform/([jqx])u/$1v/"
+    - "xform/([iuv])n/$1en/"
+    - "xform/zh/Z/"
+    - "xform/ch/C/"
+    - "xform/sh/S/"
+    - "xform/ai/A/"
+    - "xform/ei/I/"
+    - "xform/ao/O/"
+    - "xform/ou/U/"
+    - "xform/ang/K/"
+    - "xform/eng/G/"
+    - "xform/an/M/"
+    - "xform/en/N/"
+    - "xform/er/R/"
+    - "xform/eh/E/"
+    - "xform/([iv])e/$1E/"
+    - "xform/1//"
+    - "xlit|bpmfdtnlgkhjqxZCSrzcsiuvaoeEAIOUMNKGR2345|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˊˇˋ˙|"
+    - xform/ /} {/
+    - xform/^/ {
+    - xform/$/}/
+
+
+# punctuator:
+  # import_preset: default
+
+
+editor:
+  bindings:
+#    space: commit_composition #使用 fluency_editor 時開啟
+    Return: confirm #使用 express_editor 時開啟
+    Shift+Return: commit_raw_input # 上屏原始輸入
+    Control+Return: commit_script_text # 上屏變換後輸入
+
+key_binder:
+  import_preset: default
+  bindings: 
+    ### 刪除鍵 ###
+    - {accept: BackSpace, send: Control+BackSpace, when: has_menu} #〔關〕刪除前一個拼音字符〔開〕：刪除整組拼音字符（一個字）
+    - {accept: Shift+BackSpace, send: BackSpace, when: has_menu}
+    - {accept: backslash, send: BackSpace, when: has_menu} #「\」鍵位刪除一個拼音字符。

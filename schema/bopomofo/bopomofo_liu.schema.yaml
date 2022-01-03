@@ -1,0 +1,115 @@
+# Rime schema
+# encoding: utf-8
+
+__include: bopomofo.schema:/
+
+# 默認的opencc字形轉換選項設爲臺灣字形標準
+__patch:
+  - switches/@2/reset: 2
+  - bopomofo_tw.custom:/patch?
+
+schema:
+  schema_id: bopomofo_liu
+  name: 注音liu # "ˉ"
+  version: '1.8'
+  author:
+    - 佛振 <chen.sst@gmail.com>
+  description: |
+    用於無蝦米方案 輸入注音反查無暇米碼 不單獨使用
+#
+# speller:
+#   algebra:
+#     __patch:
+#       - zhuyin:/pinyin_to_zhuyin
+#       - zhuyin:/abbreviation
+#       - zhuyin:/keymap_bopomofo
+
+
+speller:
+  # alphabet: "1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/-3467 " # 定義本方案輸入鍵
+  alphabet: "1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/-3467=" # 定義本方案輸入鍵 cctest 符號= 當空白鍵用
+  initials: "1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/-" # 定義僅作始碼之鍵
+  # finals: " 6347" # 定義僅作末碼之鍵
+  finals: "=6347" # 定義僅作末碼之鍵 cctest 符號= 當空白鍵用
+  delimiter: "\\" # 上屛時的音節間分音符
+  use_space: true # 以空格作輸入碼〔true或false〕
+  algebra:
+    - xform/iu/iou/ # xform --改寫〔不保留原形〕
+    - xform/ui/uei/
+    - xform/ong/ung/
+    - xform/yi?/i/
+    - xform/wu?/u/
+    - xform/iu/v/
+    - xform/([jqx])u/$1v/
+    - xform/([iuv])n/$1en/
+    - xform/zhi?/Z/
+    - xform/chi?/C/
+    - xform/shi?/S/
+    - xform/([zcsr])i/$1/
+    - xform/ai/A/
+    - xform/ei/I/
+    - xform/ao/O/
+    - xform/ou/U/
+    - xform/ang/K/
+    - xform/eng/G/
+    - xform/an/M/
+    - xform/en/N/
+    - xform/er/R/
+    - xform/eh/E/
+    - xform/([iv])e/$1E/
+##############字母簡化############
+    - abbrev/^([bpmfdtnlgkhjqxZCSrzcsiuvaoeEAIOUMNKGR]).+$/$1/  # abbrev --簡拼〔出字優先級較上兩組更低〕
+    - abbrev/^([bpmfdtnlgkhjqxZCSrzcsiuv])([iuvaoeEAIOUMNKGR])\d$/$1$2/
+    - abbrev/^([bpmfdtnlgkhjqxZCSrzcs])([iuv])([aoeEAIOUMNKGR])\d$/$1$2$3/
+#    - abbrev/^([bpmfdtnlgkhjqxZCSrzcsiuv]).+(\d)$/$1$2/ #使得ㄎˇㄈˇ（可否）可以打的出來 #新增iuv，使得ㄧˊㄉˊ（贏得）可以打出
+#    - abbrev/^([bpmfdtnlgkhjqxZCSrzcs]).+(\d)$/$1$2/ #同上，但少了ㄧㄨㄩ
+    - abbrev/^([bpmfdtnlgkhjqx]).+(\d)$/$1$2/ #同上，但再少了ㄓㄔㄕㄖㄗㄘㄙ
+##########注音聲韻母亂序##########
+    - derive/^([bpmfdtnlgkhjqxZCSrzcs])([iuv])/$2$1/ # derive --衍生〔保留原形〕
+    - derive/^([iuv])([aoeEAIOUMNKGR])/$2$1/
+    - derive/^([bpmfdtnlgkhjqxZCSrzcs])([aoeEAIOUMNKGR])/$2$1/
+    - derive/^([bpmfdtnlgkhjqxZCSrzcs])([iuv])([aoeEAIOUMNKGR])/$3$2$1/
+    - derive/^([bpmfdtnlgkhjqxZCSrzcs])([iuv])([aoeEAIOUMNKGR])/$3$1$2/
+    - derive/^([bpmfdtnlgkhjqxZCSrzcs])([iuv])([aoeEAIOUMNKGR])/$2$3$1/
+    - derive/^([bpmfdtnlgkhjqxZCSrzcs])([iuv])([aoeEAIOUMNKGR])/$1$3$2/
+    # - 'xlit|bpmfdtnlgkhjqxZCSrzcsiuvaoeEAIOUMNKGR12345|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/- 6347|' # xlit --變換〔適合大量一對一變換〕
+    - 'xlit|bpmfdtnlgkhjqxZCSrzcsiuvaoeEAIOUMNKGR12345|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/-=6347|' # cctest 符號= 當空白鍵用
+
+translator:
+  spelling_hints: 2 # 最多顯示2個中文字的拼音
+  prism: bopomofo_liu
+  initial_quality: "0"
+  preedit_format:
+    # - "xlit|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/- 6347|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙|"
+    - "xlit|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/-=6347|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙|" # cctest 符號= 當空白鍵用
+    - 'xform/\\/ /' #全形空格　 #半形空格  #| #⁞ #⁝ #⋮ #¦ #┆
+
+
+
+engine:
+  processors:
+    - ascii_composer
+    - recognizer
+    - key_binder
+    - speller
+    - punctuator
+    - selector
+    - navigator
+    # - fluency_editor
+    - express_editor # ※ 編輯器，處理空格、回車上屏、回退鍵等
+
+
+editor:
+  bindings:
+#    space: commit_composition #使用 fluency_editor 時開啟
+    Return: confirm #使用 express_editor 時開啟
+    Shift+Return: commit_raw_input # 上屏原始輸入
+    Control+Return: commit_script_text # 上屏變換後輸入
+
+key_binder:
+  import_preset: default
+  bindings: 
+    ### 刪除鍵 ###
+    - {accept: BackSpace, send: Control+BackSpace, when: has_menu} #〔關〕刪除前一個拼音字符〔開〕：刪除整組拼音字符（一個字）
+    - {accept: Shift+BackSpace, send: BackSpace, when: has_menu}
+    # - {accept: backslash, send: BackSpace, when: has_menu} #「\」鍵位刪除一個拼音字符。
