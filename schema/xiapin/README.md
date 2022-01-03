@@ -51,3 +51,18 @@
 ### 反查蝦米碼 使用 ```/opnecc/liu_w2c.json```
 
 ### 以上的 前導符 可能會更改 詳細設定請看  [xiapin_mtc.schema.yaml](https://github.com/copy0401/irime-bopomo-config/blob/master/schema/xiapin/xiapin_mtc.schema.yaml)
+
+
+### 上述功能參考下列方案
+
+### [shewer/whaleliu](https://github.com/shewer/whaleliu/blob/master/cangjie6liu.schema.yaml)
+
+
+### [LEOYoon-Tsaw gist](https://gist.github.com/LEOYoon-Tsaw/5786646)
+
+### [hsuanyi-chou/rime-liur](https://github.com/hsuanyi-chou/rime-liur)
+
+### [brianhsu/rime-liur-lua](https://github.com/brianhsu/rime-liur-lua)
+
+### [ianzhuo/rime-liur-lua](https://github.com/ianzhuo/rime-liur-lua)
+
