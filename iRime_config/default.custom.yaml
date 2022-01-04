@@ -1,38 +1,57 @@
+# default.custom.yaml
+# save it to:
+#   ~/.config/ibus/rime  (linux)
+#   ~/Library/Rime       (macos)
+#   %APPDATA%\Rime       (windows)
+
 patch:
   schema_list:
-    # - schema: wubi_pinyin            # 內建
-    # - schema: double_pinyin          # 內建
-    # - schema: double_pinyin_abc      # 內建
-    # - schema: double_pinyin_flypy    # 內建
-    # - schema: double_pinyin_mspy     # 內建
-    # - schema: double_pinyin_pyjj     # 內建
-    # - schema: wubi86                 # 內建
-    # - schema: wubi091                # 內建
-    # - schema: wubi98                 # 內建
-    # - schema: jyutping               # 內建
-    # - schema: quick5                 # 內建
-    # - schema: xqzm                   # 內建
-    # - schema: clover                 # 內建
-    # - schema: clover_jiugong         # 內建
-    # - schema: luna_pinyin_14         # 內建
-    # - schema: flypy                  # 4.1.3 之後沒有內建
-    # - schema: bopomofo               # 內建
-    # - schema: easy_en                # 內建
-    # - schema: luna_pinyin            # 內建
-    # - schema: terra_pinyin           # 內建
-    - schema: bopomo_onion
-    # - schema: allbpm
-    # - schema: cangjie5
-    # - schema: luna_pinyin
+    - schema: luna_pinyin          # 朙月拼音        有內建 預設沒顯示
+    - schema: pinyin_simp          # 袖珍简化字拼音  有內建 預設沒顯示
+    - schema: terra_pinyin         # 地球拼音        有內建 預設沒顯示
+    - schema: stroke               # 五筆畫          有內建 預設沒顯示
+    - schema: wubi86               # 五筆 86
+    - schema: wubi091              # 五筆 091
+    - schema: wubi98               # 五筆 98
+    - schema: wubi_pinyin          # 五笔·拼音
+    - schema: double_pinyin        # 自然碼雙拼      有內建 預設沒顯示
+    - schema: double_pinyin_abc    # 智能ABC双拼
+    - schema: double_pinyin_flypy  # 小鶴双拼
+    - schema: double_pinyin_mspy   # 微软双拼
+    - schema: double_pinyin_pyjj   # 拼音加加双拼
+    - schema: jyutping             # 粵拼
+    - schema: quick5               # 速成
+    - schema: xqzm                 # 小泉郑码
+    - schema: easy_en              # easy_en
+    - schema: clover               # 四葉草簡體拼音
+    - schema: clover_jiugong       # 九宮格 四葉草
+    - schema: luna_pinyin_14       # 14鍵盤方案
+    - schema: bopomofo             # 注音
+    - schema: bopomofo_tw          # 注音·臺灣正體   有內建 預設沒顯示
+    - schema: bopomofo_express     # 注音·快打模式   有內建 預設沒顯示
+    # - schema: flypy              # 小鶴音形        4.1.3版之後 移除內建
+    # ###############################
+    # - schema: bopomofo_tw
+    # - schema: bopomofo_liu
     # - schema: xiapin_mtc
-    # - schema: xiapin_msc
+    # - schema: double_pinyin
+    # - schema: luna_pinyin
+    # - schema: terra_pinyin
+    # - schema: easy_en
+    # - schema: bopomo_onion
+    # - schema: unicode
+    # - schema: cangjie5
 
-  # switcher/fix_schema_list_order: true #固定方案選單順序
+  switcher/fix_schema_list_order: false #固定方案選單順序 設 false
   switcher/hotkeys:
-    # - Control+grave
-    # - Control+Shift+grave
-    # - F4
+    - Control+grave
+    - Control+Shift+grave
+    - F4
+
   key_binder/bindings:
+    # - { when: composing, accept: bracketleft, send: Up}        # [ 選擇候選字
+    # - { when: composing, accept: bracketright, send: Down}     # ] 選擇候選字
+    # - { when: composing, accept: equal, send: Shift+Delete }   # = 閃除候選字/詞
     - { when: composing, accept: Control+p, send: Up }
     - { when: composing, accept: Control+n, send: Down }
     - { when: composing, accept: Control+b, send: Left }
@@ -51,29 +70,31 @@ patch:
     - { when: composing, accept: Shift+Tab, send: Shift+Left }
     - { when: composing, accept: Tab, send: Shift+Right }
     # flip page
-    - { when: has_menu, accept: minus, send: Page_Up }
-    - { when: has_menu, accept: equal, send: Page_Down }
-    - { when: paging, accept: comma, send: Page_Up }
-    - { when: has_menu, accept: period, send: Page_Down }
+    # - { when: has_menu, accept: minus, send: Page_Up }
+    # - { when: has_menu, accept: equal, send: Page_Down }
+    # - { when: paging,   accept: comma, send: Page_Up }
+    # - { when: has_menu, accept: period, send: Page_Down }
     # hotkey switch
     - { when: always, accept: Control+Shift+1, select: .next }
-    - { when: always, accept: Control+Shift+2, toggle: ascii_mode }
-    - { when: always, accept: Control+Shift+3, toggle: full_shape }
-    - { when: always, accept: Control+Shift+4, toggle: ascii_punct } #新增！
-    - { when: always, accept: Control+Shift+5, toggle: simplification } #Control+Shift+4
-    - { when: always, accept: Control+Shift+6, toggle: extended_charset } #Control+Shift+5
+    - { when: always, accept: Control+Shift+2, toggle: ascii_mode } # 中文/英文
+    - { when: always, accept: Control+Shift+3, toggle: full_shape } # 半形/全形
+    - { when: always, accept: Control+Shift+4, toggle: ascii_punct } # 開關 punctuator 的標點符號轉換
+    - { when: always, accept: Control+Shift+5, toggle: simplification } #Control+Shift+5 繁體/简体
+    - { when: always, accept: Control+Shift+6, toggle: extended_charset } #Control+Shift+6 常用/擴充字集
     - { when: always, accept: Control+Shift+exclam, select: .next }
     - { when: always, accept: Control+Shift+at, toggle: ascii_mode }
     - { when: always, accept: Control+Shift+numbersign, toggle: full_shape }
     - { when: always, accept: Control+Shift+dollar, toggle: ascii_punct }
     - { when: always, accept: Control+Shift+percent, toggle: simplification }
     - { when: always, accept: Control+Shift+asciicircum, toggle: extended_charset }
+    - { when: always, accept: Control+Shift+7 , toggle: liu_w2c }   # 嘸蝦米方案中 注音/拼音顯示反查的嘸蝦米編碼
 # 新增下排功能快捷鍵
     - { when: always, accept: Shift+space, toggle: ascii_mode }
     - { when: always, accept: Control+comma, toggle: ascii_mode }
     - { when: always, accept: Control+period, toggle: full_shape }
     - { when: always, accept: Control+semicolon, toggle: simplification }
     - { when: always, accept: Control+slash, toggle: ascii_punct }
+
 #  ascii_composer:
 #    good_old_caps_lock: false
 #  ascii_composer/switch_key:
