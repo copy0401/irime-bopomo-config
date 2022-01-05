@@ -90,7 +90,7 @@ style:
   key_long_text_size: 14 #长标签字号
   key_text_size: 18 #键字号 18
   key_width: 10.0 #键宽，占银幕宽的百分比 # 10.0
-  keyboards: [default , english , .number .symbols ] #键盘配置  english , symbols , .number .symbols #
+  keyboards: [default , english , number , .number .symbols ] #键盘配置  english , symbols , .number .symbols #
   label_text_size: 22 #标签字号 22
   preview_text_size: 40 #按键提示字号 40
   show_candidate: *hide #显示候选区 *hide
@@ -266,7 +266,7 @@ preset_keyboards:
       # shift synbols english  fn  space ? enter = x +
       # ############################################################################################
       - {                                                                    width:  2   } #
-      - {click: Shift  ,                                                     width:  8   } # 
+      - {click: toN  ,                                                       width:  8   } # 
       - {click: toE    ,                                                     width:  8   } # toE toD
       - {click: space  ,                                                     width: 40   } # space 7.416 15.832 # 3
       - {click: '?' ,                                                        width:  8   } #
@@ -438,6 +438,343 @@ preset_keyboards:
       - {width: 100 , height: 80 } #
     name: 英文鍵盤
 
+  number: 
+    ascii_mode: 0
+    author: "copy0401"
+    height: *jpgd2
+    horizontal_gap: *jpgd10
+    vertical_gap: *jpgd9
+    width: 10
+    keys:
+      - {width: 100 , height: 8 } #
+      # ############################################################################################
+      - {                                  width: 2 , height: 25 } #
+      
+      # - {click: ',',                     width: 4 , height: 25 , sound: '' } #
+      # - {click: '\',                     width: 4 , height: 25 , sound: '' } #
+      # - {click: '#',                     width: 4 , height: 25 , sound: '' } #
+      # - {click: ':',                     width: 4 , height: 25 , sound: '' } #
+      # - {click: '>',                     width: 4 , height: 25 , sound: '' } #
+      # - {click: '"',                     width: 4 , height: 25 , sound: '' } #
+      # - {                                  width: 24 , height: 25 } #
+      - {click: '',  label: '',            width: 8 , height: 50 } #
+      - {click: '',  label: '',            width: 8 , height: 50 } #
+      - {click: '',  label: '',            width: 8 , height: 50 } #
+      
+      # - {click: '',  label: ''     ,     width: 4 , height: 25 , sound: ''} #
+      - {click: '',  label: ''     ,       width: 6 , height: 25 , sound: *sound101 } ######## F2
+      # - {click: '',  label: ''     ,     width: 2 , height: 25 , sound: ''} # 
+      
+      - {click: sendnil,  label: 'Gb2',    width: 4 , height: 20 , sound: *sound102 } # Gb2
+      
+      # - {click: '',  label: ''     ,     width: 2 , height: 25 , sound: ''} # 
+      - {click: '',  label: ''     ,       width: 4 , height: 25 , sound: *sound103 }  ######## G2
+      # - {click: '',  label: ''     ,     width: 2 , height: 25 , sound: ''} # 
+      
+      - {click: sendnil,  label: 'Ab2',    width: 4 , height: 20 , sound: *sound104 } # Ab2
+      
+      # - {click: '',  label: ''     ,     width: 2 , height: 25 , sound: ''} # 
+      - {click: '',  label: ''     ,       width: 4 , height: 25 , sound: *sound105 }  ######## A2 
+      # - {click: '',  label: ''     ,     width: 2 , height: 25 , sound: ''} # 
+      
+      - {click: sendnil,  label: 'Bb2',    width: 4 , height: 20 , sound: *sound106 } # Bb2
+      
+      # - {click: '',  label: ''     ,     width: 2 , height: 25 , sound: ''} # 
+      - {click: '',  label: ''     ,       width: 6 , height: 25 , sound: *sound107 }  ######## B2 
+      # - {click: '',  label: ''     ,     width: 4 , height: 25 , sound: ''} # 
+      
+      - {click: '(',  label: '('   ,       width: 8 , height: 50 }
+      - {click: ')',  label: ')'   ,       width: 8 , height: 50 } #
+      - {click: '%',  label: '%'   ,       width: 8 , height: 50 }
+      - {click: '^',  label: '^'   ,       width: 8 , height: 50 }
+      - {click: BackSpace          ,       width: 8 , height: 50 } # 
+      - {                                  width: 2 , height: 25 } #
+      #
+      - {                                  width: 2 , height: 25 } #
+      
+      # - {click: '?',                     width: 4 , height: 25 , sound: '' } #
+      # - {click: '|',                     width: 4 , height: 25 , sound: '' } #
+      # - {click: '$',                     width: 4 , height: 25 , sound: '' } #
+      # - {click: '~',                     width: 4 , height: 25 , sound: '' } #
+      # - {click: '<',                     width: 4 , height: 25 , sound: '' } #
+      # - {click: "'",                     width: 4 , height: 25 , sound: '' } #
+      # - {                                width: 24 , height: 25 } #
+      - {                                  width: 8 , height: 0 } #
+      - {                                  width: 8 , height: 0 } #
+      - {                                  width: 8 , height: 0 } #
+      
+      - {click: '',  label: 'F2'    ,      width: 8 , height: 25 , sound: *sound101 } # F2
+      - {click: '',  label: 'G2'    ,      width: 8 , height: 25 , sound: *sound103 } # G2
+      - {click: '',  label: 'A2'    ,      width: 8 , height: 25 , sound: *sound105 } # A2
+      - {click: '',  label: 'B2'    ,      width: 8 , height: 25 , sound: *sound107 } # B2
+      - {                                  width: 8 , height: 0 }
+      - {                                  width: 8 , height: 0 } #
+      - {                                  width: 8 , height: 0 }
+      - {                                  width: 8 , height: 0 }
+      - {                                  width: 8 , height: 0  } # 
+      - {                                  width: 2 , height: 25 } #
+      # ####################
+      - {width: 100 , height: 8 } #
+      # ############################################################################################
+      # qwertyuiop
+      # ############################################################################################
+      - {                                width: 2 , height: 25 } #
+      # - {click: '',  label: ''     ,   width: 4 , height: 25 , sound: ''} # 
+      - {click: '',  label: ''     ,     width: 6 , height: 25 , sound: *sound108 }  ######## C3 
+      # - {click: '',  label: ''     ,   width: 2 , height: 25 , sound: ''} # 
+      
+      - {click: sendnil,  label: 'Db3' , width: 4 , height: 20 , sound: *sound109 } # Db3
+      
+      # - {click: '',  label: ''     ,   width: 2 , height: 25 , sound: ''} #
+      - {click: '',  label: ''     ,     width: 4 , height: 25 , sound: *sound110 } ######## D3
+      # - {click: '',  label: ''     ,   width: 2 , height: 25 , sound: ''} # 
+      
+      - {click: sendnil,  label: 'Eb3' , width: 4 , height: 20 , sound: *sound111 } # Eb3
+      
+      # - {click: '',  label: ''     ,   width: 2 , height: 25 , sound: ''} # 
+      - {click: '',  label: ''     ,     width: 6 , height: 25 , sound: *sound112 } ######## E3 
+      # - {click: '',  label: ''  ,      width: 4 , height: 25  , sound: ''} # 
+      
+      # - {click: '',  label: ''  ,      width: 4 , height: 25  , sound: ''} #
+      - {click: '',  label: ''     ,     width: 6 , height: 25 , sound: *sound113 } ######## F3  
+      # - {click: '',  label: ''     ,   width: 2 , height: 25 , sound: ''} #
+      
+      - {click: sendnil,  label: 'Gb3' , width: 4 , height: 20 , sound: *sound114 } # Gb3
+      
+      # - {click: '',  label: ''     ,   width: 2 , height: 25 , sound: ''} #
+      - {click: '',  label: ''     ,     width: 4 , height: 25 , sound: *sound115 } ######## G3  
+      # - {click: '',  label: ''     ,   width: 2 , height: 25 , sound: ''} #
+      
+      - {click: sendnil,  label: 'Ab3' , width: 4 , height: 20 , sound: *sound116 } # Ab3
+      
+      # - {click: '',  label: ''     ,   width: 2 , height: 25 , sound: ''} #
+      - {click: '',  label: ''     ,     width: 4 , height: 25 , sound: *sound117 } ######## A3  
+      # - {click: '',  label: ''     ,   width: 2 , height: 25 , sound: ''} #
+      
+      - {click: sendnil,  label: 'Bb3' , width: 4 , height: 20 , sound: *sound118 } # Bb3
+      
+      # - {click: '',  label: ''     ,   width: 2 , height: 25 , sound: ''} #
+      - {click: '',  label: ''     ,     width: 6 , height: 25 , sound: *sound119 } ######## B3  
+      # - {click: '',  label: ''     ,   width: 4 , height: 25 , sound: ''} #
+      
+      - {click: '7',  label: '7'  ,    width: 8 , height: 50 , sound: *sound119 } # *sound7
+      - {click: '8',  label: '8'  ,    width: 8 , height: 50 , sound: *sound120 } # *sound8
+      - {click: '9',  label: '9'  ,    width: 8 , height: 50 , sound: *sound122 } # *sound9
+      # - {click: '[',  label: '['   ,   width: 8 , height: 25 } #
+      # - {click: ']',  label: ']'   ,   width: 8 , height: 25 } #
+      # - {                              width: 16, height: 25 } #
+      - {click: '<',  label: '<'   ,   width: 8 , height: 50 } #
+      - {click: '>',  label: '>'   ,   width: 8 , height: 50 } #
+      - {                              width: 2 , height: 25 } #
+      #
+      - {                               width: 2 , height: 25 } #
+      - {click: '',  label: 'C3'  ,     width: 8 , height: 25 , sound: *sound108 } # C3
+      - {click: '',  label: 'D3'  ,     width: 8 , height: 25 , sound: *sound110 } # D3
+      - {click: '',  label: 'E3'  ,     width: 8 , height: 25 , sound: *sound112 } # E3
+      - {click: '',  label: 'F3'  ,     width: 8 , height: 25 , sound: *sound113 } # F3
+      - {click: '',  label: 'G3'  ,     width: 8 , height: 25 , sound: *sound115 } # G3
+      - {click: '',  label: 'A3'  ,     width: 8 , height: 25 , sound: *sound117 } # A3
+      - {click: '',  label: 'B3'  ,     width: 8 , height: 25 , sound: *sound119 } # B3
+      - {                               width: 8 , height: 0 }
+      - {                               width: 8 , height: 0 } #
+      - {                               width: 8 , height: 0 }
+      # - {click: '{',  label: '{'   ,    width: 8 , height: 25 } #
+      # - {click: '}',  label: '}'   ,    width: 8 , height: 25 } #
+      # - {                               width: 16, height: 25 } #
+      - {                               width: 16, height: 0  } #
+      - {                               width: 2 , height: 25 } #
+      # ####################
+      - {width: 100 , height: 8 } #
+      # ############################################################################################
+      # asdfghjkl;
+      # ############################################################################################
+      - {                               width: 2 , height: 25 } #
+      # - {click: '',  label: ''     ,  width: 4 , height: 25 , sound: ''} #
+      - {click: '',  label: ''     ,    width: 6 , height: 25 , sound: *sound120 } ######## C4
+      # - {click: '',  label: ''     ,  width: 2 , height: 25 , sound: ''} #
+      
+      - {click: sendnil,  label: 'Db4', width: 4 , height: 20 , sound: *sound121 } # Db4
+      
+      # - {click: '',  label: ''     ,  width: 2 , height: 25 , sound: ''} #
+      - {click: '',  label: ''     ,    width: 4 , height: 25 , sound: *sound122 } ######## D4
+      # - {click: '',  label: ''     ,  width: 2 , height: 25 , sound: ''} #
+      
+      - {click: sendnil,  label: 'Eb4', width: 4 , height: 20 , sound: *sound123 } # Eb4
+      
+      # - {click: '',  label: ''     ,  width: 2 , height: 25 , sound: ''} #
+      - {click: '',  label: ''     ,    width: 6 , height: 25 , sound: *sound124 } ######## E4
+      # - {click: '',  label: ''  ,     width: 4 , height: 25 , sound: '' } #
+      
+      # - {click: '',  label: ''  ,     width: 4 , height: 25 , sound: '' } #
+      - {click: '',  label: ''     ,    width: 6 , height: 25 , sound: *sound125 } ######## F4
+      # - {click: '',  label: ''     ,  width: 2 , height: 25 , sound: ''} #
+      
+      - {click: sendnil,  label: 'Gb4', width: 4 , height: 20 , sound: *sound126 } # Gb4
+      
+      # - {click: '',  label: ''     ,  width: 2 , height: 25 , sound: ''} #
+      - {click: '',  label: ''     ,    width: 4 , height: 25 , sound: *sound127 } ######## G4
+      # - {click: '',  label: ''     ,  width: 2 , height: 25 , sound: ''} #
+      
+      - {click: sendnil,  label: 'Ab4', width: 4 , height: 20 , sound: *sound128 } # Ab4
+      
+      # - {click: '',  label: ''     ,  width: 2 , height: 25 , sound: ''} #
+      - {click: '',  label: ''     ,    width: 4 , height: 25 , sound: *sound129 } ######## A4
+      # - {click: '',  label: ''     ,  width: 2 , height: 25 , sound: ''} #
+      
+      - {click: sendnil,  label: 'Bb4', width: 4 , height: 20 , sound: *sound130 } # Bb4
+      
+      # - {click: '',  label: ''     , width: 2 , height: 25 , sound: ''} #
+      - {click: '',  label: ''     ,   width: 6 , height: 25 , sound: *sound131 } ######## B4
+      # - {click: '',  label: ''     , width: 4 , height: 25 , sound: ''} # 
+      
+      - {click: '4',  label: '4'  ,    width: 8 , height: 50 , sound: *sound113 } # *sound4
+      - {click: '5',  label: '5'  ,    width: 8 , height: 50 , sound: *sound115 } # *sound5
+      - {click: '6',  label: '6'   ,   width: 8 , height: 50 , sound: *sound117 } # *sound6
+      - {click: '*',  label: '×'   ,   width: 8 , height: 50 }
+      - {click: '/',  label: '÷'   ,   width: 8 , height: 50 } #
+      - {                              width: 2 , height: 25 } #
+      #
+      - {                              width: 2 , height: 25 } #
+      - {click: '',  label: 'C4'  ,    width: 8 , height: 25 , sound: *sound120 } # C4
+      - {click: '',  label: 'D4'  ,    width: 8 , height: 25 , sound: *sound122 } # D4
+      - {click: '',  label: 'E4'  ,    width: 8 , height: 25 , sound: *sound124 } # E4
+      - {click: '',  label: 'F4'  ,    width: 8 , height: 25 , sound: *sound125 } # F4
+      - {click: '',  label: 'G4'  ,    width: 8 , height: 25 , sound: *sound127 } # G4
+      - {click: '',  label: 'A4'  ,    width: 8 , height: 25 , sound: *sound129 } # A4
+      - {click: '',  label: 'B4'  ,    width: 8 , height: 25 , sound: *sound131 } # B4
+      - {                              width: 8 , height: 0 }
+      - {                              width: 8 , height: 0 } #
+      - {                              width: 8 , height: 0 }
+      - {                              width: 8 , height: 0 }
+      - {                              width: 8 , height: 0 }
+      - {                              width: 2 , height: 25 } #
+      # ####################
+      - {width: 100 , height: 8 } #
+      # ############################################################################################
+      # zxcvbnm,./
+      # ############################################################################################
+      - {                                    width: 2 , height: 25 } #
+      
+      # - {click: '',  label: ''     ,       width: 4 , height: 25 , sound: ''} #
+      - {click: '',  label: ''     ,         width: 6 , height: 25 , sound: *sound132 } ######## C5
+      # - {click: '',  label: ''     ,       width: 2 , height: 25 , sound: ''} #
+      
+      - {click: sendnil,  label: 'Db5'  ,    width: 4 , height: 20 , sound: *sound133 } # Db5
+      
+      # - {click: '',  label: ''     ,       width: 2 , height: 25 , sound: ''} # 
+      - {click: '',  label: ''     ,         width: 4 , height: 25 , sound: *sound134 } ######## D5
+      # - {click: '',  label: ''     ,       width: 2 , height: 25 , sound: ''} # 
+      
+      - {click: sendnil,  label: 'Eb5'  ,    width: 4 , height: 20 , sound: *sound135 } # Eb5
+      
+      # - {click: '',  label: ''     ,       width: 2 , height: 25 , sound: ''} #
+      - {click: '',  label: ''     ,         width: 6 , height: 25 , sound: *sound136 } ######## E5
+      # - {click: '',  label: ''  ,          width: 4 , height: 25 , sound: '' } #
+      
+      # - {click: '',  label: ''  ,          width: 4 , height: 25 , sound: '' } #
+      - {click: '',  label: ''  ,            width: 6 , height: 25 , sound: *sound137 } ######## F5 
+      # - {click: '',  label: ''     ,       width: 2 , height: 25 , sound: ''} # 
+      - {                                    width: 2 , height: 0 , sound: ''} # 
+      
+      # - {click: 'a',                       width: 4 , height: 25 , sound: '' } # a
+      # - {click: 'b',                       width: 4 , height: 25 , sound: '' } # b
+      # - {click: 'c',                       width: 4 , height: 25 , sound: '' } # c
+      # - {click: 'd',                       width: 4 , height: 25 , sound: '' } # d
+      # - {click: 'e',                       width: 4 , height: 25 , sound: '' } # e
+      # - {click: 'f',                       width: 4 , height: 25 , sound: '' } # f
+      # - {                                    width: 24 , height: 25 } #
+      - {click: '',                          width: 8 , height: 50 , sound: '' } # 
+      - {click: '',                          width: 8 , height: 50 , sound: '' } # 
+      - {click: '',                          width: 8 , height: 50 , sound: '' } # 
+      
+      - {click: '1',  label: '1'   ,         width: 8 , height: 50 , sound: *sound108 } # *sound1
+      - {click: '2',  label: '2'   ,         width: 8 , height: 50 , sound: *sound110 } # *sound2
+      - {click: '3',  label: '3'   ,         width: 8 , height: 50 , sound: *sound112 } # *sound3
+      - {click: '+',  label: '﹢'   ,        width: 8 , height: 50 }
+      - {click: '-',  label: '﹣'   ,        width: 8 , height: 50 } #
+      - {                                    width: 2 , height: 25 } #
+      #
+      - {                                    width: 2 , height: 25 } #
+      - {click: '',  label: 'C5'  ,          width: 8 , height: 25 , sound: *sound132 } # C5
+      - {click: '',  label: 'D5'  ,          width: 8 , height: 25 , sound: *sound134 } # D5
+      - {click: '',  label: 'E5'  ,          width: 8 , height: 25 , sound: *sound136 } # E5
+      - {click: '',  label: 'F5'  ,          width: 8 , height: 25 , sound: *sound137 } # F5
+      
+      # - {click: 'g' ,                      width: 4 , height: 25 , sound: '' } # g
+      # - {click: 'h' ,                      width: 4 , height: 25 , sound: '' } # h
+      # - {click: 'i' ,                      width: 4 , height: 25 , sound: '' } # i
+      # - {click: 'j' ,                      width: 4 , height: 25 , sound: '' } # j
+      # - {click: 'k' ,                      width: 4 , height: 25 , sound: '' } # k
+      # - {click: 'l' ,                      width: 4 , height: 25 , sound: '' } # l
+      # - {                                  width: 24 , height: 25 } #
+      - {                                    width: 8 , height: 0 } #
+      - {                                    width: 8 , height: 0 } #
+      - {                                    width: 8 , height: 0 } #
+      
+      - {                                    width: 8 , height: 0 }
+      - {                                    width: 8 , height: 0 }
+      - {                                    width: 8 , height: 0 }
+      - {                                    width: 8 , height: 0 }
+      - {                                    width: 8 , height: 0 }
+      - {                                    width: 2 , height: 25 } #
+      # ####################
+      - {width: 100 , height: 8 } #
+      # - {click: sendnil , width: 100 , height: 0.001 } #
+      # ############################################################################################
+      # shift synbols english  fn  space ? enter = x +
+      # ############################################################################################
+      - {                                                                    width:  2   , height: 25 } #
+      - {click: toD    ,                                                     width:  8   , height: 50 } # 
+      - {click: toE    ,                                                     width:  8   , height: 50 } # 
+      - {click: space    ,                                                   width: 40   , height: 50 } # 
+      #
+      # - {click: Shift  ,                                                   width:  4  , height: 25 , sound: ''} #
+      # - {click: ''  ,                                                      width:  4  , height: 25 , sound: ''} #
+      # - {click: ''  ,                                                      width:  4  , height: 25 , sound: ''} #
+      # - {click: ''  ,                                                      width:  4  , height: 25 , sound: ''} #
+      # - {click: ''  ,                                                      width:  4  , height: 25 , sound: ''} #
+      # - {click: 'm'  ,                                                     width:  4  , height: 25 , sound: ''} # m
+      # - {click: 'n'  ,                                                     width:  4  , height: 25 , sound: ''} # n
+      # - {click: 'o'  ,                                                     width:  4  , height: 25 , sound: ''} # o
+      # - {click: 'p'  ,                                                     width:  4  , height: 25 , sound: ''} # p
+      # - {click: 'q'  ,                                                     width:  4  , height: 25 , sound: ''} # q
+      # - {click: 'r'  ,                                                     width:  4  , height: 25 , sound: ''} # r
+      # - {click: 's'  ,                                                     width:  4  , height: 25 , sound: ''} # s
+      # - {                                                                    width: 48 , height: 25 } #
+      
+      - {click: '0',  label: '0'   ,                                         width:  8   , height: 50 , sound: sound107 } # *sound0 
+      - {click: '.',  label: '.'   ,                                         width:  8   , height: 50 } #
+      - {click: '=',  label: '='   ,                                         width:  8   , height: 50 } #
+      - {click: Return  ,                                                    width: 16   , height: 50 } #
+      - {                                                                    width:  2   , height: 25 } #
+      # ############################################################################################################
+      - {                                                                    width:  2   , height:  25 } #
+      - {                                                                    width:  8   , height:  0 } # 
+      - {                                                                    width:  8   , height:  0 } # 
+      - {                                                                    width:  40  , height:  0 } # 
+      #
+      # - {click: space  ,                                                   width:  4  , height: 25 , sound: '' } #
+      # - {click: ''  ,                                                      width:  4  , height: 25 , sound: '' } #
+      # - {click: ''  ,                                                      width:  4  , height: 25 , sound: '' } #
+      # - {click: ''  ,                                                      width:  4  , height: 25 , sound: '' } #
+      # - {click: ''  ,                                                      width:  4  , height: 25 , sound: '' } #
+      # - {click: 't'  ,                                                     width:  4  , height: 25 , sound: '' } # t
+      # - {click: 'u'  ,                                                     width:  4  , height: 25 , sound: '' } # u
+      # - {click: 'v'  ,                                                     width:  4  , height: 25 , sound: '' } # v
+      # - {click: 'w'  ,                                                     width:  4  , height: 25 , sound: '' } # w
+      # - {click: 'x'  ,                                                     width:  4  , height: 25 , sound: '' } # x
+      # - {click: 'y'  ,                                                     width:  4  , height: 25 , sound: '' } # y
+      # - {click: 'z'  ,                                                     width:  4  , height: 25 , sound: '' } # z
+      # - {                                                                    width: 48 , height: 25 } #
+      
+      - {                                                                    width:  8   , height:  0 } #
+      - {                                                                    width:  8   , height:  0 } #
+      - {                                                                    width:  8   , height:  0 } #
+      - {                                                                    width: 16   , height:  0 } #
+      - {                                                                    width:  2   , height:  25 } #
+      # ####################
+      - {width: 100 , height: 80 } #
+    name: 數字鍵盤
 
 
 preset_color_schemes:
@@ -606,8 +943,8 @@ preset_color_schemes:
 preset_keys:
   key_ : {text: ""} # 編輯時測試用
   cm2_ : {label: "", text: "" } # 編輯時測試用
-  toN: {label: "±" , send: Eisu_toggle , select: default  } # number
-  toM: {label: "♪" , send: Eisu_toggle , select: default } # music
+  toN: {label: "±" , send: Eisu_toggle , select: number  } # number
+  toM: {label: "♪" , send: Eisu_toggle , select: music } # music
   toE: {label: "A" , send: Eisu_toggle , select: english } # english
   toD: {label: "ㄓ", send: Eisu_toggle , select: default } # default
   toS: {label: "@",  send: Eisu_toggle , select: symbols } # symbols

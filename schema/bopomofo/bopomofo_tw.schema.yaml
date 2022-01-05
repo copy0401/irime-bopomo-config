@@ -47,12 +47,18 @@ engine:
     - reverse_lookup_translator
     - table_translator@liur  # cctest 嘸蝦米混打
     - script_translator
+    - lua_translator@t_translator # cctest rime.lua
+    - lua_translator@t2_translator # cctest rime.lua
+    - lua_translator@date_translator # cctest rime.lua
+    - lua_translator@calculator_translator # cctest 計算機功能
   filters:
     - simplifier@zh_hans
     - simplifier@zh_hant_tw
+    # - lua_translator@single_char_filter # cctest rime.lua
     - uniquifier
     - reverse_lookup_filter@phonetic_reverse_lookup # cctest 打字時 標出注音
     # - lua_filter@quad_filter
+    - lua_filter@preedit_preview #  /lua/preedit_preview.lua
 
 # speller:
 #   algebra:
@@ -148,7 +154,6 @@ liur:
     - 'xform/\\//' #全形空格　 #半形空格  #| #⁞ #⁝ #⋮ #¦ #┆
 
 
-
 phonetic_reverse_lookup: # 顯示注音符號
   tag: phonetic_reverse_lookup
   dictionary: terra_pinyin
@@ -202,3 +207,11 @@ key_binder:
     - {accept: BackSpace, send: Control+BackSpace, when: has_menu} #〔關〕刪除前一個拼音字符〔開〕：刪除整組拼音字符（一個字）
     - {accept: Shift+BackSpace, send: BackSpace, when: has_menu}
     - {accept: backslash, send: BackSpace, when: has_menu} #「\」鍵位刪除一個拼音字符。
+
+recognizer:
+  patterns:
+    email: "^[a-z][-_.0-9a-z]*@.*$"
+    uppercase: "^[A-Z][-_+.'0-9A-Za-z]*$"
+    url: "^(www[.]|https?:|ftp:|mailto:).*$"
+    reverse_lookup: "`[a-z]*'?$"
+    expression: "^=.*$" #cctest 計算機功能
