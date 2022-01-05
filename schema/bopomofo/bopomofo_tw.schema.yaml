@@ -45,7 +45,7 @@ engine:
     - punct_translator
     - table_translator@custom_phrase
     - reverse_lookup_translator
-    - table_translator@liur  # cctest 嘸蝦米混打
+    - table_translator@liur  # cctest 嘸蝦米混打 # 電腦啟用 手機停用
     - script_translator
     - lua_translator@t_translator # cctest rime.lua
     - lua_translator@t2_translator # cctest rime.lua
@@ -58,7 +58,7 @@ engine:
     - uniquifier
     - reverse_lookup_filter@phonetic_reverse_lookup # cctest 打字時 標出注音
     # - lua_filter@quad_filter
-    - lua_filter@preedit_preview #  /lua/preedit_preview.lua
+    # - lua_filter@preedit_preview #  /lua/preedit_preview.lua # 電腦停用 手機啟用
 
 # speller:
 #   algebra:

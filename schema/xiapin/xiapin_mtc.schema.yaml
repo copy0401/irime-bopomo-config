@@ -187,15 +187,15 @@ speller:
 translator:
   # dictionary: liur_Trad
   dictionary: liur.extended
-  # db_class 設定用戶詞典類型，可設tabledb〔文本〕或userdb〔二進制〕
-  db_class: tabledb  # defualt is tabledb  liur.txt  # userdb liur.userdb
+  # db_class 設定用戶詞典類型，可設tabledb〔文本〕或 userdb〔二進制〕
+  db_class: userdb  # tabledb  liur.txt  # userdb liur.userdb 適合同步用
   enable_user_dict: true # 是否開啓用戶詞典 # default false # 讀 liur.txt or liuruserdb
   enable_sentence: false # 是否開啓自動造句 default false # 連打 
   enable_encoder: true # 是否開啓自動造詞 default false cctest   # 必須打開這樣 也能顯示有enc前綴的詞 , 才能消除enc前綴 
   enable_charset_filter: true # 是否開啓字符集過濾〔僅table_translator有效〕
   encode_commit_history: false # 是否對已上屛詞自動成詞 default false  
   max_phrase_length: 10 # 最大自動成詞詞長〔僅table_translator有效〕
-  enable_completion: true # 提前顯示尚未輸入完整碼的字〔僅table_translator有效〕
+  enable_completion: false # 提前顯示尚未輸入完整碼的字〔僅table_translator有效〕# 可以用?當通配符所以關閉
   comment_format: # 提示碼自定義
     - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|ABCDEFGHIJKLMNOPQRSTUVWXYZ[];',.|" # 顯示大寫
     - xform/^~(.+)$/>[$1]   # 將提示碼改為較美觀的型式
@@ -315,7 +315,7 @@ unicode: # cctest
   prefix: ";;;;" # ####################################################################
   suffix: ""
   dictionary: unicode
-  tips: 【unicode】"
+  tips: 【unicode】
   closing_tips: 【蝦米】
   initial_quality: 1.1	# 調整該編譯器出字優先度
 
