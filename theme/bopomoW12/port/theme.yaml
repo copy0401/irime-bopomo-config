@@ -457,9 +457,9 @@ preset_keyboards:
       # - {click: '>',                     width: 4 , height: 25 , sound: '' } #
       # - {click: '"',                     width: 4 , height: 25 , sound: '' } #
       # - {                                  width: 24 , height: 25 } #
-      - {click: '',  label: '',            width: 8 , height: 50 } #
-      - {click: '',  label: '',            width: 8 , height: 50 } #
-      - {click: '',  label: '',            width: 8 , height: 50 } #
+      - {click: '',                          width: 8 , height: 50 , sound: '' } # 
+      - {click: '',                          width: 8 , height: 50 , sound: '' } # 
+      - {click: '',                          width: 8 , height: 50 , sound: '' } # 
       
       # - {click: '',  label: ''     ,     width: 4 , height: 25 , sound: ''} #
       - {click: '',  label: ''     ,       width: 6 , height: 25 , sound: *sound101 } ######## F2
@@ -742,7 +742,7 @@ preset_keyboards:
       # - {click: 's'  ,                                                     width:  4  , height: 25 , sound: ''} # s
       # - {                                                                    width: 48 , height: 25 } #
       
-      - {click: '0',  label: '0'   ,                                         width:  8   , height: 50 , sound: sound107 } # *sound0 
+      - {click: '0',  label: '0'   ,                                         width:  8   , height: 50 , sound: *sound107 } # *sound0 
       - {click: '.',  label: '.'   ,                                         width:  8   , height: 50 } #
       - {click: '=',  label: '='   ,                                         width:  8   , height: 50 } #
       - {click: Return  ,                                                    width: 16   , height: 50 } #
