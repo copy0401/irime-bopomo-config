@@ -6,34 +6,34 @@
 
 patch:
   schema_list:
-    - schema: luna_pinyin          # 朙月拼音        有內建 預設沒顯示
-    - schema: pinyin_simp          # 袖珍简化字拼音  有內建 預設沒顯示
-    - schema: terra_pinyin         # 地球拼音        有內建 預設沒顯示
-    - schema: stroke               # 五筆畫          有內建 預設沒顯示
-    - schema: wubi86               # 五筆 86
-    - schema: wubi091              # 五筆 091
-    - schema: wubi98               # 五筆 98
-    - schema: wubi_pinyin          # 五笔·拼音
-    - schema: double_pinyin        # 自然碼雙拼      有內建 預設沒顯示
-    - schema: double_pinyin_abc    # 智能ABC双拼
-    - schema: double_pinyin_flypy  # 小鶴双拼
-    - schema: double_pinyin_mspy   # 微软双拼
-    - schema: double_pinyin_pyjj   # 拼音加加双拼
-    - schema: jyutping             # 粵拼
-    - schema: quick5               # 速成
-    - schema: xqzm                 # 小泉郑码
-    - schema: easy_en              # easy_en
-    - schema: clover               # 四葉草簡體拼音
-    - schema: clover_jiugong       # 九宮格 四葉草
-    - schema: luna_pinyin_14       # 14鍵盤方案
-    - schema: bopomofo             # 注音
-    - schema: bopomofo_tw          # 注音·臺灣正體   有內建 預設沒顯示
-    - schema: bopomofo_express     # 注音·快打模式   有內建 預設沒顯示
-    # - schema: flypy              # 小鶴音形        4.1.3版之後 移除內建
+    # - schema: luna_pinyin          # 朙月拼音        有內建 預設沒顯示
+    # - schema: pinyin_simp          # 袖珍简化字拼音  有內建 預設沒顯示
+    # - schema: terra_pinyin         # 地球拼音        有內建 預設沒顯示
+    # - schema: stroke               # 五筆畫          有內建 預設沒顯示
+    # - schema: wubi86               # 五筆 86
+    # - schema: wubi091              # 五筆 091
+    # - schema: wubi98               # 五筆 98
+    # - schema: wubi_pinyin          # 五笔·拼音
+    # - schema: double_pinyin        # 自然碼雙拼      有內建 預設沒顯示
+    # - schema: double_pinyin_abc    # 智能ABC双拼
+    # - schema: double_pinyin_flypy  # 小鶴双拼
+    # - schema: double_pinyin_mspy   # 微软双拼
+    # - schema: double_pinyin_pyjj   # 拼音加加双拼
+    # - schema: jyutping             # 粵拼
+    # - schema: quick5               # 速成
+    # - schema: xqzm                 # 小泉郑码
+    # - schema: easy_en              # easy_en
+    # - schema: clover               # 四葉草簡體拼音
+    # - schema: clover_jiugong       # 九宮格 四葉草
+    # - schema: luna_pinyin_14       # 14鍵盤方案
+    # - schema: bopomofo             # 注音
+    # - schema: bopomofo_tw          # 注音·臺灣正體   有內建 預設沒顯示
+    # - schema: bopomofo_express     # 注音·快打模式   有內建 預設沒顯示
+    # - schema: flypy                # 小鶴音形        4.1.3版之後 移除內建
     # ###############################
-    # - schema: bopomofo_tw
+    - schema: bopomofo_tw
     # - schema: bopomofo_liu
-    # - schema: xiapin_mtc
+    - schema: xiapin_mtc
     # - schema: double_pinyin
     # - schema: luna_pinyin
     # - schema: terra_pinyin
@@ -42,16 +42,18 @@ patch:
     # - schema: unicode
     # - schema: cangjie5
 
-  switcher/fix_schema_list_order: false #固定方案選單順序 設 false
+  switcher/fix_schema_list_order: false # 固定方案選單順序 設 false 
   switcher/hotkeys:
     - Control+grave
     - Control+Shift+grave
     - F4
 
   key_binder/bindings:
-    # - { when: composing, accept: bracketleft, send: Up}        # [ 選擇候選字
-    # - { when: composing, accept: bracketright, send: Down}     # ] 選擇候選字
-    # - { when: composing, accept: equal, send: Shift+Delete }   # = 閃除候選字/詞
+    - { when: composing, accept: bracketleft, send: Up }        # [ 上一個 候選字
+    - { when: composing, accept: bracketright, send: Down }     # ] 下一個 候選字
+    - { when: has_menu,  accept: "'", send: "Shift+Delete" }    # ' 刪除 自造詞
+    # - { when: paging, accept: bracketleft, send: Page_Up }      # [ 候選項 上一頁
+    # - { when: has_menu, accept: bracketright, send: Page_Down } # ] 候選項 下一頁
     - { when: composing, accept: Control+p, send: Up }
     - { when: composing, accept: Control+n, send: Down }
     - { when: composing, accept: Control+b, send: Left }

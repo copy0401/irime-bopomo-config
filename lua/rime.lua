@@ -75,12 +75,12 @@ local function rqzdx2(a)
   return result;
 end
 
---- date/t translator
+--- date/t translator `
 function t_translator(input, seg)
   if (string.match(input, "`")~=nil) then
       -- Candidate(type, start, end, text, comment)
 
-  if (input == "``" or input == "`;" or input == "`fn") then
+  if (input == "`;" or input == "`fn") then
     if (os.date("%w") == "0") then
       weekstr = "日"
     end
@@ -104,8 +104,9 @@ function t_translator(input, seg)
     end
     yield(Candidate("	", seg.start, seg._end, os.date("%Y/%m/%d("..weekstr..")"), "date"))
     yield(Candidate("	", seg.start, seg._end, os.date("%H:%M:%S"), "time"))
+    yield(Candidate("	", seg.start, seg._end, "```" , "markdown"))
     yield(Candidate("	", seg.start, seg._end, "	" , "tab"))
-    yield(Candidate("	", seg.start, seg._end, "copy0401@gmail.com" , "email"))
+    yield(Candidate("	", seg.start, seg._end, "@gmail.com" , "email"))
     yield(Candidate("	", seg.start, seg._end, "#"   , "yaml")) 
     yield(Candidate("	", seg.start, seg._end, "--"  , "lua")) 
     yield(Candidate("	", seg.start, seg._end, "//"  , "c")) 
@@ -740,17 +741,6 @@ function t_translator(input, seg)
     return
   end
 
-  if(input=="`") then
-    -- yield(Candidate("date", seg.start, seg._end, "" , "擴充模式"))
-    -- yield(Candidate("date", seg.start, seg._end, "┃ f〔年月日〕┇ ym〔年月〕┇ md〔月日〕┇ fw〔年月日週〕┇ mdw〔月日週〕" , ""))
-    -- yield(Candidate("date", seg.start, seg._end, "┃ y〔年〕┇ m〔月〕┇ d〔日〕┇ w〔週〕┇ n〔時:分〕┇ t〔時:分:秒〕" , ""))
-    -- yield(Candidate("date", seg.start, seg._end, "┃ fn〔年月日 時:分〕┇ ft〔年月日 時:分:秒〕" , ""))
-    -- yield(Candidate("date", seg.start, seg._end, "┃ fwn〔年月日週 時:分〕┇ fwt〔年月日週 時:分:秒〕" , ""))
-    -- yield(Candidate("date", seg.start, seg._end, "┃ */*/*〔 * 年 * 月 * 日〕┇ */*〔 * 月 * 日〕" , ""))
-    -- yield(Candidate("date", seg.start, seg._end, "┃ *-*-*〔*年*月*日〕┇ *-*〔*月*日〕" , ""))
-    return
-  end
-
   y, m, d = string.match(input, "`(%d+)/(%d?%d)/(%d?%d)$")
   if(y~=nil) then
     yield(Candidate("date", seg.start, seg._end, y.."年"..m.."月"..d.."日" , " 日期"))
@@ -779,7 +769,7 @@ function t_translator(input, seg)
 end
 
 
---- date/t2 translator
+--- date/t2 translator '/
 function t2_translator(input, seg)
   if (string.match(input, "'/")~=nil) then
       -- Candidate(type, start, end, text, comment)
@@ -1388,37 +1378,28 @@ function t2_translator(input, seg)
 end
 
 
---- date/time translator
+--- date/time translator ``
 function date_translator(input, seg)
   if (string.match(input, "``")~=nil) then
-      -- Candidate(type, start, end, text, comment)
-  if (input == "``time") then
-    yield(Candidate("time", seg.start, seg._end, os.date("%H:%M:%S"), " 現在時間"))
-    return
-  end
-
-  if (input == "``now") then
-    yield(Candidate("date", seg.start, seg._end, os.date("%Y年%m月%d日"), " 現在日期"))
-    return
-  end
-
-  if(input=="``") then
-    yield(Candidate("date", seg.start, seg._end, "" , "擴充模式"))
-    return
-  end
-
-  y, m, d = string.match(input, "``(%d+)/(%d?%d)/(%d?%d)$")
-  if(y~=nil) then
-    yield(Candidate("date", seg.start, seg._end, y.."年"..m.."月"..d.."日" , " 日期"))
-    return
-  end
-
-  m, d = string.match(input, "``(%d?%d)/(%d?%d)$")
-  if(m~=nil) then
-    yield(Candidate("date", seg.start, seg._end, m.."月"..d.."日" , " 日期"))
-    return
-  end
-
+    -- yield(Candidate("date", seg.start, seg._end, "" , "*/*/* or */*"))
+    y, m, d = string.match(input, "``(%d+)/(%d?%d)/(%d?%d)$")
+    if(y~=nil) then
+      yield(Candidate("date", seg.start, seg._end, y.."年"..m.."月"..d.."日" , " 日期"))
+      return
+    end
+    m, d = string.match(input, "``(%d?%d)/(%d?%d)$")
+    if(m~=nil) then
+      yield(Candidate("date", seg.start, seg._end, m.."月"..d.."日" , " 日期"))
+      return
+    end
+    if (input == "``d") then
+        yield(Candidate("	", seg.start, seg._end, os.date("%Y/%m/%d(%w)"), "date"))
+      return
+    end
+    if (input == "``t") then
+        yield(Candidate("	", seg.start, seg._end, os.date("%H:%M:%S"), "time"))
+      return
+    end
   end
 end
 
@@ -1461,7 +1442,7 @@ function charset_filter(input)
    for cand in input:iter() do
       if (not exists(is_cjk_ext, cand.text))
       then
-   yield(cand)
+         yield(cand)
       end
    end
 end
@@ -1603,3 +1584,11 @@ calculator_translator = require("calculator_translator")
 preedit_preview = require("preedit_preview")
 preedit_preview2 = require("preedit_preview2")
 -- add_tag = require("add_tag")
+-- quad_filter = require("quad_filter")
+
+module1={
+  {module = "command"    , module_name = "cammand_proc"    , name_space = "command" },
+  {module = "conjunctive", module_name = "conjunctive_proc", name_space = "conjunctive"},
+}
+
+init_processor= require 'init_processor'

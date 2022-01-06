@@ -92,7 +92,6 @@ engine:
     # - lua_translator@charset_comment_filter # cctest rime.lua 为候选项加上其所属字符集的注释
     - uniquifier  #過濾重複的候選字，有可能來自繁簡轉換
     - reverse_lookup_filter@phonetic_reverse_lookup # cctest 打字時 標出注音
-    # - lua_filter@preedit_preview #  /lua/preedit_preview.lua
     - lua_filter@preedit_preview2 #  /lua/preedit_preview2.lua 
 
 # abc_segmentor:
@@ -122,7 +121,7 @@ speller:
   # initials: 定義僅作始碼之鍵
   #
   # alphabet: "abcdefghijklmnopqrstuvwxyz[];',." #  def
-  alphabet: "abcdefghijklmnopqrstuvwxyz[];',.?`"  # 萬用碼 ?` # 定義本方案輸入鍵
+  alphabet:   "abcdefghijklmnopqrstuvwxyz[];',.?"  # 萬用碼 ?` # 定義本方案輸入鍵
   delimiter: "`"  #  上屛時的音節間分音符
   algebra: # 拼寫運算規則，由之算出的拼寫匯入prism中
     # 為了加強造詞準確性，在字典中，
@@ -239,12 +238,12 @@ liu_w2c: # 反查字的 嘸蝦米編碼
   # all [ pinyin , reverse_lookup ]  # pinyin , phonetic , mkst , abc, unicode
   tips: all # 設定是否提示轉換前的字，可塡none〔或不塡〕、char〔僅對單字有效〕、all
 
-# english: # 英文混打
-#   dictionary: easy_en
-#   spelling_hints: 9
-#   enable_completion: true
-#   enable_sentence: false
-#   initial_quality: -3
+english: # 英文混打
+  dictionary: easy_en
+  spelling_hints: 9
+  enable_completion: true
+  enable_sentence: false
+  initial_quality: -3
 
 # zh_tw:  #只針對拼音及注音反查進行台灣用語轉換
 #   opencc_config: t2tw.json # 要檢查 opencc 裏面有沒有這個檔案
@@ -365,7 +364,9 @@ key_binder:
     # - {accept: BackSpace, send: Escape, when: has_menu} #〔關〕刪除前一個拼音字符〔開〕：刪除整組拼音字符（一個字）
     # - {accept: Shift+BackSpace, send: BackSpace, when: has_menu}
     # - {accept: backslash, send: BackSpace, when: has_menu} #「\」鍵位刪除一個拼音字符。
-
+    ### 空碼時 按空白鍵 清空組字 ###
+    - {when: has_menu, accept: space, send: space }
+    - {when: composing, accept: space, send: Escape }
 
 editor:
   bindings:
@@ -397,3 +398,5 @@ recognizer:
     reverse_lookup: ";;;;;[1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/=6347-]*'?$" # 注音反查嘸蝦米編碼 只能查單字 使用 = 當空白鍵
     #
     expression: "^=.*$" #cctest 計算機功能
+    #
+    lua: "^(`|'/|``)[a-z0-9/-]*$"
