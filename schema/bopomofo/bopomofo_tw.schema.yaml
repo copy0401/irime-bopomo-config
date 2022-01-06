@@ -45,7 +45,7 @@ engine:
     - punct_translator
     - table_translator@custom_phrase
     - reverse_lookup_translator
-    - table_translator@liur  # cctest 嘸蝦米混打 # 電腦啟用 手機停用
+    # - table_translator@liur  # cctest 嘸蝦米混打 # 電腦啟用 手機停用
     - script_translator
     - lua_translator@t_translator # cctest rime.lua
     - lua_translator@t2_translator # cctest rime.lua
@@ -110,8 +110,8 @@ speller:
     - abbrev/^([bpmfdtnlgkhjqxZCSrzcsiuvaoeEAIOUMNKGR]).+$/$1/  # abbrev --簡拼〔出字優先級較上兩組更低〕
     - abbrev/^([bpmfdtnlgkhjqxZCSrzcsiuv])([iuvaoeEAIOUMNKGR])\d$/$1$2/
     - abbrev/^([bpmfdtnlgkhjqxZCSrzcs])([iuv])([aoeEAIOUMNKGR])\d$/$1$2$3/
-#    - abbrev/^([bpmfdtnlgkhjqxZCSrzcsiuv]).+(\d)$/$1$2/ #使得ㄎˇㄈˇ（可否）可以打的出來 #新增iuv，使得ㄧˊㄉˊ（贏得）可以打出
-#    - abbrev/^([bpmfdtnlgkhjqxZCSrzcs]).+(\d)$/$1$2/ #同上，但少了ㄧㄨㄩ
+    - abbrev/^([bpmfdtnlgkhjqxZCSrzcsiuv]).+(\d)$/$1$2/ #使得ㄎˇㄈˇ（可否）可以打的出來 #新增iuv，使得ㄧˊㄉˊ（贏得）可以打出
+    - abbrev/^([bpmfdtnlgkhjqxZCSrzcs]).+(\d)$/$1$2/ #同上，但少了ㄧㄨㄩ
     - abbrev/^([bpmfdtnlgkhjqx]).+(\d)$/$1$2/ #同上，但再少了ㄓㄔㄕㄖㄗㄘㄙ
 ##########注音聲韻母亂序##########
     - derive/^([bpmfdtnlgkhjqxZCSrzcs])([iuv])/$2$1/ # derive --衍生〔保留原形〕
@@ -137,13 +137,29 @@ translator:
     - 'xform/\\/ /' #全形空格　 #半形空格  #| #⁞ #⁝ #⋮ #¦ #┆
 
 # liur 翻譯器的設定項
-liur:
-  # dictionary: liur_Trad
+# liur:
+#   # dictionary: liur_Trad
+#   dictionary: liur.extended
+#   # spelling_hints: 1
+#   enable_completion: true # 关闭后英文不会有提示，只会在打全时才会显示，体验不是很好
+#   enable_sentence: false # 連打 造詞
+#   initial_quality: 100
+#   comment_format:
+#     - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|ABCDEFGHIJKLMNOPQRSTUVWXYZ[];',.|" # 顯示大寫
+#     - xform/^~(.+)$/>[$1]   # 將提示碼改為較美觀的型式
+#   disable_user_dict_for_patterns:
+#     - "^[',.].*$"
+#   preedit_format:
+#     - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|ABCDEFGHIJKLMNOPQRSTUVWXYZ[];',.|" # 組字時顯示大寫
+#     - 'xform/\\//' #全形空格　 #半形空格  #| #⁞ #⁝ #⋮ #¦ #┆
+
+reverse_lookup: # 取代 原本bopomo 筆劃反查
   dictionary: liur.extended
-  # spelling_hints: 1
-  enable_completion: true # 关闭后英文不会有提示，只会在打全时才会显示，体验不是很好
+  enable_completion: true
   enable_sentence: false # 連打 造詞
-  initial_quality: 100
+  prefix: "```"
+  suffix: "'"
+  tips: 【蝦米】
   comment_format:
     - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|ABCDEFGHIJKLMNOPQRSTUVWXYZ[];',.|" # 顯示大寫
     - xform/^~(.+)$/>[$1]   # 將提示碼改為較美觀的型式
@@ -151,7 +167,7 @@ liur:
     - "^[',.].*$"
   preedit_format:
     - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|ABCDEFGHIJKLMNOPQRSTUVWXYZ[];',.|" # 組字時顯示大寫
-    - 'xform/\\//' #全形空格　 #半形空格  #| #⁞ #⁝ #⋮ #¦ #┆
+    - 'xform/\\//' #全形空格　 #半形空格  #| #⁞ #⁝ #⋮ #
 
 
 phonetic_reverse_lookup: # 顯示注音符號
@@ -195,7 +211,7 @@ phonetic_reverse_lookup: # 顯示注音符號
 
 editor:
   bindings:
-#    space: commit_composition #使用 fluency_editor 時開啟
+    # space: commit_composition # 使用 fluency_editor 時開啟
     Return: confirm #使用 express_editor 時開啟
     Shift+Return: commit_raw_input # 上屏原始輸入
     Control+Return: commit_script_text # 上屏變換後輸入
@@ -204,14 +220,16 @@ key_binder:
   import_preset: default
   bindings: 
     ### 刪除鍵 ###
-    - {accept: BackSpace, send: Control+BackSpace, when: has_menu} #〔關〕刪除前一個拼音字符〔開〕：刪除整組拼音字符（一個字）
-    - {accept: Shift+BackSpace, send: BackSpace, when: has_menu}
-    - {accept: backslash, send: BackSpace, when: has_menu} #「\」鍵位刪除一個拼音字符。
+    - { when: has_menu, accept: BackSpace, send: Control+BackSpace } #〔關〕刪除前一個拼音字符〔開〕：刪除整組拼音字符（一個字）
+    - { when: has_menu, accept: Shift+BackSpace, send: BackSpace }
+    - { when: has_menu, accept: backslash, send: BackSpace} #「\」鍵位刪除一個拼音字符。
+
 
 recognizer:
   patterns:
     email: "^[a-z][-_.0-9a-z]*@.*$"
     uppercase: "^[A-Z][-_+.'0-9A-Za-z]*$"
     url: "^(www[.]|https?:|ftp:|mailto:).*$"
-    reverse_lookup: "`[a-z]*'?$"
+    reverse_lookup: "```[a-z]*'?$"
     expression: "^=.*$" #cctest 計算機功能
+    lua: "^(`|'/|``)[a-z0-9/-]*$"

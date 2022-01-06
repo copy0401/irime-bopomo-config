@@ -78,78 +78,27 @@ end
 --- date/t translator `
 function t_translator(input, seg)
   if (string.match(input, "`")~=nil) then
-      -- Candidate(type, start, end, text, comment)
-
-  if (input == "`;" or input == "`fn") then
-    if (os.date("%w") == "0") then
-      weekstr = "日"
-    end
-    if (os.date("%w") == "1") then
-      weekstr = "一"
-    end
-    if (os.date("%w") == "2") then
-      weekstr = "二"
-    end
-    if (os.date("%w") == "3") then
-      weekstr = "三"
-    end
-    if (os.date("%w") == "4") then
-      weekstr = "四"
-    end
-    if (os.date("%w") == "5") then
-      weekstr = "五"
-    end
-    if (os.date("%w") == "6") then
-      weekstr = "六"
-    end
-    yield(Candidate("	", seg.start, seg._end, os.date("%Y/%m/%d("..weekstr..")"), "date"))
-    yield(Candidate("	", seg.start, seg._end, os.date("%H:%M:%S"), "time"))
-    yield(Candidate("	", seg.start, seg._end, "```" , "markdown"))
-    yield(Candidate("	", seg.start, seg._end, "	" , "tab"))
-    yield(Candidate("	", seg.start, seg._end, "@gmail.com" , "email"))
-    yield(Candidate("	", seg.start, seg._end, "#"   , "yaml")) 
-    yield(Candidate("	", seg.start, seg._end, "--"  , "lua")) 
-    yield(Candidate("	", seg.start, seg._end, "//"  , "c")) 
-    yield(Candidate("	", seg.start, seg._end, "default.yaml"  , "iRime")) 
-    yield(Candidate("	", seg.start, seg._end, "default.custom.yaml"  , "iRime"))
-    yield(Candidate("	", seg.start, seg._end, "SharedSupport"  , "iRime")) 
-    yield(Candidate("	", seg.start, seg._end, "sync"  , "iRime")) 
-    yield(Candidate("	", seg.start, seg._end, "sync_dir"  , "iRime")) 
-    yield(Candidate("	", seg.start, seg._end, "squirrel"  , "iRime")) 
-    yield(Candidate("	", seg.start, seg._end, "iRime"  , "iRime")) 
-    yield(Candidate("	", seg.start, seg._end, "installation.yaml"  , "iRime")) 
-    yield(Candidate("	", seg.start, seg._end, "installation_id"  , "iRime")) 
-    yield(Candidate("	", seg.start, seg._end, ".dict.yaml"  , "iRime")) 
-    yield(Candidate("	", seg.start, seg._end, ".custom.yaml"  , "iRime")) 
-    yield(Candidate("	", seg.start, seg._end, ".schema.yaml"  , "iRime")) 
-    yield(Candidate("	", seg.start, seg._end, "bopomo_onion.userdb.txt"  , "iRime")) 
-    yield(Candidate("	", seg.start, seg._end, "bopomo_onion.schema.yaml"  , "iRime")) 
-    yield(Candidate("	", seg.start, seg._end, "/theme/你的主題/port/theme.yaml"  , "iRime")) 
-    return
+  if(input=="`") then
+      -- yield(Candidate("date", seg.start, seg._end, "f/y/m/d/w/n/t 擴展模式" , ""))
+      yield(Candidate("date", seg.start, seg._end, "y〔年〕" , ""))
+      yield(Candidate("date", seg.start, seg._end, "m〔月〕" , ""))
+      yield(Candidate("date", seg.start, seg._end, "d〔日〕" , ""))
+      yield(Candidate("date", seg.start, seg._end, "w〔週〕" , ""))
+      yield(Candidate("date", seg.start, seg._end, "n〔時:分〕" , ""))
+      yield(Candidate("date", seg.start, seg._end, "t〔時:分:秒〕" , ""))
+      yield(Candidate("date", seg.start, seg._end, "f〔年月日〕" , ""))
+      yield(Candidate("date", seg.start, seg._end, "ym〔年月" , ""))
+      yield(Candidate("date", seg.start, seg._end, "md〔月日〕" , ""))
+      yield(Candidate("date", seg.start, seg._end, "fw〔年月日週〕" , ""))
+      yield(Candidate("date", seg.start, seg._end, "mdw〔月日週〕" , ""))
+      yield(Candidate("date", seg.start, seg._end, "fn〔年月日 時:分〕" , ""))
+      yield(Candidate("date", seg.start, seg._end, "ft〔年月日 時:分:秒〕" , ""))
+      yield(Candidate("date", seg.start, seg._end, "*/*/*〔*年*月*日〕" , ""))
+      yield(Candidate("date", seg.start, seg._end, "*/*〔*月*日〕" , ""))
+      yield(Candidate("date", seg.start, seg._end, "*-*-*〔*年*月*日" , ""))
+      yield(Candidate("date", seg.start, seg._end, "*-*〔*月*日〕" , ""))
+      return
   end
-
-  if (input == "`q") then
-    yield(Candidate("	", seg.start, seg._end, "	" , "TAB")) 
-    return
-  end
-
-  if (input == "`w") then
-    yield(Candidate("	", seg.start, seg._end, "	" , "TAB")) 
-    return
-  end
-
-  if (input == "`t") then
-    yield(Candidate("time", seg.start, seg._end, os.date("%H:%M:%S"), " 現在時間 (時:分:秒)"))
-    -- yield(Candidate("time", seg.start, seg._end, os.date("%H:%M"), " 現在時間 (時:分) ~m"))
-    return
-  end
-
-  if (input == "`g") then
-    yield(Candidate("time", seg.start, seg._end, os.date("%H:%M:%S"), " 現在時間 (時:分:秒)"))
-    -- yield(Candidate("time", seg.start, seg._end, os.date("%H:%M"), " 現在時間 (時:分) ~m"))
-    return
-  end
-
   if (input == "`gza") then
     yield(Candidate("time", seg.start, seg._end, os.date("%H:%M:%S"), " 現在時間 (時:分:秒)"))
     -- yield(Candidate("time", seg.start, seg._end, os.date("%H:%M"), " 現在時間 (時:分) ~m"))
@@ -768,7 +717,6 @@ function t_translator(input, seg)
   end
 end
 
-
 --- date/t2 translator '/
 function t2_translator(input, seg)
   if (string.match(input, "'/")~=nil) then
@@ -1332,21 +1280,31 @@ function t2_translator(input, seg)
     return
   end
 
---- 擴充模式 \r\n      日期 (年月日) ~d \r\n      年 ~y    月 ~m    日 ~day \r\n      年月 ~ym    月日 ~md \r\n      時間 (時分) ~n   (時分秒) ~t \r\n      日期時間 (年月日時分) ~dn\r\n      日期時間 (年月日時分秒) ~dt
   if(input=="'/") then
----    yield(Candidate("date", seg.start, seg._end, "" , "擴充模式"))
-    -- yield(Candidate("date", seg.start, seg._end, "║　d〔年月日〕┃   ym〔年月〕┃　md〔月日〕║" , ""))
-    -- yield(Candidate("date", seg.start, seg._end, "║　　y〔年〕　┃　　m〔月〕 ┃　　dy〔日〕 ║" , ""))
-    -- yield(Candidate("date", seg.start, seg._end, "║　　　n〔時:分〕　　 ┃　　　t〔時:分:秒〕　║" , ""))
-    -- yield(Candidate("date", seg.start, seg._end, "║　dn〔年月日 時:分〕  ┃ dt〔年月日 時:分:秒〕║" , ""))
-    -- yield(Candidate("date", seg.start, seg._end, "║*/*/*〔 * 年 * 月 * 日〕┃　*-*-*〔*年*月*日〕 ║" , ""))
-    -- yield(Candidate("date", seg.start, seg._end, "║　　*/*〔 * 月 * 日〕   ┃　　 *-*〔*月*日〕　 ║" , ""))
-    yield(Candidate("date", seg.start, seg._end, "┃ f〔年月日〕┇ ym〔年月〕┇ md〔月日〕┇ fw〔年月日週〕┇ mdw〔月日週〕" , ""))
-    yield(Candidate("date", seg.start, seg._end, "┃ y〔年〕┇ m〔月〕┇ d〔日〕┇ w〔週〕┇ n〔時:分〕┇ t〔時:分:秒〕" , ""))
-    yield(Candidate("date", seg.start, seg._end, "┃ fn〔年月日 時:分〕┇ ft〔年月日 時:分:秒〕" , ""))
-    yield(Candidate("date", seg.start, seg._end, "┃ fwn〔年月日週 時:分〕┇ fwt〔年月日週 時:分:秒〕" , ""))
-    yield(Candidate("date", seg.start, seg._end, "┃ */*/*〔 * 年 * 月 * 日〕┇ */*〔 * 月 * 日〕" , ""))
-    yield(Candidate("date", seg.start, seg._end, "┃ *-*-*〔*年*月*日〕┇ *-*〔*月*日〕" , ""))
+    -- yield(Candidate("date", seg.start, seg._end, "f/y/m/d/w/n/t 擴展模式" , ""))
+    yield(Candidate("date", seg.start, seg._end, "y〔年〕" , ""))
+    yield(Candidate("date", seg.start, seg._end, "m〔月〕" , ""))
+    yield(Candidate("date", seg.start, seg._end, "d〔日〕" , ""))
+    yield(Candidate("date", seg.start, seg._end, "w〔週〕" , ""))
+    yield(Candidate("date", seg.start, seg._end, "n〔時:分〕" , ""))
+    yield(Candidate("date", seg.start, seg._end, "t〔時:分:秒〕" , ""))
+    yield(Candidate("date", seg.start, seg._end, "f〔年月日〕" , ""))
+    yield(Candidate("date", seg.start, seg._end, "ym〔年月" , ""))
+    yield(Candidate("date", seg.start, seg._end, "md〔月日〕" , ""))
+    yield(Candidate("date", seg.start, seg._end, "fw〔年月日週〕" , ""))
+    yield(Candidate("date", seg.start, seg._end, "mdw〔月日週〕" , ""))
+    yield(Candidate("date", seg.start, seg._end, "fn〔年月日 時:分〕" , ""))
+    yield(Candidate("date", seg.start, seg._end, "ft〔年月日 時:分:秒〕" , ""))
+    yield(Candidate("date", seg.start, seg._end, "*/*/*〔 * 年 * 月 * 日〕" , ""))
+    yield(Candidate("date", seg.start, seg._end, "*/*〔 * 月 * 日〕" , ""))
+    yield(Candidate("date", seg.start, seg._end, "*-*-*〔*年*月*日" , ""))
+    yield(Candidate("date", seg.start, seg._end, "*-*〔*月*日〕" , ""))
+    -- yield(Candidate("date", seg.start, seg._end, "┃ f〔年月日〕┇ ym〔年月〕┇ md〔月日〕┇ fw〔年月日週〕┇ mdw〔月日週〕" , ""))
+    -- yield(Candidate("date", seg.start, seg._end, "┃ y〔年〕┇ m〔月〕┇ d〔日〕┇ w〔週〕┇ n〔時:分〕┇ t〔時:分:秒〕" , ""))
+    -- yield(Candidate("date", seg.start, seg._end, "┃ fn〔年月日 時:分〕┇ ft〔年月日 時:分:秒〕" , ""))
+    -- yield(Candidate("date", seg.start, seg._end, "┃ fwn〔年月日週 時:分〕┇ fwt〔年月日週 時:分:秒〕" , ""))
+    -- yield(Candidate("date", seg.start, seg._end, "┃ */*/*〔 * 年 * 月 * 日〕┇ */*〔 * 月 * 日〕" , ""))
+    -- yield(Candidate("date", seg.start, seg._end, "┃ *-*-*〔*年*月*日〕┇ *-*〔*月*日〕" , ""))
     return
   end
 
@@ -1381,7 +1339,74 @@ end
 --- date/time translator ``
 function date_translator(input, seg)
   if (string.match(input, "``")~=nil) then
-    -- yield(Candidate("date", seg.start, seg._end, "" , "*/*/* or */*"))
+    yield(Candidate("date", seg.start, seg._end, "" , "擴充模式"))
+    if (input == "``fn" or input == "``") then
+      if (os.date("%w") == "0") then
+        weekstr = "日"
+      end
+      if (os.date("%w") == "1") then
+        weekstr = "一"
+      end
+      if (os.date("%w") == "2") then
+        weekstr = "二"
+      end
+      if (os.date("%w") == "3") then
+        weekstr = "三"
+      end
+      if (os.date("%w") == "4") then
+        weekstr = "四"
+      end
+      if (os.date("%w") == "5") then
+        weekstr = "五"
+      end
+      if (os.date("%w") == "6") then
+        weekstr = "六"
+      end
+      yield(Candidate("	", seg.start, seg._end, os.date("%Y/%m/%d("..weekstr..")"), "date"))
+      yield(Candidate("	", seg.start, seg._end, os.date("%H:%M:%S"), "time"))
+      yield(Candidate("	", seg.start, seg._end, "```" , "markdown"))
+      yield(Candidate("	", seg.start, seg._end, "	" , "tab"))
+      yield(Candidate("	", seg.start, seg._end, "#"   , "yaml")) 
+      yield(Candidate("	", seg.start, seg._end, "--"  , "lua")) 
+      yield(Candidate("	", seg.start, seg._end, "//"  , "c")) 
+      yield(Candidate("	", seg.start, seg._end, "default.yaml"  , "iRime")) 
+      yield(Candidate("	", seg.start, seg._end, "default.custom.yaml"  , "iRime"))
+      yield(Candidate("	", seg.start, seg._end, "SharedSupport"  , "iRime")) 
+      yield(Candidate("	", seg.start, seg._end, "sync"  , "iRime")) 
+      yield(Candidate("	", seg.start, seg._end, "sync_dir"  , "iRime")) 
+      yield(Candidate("	", seg.start, seg._end, "squirrel"  , "iRime")) 
+      yield(Candidate("	", seg.start, seg._end, "iRime"  , "iRime")) 
+      yield(Candidate("	", seg.start, seg._end, "installation.yaml"  , "iRime")) 
+      yield(Candidate("	", seg.start, seg._end, "installation_id"  , "iRime")) 
+      yield(Candidate("	", seg.start, seg._end, ".dict.yaml"  , "iRime")) 
+      yield(Candidate("	", seg.start, seg._end, ".custom.yaml"  , "iRime")) 
+      yield(Candidate("	", seg.start, seg._end, ".schema.yaml"  , "iRime")) 
+      yield(Candidate("	", seg.start, seg._end, "bopomo_onion.userdb.txt"  , "iRime")) 
+      yield(Candidate("	", seg.start, seg._end, "bopomo_onion.schema.yaml"  , "iRime")) 
+      yield(Candidate("	", seg.start, seg._end, "/theme/你的主題/port/theme.yaml"  , "iRime")) 
+      return
+    end
+
+    if (input == "``q") then
+      yield(Candidate("	", seg.start, seg._end, "	" , "TAB")) 
+      return
+    end
+
+    if (input == "``w") then
+      yield(Candidate("	", seg.start, seg._end, "	" , "TAB")) 
+      return
+    end
+
+    if (input == "``t") then
+      yield(Candidate("time", seg.start, seg._end, os.date("%H:%M:%S"), " 現在時間 (時:分:秒)"))
+      return
+    end
+
+    if (input == "``g") then
+      yield(Candidate("time", seg.start, seg._end, os.date("%H:%M:%S"), " 現在時間 (時:分:秒)"))
+      return
+    end
+	
     y, m, d = string.match(input, "``(%d+)/(%d?%d)/(%d?%d)$")
     if(y~=nil) then
       yield(Candidate("date", seg.start, seg._end, y.."年"..m.."月"..d.."日" , " 日期"))
@@ -1392,14 +1417,7 @@ function date_translator(input, seg)
       yield(Candidate("date", seg.start, seg._end, m.."月"..d.."日" , " 日期"))
       return
     end
-    if (input == "``d") then
-        yield(Candidate("	", seg.start, seg._end, os.date("%Y/%m/%d(%w)"), "date"))
-      return
-    end
-    if (input == "``t") then
-        yield(Candidate("	", seg.start, seg._end, os.date("%H:%M:%S"), "time"))
-      return
-    end
+	
   end
 end
 
