@@ -25,6 +25,40 @@ schema:
     - liur.extended # cctest 嘸蝦米混打
 
 
+switches:
+  - name: ascii_mode # Control+Shift+2
+    reset: 0
+    states: [ 中文, 英文 ]
+  - name: full_shape # Control+Shift+3
+    states: [ 半形, 全形 ]
+  - options:
+      - zh_hant
+      - zh_hans
+      - zh_hant_tw
+    states:
+      - 傳統漢字
+      - 简化字
+      - 臺灣字形
+  - name: simplification
+    reset: 0
+    states: [繁體, 简体] # Control+Shift+5
+
+
+simplifier:
+  tips: all
+
+zh_hans:
+  option_name: zh_hans
+  opencc_config: t2s.json
+  tips: all
+  excluded_types: [ reverse_lookup ]
+
+zh_hant_tw:
+  option_name: zh_hant_tw
+  opencc_config: t2tw.json
+  tips: none
+  excluded_types: [ reverse_lookup ]
+
 engine:
   processors:
     - ascii_composer
@@ -54,6 +88,7 @@ engine:
   filters:
     - simplifier@zh_hans
     - simplifier@zh_hant_tw
+    - simplifier # ※ 繁簡轉換
     # - lua_translator@single_char_filter # cctest rime.lua
     - uniquifier
     - reverse_lookup_filter@phonetic_reverse_lookup # cctest 打字時 標出注音
