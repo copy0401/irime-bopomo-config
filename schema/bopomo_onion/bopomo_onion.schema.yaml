@@ -307,10 +307,10 @@ key_binder:
   bindings:
     # - {accept: "˙", toggle: ascii_mode, when: always}  # cctest
 ### 避大千注音鍵位和 RIME 原設定鍵位衝突 ###
-    - {accept: comma, send: comma, when: has_menu}
-    - {accept: period, send: period, when: has_menu}
-    - {accept: minus, send: minus, when: has_menu}
-    - {accept: equal, send: equal, when: has_menu}
+    - {accept: comma, send: comma, when: has_menu}   # 逗號
+    - {accept: period, send: period, when: has_menu} # 句號
+    - {accept: minus, send: minus, when: has_menu}   # 减號
+    - {accept: equal, send: equal, when: has_menu}   # 等於
     #
 ### 切分移位 ###
     - {accept: Up, send: KP_Left, when: composing} #左移一個注音
@@ -350,7 +350,7 @@ key_binder:
 ### 刪除鍵 ###
     - {accept: BackSpace, send: Control+BackSpace, when: has_menu} #〔關〕刪除前一個拼音字符〔開〕：刪除整組拼音字符（一個字）
     - {accept: Shift+BackSpace, send: BackSpace, when: has_menu}
-    - {accept: backslash, send: BackSpace, when: has_menu} #「\」鍵位刪除一個拼音字符。
+    - {accept: backslash, send: BackSpace, when: has_menu} #「\」鍵位刪除一個拼音字符。 # 反斜杠
 #    - {accept: backslash, send: Shift+BackSpace, when: has_menu} #「\」鍵位刪除整組拼音字符（一個字）。
 #    - {accept: backslash, send: Shift+Return, when: has_menu} #「\」鍵位上屏英文。
 ### 功能快捷鍵 ###
@@ -375,7 +375,7 @@ key_binder:
    # - {accept: "Control+apostrophe", send: "quotedbl", when: always} #「頓號」#接受「Contol」+「'」直出「"」
     #
     # cctest
-    # - {accept: \ , send: Down , when: has_menu}   # 選重 可用
+    # - {accept: \ , send: Down , when: has_menu}   # 選重 可用 # 反斜杠
     # - {accept: \ , send: Down , when: composing}  # 選重 可用
     #
 
