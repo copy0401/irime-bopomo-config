@@ -11032,8 +11032,8 @@ sort: original	#按 字詞  排序 輸入original,以 字詞頻  排序 輸入 b
 甚	krl
 璣	~krl
 夦	~krlc
-勘	~krld
-斟	krld
+勘	krld
+斟	~krld
 歁	~krli
 卙	~krlj
 戡	krlq
@@ -23510,7 +23510,7 @@ sort: original	#按 字詞  排序 輸入original,以 字詞頻  排序 輸入 b
 厶	~ua
 叉	uaa
 對	~uaa
-肘	uaa
+肘	~uaa
 对	~uaa
 蚤	uac
 臉	~uac
@@ -38658,6 +38658,7 @@ $	~,dolr
 袜	~vysr
 袝	~vpav
 袞	~lokr
+袞	~lokrs
 袟	~vsnv
 袡	~vnyv
 袣	~vslv

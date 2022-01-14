@@ -3,9 +3,11 @@
 
 __include: bopomofo.schema:/
 
+__include: grammar:/hant
+
 # 默認的opencc字形轉換選項設爲臺灣字形標準
 __patch:
-  - switches/@2/reset: 2
+  # - switches/@2/reset: 2
   - bopomofo_tw.custom:/patch?
 
 schema:
@@ -39,6 +41,7 @@ switches:
       - 傳統漢字
       - 简化字
       - 臺灣字形
+    reset: 2
   - name: simplification
     reset: 0
     states: [繁體, 简体] # Control+Shift+5
@@ -252,8 +255,13 @@ editor:
     Control+Return: commit_script_text # 上屏變換後輸入
 
 key_binder:
-  import_preset: default
-  bindings: 
+  # import_preset: default
+  bindings:
+    - { when: has_menu, accept: comma, send: comma }      # ㄝ
+    - { when: has_menu, accept: period, send: period }    # ㄡ
+    - { when: has_menu, accept: minus, send: minus }      # ㄦ
+    # - { when: paging, accept: minus, send: Page_Up }
+    # - { when: has_menu, accept: equal, send: Page_Down }
     ### 刪除鍵 ###
     - { when: has_menu, accept: BackSpace, send: Control+BackSpace } #〔關〕刪除前一個拼音字符〔開〕：刪除整組拼音字符（一個字）
     - { when: has_menu, accept: Shift+BackSpace, send: BackSpace }

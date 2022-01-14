@@ -2,6 +2,12 @@
 # Rime schema settings
 # encoding: utf-8
 #
+
+__include: grammar:/hant # 八股文 語言模型
+# 句子 grammar:/hant      # 搭配 enable_sentence: true 連打功能  可以自動斷詞 
+# 單字 grammar:/hant_char
+# 如果不打句子 可以將該行註解 並  enable_sentence 設為 false
+
 schema:
   schema_id: xiapin_mtc # xiapin_mtc    liur
   name: 蝦米 # TC 加計算機功能 #  "␠"  "⍽"
@@ -38,8 +44,6 @@ switches:
 
 simplifier:
   tips: all  # 簡化字模式下提示對應的傳統漢字
-  # opencc_config: t2tw.json
-  # option_name: zh_tw
 
 engine:
   processors:          # 這批組件處理各類按鍵消息
@@ -96,7 +100,8 @@ engine:
     - uniquifier                                    # 過濾重複的候選字，有可能來自繁簡轉換
     - reverse_lookup_filter@phonetic_reverse_lookup # 反查濾鏡 可加載多個實例，後接@+濾鏡名 # cctest 打字時 標出注音
     - lua_filter@preedit_preview2                   # /lua/preedit_preview2.lua # iRime 需要開啟
-
+    - lua_filter@add_tag                            # /lua/add_tag.lua # iRime 需要開啟
+    
 # abc_segmentor:
   # extra_tags:
     # - liurqry
@@ -108,7 +113,7 @@ menu:
   # alternative_select_keys: 1234567890
   # alternative_select_labels: [A,B,C,D,E,F,G,H,I,J] # 如果要使用 punct 可以用這些 （目前是半形關閉 全形時有作用）
   # alternative_select_keys: ABCDEFGHIJ # 
-  page_size: 5 # 候選視窗每頁項目數 default 5  ## 電腦設 5 手機設 16 
+  page_size: 10 # 候選視窗每頁項目數 default 5  ## 電腦設 5 手機設 10 
 
 # speller:
 #   alphabet: "abcdefghijklmnopqrstuvwxyz[];',.`"
@@ -196,9 +201,11 @@ translator:
   # dictionary: liur_Trad
   dictionary: liur.extended
   # db_class 設定用戶詞典類型，可設tabledb〔文本〕或 userdb〔二進制〕
-  db_class: userdb  # tabledb  liur.txt  # userdb liur.userdb 適合同步用
-  enable_user_dict: true # 是否開啓用戶詞典 # default false # 讀 liur.txt or liuruserdb
-  enable_sentence: false # 是否開啓自動造句 default false # 連打 
+  db_class: userdb
+  # db_class 設 tabledb  liur.txt  
+  # db_class 設 userdb   liur.userdb 適合同步用
+  enable_user_dict: true # 是否開啓用戶詞典 # default false # 讀 liur.txt or liuruserdb # ddtest true to false
+  enable_sentence: true # 是否開啓自動造句 default false # 連打 
   enable_encoder: false   # 是否開啓自動造詞 default false cctest  〔僅table_translator有效〕 # 打開 能顯示有enc前綴的詞 , 能消除enc前綴
   enable_charset_filter: true # 是否開啓字符集過濾〔僅table_translator有效〕
   encode_commit_history: false # 是否對已上屛詞自動成詞 default false  
@@ -222,26 +229,25 @@ fixed:
   __include: /translator
   enable_user_dict: true # 開啓用戶詞典
   enable_encoder: true   # 開啓造詞功能
-  enable_sentence: false  # 是否開啓自動造句 default false # 連打 
+  # enable_sentence: false  # 是否開啓自動造句 default false # 連打 # ddtest
   initial_quality: 100
-  enable_completion: true # 若设为false，则无法造词
+  enable_completion: true # 若设为false，则无法造词 # ddtest 主要檢查 有沒有造過了
   # disable_user_dict_for_patterns: # cctest 這條目前應該用不到
   #   - '.*'   # 对所有编码禁用用户词典（不调频，不读取用户词，但不影响自造词写入用户词典）# cctest
-  tag: fixed # cctest 設定此翻譯器針對的tag。可不塡，不塡則僅針對abc
+  tag: mkst # cctest 設定此翻譯器針對的tag。可不塡，不塡則僅針對abc # ddtest fixed/mkst
 
-mkst: #開啓造句(造詞引導) # 會加到 liur.txt 會出現 del enc us 前綴
+mkst: # 開啓造句(造詞引導) # 會加到 liur.txt 會出現 del enc us 前綴
   __include: /translator
   enable_sentence: true  # 自動造句 # 連打
   prefix: ';' #####################################################################
   tips: "【造詞】"
-  tag: mkst
+  tag: mkst # 必要的
   initial_quality: 10
 
 repeat_history: # 重复上次上屏内容
   input: "''"
   size: 1
   initial_quality: 10000
-
 
 liu_w2c: # 反查字的 嘸蝦米編碼
   opencc_config: liu_w2c.json # 要檢查 opencc 裏面有沒有這個檔案  用字轉換定義文件

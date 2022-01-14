@@ -21,8 +21,9 @@ local function filter(input, env)
     -- cand:get_genuine().preedit =  up_commit  --英文編碼  --預設
     -- cand:get_genuine().preedit = cand.text --首選項
     -- cand:get_genuine().preedit = "".. up_commit .." ".. cand.text .."" --英文編碼+首選項
-    -- cand:get_genuine().preedit = "".. cand.text .." ".. up_commit .."" --首選項+英文編碼
     cand:get_genuine().preedit = "".. cand.text .."<".. up_commit .."" --首選項+英文編碼
+    -- " ▉ ▊ ▋ ▋ ▌ ▍ ▎ ▏ ▐ ░ ▒ "
+    -- cand:get_genuine().preedit = "".. cand.text .."<".. up_commit .."▌" --首選項+英文編碼
     -- cand:get_genuine().preedit = cand.text .."✍" --首选
     yield(cand)
   end
