@@ -7,6 +7,10 @@ version: "1"
 sort: original	#按 字詞  排序 輸入original,以 字詞頻  排序 輸入 by_weight
 #字碼格式: 字 + Tab + 字碼
 ...
-#人工編碼詞，適合超長句子，或包含數字的詞
-嘸蝦米	liu
-中州韻輸入法	rime
+# 人工編碼詞，適合超長句子，或包含數字的詞
+# 黃昏  kxxx
+# 尷尬  kkkk
+# 嘸蝦米  ocmm
+# 無蝦米  vcmm
+# 輸入法  cbww
+# 測試  wiii

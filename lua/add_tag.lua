@@ -5,7 +5,8 @@
 
 local function filter(input, env)
     local temp_table = {}
-    local letters = {'' ,'[1V]' ,'[2R]' ,'[3S]','[4F]','[5]','[6]','[7]','[8]','[9]'} 
+    -- local letters = {'' ,'[V][1]' ,'[R][2]' ,'[S][3]','[F][4]','[5]','[6]','[7]','[8]','[9]'} 
+    local letters = {'' ,'[V]' ,'[R]' ,'[S]','[F]','','','','',''} 
     -- 對應方案配置 xiapin_mtc.schema.yaml menu: page_size: 10
     for cand in input:iter() do
         table.insert(temp_table, cand)
