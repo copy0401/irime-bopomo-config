@@ -4,32 +4,28 @@
 --]]
 
 local function filter(input, env)
-    local temp_table = {}
-    -- local letters = {'' ,'[V][1]' ,'[R][2]' ,'[S][3]','[F][4]','[5]','[6]','[7]','[8]','[9]'} 
-    local letters = {'' ,'[V]' ,'[R]' ,'[S]','[F]','','','','',''} 
-    -- 對應方案配置 xiapin_mtc.schema.yaml menu: page_size: 10
+    local liu_index = 0
     for cand in input:iter() do
-        table.insert(temp_table, cand)
-    end--for
+       local liu_str    = cand:get_genuine().text
+       -- 一個中文字 大小 = 3
+       for s, r in pairs(charset) do -- s is CJK
+           if (     liu_index == 1 and #liu_str == 3 ) then
+              cand:get_genuine().comment = "[V]" .." ".. cand.comment
+           elseif ( liu_index == 2 and #liu_str == 3 ) then
+              cand:get_genuine().comment = "[R]" .." ".. cand.comment
+           elseif ( liu_index == 3 and #liu_str == 3 ) then
+              cand:get_genuine().comment = "[S]" .." ".. cand.comment
+           elseif ( liu_index == 4 and #liu_str == 3 ) then
+              cand:get_genuine().comment = "[F]" .." ".. cand.comment
+           else
+              cand:get_genuine().comment =  cand.comment 
+           end
+           break
+       end
+       liu_index = liu_index + 1 
+       yield(cand)
+    end
     
-    -- for i, cand in ipairs(temp_table) do
-    --     if (i < #temp_table) then
-    --         cand.comment = cand.comment.." "..(i+1).."."
-    --     end
-    --     yield(cand)
-    -- end
-    
-    for i, cand in ipairs(temp_table) do
-        if (i <= #temp_table ) then
-            if (i <= #letters) then
-                cand.comment = letters[i]..cand.comment
-            else
-                cand.comment = cand.comment
-            end
-        end
-        yield(cand)
-    end--for
 end--function
-
 
 return { func = filter }

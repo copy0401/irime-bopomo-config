@@ -85,10 +85,11 @@ engine:
     - reverse_lookup_translator  # 反查翻譯器，用另一種編碼方案查碼 # cctest 注音反查嘸蝦米 只能查單字 
     #
     # - table_translator           # 碼表翻譯器，用於倉頡、五筆等基於碼表的輸入方案
-    - script_translator
+    - script_translator            # 改用這個
     #
     - table_translator@fixed     # cctest 打開 開啓自動造詞 開啓用戶詞典
     # - table_translator@mkst      # cctest  開啓造句(造詞引導)
+
     - table_translator@liurqry   # cctest 反查讀音
     #
     - script_translator@unicode  # cctest unicode
@@ -128,7 +129,7 @@ speller:
     # 再透過拼寫語法去除「~」後，送入辭典查詢
     # #############################################################
     # 以「?」鍵作通配符，可替代一碼或多碼
-    # 開啟這功能 部署時間會較久 約15秒
+    # 開啟這功能 部署時間會較久 約15~150秒 (依詞庫大小)
     # 參考 https://gist.github.com/LEOYoon-Tsaw/5786646
     # 單字用單個通配符
     # 通配符在尾  # derive --衍生〔保留原形〕 x?
@@ -192,14 +193,14 @@ translator:
   db_class: userdb # 測試時先用 tabledb
   # db_class 設 tabledb  liur.txt  
   # db_class 設 userdb   liur.userdb 適合同步用
-  initial_quality: 1000 # 設定此翻譯器出字優先級
+  initial_quality: 10000 # 設定此翻譯器出字優先級
   # enable_charset_filter: false # 是否開啓字符集過濾〔僅table_translator有效〕
   enable_sentence: false # 是否開啓自動造句 default false # 連打
   # enable_encoder: false   # 是否開啓自動造詞 default false cctest  〔僅table_translator有效〕 # 打開 能顯示有enc前綴的詞 , 能消除enc前綴
   # encode_commit_history: false # 是否對已上屛詞自動成詞 default false 〔僅table_translator有效〕
   # max_phrase_length: 10 # 最大自動成詞詞長〔僅table_translator有效〕#  10 or 2
   # enable_completion: false # 提前顯示尚未輸入完整碼的字〔僅table_translator有效〕# 可以用?當通配符所以關閉  # iRime 可以開
-  enable_user_dict: true # 是否開啓用戶詞典 # default false # 讀 liur.txt or liuruserdb
+  enable_user_dict: false # 是否開啓用戶詞典 # default false # 讀 liur.txt or liuruserdb
   # spelling_hints: 1 # 設定多少字以內候選標註完整帶調拼音〔僅script_translator有效〕
   # disable_user_dict_for_patterns: # 禁止某些編碼錄入用戶詞典
   #   - "^[',.].*$"
@@ -210,10 +211,9 @@ translator:
   #   - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|ABCDEFGHIJKLMNOPQRSTUVWXYZ[];',.|" # 組字時顯示大寫
   #   - 'xform/\\//' #全形空格　 #半形空格  #| #⁞ #⁝ #⋮ #¦ #┆
 
-
 fixed:
   __include: /translator
-  initial_quality: 100
+  initial_quality: 1000
   enable_user_dict: true # 開啓用戶詞典
   enable_encoder: true   # 開啓造詞功能〔僅table_translator有效〕# 這個要開 才會造詞 不然只會造字
   enable_completion: true
@@ -227,7 +227,10 @@ mkst: # 開啓造句(造詞引導) # 會加到 liur.txt 會出現 del enc us 前
   tips: "【造詞】"
   tag: mkst # 必要的
 
-
+repeat_history: # 重复上次上屏内容
+  input: "??"
+  size: 10
+  initial_quality: 3000
 
 reverse_lookup: # 注音反查 嘸蝦米編碼 只能查單字
   tag: reverse_lookup
@@ -260,10 +263,7 @@ menu:
   page_size: 5 # 候選視窗每頁項目數 default 5  ## 電腦設 5 手機設 10 
 
 
-repeat_history: # 重复上次上屏内容
-  input: "."
-  size: 1
-  initial_quality: 10000
+
 
 liu_w2c: # 反查字的 嘸蝦米編碼
   opencc_config: liu_w2c.json # 要檢查 opencc 裏面有沒有這個檔案  用字轉換定義文件
@@ -309,7 +309,6 @@ pinyin:  # 拼音反查 嘸蝦米編碼 ########################################
   tips: 【拼音】
   closing_tips: 【蝦米】
   initial_quality: 0.2  # 調整該編譯器出字優先度
-
 
 phonetic: # 注音反查 嘸蝦米編碼 ##############################################
   tag: phonetic
@@ -434,11 +433,11 @@ key_binder:
   bindings: 
     ### 刪除鍵 ###
     # - {accept: BackSpace, send: Escape, when: has_menu} #〔關〕刪除前一個拼音字符〔開〕：刪除整組拼音字符（一個字）
-    # - {accept: Shift+BackSpace, send: BackSpace, when: has_menu}
-    # - {accept: backslash, send: BackSpace, when: has_menu} #「\」鍵位刪除一個拼音字符。
+    - {accept: Shift+BackSpace, send: BackSpace, when: has_menu}
+    - {accept: backslash, send: BackSpace, when: has_menu} #「\」鍵位刪除一個拼音字符。
     ### 空碼時 按空白鍵 清空組字 ###
-    - {when: has_menu, accept: space, send: space }
-    - {when: composing, accept: space, send: Escape }
+    - {when: has_menu, accept: space, send: space }   # 使用 script_translator or enable_sentence 連打時 無效果
+    - {when: composing, accept: space, send: Escape } # 使用 script_translator or enable_sentence 連打時 無效果
 
 editor:
   bindings:

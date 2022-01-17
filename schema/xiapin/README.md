@@ -14,43 +14,52 @@
 
 ### 功能說明
 
-### ```;``` 造詞功能 
+### 1. 造詞功能 ( 刪除自造詞使用 Ctrl+k 或 使用 ```'``` 鍵 )
 
-編出來的蝦米碼 為 前三字首碼+最後一字首碼 
+由 ```table_translator```  (~~使用~~ ```;``` ~~引導造詞功能~~ )
 
-```yaml 
+改成 
 
-例如:
+```script_translator``` 帶有造詞功能 及 造句功能 (連打) 
 
-輸入 caur bp
+造詞規則改成 全碼照詞
 
-=> cbbb
+字串+Tab+編碼
 
-輸入法 caur bp wyu
+編碼 = 第一個字編碼+空格+第二個字編碼+空格+第三個字+ ... 
 
-=> cbww
-
-輸入法測試 caur bp wyu  wmbr iaxi
-
-=> cbwi
+```yaml
+輸入法	caur bp wyu
+測試	wmbr iaxi
 
 ```
 
-### ```;;``` 反查讀音
+### 2. ```;;``` 反查讀音
 
-### ```;;;``` 拼音輸入法 (依賴 luna_pinyin )
+### 3. ```;;;``` 拼音輸入法 (依賴 luna_pinyin )
 
-### ```;;;;``` 統一碼(依賴unicode)
+### 4. ```;;;;``` 統一碼(依賴unicode)
 
-### ```;;;;;``` 注音模式輸入 只能查單字/單詞的 蝦米碼 (使用 = 符號 輸入一聲 ,  依賴 bopomofo_liu ) 
+### 5. ```;;;;;``` 注音模式輸入 只能查單字/單詞的 蝦米碼 
 
-### ```';``` 注音模式輸入  可以連打注音 查蝦米碼 (使用 = 符號 輸入一聲 ,  依賴 bopomofo_liu )
+(使用 = 符號 輸入一聲 ,  依賴 bopomofo_liu ) 
 
-### 使用 ```?``` 符號 當通配符 .  ( 例如: 國 oaqe 可以輸入 oa?e / o?e / ?aqe / oaq? )
+### 6. ```';``` 注音模式輸入  可以連打注音 查蝦米碼 
+
+(使用 = 符號 輸入一聲 ,  依賴 bopomofo_liu )
+
+### 7. ~~使用 ```?``` 符號 當通配符 .~~
+~~(例如: 國 oaqe 可以輸入 oa?e / o?e / ?aqe / oaq? )~~
+
+(會導致部署時間太長 暫時停用）
+
+### 8. 頭尾碼 加  ```?``` 符號 ( 例如: 國 oaqe 可以輸入 oe? )
+
+### 9. ```??``` 符號 顯示上屏過的字 ( 使用 Return 或 space 後清除該記錄)
 
 ### 反查蝦米碼 使用 ```/opnecc/liu_w2c.json```
 
-### 以上的 前導符 可能會更改 詳細設定請看  [xiapin_mtc.schema.yaml](https://github.com/copy0401/irime-bopomo-config/blob/master/schema/xiapin/xiapin_mtc.schema.yaml)
+### 以上的功能 可能會更改 詳細設定請看  [xiapin_mtc.schema.yaml](https://github.com/copy0401/irime-bopomo-config/blob/master/schema/xiapin/xiapin_mtc.schema.yaml)
 
 
 ---
@@ -65,8 +74,8 @@ import_tables:
   # - liur_Japan # 如果要啟動日文漢字就取消註解
   # - liur_TradToSimp # 如果要啟動簡體漢字就取消註解
   - openxiami_TCJP
-  - openxiami_TradExt
-  - openxiami_CustomWord
+  # - openxiami_TradExt
+  - openxiami_CustomWord # 詞庫
   # - liur_English # 以英語詞庫 小於三碼補 ; 
 ```
 

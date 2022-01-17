@@ -266,7 +266,7 @@ key_binder:
     # - { when: paging, accept: minus, send: Page_Up }
     # - { when: has_menu, accept: equal, send: Page_Down }
     ### 刪除鍵 ###
-    - { when: has_menu, accept: BackSpace, send: Control+BackSpace } #〔關〕刪除前一個拼音字符〔開〕：刪除整組拼音字符（一個字）
+    - { when: has_menu, accept: BackSpace, send: Control+BackSpace } #〔關〕刪除前一個拼音字符 ,〔開〕：刪除整組拼音字符（一個字）
     - { when: has_menu, accept: Shift+BackSpace, send: BackSpace }
     - { when: has_menu, accept: backslash, send: BackSpace} #「\」鍵位刪除一個拼音字符。
 

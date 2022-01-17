@@ -64,6 +64,7 @@ speller:
 
 translator:
   dictionary: luna_pinyin
+  # dictionary: luna_pinyin.extended
   preedit_format:
     - xform/([nl])v/$1ü/
     - xform/([nl])ue/$1üe/
