@@ -14,16 +14,31 @@
 
 ### 功能說明
 
-### 1. 造詞功能 
-### ( 刪除自造詞方法 : 使用 ```[```  ```]``` 切換候選項 , 
-### 再使用 Ctrl+k 或 使用 ```'``` 鍵 刪除自造詞 )
+---
 
+![](https://github.com/copy0401/irime-bopomo-config/raw/master/images/mkst.gif)
+
+---
+
+
+### 1. 造詞功能 （ 連打 或是 使用 ` 當分隔符 ）
+### 刪除自造詞方法 : 
+### 使用 ```[```  ```]``` 切換候選項, 
+### 再使用 Ctrl+k 或 使用 ```'``` 鍵 刪除自造詞 
+
+### 實際使用 打兩次就造詞完成, 刪除時一樣刪除兩次
 
 由 ```table_translator```  (~~使用~~ ```;``` ~~引導造詞功能~~ )
 
 改成 
 
 ```script_translator``` 帶有造詞功能 及 造句功能 (連打) 
+
+---
+
+![](https://github.com/copy0401/irime-bopomo-config/raw/master/images/reverse_lookup.gif)
+
+---
 
 ### 2. ```;;``` 反查讀音
 
@@ -38,6 +53,12 @@
 ### 6. ```';``` 注音模式輸入  可以連打注音 查蝦米碼 
 
 (使用 = 符號 輸入一聲 ,  依賴 bopomofo_liu )
+
+---
+
+![](https://github.com/copy0401/irime-bopomo-config/raw/master/images/wildcardcharacter.gif)
+
+---
 
 ### 7. ~~使用 ```?``` 符號 當通配符 .~~
 ~~(例如: 國 oaqe 可以輸入 oa?e / o?e / ?aqe / oaq? )~~
