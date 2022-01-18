@@ -7,7 +7,7 @@
 ---
 name: liur.extended
 version: "1"
-# use_preset_vocabulary: false # 是否引入「八股文」〔含字詞頻、詞庫〕
+use_preset_vocabulary: true # 是否引入「八股文」〔含字詞頻、詞庫〕
 sort: original	# 按 字詞  排序 輸入original,以 字詞頻  排序 輸入 by_weight.
 # ################################
 # 如果編碼規則都關閉 自動生成 全碼
@@ -53,7 +53,7 @@ import_tables:
   - openxiami_TCJP
   # - openxiami_TradExt
   # - liur_English # 以英語詞庫 小於三碼補 ; 
-  - openxiami_CustomWord
+  # - openxiami_CustomWord
 ...
 
 # 字碼格式: 字<Tab>字碼<Tab>權重

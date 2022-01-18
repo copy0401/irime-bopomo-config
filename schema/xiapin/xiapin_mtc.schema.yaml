@@ -13,7 +13,7 @@ schema:
   name: 蝦米 # TC 加計算機功能 #  "␠"  "⍽"
   version: "20220115"
   author:
-    - 整理者 booscopy
+    - 制作人
   description: |
     蝦米-注音輸入
   dependencies:
@@ -46,7 +46,7 @@ switches:
 engine:
   filters:                     # 這批組件過濾翻譯的結果
     - simplifier               # 用字轉換 # 繁簡轉換
-    - simplifier@liu_w2c       # cctest 無蝦米字碼反查
+    - simplifier@liu_w2c       # 無蝦米字碼反查 
     #
     # - lua_translator@single_char_filter # cctest rime.lua
     # - single_char_filter  # 單字過濾器，如加載此組件，則屛敝詞典中的詞組〔僅table_translator有效〕 # 單字優先
@@ -273,6 +273,7 @@ liu_w2c: # 反查字的 嘸蝦米編碼
   tags: [ pinyin , phonetic , unicode ] # 設定轉換範圍
   # all [ pinyin , reverse_lookup ]  # pinyin , phonetic , mkst , abc, unicode
   tips: all # 設定是否提示轉換前的字，可塡none〔或不塡〕、char〔僅對單字有效〕、all
+
 
 # english: # 英文混打
 #   dictionary: easy_en

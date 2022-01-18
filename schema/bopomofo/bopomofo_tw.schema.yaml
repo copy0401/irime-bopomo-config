@@ -166,7 +166,7 @@ speller:
   
   
 translator:
-  # spelling_hints: 1 # 最多顯示1個中文字的拼音
+  dictionary: terra_pinyin
   prism: bopomofo_tw
   initial_quality: "0"
   preedit_format:

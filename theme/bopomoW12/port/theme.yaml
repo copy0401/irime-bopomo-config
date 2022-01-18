@@ -107,7 +107,7 @@ style:
   vertical_gap: *jpgd6 #键盘行距
   round_corner: 0.0001 #圓角 值为0的话默认 iphone为4，ipad为8，min=0.01 4 6 -13
   sound: "mnc.caf" # zhong.aiff # 全域預設 按鍵聲音
-  color_scheme: cc12 #配色方案 目前系統黑色主題模式下 沒有作用
+  color_scheme: cc11 #配色方案 目前系統黑色主題模式下 沒有作用
   #         首選項    候選項   
   # cc1  紫底 黑字 / 深灰 黑字  類似 yahoo keykey輸入法 配色
   # cc2  綠底 黑字 / 深灰 黑字  類似 淡綠底黑字
@@ -929,13 +929,13 @@ preset_color_schemes: #  同文/iRime 使用 RGB , 鼠須管使用 BGR
     name: cc／cc11
     author: cc <copy0401@gmail.com>
     #
-    hilited_candidate_text_color: 0x7f0056 # 首選項 字
+    hilited_candidate_text_color: 0x000000 # 首選項 字
     hilited_candidate_back_color: 0xbad6fd # 首選項 底 
     #
     candidate_text_color: 0x000000 # 候選項 字
     back_color: 0xeeeeee           # 候選項 底
     #
-    hilited_text_color: 0x557f5f  # 左上 小小的注音符號 
+    hilited_text_color: 0x7f0056  # 左上 小小的注音符號  # 綠 0x557f5f
     comment_text_color: 0x0000ff  # 右下 後面拼音符號  # trime 候选项注释  #
 
   cc12: # cc12 
