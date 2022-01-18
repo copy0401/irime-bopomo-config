@@ -5,11 +5,10 @@
 name: openxiami_CustomWord
 version: "1"
 sort: original
-encoder:
-  rules:
-    - length_in_range: [1, 10] #
-      formula: "AaAbAcAdAeAfBaBbBcBdBeBfCaCbCcCdCeCfDaDbDcDdDeDfEaEbEcEdEeEfFaFbFcFdFeFfGaGbGcGdGeGfHaHbHcHdHeHfIaIbIcIdIeIfJaJbJcJdJeJfKaKbKcKdKeKf" #
-      tail_anchor: "`" # 詞碼，包含結構分割符號
+# encoder:
+#   rules:
+#     - length_in_range: [2, 10] #
+#       formula: "AaAbAcAdAeAfBaBbBcBdBeBfCaCbCcCdCeCfDaDbDcDdDeDfEaEbEcEdEeEfFaFbFcFdFeFfGaGbGcGdGeGfHaHbHcHdHeHfIaIbIcIdIeIfJaJbJcJdJeJfKaKbKcKdKeKf" #
 ...
 
 一一

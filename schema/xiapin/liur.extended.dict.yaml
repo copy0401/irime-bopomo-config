@@ -7,22 +7,27 @@
 ---
 name: liur.extended
 version: "1"
-# use_preset_vocabulary: true # 是否引入「八股文」〔含字詞頻、詞庫〕# 可能拖慢速度
+# use_preset_vocabulary: false # 是否引入「八股文」〔含字詞頻、詞庫〕
 sort: original	# 按 字詞  排序 輸入original,以 字詞頻  排序 輸入 by_weight.
-# 字碼格式: 字<Tab>字碼<Tab>權重
+# ################################
+# 如果編碼規則都關閉 自動生成 全碼
+# ################################
 encoder:
-  # exclude_patterns: # 排除某編碼 造詞規則
-  #   - '^z.*$'
   rules:
-    - length_in_range: [1, 10] #
+    - length_in_range: [2, 10] #
       formula: "AaAbAcAdAeAfBaBbBcBdBeBfCaCbCcCdCeCfDaDbDcDdDeDfEaEbEcEdEeEfFaFbFcFdFeFfGaGbGcGdGeGfHaHbHcHdHeHfIaIbIcIdIeIfJaJbJcJdJeJfKaKbKcKdKeKf" #
       tail_anchor: "`" # 詞碼，包含結構分割符號
-    # - length_equal: 2 # 對於二字詞
-    #   formula: "AaBaBaBa" # "1首+2首+2首+2首"
-    # - length_equal: 3 #對於三字詞
-    #   formula: "AaBaCaCa" # "1首+2首+3首+3首"
-    # - length_in_range: [4, 10] # 對於四至十字詞
-    #   formula: "AaBaCaZa" # "1首+2首+3首+n首"
+# ################################
+# encoder:
+#   # exclude_patterns: # 排除某編碼 造詞規則
+#   #   - '^z.*$'
+#   rules:
+#     - length_equal: 2 # 對於二字詞
+#       formula: "AaBaBaBa" # "1首+2首+2首+2首"
+#     - length_equal: 3 #對於三字詞
+#       formula: "AaBaCaCa" # "1首+2首+3首+3首"
+#     - length_in_range: [4, 10] # 對於四至十字詞
+#       formula: "AaBaCaZa" # "1首+2首+3首+n首"
 # Aa 代表 字1字 首碼 
 # Az 代表 字1字 尾碼
 # Ba 代表 字2字 首碼
@@ -51,3 +56,4 @@ import_tables:
   - openxiami_CustomWord
 ...
 
+# 字碼格式: 字<Tab>字碼<Tab>權重

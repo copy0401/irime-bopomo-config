@@ -1601,7 +1601,7 @@ end
 calculator_translator = require("calculator_translator")
 preedit_preview = require("preedit_preview")
 preedit_preview2 = require("preedit_preview2")
-add_tag = require("add_tag")
+-- add_tag = require("add_tag")
 -- quad_filter = require("quad_filter")
 
 

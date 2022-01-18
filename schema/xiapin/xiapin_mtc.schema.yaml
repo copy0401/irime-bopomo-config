@@ -55,8 +55,8 @@ engine:
     # - lua_translator@charset_comment_filter       # cctest rime.lua 为候选项加上其所属字符集的注释
     - reverse_lookup_filter@phonetic_reverse_lookup # 反查濾鏡 可加載多個實例，後接@+濾鏡名 # cctest 打字時 標出注音
     - lua_filter@preedit_preview2                   # /lua/preedit_preview2.lua # iRime 需要開啟
-    - lua_filter@add_tag                            # /lua/add_tag.lua # iRime 需要開啟
     - uniquifier                                    # 過濾重複的候選字，有可能來自繁簡轉換
+
   processors:          # 這批組件處理各類按鍵消息
     - ascii_composer   # 處理西文模式及中西文切換
     - recognizer       # 與 matcher 搭配，處理符合特定規則的輸入碼，如網址、反查等
@@ -116,9 +116,11 @@ speller:
   #
   # alphabet: "abcdefghijklmnopqrstuvwxyz[];',." #  def
   alphabet:   "abcdefghijklmnopqrstuvwxyz[];',.?"  # 萬用碼 ?` # 定義本方案輸入鍵
-  # finals: " "
-  delimiter: "`"  #  上屛時的音節間分音符
-  # use_space: true # cctest 空白键断字？ 搭配 enable_sentence: true 能用連打跟會順便造句
+  #
+  finals: " "
+  delimiter: "`"  #  上屛時的音節間分音符 ` 
+  use_space: true # cctest 空白键断字？ 搭配 enable_sentence: true 能用連打跟會順便造句
+  #
   algebra: # 拼寫運算規則，由之算出的拼寫匯入prism中
     # 為了加強造詞準確性，在字典中，
     # 以「~」前綴標記非標準拆字，
@@ -190,7 +192,7 @@ translator:
   # dictionary: liur_Trad
   dictionary: liur.extended # 詞典
   # db_class 設定用戶詞典類型，可設tabledb〔文本〕或 userdb〔二進制〕或 stabledb
-  db_class: userdb # 測試時先用 tabledb
+  db_class: tabledb # 測試時先用 tabledb
   # db_class 設 tabledb  liur.txt  
   # db_class 設 userdb   liur.userdb 適合同步用
   initial_quality: 10000 # 設定此翻譯器出字優先級
@@ -217,7 +219,6 @@ fixed:
   enable_user_dict: true # 開啓用戶詞典
   enable_encoder: true   # 開啓造詞功能〔僅table_translator有效〕# 這個要開 才會造詞 不然只會造字
   enable_completion: true
-
 
 mkst: # 開啓造句(造詞引導) # 會加到 liur.txt 會出現 del enc us 前綴
   __include: /translator
