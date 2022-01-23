@@ -3,7 +3,6 @@
 
 __include: bopomofo.schema:/
 
-__include: grammar:/hant
 
 # 默認的opencc字形轉換選項設爲臺灣字形標準
 __patch:
@@ -42,13 +41,7 @@ switches:
       - 简化字
       - 臺灣字形
     reset: 2
-  - name: simplification
-    reset: 0
-    states: [繁體, 简体] # Control+Shift+5
 
-
-simplifier:
-  tips: all
 
 zh_hans:
   option_name: zh_hans
@@ -72,6 +65,7 @@ engine:
     - selector
     - navigator
     - express_editor # ※ 編輯器，處理空格、回車上屏、回退鍵等
+    # - fluency_editor
   segmentors:
     - ascii_segmentor
     - matcher
@@ -97,6 +91,8 @@ engine:
     - reverse_lookup_filter@phonetic_reverse_lookup # cctest 打字時 標出注音
     # - lua_filter@quad_filter
     # - lua_filter@preedit_preview #  /lua/preedit_preview.lua # 電腦停用 手機啟用
+
+
 
 # speller:
 #   algebra:
@@ -252,7 +248,7 @@ phonetic_reverse_lookup: # 顯示注音符號
 
 editor:
   bindings:
-    # space: commit_composition # 使用 fluency_editor 時開啟
+    space: commit_composition # 使用 fluency_editor 時開啟
     Return: confirm #使用 express_editor 時開啟
     Shift+Return: commit_raw_input # 上屏原始輸入
     Control+Return: commit_script_text # 上屏變換後輸入

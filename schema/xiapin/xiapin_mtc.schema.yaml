@@ -3,7 +3,7 @@
 # encoding: utf-8
 #
 
-__include: grammar:/hant # 八股文 語言模型
+# __include: grammar:/hant # 八股文 語言模型
 # 句子 grammar:/hant      # 搭配 enable_sentence: true 連打功能  可以自動斷詞 
 # 單字 grammar:/hant_char
 # 如果不打句子 可以將該行註解 並  enable_sentence 設為 false
@@ -56,7 +56,6 @@ engine:
     - reverse_lookup_filter@phonetic_reverse_lookup # 反查濾鏡 可加載多個實例，後接@+濾鏡名 # cctest 打字時 標出注音
     - lua_filter@preedit_preview2                   # /lua/preedit_preview2.lua # iRime 需要開啟
     - uniquifier                                    # 過濾重複的候選字，有可能來自繁簡轉換
-
   processors:          # 這批組件處理各類按鍵消息
     - ascii_composer   # 處理西文模式及中西文切換
     - recognizer       # 與 matcher 搭配，處理符合特定規則的輸入碼，如網址、反查等
@@ -70,7 +69,7 @@ engine:
     - ascii_segmentor  # 標識西文段落
     - matcher          # 標識符合特定規則的段落，如網址、反查等
     #
-    # - affix_segmentor@mkst      # cctest 開啓造句(造詞引導 )
+    - affix_segmentor@mkst      # cctest 開啓造句(造詞引導 )
     - affix_segmentor@liurqry   # cctest 反查讀音
     #
     - affix_segmentor@unicode   # cctest unicode
@@ -84,11 +83,11 @@ engine:
     # - punct_translator           # 配合punct_segmentor轉換標點符號
     - reverse_lookup_translator  # 反查翻譯器，用另一種編碼方案查碼 # cctest 注音反查嘸蝦米 只能查單字 
     #
-    # - table_translator           # 碼表翻譯器，用於倉頡、五筆等基於碼表的輸入方案
-    - script_translator            # 改用這個
+    - table_translator           # 碼表翻譯器，用於倉頡、五筆等基於碼表的輸入方案
+    # - script_translator          # 可以改用這個  不用使用引導造詞 mkst
     #
     - table_translator@fixed     # cctest 打開 開啓自動造詞 開啓用戶詞典
-    # - table_translator@mkst      # cctest  開啓造句(造詞引導)
+    - table_translator@mkst      # cctest  開啓造句(造詞引導)
 
     - table_translator@liurqry   # cctest 反查讀音
     #
@@ -117,9 +116,9 @@ speller:
   # alphabet: "abcdefghijklmnopqrstuvwxyz[];',." #  def
   alphabet:   "abcdefghijklmnopqrstuvwxyz[];',.?"  # 萬用碼 ?` # 定義本方案輸入鍵
   #
-  finals: " "
   delimiter: "`"  #  上屛時的音節間分音符 ` 
-  use_space: true # cctest 空白键断字？ 搭配 enable_sentence: true 能用連打跟會順便造句
+  finals: " " # 配 script_translator
+  use_space: true # cctest 空白键断字？ 搭配 enable_sentence: true 能用連打跟會順便造句 # 配 script_translator
   #
   algebra: # 拼寫運算規則，由之算出的拼寫匯入prism中
     # 為了加強造詞準確性，在字典中，
@@ -180,9 +179,9 @@ speller:
     # # 頭尾？ 查碼 
     # 開啟這功能 部署時間差不多
     # 參考 https://github.com/shewer/whaleliu/blob/master/cangjie6liu.schema.yaml
-    - derive/^([a-z;,]).([a-z;,])$/$1$2\?/        # 取首尾二碼 爲反查三碼字  qk? 查 qek張
-    - derive/^([a-z;,])..([a-z;,])$/$1$2\?\?/     # 取首尾二碼 爲速成碼反查四碼字
-    - derive/^([a-z;,])...([a-z;,])$/$1$2\?\?\?/  # 取首尾二碼 爲速成碼反查五碼字
+    # - derive/^([a-z;,]).([a-z;,])$/$1$2\?/        # 取首尾二碼 爲反查三碼字  qk? 查 qek張
+    # - derive/^([a-z;,])..([a-z;,])$/$1$2\?\?/     # 取首尾二碼 爲速成碼反查四碼字
+    # - derive/^([a-z;,])...([a-z;,])$/$1$2\?\?\?/  # 取首尾二碼 爲速成碼反查五碼字
 
 # abc_segmentor:
   # extra_tags:
@@ -196,22 +195,23 @@ translator:
   # db_class 設 tabledb  liur.txt  
   # db_class 設 userdb   liur.userdb 適合同步用
   initial_quality: 10000 # 設定此翻譯器出字優先級
-  # enable_charset_filter: false # 是否開啓字符集過濾〔僅table_translator有效〕
+  enable_charset_filter: false # 是否開啓字符集過濾〔僅table_translator有效〕
   enable_sentence: false # 是否開啓自動造句 default false # 連打
-  # enable_encoder: false   # 是否開啓自動造詞 default false cctest  〔僅table_translator有效〕 # 打開 能顯示有enc前綴的詞 , 能消除enc前綴
-  # encode_commit_history: false # 是否對已上屛詞自動成詞 default false 〔僅table_translator有效〕
-  # max_phrase_length: 10 # 最大自動成詞詞長〔僅table_translator有效〕#  10 or 2
-  # enable_completion: false # 提前顯示尚未輸入完整碼的字〔僅table_translator有效〕# 可以用?當通配符所以關閉  # iRime 可以開
+  enable_encoder: false   # 是否開啓自動造詞 default false cctest  〔僅table_translator有效〕 # 打開 能顯示有enc前綴的詞 , 能消除enc前綴
+  encode_commit_history: false # 是否對已上屛詞自動成詞 default false 〔僅table_translator有效〕# 預設 true 要關
+  # max_phrase_length: 2 # 最大自動成詞詞長〔僅table_translator有效〕#  10 or 2
+  enable_completion: false # 提前顯示尚未輸入完整碼的字〔僅table_translator有效〕# 可以用?當通配符所以關閉  # iRime 可以開 
   enable_user_dict: false # 是否開啓用戶詞典 # default false # 讀 liur.txt or liuruserdb
   # spelling_hints: 1 # 設定多少字以內候選標註完整帶調拼音〔僅script_translator有效〕
-  # disable_user_dict_for_patterns: # 禁止某些編碼錄入用戶詞典
-  #   - "^[',.].*$"
+  disable_user_dict_for_patterns: # 禁止某些編碼錄入用戶詞典
+    - "^[',.].*$"
   comment_format: # 提示碼自定義
-  #   - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|ABCDEFGHIJKLMNOPQRSTUVWXYZ[];',.|" # 顯示大寫 # 使用 preedit_preview2 就不用這行
-    - xform/^~(.+)$/>[$1]   # 將提示碼改為較美觀的型式
+    # - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|ABCDEFGHIJKLMNOPQRSTUVWXYZ[];',.|" # 顯示大寫 # 使用 preedit_preview2 就不用這行
+    # - xform/^~(.+)$/>[$1]   # 將提示碼改為較美觀的型式
+    - xform/^~(.+)$/$1   # 改提示碼型式 搭配 lua 使用
   # preedit_format: # 上屛碼自定義
-  #   - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|ABCDEFGHIJKLMNOPQRSTUVWXYZ[];',.|" # 組字時顯示大寫
-  #   - 'xform/\\//' #全形空格　 #半形空格  #| #⁞ #⁝ #⋮ #¦ #┆
+    # - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|ABCDEFGHIJKLMNOPQRSTUVWXYZ[];',.|" # 組字時顯示大寫
+    # - 'xform/\\//' #全形空格　 #半形空格  #| #⁞ #⁝ #⋮ #¦ #┆
 
 fixed:
   __include: /translator
@@ -220,10 +220,12 @@ fixed:
   enable_encoder: true   # 開啓造詞功能〔僅table_translator有效〕# 這個要開 才會造詞 不然只會造字
   enable_completion: true
 
-mkst: # 開啓造句(造詞引導) # 會加到 liur.txt 會出現 del enc us 前綴
+mkst: # 開啓造句(造詞引導) # 會加到 liur.txt 會出現 del enc us 前綴 # 這項依賴造詞編碼規則
   __include: /translator
   initial_quality: 10
   enable_sentence: true  # 自動造句 # 連打 #
+  enable_encoder: true   # 是否開啓自動造詞
+  enable_user_dict: true
   prefix: ';' #####################################################################
   tips: "【造詞】"
   tag: mkst # 必要的
@@ -251,8 +253,6 @@ reverse_lookup: # 注音反查 嘸蝦米編碼 只能查單字
 
 simplifier:
   tips: all  # 簡化字模式下提示對應的傳統漢字
-
-
 
 menu:
   alternative_select_labels: [0,1,2,3,4,5,6,7,8,9] # 由0開始算  v=1 r=2 s=3 f=4
@@ -433,6 +433,10 @@ punctuator:
 key_binder:
   import_preset: default
   bindings: 
+    ## paging     翻頁
+    ## has_menu   操作候選項用
+    ## composing  操作輸入碼用
+    ## always     全域
     ### 刪除鍵 ###
     # - {accept: BackSpace, send: Escape, when: has_menu} #〔關〕刪除前一個拼音字符〔開〕：刪除整組拼音字符（一個字）
     - {accept: Shift+BackSpace, send: BackSpace, when: has_menu}
@@ -440,6 +444,14 @@ key_binder:
     ### 空碼時 按空白鍵 清空組字 ###
     - {when: has_menu, accept: space, send: space }   # 使用 script_translator or enable_sentence 連打時 無效果
     - {when: composing, accept: space, send: Escape } # 使用 script_translator or enable_sentence 連打時 無效果
+    ### Tab鍵 換頁
+    # - {accept: Tab, send: Page_Down, when: composing}         # 換下頁
+    # - {accept: "Shift+Tab", send: Page_Up, when: composing}   # 換上頁
+    ##
+    - {accept: Tab, send: Down, when: composing}            # 換下個候選項
+    - {accept: "Shift+Tab", send: Up, when: composing}      # 換上個候選項
+    ##
+    # - {when: composing, accept: Tab, send: space }          # 上屏候選項
 
 editor:
   bindings:
@@ -451,6 +463,7 @@ editor:
 recognizer:
   # import_preset: default # 預設能大寫組字 改成 patterns/punct
   patterns:
+    #
     # punct: "^[0-9a-z']*'?$"
     #
     email: ^[a-z][-_.0-9a-z]*@.*$
@@ -461,8 +474,8 @@ recognizer:
     #
     pinyin: ";;;[a-z']*'?$" # 拼音反查嘸蝦米編碼
     #
-    # mkst: "^;[a-z,.'`]*$" # 造詞引導
-    mkst: "^[a-z]*;[a-z,.'`]*$" # 造詞引導
+    mkst: "^;[a-z,.'`]*$" # 造詞引導
+    # mkst: "^[a-z]*;[a-z,.'`]*$" # 造詞引導
     #
     unicode: ";;;;[0123456789abcdef']*'?$" # unicode
     #

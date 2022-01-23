@@ -7,7 +7,7 @@
 ---
 name: liur.extended
 version: "1"
-use_preset_vocabulary: true # 是否引入「八股文」〔含字詞頻、詞庫〕
+use_preset_vocabulary: false # 是否引入「八股文」〔含字詞頻、詞庫〕
 sort: original	# 按 字詞  排序 輸入original,以 字詞頻  排序 輸入 by_weight.
 # ################################
 # 如果編碼規則都關閉 自動生成 全碼
@@ -16,7 +16,8 @@ encoder:
   rules:
     - length_in_range: [2, 10] #
       formula: "AaAbAcAdAeAfBaBbBcBdBeBfCaCbCcCdCeCfDaDbDcDdDeDfEaEbEcEdEeEfFaFbFcFdFeFfGaGbGcGdGeGfHaHbHcHdHeHfIaIbIcIdIeIfJaJbJcJdJeJfKaKbKcKdKeKf" #
-      tail_anchor: "`" # 詞碼，包含結構分割符號
+      # formula: "AaBaCaDa" #
+      # tail_anchor: "`"  # 詞碼，包含結構分割符號
 # ################################
 # encoder:
 #   # exclude_patterns: # 排除某編碼 造詞規則
@@ -45,15 +46,18 @@ encoder:
 # 備註: 有些字有重碼 自動編碼造出來的碼 可能就會有些不如逾期的編碼
 # #######################
 import_tables:
+  # - liur_Tw
   # - liur_Trad
   # - liur_TradExt
-  # - liur_customWords
   # - liur_Japan # 如果要啟動日文漢字就取消註解
   # - liur_TradToSimp # 如果要啟動簡體漢字就取消註解
-  - openxiami_TCJP
+  # - openxiami_TCJP # 有加 VRSF # 有些字有 ~ 影響部份造詞
+  - openxiami_TCJPCC # 有加 VRSF # 有些字有 刪 ~ 測試完成 可以解決照詞問題
   # - openxiami_TradExt
   # - liur_English # 以英語詞庫 小於三碼補 ; 
-  # - openxiami_CustomWord
+  #
+  #  # - liur_customWords
+  - openxiami_CustomWord
+  #
+  # 字碼格式: 字<Tab>字碼<Tab>權重
 ...
-
-# 字碼格式: 字<Tab>字碼<Tab>權重

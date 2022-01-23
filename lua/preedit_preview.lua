@@ -20,7 +20,8 @@ local function filter(input, env)
     -- cand:get_genuine().preedit = commit    -- 英文編碼
     -- cand:get_genuine().preedit = cand.text -- 首選項
     -- cand:get_genuine().preedit = commit.."".. cand.text ..""  -- 英文編碼 + 首選項
-    cand:get_genuine().preedit = cand.text.."<".. commit ..""  -- 首選項+英文編碼 # 手機使用
+    -- cand:get_genuine().preedit = cand.text.."<".. commit ..""  -- 首選項+英文編碼 # 手機使用
+    cand:get_genuine().preedit = cand.text.."\t".. cand.comment ..""  -- 首選項+英文編碼 # 手機使用
     -- cand:get_genuine().preedit = cand.text .."✍" --首选
     yield(cand)
   end
