@@ -28,11 +28,7 @@
 
 ### 實際使用 打兩次就造詞完成, 刪除時一樣刪除兩次
 
-由 ```table_translator```  (~~使用~~ ```;``` ~~引導造詞功能~~ )
-
-改成 
-
-```script_translator``` 帶有造詞功能 及 造句功能 (連打) 
+主翻譯器為  ```table_translator```  ( 使用  ```;```  引導造詞功能 )
 
 ---
 
@@ -60,10 +56,8 @@
 
 ---
 
-### 7. ~~使用 ```?``` 符號 當通配符 .~~
-~~(例如: 國 oaqe 可以輸入 oa?e / o?e / ?aqe / oaq? )~~
-
-(會導致部署時間太長 暫時停用）
+### 7. 使用 ```?``` 符號 當通配符 
+(例如: 國 oaqe 可以輸入 oa?e / o?e / ?aqe / oaq? )
 
 ### 8. 頭尾碼 加  ```?``` 符號 ( 例如: 國 oaqe 可以輸入 oe? )
 
@@ -96,7 +90,6 @@ import_tables:
 ### 上述功能參考下列方案
 
 ### [shewer/whaleliu](https://github.com/shewer/whaleliu/blob/master/cangjie6liu.schema.yaml)
-
 
 ### [LEOYoon-Tsaw gist](https://gist.github.com/LEOYoon-Tsaw/5786646)
 

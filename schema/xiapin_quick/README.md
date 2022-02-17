@@ -1,0 +1,37 @@
+## 蝦米詞句連打方案 (速蝦)
+
+### 使用 quick5 方案修改碼表 所以 schema id 沿用 quick5
+
+### 功能說明 :
+
+### 1.主翻譯器為 ```script_translator``` 
+
+有造詞功能 及 造句功能 (連打) 
+
+### 2. 使用 ``` ` ```  輸入注音 反查蝦米碼 
+
+(使用 = 符號 輸入一聲 ,  依賴 bopomofo_liu )
+
+### 3. 常駐標示讀音(注音符號)
+
+### 4. 使用 ```?``` 符號 當通配符 
+
+```
+範例1: 國 oaqe 可以輸入 oa?e / o?e / ?aqe / oaq? 
+範例2: 測試 wriv 可以輸入 w?i? 
+```
+
+### 5. 上屏方式
+```
+Return: confirm 
+Shift+Return: commit_raw_input # 上屏原始輸入
+Control+Return: commit_script_text # 上屏變換後輸入
+```
+### 6. 速蝦
+
+可以輸入 頭尾碼 打字/詞
+
+```
+輸入 tttn  森林
+輸入 wrii  測試
+```

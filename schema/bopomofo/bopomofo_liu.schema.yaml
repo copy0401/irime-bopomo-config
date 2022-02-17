@@ -76,9 +76,9 @@ speller:
     - 'xlit|bpmfdtnlgkhjqxZCSrzcsiuvaoeEAIOUMNKGR12345|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/-=6347|' # cctest 符號= 當空白鍵用
 
 translator:
-  spelling_hints: 2 # 最多顯示2個中文字的拼音
+  spelling_hints: 2 # 最多顯示 2 個中文字的拼音
   prism: bopomofo_liu
-  initial_quality: "0"
+  initial_quality: 0
   preedit_format:
     # - "xlit|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/- 6347|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙|"
     - "xlit|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/-=6347|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙|" # cctest 符號= 當空白鍵用

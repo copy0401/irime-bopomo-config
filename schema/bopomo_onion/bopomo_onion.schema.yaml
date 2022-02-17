@@ -162,7 +162,7 @@ translator:
   spelling_hints: 4 # 最多顯示四個中文字的拼音
   dictionary: bopomo_onion.extended
   prism: bopomo_onion
-  initial_quality: "0"
+  initial_quality: 0
   preedit_format:
     - "xlit|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/- 6347|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙|"
     # - "xlit|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/- 6347|"

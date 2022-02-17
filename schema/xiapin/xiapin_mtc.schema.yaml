@@ -70,7 +70,7 @@ engine:
     - matcher          # 標識符合特定規則的段落，如網址、反查等
     #
     - affix_segmentor@mkst      # cctest 開啓造句(造詞引導 )
-    - affix_segmentor@liurqry   # cctest 反查讀音
+    # - affix_segmentor@liurqry   # cctest 反查讀音
     #
     - affix_segmentor@unicode   # cctest unicode
     - affix_segmentor@pinyin    # cctest 拼音反查嘸蝦米
@@ -83,13 +83,13 @@ engine:
     # - punct_translator           # 配合punct_segmentor轉換標點符號
     - reverse_lookup_translator  # 反查翻譯器，用另一種編碼方案查碼 # cctest 注音反查嘸蝦米 只能查單字 
     #
+    - table_translator@fixed     # cctest 打開 開啓自動造詞 開啓用戶詞典
     - table_translator           # 碼表翻譯器，用於倉頡、五筆等基於碼表的輸入方案
     # - script_translator          # 可以改用這個  不用使用引導造詞 mkst
     #
-    - table_translator@fixed     # cctest 打開 開啓自動造詞 開啓用戶詞典
     - table_translator@mkst      # cctest  開啓造句(造詞引導)
-
-    - table_translator@liurqry   # cctest 反查讀音
+    #
+    # - table_translator@liurqry   # cctest 反查讀音
     #
     - script_translator@unicode  # cctest unicode
     - script_translator@pinyin   # cctest 拼音反查嘸蝦米
@@ -106,19 +106,17 @@ engine:
 speller:
   # max_code_length: 5                        # cctest 形碼最大碼長，超過則頂字上屛〔number〕
   # auto_clear: max_length                    # cctest 自動清屏
-  # auto_select: true                         # cctest 自動上屛〔true或false〕
+  # auto_select: false                          # cctest 自動上屛〔true或false〕
   # auto_select_pattern: '^[a-z]{3,5}[vrsf]$' # cctest 自動上屏規則，以正則表達式描述，當輸入串可以被匹配時自動頂字上屏。
-  # auto_select_unique_candidate: true        # cctest 唯一碼上屏 # 建議搭配 translator/enable_completion: true 顯示尚未輸入完整碼的字
-  # use_space: 以空格作輸入碼〔true或false〕
-  # finals: 定義僅作末碼之鍵
+  # auto_select_unique_candidate: false        # cctest 唯一碼上屏 # 建議搭配 translator/enable_completion: true 顯示尚未輸入完整碼的字
   # initials: 定義僅作始碼之鍵
   #
   # alphabet: "abcdefghijklmnopqrstuvwxyz[];',." #  def
   alphabet:   "abcdefghijklmnopqrstuvwxyz[];',.?"  # 萬用碼 ?` # 定義本方案輸入鍵
   #
   delimiter: "`"  #  上屛時的音節間分音符 ` 
-  finals: " " # 配 script_translator
-  use_space: true # cctest 空白键断字？ 搭配 enable_sentence: true 能用連打跟會順便造句 # 配 script_translator
+  finals: " " # 定義僅作末碼之鍵 # 配 script_translator
+  use_space: true # 以空格作輸入碼〔true或false〕# 搭配 enable_sentence: true 能用連打跟會順便造句 # 配 script_translator
   #
   algebra: # 拼寫運算規則，由之算出的拼寫匯入prism中
     # 為了加強造詞準確性，在字典中，
@@ -182,6 +180,56 @@ speller:
     # - derive/^([a-z;,]).([a-z;,])$/$1$2\?/        # 取首尾二碼 爲反查三碼字  qk? 查 qek張
     # - derive/^([a-z;,])..([a-z;,])$/$1$2\?\?/     # 取首尾二碼 爲速成碼反查四碼字
     # - derive/^([a-z;,])...([a-z;,])$/$1$2\?\?\?/  # 取首尾二碼 爲速成碼反查五碼字
+    # 參考五筆方案
+    # - "derive/^[a-z]([a-z]*)$/?$1/"
+    # - "derive/^([a-z])[a-z]([a-z]*)$/$1?$2/"
+    # - "derive/^([a-z]*)[a-z]([a-z])$/$1?$2/"
+    # - "derive/^([a-z]*)[a-z]$/$1?/"
+    # 亂序
+    # - derive/^([a-z])([a-z])/$1$2/ # derive --衍生〔保留原形〕# 12
+    # - derive/^([a-z])([a-z])/$2$1/ # derive --衍生〔保留原形〕# 21
+    #
+    # - derive/^([a-z])([a-z])([a-z])/$1$2$3/ # 123
+    # - derive/^([a-z])([a-z])([a-z])/$1$3$2/ # 132
+    # - derive/^([a-z])([a-z])([a-z])/$2$1$3/ # 213
+    # - derive/^([a-z])([a-z])([a-z])/$2$3$1/ # 231
+    # - derive/^([a-z])([a-z])([a-z])/$3$1$2/ # 312
+    # - derive/^([a-z])([a-z])([a-z])/$3$2$1/ # 321
+    # 
+    # - derive/^([a-z])([a-z])([a-z])([a-z])/$1$2$3$4/ # 1234
+    # - derive/^([a-z])([a-z])([a-z])([a-z])/$1$2$4$3/ # 1243
+    # - derive/^([a-z])([a-z])([a-z])([a-z])/$1$3$2$4/ # 1324
+    # - derive/^([a-z])([a-z])([a-z])([a-z])/$1$3$4$2/ # 1342
+    # - derive/^([a-z])([a-z])([a-z])([a-z])/$1$4$2$3/ # 1423
+    # - derive/^([a-z])([a-z])([a-z])([a-z])/$1$4$3$2/ # 1432
+    #
+    # - derive/^([a-z])([a-z])([a-z])([a-z])/$2$1$3$4/ # 2134
+    # - derive/^([a-z])([a-z])([a-z])([a-z])/$2$1$4$3/ # 2143
+    # - derive/^([a-z])([a-z])([a-z])([a-z])/$2$3$1$4/ # 2314
+    # - derive/^([a-z])([a-z])([a-z])([a-z])/$2$3$4$1/ # 2341
+    # - derive/^([a-z])([a-z])([a-z])([a-z])/$2$4$1$3/ # 2413
+    # - derive/^([a-z])([a-z])([a-z])([a-z])/$2$4$3$1/ # 2431
+    #
+    # - derive/^([a-z])([a-z])([a-z])([a-z])/$3$1$2$4/ # 3124
+    # - derive/^([a-z])([a-z])([a-z])([a-z])/$3$1$4$2/ # 3142
+    # - derive/^([a-z])([a-z])([a-z])([a-z])/$3$2$1$4/ # 3214
+    # - derive/^([a-z])([a-z])([a-z])([a-z])/$3$2$4$1/ # 3241
+    # - derive/^([a-z])([a-z])([a-z])([a-z])/$3$4$1$2/ # 3412
+    # - derive/^([a-z])([a-z])([a-z])([a-z])/$3$4$2$1/ # 3421
+    # 
+    # - derive/^([a-z])([a-z])([a-z])([a-z])/$4$1$2$3/ # 4123
+    # - derive/^([a-z])([a-z])([a-z])([a-z])/$4$1$3$2/ # 4132
+    # - derive/^([a-z])([a-z])([a-z])([a-z])/$4$2$1$3/ # 4213
+    # - derive/^([a-z])([a-z])([a-z])([a-z])/$4$2$3$1/ # 4231
+    # - derive/^([a-z])([a-z])([a-z])([a-z])/$4$3$1$2/ # 4312
+    # - derive/^([a-z])([a-z])([a-z])([a-z])/$4$3$2$1/ # 4321
+    # 
+    # fuzz 有空再研究 https://github.com/rime/home/issues/514
+    # - "fuzz/^(\\w).+$/$1/"
+    # - "fuzz/^(\\w)(\\w).+$/$1$2/"
+    # - "fuzz/^(\\w)(\\w)(\\w).+$/$1$2$3/"
+    # - "fuzz/^(\\w)(\\w)(\\w)(\\w).+$/$1$2$3$4/"
+    # - "fuzz/^(\\w)(\\w)(\\w)(\\w)(\\w).+$/$1$2$3$4$5/"
 
 # abc_segmentor:
   # extra_tags:
@@ -194,37 +242,63 @@ translator:
   db_class: tabledb # 測試時先用 tabledb
   # db_class 設 tabledb  liur.txt  
   # db_class 設 userdb   liur.userdb 適合同步用
-  initial_quality: 10000 # 設定此翻譯器出字優先級
+  initial_quality: 100000 # 設定此翻譯器出字優先級
   enable_charset_filter: false # 是否開啓字符集過濾〔僅table_translator有效〕
   enable_sentence: false # 是否開啓自動造句 default false # 連打
   enable_encoder: false   # 是否開啓自動造詞 default false cctest  〔僅table_translator有效〕 # 打開 能顯示有enc前綴的詞 , 能消除enc前綴
   encode_commit_history: false # 是否對已上屛詞自動成詞 default false 〔僅table_translator有效〕# 預設 true 要關
-  # max_phrase_length: 2 # 最大自動成詞詞長〔僅table_translator有效〕#  10 or 2
+  max_phrase_length: 2 # 最大自動成詞詞長〔僅table_translator有效〕#  10 or 2
   enable_completion: false # 提前顯示尚未輸入完整碼的字〔僅table_translator有效〕# 可以用?當通配符所以關閉  # iRime 可以開 
   enable_user_dict: false # 是否開啓用戶詞典 # default false # 讀 liur.txt or liuruserdb
   # spelling_hints: 1 # 設定多少字以內候選標註完整帶調拼音〔僅script_translator有效〕
-  disable_user_dict_for_patterns: # 禁止某些編碼錄入用戶詞典
-    - "^[',.].*$"
+  # disable_user_dict_for_patterns: # 禁止某些編碼錄入用戶詞典
+    # - "^[',.].*$"
+    # - ".*$" # 全部不造詞
   comment_format: # 提示碼自定義
     # - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|ABCDEFGHIJKLMNOPQRSTUVWXYZ[];',.|" # 顯示大寫 # 使用 preedit_preview2 就不用這行
+    # - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ[];',.|" # 顯示大寫 # 使用 preedit_preview2 就不用這行
+    # - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|                          [];',.|"
     # - xform/^~(.+)$/>[$1]   # 將提示碼改為較美觀的型式
     - xform/^~(.+)$/$1   # 改提示碼型式 搭配 lua 使用
   # preedit_format: # 上屛碼自定義
     # - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|ABCDEFGHIJKLMNOPQRSTUVWXYZ[];',.|" # 組字時顯示大寫
     # - 'xform/\\//' #全形空格　 #半形空格  #| #⁞ #⁝ #⋮ #¦ #┆
 
+# https://github.com/rime/librime/issues/184
 fixed:
   __include: /translator
+  # dictionary: liur.extended # 詞典
+  # db_class: tabledb # 測試時先用 tabledb
+  # enable_charset_filter: false # 是否開啓字符集過濾〔僅table_translator有效〕
+  # encode_commit_history: false # 是否對已上屛詞自動成詞 default false 〔僅table_translator有效〕# 預設 true 要關
+  # comment_format: # 提示碼自定義
+  #   - xform/^~(.+)$/$1   # 改提示碼型式 搭配 lua 使用
+  #
   initial_quality: 1000
-  enable_user_dict: true # 開啓用戶詞典
-  enable_encoder: true   # 開啓造詞功能〔僅table_translator有效〕# 這個要開 才會造詞 不然只會造字
-  enable_completion: true
+  enable_user_dict: true  # 開啓用戶詞典
+  enable_encoder: false   # 開啓造詞功能〔僅table_translator有效〕# 這個要開 才會造詞 不然只會造字
+  enable_completion: true # 提前顯示尚未輸入完整碼的字 開不開都可  iRime 建議開
+  enable_sentence: false   # 是否開啓自動造句 default false # 連打
+  # disable_user_dict_for_patterns:
+  #   - '.*'  # 对所有编码禁用用户词典（不调频，不读取用户词，但不影响自造词写入用户词典）
+  tag: abc #
 
 mkst: # 開啓造句(造詞引導) # 會加到 liur.txt 會出現 del enc us 前綴 # 這項依賴造詞編碼規則
   __include: /translator
+  # dictionary: liur.extended # 詞典
+  # db_class: tabledb # 測試時先用 tabledb
+  # enable_charset_filter: false # 是否開啓字符集過濾〔僅table_translator有效〕
+  # encode_commit_history: false # 是否對已上屛詞自動成詞 default false 〔僅table_translator有效〕# 預設 true 要關
+  # enable_completion: true # 提前顯示尚未輸入完整碼的字〔僅table_translator有效〕# 可以用?當通配符所以關閉  # iRime 可以開
+  # # disable_user_dict_for_patterns: # 禁止某些編碼錄入用戶詞典
+  #   # - "^[',.].*$"
+  # comment_format: # 提示碼自定義
+  #   - xform/^~(.+)$/$1   # 改提示碼型式 搭配 lua 使用
+  #
   initial_quality: 10
   enable_sentence: true  # 自動造句 # 連打 #
-  enable_encoder: true   # 是否開啓自動造詞
+  enable_encoder: true   # # 是否開啓自動造詞 default false cctest  〔僅table_translator有效〕 # 打開 能顯示有enc前綴的詞 , 能消除enc前綴
+  enable_completion: true # 提前顯示尚未輸入完整碼的字
   enable_user_dict: true
   prefix: ';' #####################################################################
   tips: "【造詞】"
@@ -448,10 +522,10 @@ key_binder:
     # - {accept: Tab, send: Page_Down, when: composing}         # 換下頁
     # - {accept: "Shift+Tab", send: Page_Up, when: composing}   # 換上頁
     ##
-    - {accept: Tab, send: Down, when: composing}            # 換下個候選項
-    - {accept: "Shift+Tab", send: Up, when: composing}      # 換上個候選項
+    # - {accept: Tab, send: Down, when: composing}            # 換下個候選項
+    # - {accept: "Shift+Tab", send: Up, when: composing}      # 換上個候選項
     ##
-    # - {when: composing, accept: Tab, send: space }          # 上屏候選項
+    - {when: composing, accept: Tab, send: space }          # 上屏候選項
 
 editor:
   bindings:
@@ -470,7 +544,7 @@ recognizer:
     #
     url: ^(www[.]|https?:|ftp:|mailto:).*$
     #
-    liurqry:  ";;[a-z']*'?$" # 讀音反查引導鍵
+    # liurqry:  ";;[a-z']*'?$" # 讀音反查引導鍵 # 已常駐 所以關閉
     #
     pinyin: ";;;[a-z']*'?$" # 拼音反查嘸蝦米編碼
     #
