@@ -78,8 +78,8 @@ speller:
     - "derive/^([a-z]*)[a-z]([a-z])$/$1?$2/"
     - "derive/^([a-z]*)[a-z]$/$1?/"
     # 速成碼
-    - 'derive/^([a-z])\w+(\w)$/$1$2/'  # 取蝦米首尾二碼爲速成碼
-
+    # - 'derive/^([a-z])\w+(\w)$/$1$2/'  # 取蝦米首尾二碼爲速成碼 # fn 1
+    - 'derive/^([a-z])\w+(\w)$/$1$2;/'  # 取蝦米首尾二碼爲速成碼  # fn 2
 
 translator:
   dictionary: quick5
