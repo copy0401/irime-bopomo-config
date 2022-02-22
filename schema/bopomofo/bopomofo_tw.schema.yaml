@@ -78,19 +78,19 @@ engine:
     - reverse_lookup_translator
     # - table_translator@liur  # cctest 嘸蝦米混打 # 電腦啟用 手機停用
     - script_translator
-    - lua_translator@t_translator # cctest rime.lua
-    - lua_translator@t2_translator # cctest rime.lua
+    # - lua_translator@t_translator # cctest rime.lua
+    # - lua_translator@t2_translator # cctest rime.lua
     - lua_translator@date_translator # cctest rime.lua
     - lua_translator@calculator_translator # cctest 計算機功能
   filters:
     - simplifier@zh_hans
     - simplifier@zh_hant_tw
     - simplifier # ※ 繁簡轉換
+    # - lua_filter@reverse_lookup_filter # lua 標 嘸蝦米碼
     # - lua_translator@single_char_filter # cctest rime.lua
-    - uniquifier
     - reverse_lookup_filter@phonetic_reverse_lookup # cctest 打字時 標出注音
-    - lua_filter@preedit_preview #  /lua/preedit_preview.lua # 電腦停用 手機啟用
-
+    # - lua_filter@preedit_preview #  /lua/preedit_preview.lua # 電腦停用 手機啟用
+    - uniquifier
 
 
 # speller:
@@ -145,8 +145,8 @@ speller:
     - abbrev/^([bpmfdtnlgkhjqxZCSrzcsiuv])([iuvaoeEAIOUMNKGR])\d$/$1$2/
     - abbrev/^([bpmfdtnlgkhjqxZCSrzcs])([iuv])([aoeEAIOUMNKGR])\d$/$1$2$3/
     - abbrev/^([bpmfdtnlgkhjqxZCSrzcsiuv]).+(\d)$/$1$2/ #使得ㄎˇㄈˇ（可否）可以打的出來 #新增iuv，使得ㄧˊㄉˊ（贏得）可以打出
-    - abbrev/^([bpmfdtnlgkhjqxZCSrzcs]).+(\d)$/$1$2/ #同上，但少了ㄧㄨㄩ
-    - abbrev/^([bpmfdtnlgkhjqx]).+(\d)$/$1$2/ #同上，但再少了ㄓㄔㄕㄖㄗㄘㄙ
+    # - abbrev/^([bpmfdtnlgkhjqxZCSrzcs]).+(\d)$/$1$2/ #同上，但少了ㄧㄨㄩ
+    # - abbrev/^([bpmfdtnlgkhjqx]).+(\d)$/$1$2/ #同上，但再少了ㄓㄔㄕㄖㄗㄘㄙ
 ##########注音聲韻母亂序##########
     - derive/^([bpmfdtnlgkhjqxZCSrzcs])([iuv])/$2$1/ # derive --衍生〔保留原形〕
     - derive/^([iuv])([aoeEAIOUMNKGR])/$2$1/
@@ -192,15 +192,41 @@ liur:
 
 reverse_lookup: # 取代 原本bopomo 筆劃反查
   dictionary: liur.extended
-  enable_completion: false
-  enable_sentence: false # 連打 造詞
+  enable_completion: true
+  enable_sentence: true # 連打 造詞
   initial_quality: 100
   prefix: "`" # "```"
   suffix: "'" # "'"
-  tips: 【蝦米】
+  tips: 【蝦拼】
   comment_format:
-    - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|ABCDEFGHIJKLMNOPQRSTUVWXYZ[];',.|" # 顯示大寫
-    - xform/^~(.+)$/>[$1]   # 將提示碼改為較美觀的型式
+    - "xform/e?r5$/er5/"
+    - "xform/iu/iou/"
+    - "xform/ui/uei/"
+    - "xform/ong/ung/"
+    - "xform/yi?/i/"
+    - "xform/wu?/u/"
+    - "xform/iu/v/"
+    - "xform/([jqx])u/$1v/"
+    - "xform/([iuv])n/$1en/"
+    - "xform/zh/Z/"
+    - "xform/ch/C/"
+    - "xform/sh/S/"
+    - "xform/ai/A/"
+    - "xform/ei/I/"
+    - "xform/ao/O/"
+    - "xform/ou/U/"
+    - "xform/ang/K/"
+    - "xform/eng/G/"
+    - "xform/an/M/"
+    - "xform/en/N/"
+    - "xform/er/R/"
+    - "xform/eh/E/"
+    - "xform/([iv])e/$1E/"
+    - "xform/1//"
+    - "xlit|bpmfdtnlgkhjqxZCSrzcsiuvaoeEAIOUMNKGR2345|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˊˇˋ˙|"
+    - xform/ /} {/
+    - xform/^/ {
+    - xform/$/}/
   disable_user_dict_for_patterns:
     - "^[',.].*$"
   preedit_format:
@@ -283,4 +309,4 @@ recognizer:
     # reverse_lookup: "```[a-z]*'?$"
     reverse_lookup: "`[a-z]*'?$"
     expression: "^=.*$" #cctest 計算機功能
-    lua: "^(`|'/|``)[a-z0-9/-]*$"
+    lua: "^``[a-z0-9/-]*$"

@@ -82,6 +82,7 @@ engine: # 輸入引擎設定，即掛接組件的「處方」
 menu:
   alternative_select_labels: [A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z]
   alternative_select_keys: ABCDEFGHIJKLMNOPQRSTUVWXYZ
+  #
   # alternative_select_labels: [A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P]
   # alternative_select_keys: ABCDEFGHIJKLMNOP
   #

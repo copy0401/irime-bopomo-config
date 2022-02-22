@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 config_version: "0.9"
-name: bopomoW15 #方案名称 for 精簡主題 方框 一鍵分上下
+name: bopomoX1 #方案名称 for 李式三拼 注音版
 author: copy0401
 
 #键盘高度等
@@ -133,142 +133,107 @@ preset_keyboards:
     keys:
       - {width: 100 , height: 8 } #
       # ############################################################################################
-      - {                            width: 2 , height: 25 } #
-      - {click: '1' , label: '1'  ,width: 8 , height: 25 } #
-      - {click: '2' , label: '2'  ,width: 8 , height: 25 }
-      - {click: '3' , label: '3'  ,width: 8 , height: 25 } #
-      - {click: '4' , label: '4'  ,width: 8 , height: 25 }
-      - {click: '5' , label: '5'  ,width: 8 , height: 25 } #
-      - {click: '6' , label: '6'  ,width: 8 , height: 25 }
-      - {click: '7' , label: '7'  ,width: 8 , height: 25 } #
-      - {click: '8' , label: '8'  ,width: 8 , height: 25 }
-      - {click: '9' , label: '9'  ,width: 8 , height: 25 } #
-      - {click: '0' , label: '0'  ,width: 8 , height: 25 }
-      - {click: '-' , label: '-' ,width: 8 , height: 25 }
-      - {click: BackSpace           ,width: 8 , height: 50 } # 
-      - {                            width: 2 , height: 25 } #
+      # - {                            width: 2 , height: 25 } #
+      # - {click: '1' , label: '1'  ,width: 8 , height: 25 } #
+      # - {click: '2' , label: '2'  ,width: 8 , height: 25 }
+      # - {click: '3' , label: '3'  ,width: 8 , height: 25 } #
+      # - {click: '4' , label: '4'  ,width: 8 , height: 25 }
+      # - {click: '5' , label: '5'  ,width: 8 , height: 25 } #
+      # - {click: '6' , label: '6'  ,width: 8 , height: 25 }
+      # - {click: '7' , label: '7'  ,width: 8 , height: 25 } #
+      # - {click: '8' , label: '8'  ,width: 8 , height: 25 }
+      # - {click: '9' , label: '9'  ,width: 8 , height: 25 } #
+      # - {click: '0' , label: '0'  ,width: 8 , height: 25 }
+      # - {click: '-' , label: '-' ,width: 8 , height: 25 }
+      # - {click: BackSpace           ,width: 8 , height: 50 } #
+      # - {                            width: 2 , height: 25 } #
       #
-      - {                           width: 2 , height: 25 } #
-      - {click: '1' , label: 'ㄅ'  ,width: 8 , height: 25 } #
-      - {click: '2' , label: 'ㄉ'  ,width: 8 , height: 25 }
-      - {click: '3' , label: 'ˇ '  ,width: 8 , height: 25 } #
-      - {click: '4' , label: 'ˋ '  ,width: 8 , height: 25 }
-      - {click: '5' , label: 'ㄓ'  ,width: 8 , height: 25 } #
-      - {click: '6' , label: 'ˊ '  ,width: 8 , height: 25 }
-      - {click: '7' , label: '˙ '  ,width: 8 , height: 25 } #
-      - {click: '8' , label: 'ㄚ'  ,width: 8 , height: 25 }
-      - {click: '9' , label: 'ㄞ'  ,width: 8 , height: 25 } #
-      - {click: '0' , label: 'ㄢ'  ,width: 8 , height: 25 }
-      - {click: '-' , label: 'ㄦ'  ,width: 8 , height: 25 }
-      - {                           width: 8 , height: 0 } # 
-      - {                           width: 2 , height: 25 } #
+      # - {                           width: 2 , height: 25 } #
+      # - {click: '1' , label: ''  ,width: 8 , height: 25 } #
+      # - {click: '2' , label: ''  ,width: 8 , height: 25 }
+      # - {click: '3' , label: ''  ,width: 8 , height: 25 } #
+      # - {click: '4' , label: ''  ,width: 8 , height: 25 }
+      # - {click: '5' , label: ''  ,width: 8 , height: 25 } #
+      # - {click: '6' , label: ''  ,width: 8 , height: 25 }
+      # - {click: '7' , label: ''  ,width: 8 , height: 25 } #
+      # - {click: '8' , label: ''  ,width: 8 , height: 25 }
+      # - {click: '9' , label: ''  ,width: 8 , height: 25 } #
+      # - {click: '0' , label: ''  ,width: 8 , height: 25 }
+      # - {click: '-' , label: ''  ,width: 8 , height: 25 }
+      # - {                           width: 8 , height: 0 } #
+      # - {                           width: 2 , height: 25 } #
       # ####################
-      - {width: 100 , height: 8 } #
+      # - {width: 100 , height: 8 } #
       # ############################################################################################
-      # qwertyuiop
       # ############################################################################################
-      - {                      width: 2 , height: 25 } #
-      - {click: 'q',label: '🆀',width: 8 , height: 25 } #
-      - {click: 'w',label: '🆆',width: 8 , height: 25 }
-      - {click: 'e',label: '🅴',width: 8 , height: 25 } #
-      - {click: 'r',label: '🆁',width: 8 , height: 25 }
-      - {click: 't',label: '🆃',width: 8 , height: 25 } #
-      - {click: 'y',label: '🆈',width: 8 , height: 25 }
-      - {click: 'u',label: '🆄',width: 8 , height: 25 } #
-      - {click: 'i',label: '🅸',width: 8 , height: 25 }
-      - {click: 'o',label: '🅾',width: 8 , height: 25 } #
-      - {click: 'p',label: '🅿',width: 8 , height: 25 }
-      - {click: '[',           width: 8 , height: 50 } #
-      - {click: ']',           width: 8 , height: 50 } #
+      - {                      width: 2 , height: 25 } # 
+      - {click: 'q',label: 'q ㄅ ₁',width: 24 , height: 25 } #
+      - {click: 'a',label: 'a ㄉ',width: 24 , height: 25 }
+      - {click: 'z',label: 'z ㄍ/ㄐ',width: 24 , height: 25 } #
+      - {click: BackSpace ,label: '',width: 24 , height: 50 }
       - {                      width: 2 , height: 25 } #
       #
-      - {                        width: 2 , height: 25 } #
-      - {click: 'q',label: 'ㄆ', width: 8 , height: 25 } #
-      - {click: 'w',label: 'ㄊ', width: 8 , height: 25 }
-      - {click: 'e',label: 'ㄍ', width: 8 , height: 25 } #
-      - {click: 'r',label: 'ㄐ', width: 8 , height: 25 }
-      - {click: 't',label: 'ㄔ', width: 8 , height: 25 } #
-      - {click: 'y',label: 'ㄗ', width: 8 , height: 25 }
-      - {click: 'u',label: 'ㄧ', width: 8 , height: 25 } #
-      - {click: 'i',label: 'ㄛ', width: 8 , height: 25 }
-      - {click: 'o',label: 'ㄟ', width: 8 , height: 25 } #
-      - {click: 'p',label: 'ㄣ', width: 8 , height: 25 }
-      - {                        width: 8 , height: 0 } #
-      - {                        width: 8 , height: 0 } #
-      - {                        width: 2 , height: 25 } #
+      - {                      width: 2 , height: 25 } # 
+      - {click: 'q',label: 'q ㄚ',width: 24 , height: 25 } #
+      - {click: 'a',label: 'a ㄞ',width: 24 , height: 25 }
+      - {click: 'z',label: 'z ㄢ',width: 24 , height: 25 } #
+      - {                      width: 24 , height: 0 }
+      - {                      width: 2 , height: 25 } #
       # ####################
       - {width: 100 , height: 8 } #
       # ############################################################################################
-      # asdfghjkl;
       # ############################################################################################
-      - {                              width: 2 , height: 25 } #
-      - {click: 'a',label: '🅰',        width: 8 , height: 25 } # 
-      - {click: 's',label: '🆂',        width: 8 , height: 25 }
-      - {click: 'd',label: '🅳',        width: 8 , height: 25 } #
-      - {click: 'f',label: '🅵',        width: 8 , height: 25 }
-      - {click: 'g',label: '🅶',        width: 8 , height: 25 } #
-      - {click: 'h',label: '🅷',        width: 8 , height: 25 }
-      - {click: 'j',label: '🅹',        width: 8 , height: 25 } #
-      - {click: 'k',label: '🅺',        width: 8 , height: 25 }
-      - {click: 'l',label: '🅻',        width: 8 , height: 25 } #
-      - {click: ';',label: ';',        width: 8 , height: 25 }
-      - {click: "'",                   width: 8 , height: 50 }
-      - {click: '`',                   width: 8 , height: 50 } #
-      - {                              width: 2 , height: 25 } #
+      - {                      width: 2 , height: 25 } # 
+      - {click: 'w',label: 'w ㄆ ₂',width: 24 , height: 25 } #
+      - {click: 's',label: 's ㄊ',width: 24 , height: 25 }
+      - {click: 'x',label: 'x ㄎ/ㄑ',width: 24 , height: 25 } #
+      - {click: 't',label: 't ㄓ/ㄗ [空 介]',width: 24 , height: 25 }
+      - {                      width: 2 , height: 25 } #
       #
-      - {                              width: 2 , height: 25 } #
-      - {click: 'a',label: 'ㄇ',       width: 8 , height: 25 } # 
-      - {click: 's',label: 'ㄋ',       width: 8 , height: 25 }
-      - {click: 'd',label: 'ㄎ',       width: 8 , height: 25 } #
-      - {click: 'f',label: 'ㄑ',       width: 8 , height: 25 }
-      - {click: 'g',label: 'ㄕ',       width: 8 , height: 25 } #
-      - {click: 'h',label: 'ㄘ',       width: 8 , height: 25 }
-      - {click: 'j',label: 'ㄨ',       width: 8 , height: 25 } #
-      - {click: 'k',label: 'ㄜ',       width: 8 , height: 25 }
-      - {click: 'l',label: 'ㄠ',       width: 8 , height: 25 } #
-      - {click: ';',label: 'ㄤ',       width: 8 , height: 25 }
-      - {                              width: 8 , height: 0 }
-      - {                              width: 8 , height: 0 } #
-      - {                              width: 2 , height: 25 } #
+      - {                      width: 2 , height: 25 } # 
+      - {click: 'w',label: 'w ㄛ/帀',width: 24 , height: 25 } #
+      - {click: 's',label: 's ㄧ/ㄟ',width: 24 , height: 25 }
+      - {click: 'x',label: 'x ㄣ',width: 24 , height: 25 } #
+      - {click: 't',label: 't ㄩㄢ',width: 24 , height: 25 }
+      - {                      width: 2 , height: 25 } #
+      
       # ####################
       - {width: 100 , height: 8 } #
       # ############################################################################################
-      # zxcvbnm,./
       # ############################################################################################
-      - {                           width: 2 , height: 25 } #
-      - {click: 'z', label: '🆉' ,   width: 8 , height: 25 } #
-      - {click: 'x', label: '🆇' ,   width: 8 , height: 25 }
-      - {click: 'c', label: '🅲' ,   width: 8 , height: 25 } #
-      - {click: 'v', label: '🆅' ,   width: 8 , height: 25 }
-      - {click: 'b', label: '🅱' ,   width: 8 , height: 25 } #
-      - {click: 'n', label: '🅽' ,   width: 8 , height: 25 }
-      - {click: 'm', label: '🅼' ,   width: 8 , height: 25 } #
-      - {click: ',', label: ',' ,   width: 8 , height: 25 } #
-      - {click: '.', label: '.' ,   width: 8 , height: 25 } # 
-      - {click: '/', label: '/' ,   width: 8 , height: 25 } #
-      - {click: '\',                width: 8 , height: 50 }
-      - {click: '=',                width: 8 , height: 50 } #
-      - {                           width: 2 , height: 25 } #
+      - {                      width: 2 , height: 25 } # 
+      - {click: 'e',label: 'e ㄇ ₃',width: 24 , height: 25 } #
+      - {click: 'd',label: 'd ㄋ',width: 24 , height: 25 }
+      - {click: 'c',label: 'c ㄏ/ㄒ',width: 24 , height: 25 } #
+      - {click: 'g',label: 'g ㄔ/ㄘ [ㄧ]',width: 24 , height: 25 }
+      - {                      width: 2 , height: 25 } #
       #
-      - {                           width: 2 , height: 25 } #
-      - {click: 'z', label: 'ㄈ' ,  width: 8 , height: 25 } #
-      - {click: 'x', label: 'ㄌ' ,  width: 8 , height: 25 }
-      - {click: 'c', label: 'ㄏ' ,  width: 8 , height: 25 } #
-      - {click: 'v', label: 'ㄒ' ,  width: 8 , height: 25 }
-      - {click: 'b', label: 'ㄖ' ,  width: 8 , height: 25 } #
-      - {click: 'n', label: 'ㄙ' ,  width: 8 , height: 25 }
-      - {click: 'm', label: 'ㄩ' ,  width: 8 , height: 25 } #
-      - {click: ',', label: 'ㄝ' ,  width: 8 , height: 25 } #
-      - {click: '.', label: 'ㄡ' ,  width: 8 , height: 25 } # 
-      - {click: '/', label: 'ㄥ' ,  width: 8 , height: 25 } #
-      - {                           width: 8 , height: 0 }
-      - {                           width: 8 , height: 0 } #
-      - {                           width: 2 , height: 25 } #
+      - {                      width: 2 , height: 25 } # 
+      - {click: 'e',label: 'e ㄜ/ㄝ',width: 24 , height: 25 } #
+      - {click: 'd',label: 'd ㄨ/ㄠ',width: 24 , height: 25 }
+      - {click: 'c',label: 'c ㄤ',width: 24 , height: 25 } #
+      - {click: 'g',label: 'g ㄩㄣ',width: 24 , height: 25 }
+      - {                      width: 2 , height: 25 } #
       # ####################
       - {width: 100 , height: 8 } #
-      # - {click: sendnil , width: 100 , height: 0.001 } #
       # ############################################################################################
-      # shift synbols english  fn  space ? enter = x +
+      # ############################################################################################
+      - {                      width: 2 , height: 25 } # 
+      - {click: 'r',label: 'r ㄈ/ㄖ ₄',width: 24 , height: 25 } #
+      - {click: 'f',label: 'f ㄌ',width: 24 , height: 25 }
+      - {click: 'v',label: 'v 零',width: 24 , height: 25 } #
+      - {click: 'b',label: 'b ㄕ/ㄙ [ㄨ ㄩ]',width: 24 , height: 25 }
+      - {                      width: 2 , height: 25 } #
+      #
+      - {                      width: 2 , height: 25 } # 
+      - {click: 'r',label: 'r ㄦ',width: 24 , height: 25 } #
+      - {click: 'f',label: 'f ㄩ/ㄡ',width: 24 , height: 25 }
+      - {click: 'v',label: 'v ㄥ',width: 24 , height: 25 } #
+      - {click: 'b',label: 'b ㄩㄥ',width: 24 , height: 25 }
+      - {                      width: 2 , height: 25 } #
+      # ####################
+      - {width: 100 , height: 8 } #
+      # ############################################################################################
       # ############################################################################################
       - {                                                                    width:  2   } #
       - {click: Shift  ,                                                     width:  8   } # 
