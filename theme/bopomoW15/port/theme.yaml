@@ -85,7 +85,7 @@ style:
   candidate_text_size: 28   #候选字号 24 28
   candidate_view_height: 32 # *jpgd5 # 候选区高度 36 44 
   #
-  candidate_padding: 10 # 候选项内边距 14
+  candidate_padding: 10 # 候选项内边距 10 # 有作用
   candidate_spacing: 15 # 候选间距 15
   candidate_use_cursor: true # 高亮候选项
   #
@@ -133,7 +133,7 @@ preset_keyboards:
     keys:
       - {width: 100 , height: 8 } #
       # ############################################################################################
-      - {                            width: 2 , height: 25 } #
+      - {                          width: 2 , height: 25 } #
       - {click: '1' , label: '1'  ,width: 8 , height: 25 } #
       - {click: '2' , label: '2'  ,width: 8 , height: 25 }
       - {click: '3' , label: '3'  ,width: 8 , height: 25 } #
@@ -144,9 +144,9 @@ preset_keyboards:
       - {click: '8' , label: '8'  ,width: 8 , height: 25 }
       - {click: '9' , label: '9'  ,width: 8 , height: 25 } #
       - {click: '0' , label: '0'  ,width: 8 , height: 25 }
-      - {click: '-' , label: '-' ,width: 8 , height: 25 }
-      - {click: BackSpace           ,width: 8 , height: 50 } # 
-      - {                            width: 2 , height: 25 } #
+      - {click: '-' , label: '-'  ,width: 8 , height: 25 }
+      - {click: BackSpace         ,width: 8 , height: 50 } # 
+      - {                          width: 2 , height: 25 } #
       #
       - {                           width: 2 , height: 25 } #
       - {click: '1' , label: 'ㄅ'  ,width: 8 , height: 25 } #
@@ -561,7 +561,10 @@ preset_color_schemes: #  同文/iRime 使用 RGB , 鼠須管使用 BGR
 
 
 preset_keys:
-  # key_test: {label: ",", text: "{DefaultKeyboard},{DefaultKeyboard}"} 
+  # key_test1a: {label: "半,", text: "{toD},{toD}"}
+  # key_test1b: {label: "全,", text: "{toD}，{toD}"}
+  # key_test2a: {label: "半,", text: "{Right},{Right}"}
+  # key_test2b: {label: "全,", text: "{Right}，{Right}"}
   # key_a : {commit: "{"} # 編輯時測試用
   # key_b : {commit: "}"} # 編輯時測試用
   # key_db : {text: "{key_a}{key_b}{Left}{DefaultKeyboard}"} # 編輯時測試用

@@ -31,9 +31,9 @@ patch:
     # - schema: bopomofo_express     # 注音·快打模式   有內建 預設沒顯示
     # - schema: flypy                # 小鶴音形        4.1.3版之後 移除內建
     # ###############################
+    - schema: xiapin_mtc
     - schema: bopomofo_tw
     # - schema: bopomofo_liu
-    - schema: xiapin_mtc
     # - schema: double_pinyin
     # - schema: luna_pinyin
     # - schema: terra_pinyin
