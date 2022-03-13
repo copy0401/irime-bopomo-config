@@ -295,16 +295,16 @@ preset_keyboards:
       - {width: 100 , height: 8 } #
       # ############################################################################################
       - {                                            width: 2 , height: 50 } #
-      - {click: 1   , label: '𝟷' ,  swipe_up: '!'  , width: 8 , height: 50 } #
-      - {click: 2   , label: '𝟸' ,  swipe_up: '@'  , width: 8 , height: 50 }
-      - {click: 3   , label: '𝟹' ,  swipe_up: '#'  , width: 8 , height: 50 } #
-      - {click: 4   , label: '𝟺' ,  swipe_up: '$'  , width: 8 , height: 50 }
-      - {click: 5   , label: '𝟻' ,  swipe_up: '%'  , width: 8 , height: 50 } #
-      - {click: 6   , label: '𝟼' ,  swipe_up: '^'  , width: 8 , height: 50 }
-      - {click: 7   , label: '𝟽' ,  swipe_up: '&'  , width: 8 , height: 50 } #
-      - {click: 8   , label: '𝟾' ,  swipe_up: '*'  , width: 8 , height: 50 }
-      - {click: 9   , label: '𝟿' ,  swipe_up: '('  , width: 8 , height: 50 } #
-      - {click: 0   , label: '𝟶' ,  swipe_up: ')'  , width: 8 , height: 50 }
+      - {click: 1   , label: '1' ,  swipe_up: '!'  , width: 8 , height: 50 } #
+      - {click: 2   , label: '2' ,  swipe_up: '@'  , width: 8 , height: 50 }
+      - {click: 3   , label: '3' ,  swipe_up: '#'  , width: 8 , height: 50 } #
+      - {click: 4   , label: '4' ,  swipe_up: '$'  , width: 8 , height: 50 }
+      - {click: 5   , label: '5' ,  swipe_up: '%'  , width: 8 , height: 50 } #
+      - {click: 6   , label: '6' ,  swipe_up: '^'  , width: 8 , height: 50 }
+      - {click: 7   , label: '7' ,  swipe_up: '&'  , width: 8 , height: 50 } #
+      - {click: 8   , label: '8' ,  swipe_up: '*'  , width: 8 , height: 50 }
+      - {click: 9   , label: '9' ,  swipe_up: '('  , width: 8 , height: 50 } #
+      - {click: 0   , label: '0' ,  swipe_up: ')'  , width: 8 , height: 50 }
       - {click: '-' , label: '-' ,  swipe_up: '_'  , width: 8 , height: 50 }
       - {click: BackSpace ,                          width: 8 , height: 50 } # 
       - {                                            width: 2 , height: 50 } #
@@ -314,16 +314,16 @@ preset_keyboards:
       # qwertyuiop
       # ############################################################################################
       - {                             width: 2 , height: 50 } #
-      - {click: 'q' , label: '𝚚',      width: 8 , height: 50 } #
-      - {click: 'w' , label: '𝚠',      width: 8 , height: 50 }
-      - {click: 'e' , label: '𝚎',      width: 8 , height: 50 } #
-      - {click: 'r' , label: '𝚛',      width: 8 , height: 50 }
-      - {click: 't' , label: '𝚝',      width: 8 , height: 50 } #
-      - {click: 'y' , label: '𝚢',      width: 8 , height: 50 }
-      - {click: 'u' , label: '𝚞',      width: 8 , height: 50 } #
-      - {click: 'i' , label: '𝚒',      width: 8 , height: 50 }
-      - {click: 'o' , label: '𝚘',      width: 8 , height: 50 } #
-      - {click: 'p' , label: '𝚙',      width: 8 , height: 50 }
+      - {click: 'q' , label: '🆀',      width: 8 , height: 50 } #
+      - {click: 'w' , label: '🆆',      width: 8 , height: 50 }
+      - {click: 'e' , label: '🅴',      width: 8 , height: 50 } #
+      - {click: 'r' , label: '🆁',      width: 8 , height: 50 }
+      - {click: 't' , label: '🆃',      width: 8 , height: 50 } #
+      - {click: 'y' , label: '🆈',      width: 8 , height: 50 }
+      - {click: 'u' , label: '🆄',      width: 8 , height: 50 } #
+      - {click: 'i' , label: '🅸',      width: 8 , height: 50 }
+      - {click: 'o' , label: '🅾',      width: 8 , height: 50 } #
+      - {click: 'p' , label: '🅿',      width: 8 , height: 50 }
       - {click: '[' , swipe_up: '{',  width: 8 , height: 50 } #
       - {click: ']' , swipe_up: '}',  width: 8 , height: 50 } #
       - {                             width: 2 , height: 50 } #
@@ -334,15 +334,15 @@ preset_keyboards:
       # asdfghjkl;
       # ############################################################################################
       - {                                 width: 2 , height: 50 } #
-      - {click: 'a' , label: '𝚊',       width: 8 , height: 50 } # 
-      - {click: 's' , label: '𝚜',       width: 8 , height: 50 }
-      - {click: 'd' , label: '𝚍',       width: 8 , height: 50 } #
-      - {click: 'f' , label: '𝚏',       width: 8 , height: 50 }
-      - {click: 'g' , label: '𝚐',       width: 8 , height: 50 } #
-      - {click: 'h' , label: '𝚑',       width: 8 , height: 50 }
-      - {click: 'j' , label: '𝚓',       width: 8 , height: 50 } #
-      - {click: 'k' , label: '𝚔',       width: 8 , height: 50 }
-      - {click: 'l' , label: '𝚕',       width: 8 , height: 50 } #
+      - {click: 'a' , label: '🅰',       width: 8 , height: 50 } # 
+      - {click: 's' , label: '🆂',       width: 8 , height: 50 }
+      - {click: 'd' , label: '🅳',       width: 8 , height: 50 } #
+      - {click: 'f' , label: '🅵',       width: 8 , height: 50 }
+      - {click: 'g' , label: '🅶',       width: 8 , height: 50 } #
+      - {click: 'h' , label: '🅷',       width: 8 , height: 50 }
+      - {click: 'j' , label: '🅹',       width: 8 , height: 50 } #
+      - {click: 'k' , label: '🅺',       width: 8 , height: 50 }
+      - {click: 'l' , label: '🅻',       width: 8 , height: 50 } #
       - {click: ';' , swipe_up: ':' ,  width: 8 , height: 50 }
       - {click: "'" , swipe_up: '"' ,  width: 8 , height: 50 }
       - {click: '`' , swipe_up: '~' ,  width: 8 , height: 50 } #
@@ -354,13 +354,13 @@ preset_keyboards:
       # zxcvbnm,./
       # ############################################################################################
       - {                                            width: 2 , height: 50 } #
-      - {click: 'z', label: '𝚣',      width: 8 , height: 50 } #
-      - {click: 'x', label: '𝚡',      width: 8 , height: 50 }
-      - {click: 'c', label: '𝚌',      width: 8 , height: 50 } #
-      - {click: 'v', label: '𝚟',      width: 8 , height: 50 }
-      - {click: 'b', label: '𝚋',      width: 8 , height: 50 } #
-      - {click: 'n', label: '𝚗',      width: 8 , height: 50 }
-      - {click: 'm', label: '𝚖',      width: 8 , height: 50 } #
+      - {click: 'z', label: '🆉',      width: 8 , height: 50 } #
+      - {click: 'x', label: '🆇',      width: 8 , height: 50 }
+      - {click: 'c', label: '🅲',      width: 8 , height: 50 } #
+      - {click: 'v', label: '🆅',      width: 8 , height: 50 }
+      - {click: 'b', label: '🅱',      width: 8 , height: 50 } #
+      - {click: 'n', label: '🅽',      width: 8 , height: 50 }
+      - {click: 'm', label: '🅼',      width: 8 , height: 50 } #
       - {click: ',',  swipe_up: '<', width: 8 , height: 50 } # commitcomma 全形逗號
       - {click: '.',  swipe_up: '>', width: 8 , height: 50 } # commitperiod 全形句號
       - {click: '/', swipe_up: '?' , width: 8 , height: 50 } # commit4questionmark 全形問號

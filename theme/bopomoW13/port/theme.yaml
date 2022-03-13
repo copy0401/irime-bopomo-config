@@ -96,7 +96,7 @@ style:
   # key_long_text_size: 14 # 长标签字号
   # key_text_size: 18 # 键字号 18
   key_width: 10.0 # 键宽，占银幕宽的百分比 # 10.0
-  keyboards: [default , english , number , .number .symbols ] #键盘配置  english , symbols , .number .symbols #
+  keyboards: [default , english , number , .number , .symbols ] #键盘配置  english , symbols , .number .symbols #
   # label_text_size: 22 #标签字号 22
   # symbol_text_size: 10 #符号字号 10
   # preview_text_size: 40 #按键提示字号 40
