@@ -1,0 +1,31 @@
+# encoding: utf-8
+# 碼表來自 www.chinesecj.com
+
+---
+name: openxiami.extended
+version: "0.01"
+sort: original # by_weight original
+#
+use_preset_vocabulary: false # 是否引入「八股文」〔含字詞頻、詞庫〕# true
+# vocabulary: essay-zh-hans # 簡體用的八股文
+# max_phrase_length: 7
+# min_phrase_weight: 0 # 八股文（essay.txt）中weight大於0的詞言（所有詞語）
+#
+import_tables:
+  # - liur_Tw
+  # - liur_Trad
+  # - liur_TradExt
+  # - liur_Japan # 如果要啟動日文漢字就取消註解
+  # - liur_TradToSimp # 如果要啟動簡體漢字就取消註解
+  #
+  # - openxiami_TCJP # 有加 VRSF # 有些字有 ~ 影響部份造詞
+  - openxiami_TCJPCC # 有加 VRSF # 有些字有 刪 ~ 測試完成 可以解決照詞問題
+  # - openxiami_TradExt
+  # - liur_English # 以英語詞庫 小於三碼補 ; 
+  #
+  # - liur_customWords
+  - openxiami_CustomWord
+  #
+  # 字碼格式: 字<Tab>字碼<Tab>權重
+...
+

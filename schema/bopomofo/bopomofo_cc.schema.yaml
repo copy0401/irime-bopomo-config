@@ -1,4 +1,3 @@
-# bopomofo_tw 改名為 bopomofo_cc # 此檔停止更新
 # Rime schema
 # encoding: utf-8
 
@@ -8,10 +7,10 @@ __include: bopomofo.schema:/
 # 默認的opencc字形轉換選項設爲臺灣字形標準
 __patch:
   # - switches/@2/reset: 2
-  - bopomofo_tw.custom:/patch?
+  - bopomofo_cc.custom:/patch?
 
 schema:
-  schema_id: bopomofo_tw
+  schema_id: bopomofo_cc
   name: 注音 # "ˉ"
   version: '1.8'
   author:
@@ -24,7 +23,7 @@ schema:
   dependencies:
     # - cangjie5 # cctest
     # - liur_Trad # cctest 嘸蝦米混打
-    - liur.extended # cctest 嘸蝦米混打
+    # - liur.extended # cctest 嘸蝦米混打
 
 
 switches:
@@ -33,22 +32,25 @@ switches:
     states: [ 中文, 英文 ]
   - name: full_shape # Control+Shift+3
     states: [ 半形, 全形 ]
-  - options:
-      - zh_hant
-      - zh_hans
-      - zh_hant_tw
-    states:
-      - 傳統漢字
-      - 简化字
-      - 臺灣字形
-    reset: 2
+  - name: simplification
+    states: [ 繁體, 簡體 ] # 漢字/汉字 繁體/簡體
+  # - options:
+  #     # - zh_hant
+  #     - zh_hans
+  #     - zh_hant_tw
+  #   states:
+  #     # - 傳統漢字
+  #     - 簡體 # 简化字
+  #     - 繁體 # 臺灣字形
+  #   reset: 1
 
 
-zh_hans:
-  option_name: zh_hans
-  opencc_config: t2s.json
-  tips: all
-  excluded_types: [ reverse_lookup ]
+
+# zh_hans:
+#   option_name: zh_hans
+#   opencc_config: t2s.json
+#   tips: all
+#   excluded_types: [ reverse_lookup ]
 
 zh_hant_tw:
   option_name: zh_hant_tw
@@ -60,6 +62,7 @@ engine:
   processors:
     - ascii_composer
     - recognizer
+    # - lua_processor@direct_commit_num # 處理新版同文 選候選項問題 測試中
     - key_binder
     - speller
     - punctuator
@@ -67,6 +70,8 @@ engine:
     - navigator
     - express_editor # ※ 編輯器，處理空格、回車上屏、回退鍵等
     # - fluency_editor
+    - ascii_composer
+    - recognizer
   segmentors:
     - ascii_segmentor
     - matcher
@@ -77,6 +82,7 @@ engine:
     - punct_translator
     - table_translator@custom_phrase
     - reverse_lookup_translator
+    # - reverse_lookup_translator@stroke_lookup # test
     # - table_translator@liur  # cctest 嘸蝦米混打 # 電腦啟用 手機停用
     - script_translator
     # - lua_translator@t_translator # cctest rime.lua
@@ -84,13 +90,13 @@ engine:
     - lua_translator@date_translator # cctest rime.lua
     - lua_translator@calculator_translator # cctest 計算機功能
   filters:
-    - simplifier@zh_hans
-    - simplifier@zh_hant_tw
+    # - simplifier@zh_hans
+    - simplifier@zh_hant_tw # 會過濾掉一些字
     - simplifier # ※ 繁簡轉換
     # - lua_filter@reverse_lookup_filter # lua 標 嘸蝦米碼
     # - lua_translator@single_char_filter # cctest rime.lua
-    - reverse_lookup_filter@phonetic_reverse_lookup # cctest 打字時 標出注音
-    # - lua_filter@preedit_preview #  /lua/preedit_preview.lua # 電腦停用 手機啟用
+    # - reverse_lookup_filter@phonetic_reverse_lookup # cctest 打字時 標出注音
+    - lua_filter@preedit_preview #  /lua/preedit_preview.lua # 電腦停用 手機啟用
     - uniquifier
 
 
@@ -113,8 +119,7 @@ custom_phrase:
 speller:
   alphabet: "1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/-3467 " # 定義本方案輸入鍵
   use_space: true # 以空格作輸入碼〔true或false〕
-  # alphabet: "1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/-3467" # 定義本方案輸入鍵
-  initials: "1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/-" # 定義僅作始碼之鍵
+  initials: "1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/-" # 定義僅作始碼之鍵  # 測試用 多個空格
   finals: " 6347" # 定義僅作末碼之鍵
   delimiter: "\\" # 上屛時的音節間分音符
   algebra:
@@ -157,17 +162,19 @@ speller:
     - derive/^([bpmfdtnlgkhjqxZCSrzcs])([iuv])([aoeEAIOUMNKGR])/$2$3$1/
     - derive/^([bpmfdtnlgkhjqxZCSrzcs])([iuv])([aoeEAIOUMNKGR])/$1$3$2/
     - 'xlit|bpmfdtnlgkhjqxZCSrzcsiuvaoeEAIOUMNKGR12345|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/- 6347|' # xlit --變換〔適合大量一對一變換〕
+    # - 'xlit|bpmfdtnlgkhjqxZCSrzcsiuvaoeEAIOUMNKGR12345|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/- 6347|' # xlit --變換〔適合大量一對一變換〕# 利用這條可精簡合併按鍵
 
 # translator:
-#   prism: bopomofo_tw
-  
-  
+#   prism: bopomofo_cc
+
+
 translator:
   enable_user_dict: true # 是否開啓用戶詞典〔用戶詞典記錄動態字詞頻、用戶詞〕
   enable_sentence: true # 是否開啓自動造句
   db_class: tabledb # 可設 tabledb〔文本〕或userdb〔二進制〕
   dictionary: terra_pinyin
-  prism: bopomofo_tw
+  prism: bopomofo_cc
+  # spelling_hints: 10 # 顯示拼音
   initial_quality: 0
   preedit_format:
     - "xlit|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/- 6347|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙|"
@@ -191,14 +198,28 @@ liur:
     - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|ABCDEFGHIJKLMNOPQRSTUVWXYZ[];',.|" # 組字時顯示大寫
     - 'xform/\\//' #全形空格　 #半形空格  #| #⁞ #⁝ #⋮ #¦ #┆
 
-reverse_lookup: # 取代 原本bopomo 筆劃反查
-  dictionary: liur.extended
-  enable_completion: true
-  enable_sentence: true # 連打 造詞
+
+# stroke_lookup: # test
+#   tag: stroke_lookup
+#   dictionary: stroke
+#   prefix: "`"
+#   suffix: "'"
+#   tips: 〔筆畫反查〕
+#   initial_quality: 0.5    # 調整該編譯器出字優先度
+#   preedit_format:
+#     - xlit/hspnz/一丨丿丶乙/
+#   comment_format:
+#     - xform/~//
+#     - xlit/hspnz/一丨丿丶乙/
+    
+
+reverse_lookup:
+  dictionary: openxiami.extended
+  prism: openxiami
   initial_quality: 100
   prefix: "`" # "```"
   suffix: "'" # "'"
-  tips: 【蝦拼】
+  tips: 〔蝦米〕
   comment_format:
     - "xform/e?r5$/er5/"
     - "xform/iu/iou/"
@@ -233,6 +254,8 @@ reverse_lookup: # 取代 原本bopomo 筆劃反查
   preedit_format:
     - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|ABCDEFGHIJKLMNOPQRSTUVWXYZ[];',.|" # 組字時顯示大寫
     - 'xform/\\//' #全形空格　 #半形空格  #| #⁞ #⁝ #⋮ #
+
+
 
 
 phonetic_reverse_lookup: # 顯示注音符號
@@ -276,8 +299,8 @@ phonetic_reverse_lookup: # 顯示注音符號
 
 editor:
   bindings:
-    space: commit_composition # 使用 fluency_editor 時開啟
-    Return: confirm #使用 express_editor 時開啟
+    # space: commit_composition # 使用 fluency_editor 時開啟
+    Return: confirm # 使用 express_editor 時開啟
     Shift+Return: commit_raw_input # 上屏原始輸入
     Control+Return: commit_script_text # 上屏變換後輸入
 
@@ -307,7 +330,7 @@ recognizer:
     email: "^[a-z][-_.0-9a-z]*@.*$"
     uppercase: "^[A-Z][-_+.'0-9A-Za-z]*$"
     url: "^(www[.]|https?:|ftp:|mailto:).*$"
-    # reverse_lookup: "```[a-z]*'?$"
     reverse_lookup: "`[a-z]*'?$"
     expression: "^=.*$" #cctest 計算機功能
     lua: "^``[a-z0-9/-]*$"
+    # stroke_lookup: "`[a-z]*'?$"
