@@ -1650,8 +1650,12 @@ end
 --- date/time translator ``
 function date_translator(input, seg)
   if (string.match(input, "``")~=nil) then
-    yield(Candidate("date", seg.start, seg._end, "" , "擴充模式"))
+    -- yield(Candidate("date", seg.start, seg._end, "" , "擴充模式"))
+    
     if (input == "``fn" or input == "``") then
+      
+      -- os.execute("osascript -e 'tell application \"Terminal\" to do script \"cd /Users/cc && ls\"'")
+       
       if (os.date("%w") == "0") then
         weekstr = "日"
       end
@@ -1673,22 +1677,24 @@ function date_translator(input, seg)
       if (os.date("%w") == "6") then
         weekstr = "六"
       end
+     
       yield(Candidate("	", seg.start, seg._end, os.date("%Y/%m/%d("..weekstr..")"), "日期"))
       yield(Candidate("	", seg.start, seg._end, os.date("%H:%M:%S"), "時間"))
       yield(Candidate("	", seg.start, seg._end, Date2LunarDate(os.date("%Y%m%d")), "農曆"))
-      yield(Candidate("	", seg.start, seg._end, "\t" , "tab"))
-      yield(Candidate("	", seg.start, seg._end, "\n" , "tab"))
+      -- yield(Candidate("    ", seg.start, seg._end, "山中相送罷 ，\n日暮掩柴扉 。\n春草明年綠 ，\n王孫歸不歸 。", "唐詩範例 送別"))
+      yield(Candidate("	", seg.start, seg._end, "\t" , "\\t"))
+      -- yield(Candidate("    ", seg.start, seg._end, "\n" , "\\n"))
       yield(Candidate("	", seg.start, seg._end, "```" , "markdown"))
       yield(Candidate("	", seg.start, seg._end, "#"   , "yaml")) 
       yield(Candidate("	", seg.start, seg._end, "--"  , "lua")) 
       yield(Candidate("	", seg.start, seg._end, "//"  , "c")) 
       yield(Candidate("	", seg.start, seg._end, "default.yaml"  , "iRime")) 
       yield(Candidate("	", seg.start, seg._end, "default.custom.yaml"  , "iRime"))
-      yield(Candidate("	", seg.start, seg._end, "SharedSupport"  , "iRime")) 
-      yield(Candidate("	", seg.start, seg._end, "sync"  , "iRime")) 
+      yield(Candidate("	", seg.start, seg._end, "/SharedSupport/"  , "iRime")) 
+      yield(Candidate("	", seg.start, seg._end, "iRime/sync/"  , "iRime")) 
       yield(Candidate("	", seg.start, seg._end, "sync_dir"  , "iRime")) 
-      yield(Candidate("	", seg.start, seg._end, "squirrel"  , "iRime")) 
-      yield(Candidate("	", seg.start, seg._end, "iRime"  , "iRime")) 
+      yield(Candidate("	", seg.start, seg._end, "squirrel"  , "iRime"))
+      yield(Candidate("	", seg.start, seg._end, "weasel"  , "iRime")) 
       yield(Candidate("	", seg.start, seg._end, "installation.yaml"  , "iRime")) 
       yield(Candidate("	", seg.start, seg._end, "installation_id"  , "iRime")) 
       yield(Candidate("	", seg.start, seg._end, ".dict.yaml"  , "iRime")) 
@@ -1852,8 +1858,6 @@ end
 --- reverse_lookup_filter
 -- bopomo_onion.extended.reverse.bin
 -- cangjie5.reverse.bin
--- liur_TradToSimp.reverse.bin
--- liur_Trad.reverse.bin
 pydb = ReverseDb("build/terra_pinyin.reverse.bin")
 
 -- liudb = ReverseDb("build/liur_Trad.reverse.bin")
@@ -1905,14 +1909,20 @@ end
 
 --- reverse_lookup_filter 使用方式
 --- engine/filters 加行  - lua_filter@reverse_lookup_filter
+-- terra_pinyin
 function reverse_lookup_filter(input)
    for cand in input:iter() do
-      -- cand:get_genuine().comment = cand.comment .. " " .. xform_py(pydb:lookup(cand.text))
+      cand:get_genuine().comment = cand.comment .. " " .. xform_py(pydb:lookup(cand.text))
+      yield(cand)
+   end
+end
+-- liu  - lua_filter@reverse_lookup_filter_liu
+function reverse_lookup_filter_liu(input)
+   for cand in input:iter() do
       cand:get_genuine().comment = cand.comment .. " " .. xform_liu(liudb:lookup(cand.text))
       yield(cand)
    end
 end
-
 
 --- composition
 function myfilter(input)
@@ -1926,11 +1936,14 @@ function mytranslator(input, seg)
 end
 
 calculator_translator = require("calculator_translator")
-preedit_preview = require("preedit_preview")
-preedit_preview2 = require("preedit_preview2")
+preedit_preview = require("preedit_preview")  -- for bopomofo
+preedit_preview2 = require("preedit_preview2") -- for xiapin/xiami
+-- direct_commit_num = require("direct_commit_num") -- 數字鍵上屏 適用於 26鍵方案
+-- commit_helper_processor = require("commit_helper_processor") --  空格上屏不记词频，回车上屏记录词频或记录新词
+-- for_topup_processor = require("for_topup") -- 測試 目前沒效果
 -- add_tag = require("add_tag")
 -- quad_filter = require("quad_filter")
-
+-- stroke_count = require("stroke_count")
 
 -- module1={
 --   {module = "command"    , module_name = "cammand_proc"    , name_space = "command" },

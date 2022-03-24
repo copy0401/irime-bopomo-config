@@ -63,6 +63,7 @@ end
 
 local function filter(input, env)
   local commit = env.engine.context:get_commit_text()--输入的编码
+  local commit_en = string.upper(commit)
   commit=string.gsub(commit,"1","ㄅ");
   commit=string.gsub(commit,"2","ㄉ");
   commit=string.gsub(commit,"3","ˇ");
@@ -110,11 +111,14 @@ local function filter(input, env)
   commit=string.gsub(commit," ","ˉ");
   
   for cand in input:iter() do
-    -- cand:get_genuine().preedit = commit    -- 英文編碼
+    -- cand:get_genuine().preedit = commit    -- 注音符號
     -- cand:get_genuine().preedit = cand.text -- 首選項
-    -- cand:get_genuine().preedit = commit.."".. cand.text ..""  -- 英文編碼 + 首選項
-    -- cand:get_genuine().preedit = cand.text.."<".. commit ..""  -- 首選項+英文編碼 # 手機使用
-    cand:get_genuine().preedit = cand.text.."\t".. commit ..""  -- 首選項+英文編碼 # 手機使用
+    -- cand:get_genuine().preedit = commit.."".. cand.text ..""   -- 注音符號 + 首選項
+    -- cand:get_genuine().preedit = cand.text.."<".. commit ..""  -- 首選項+注音符號 
+    cand:get_genuine().preedit = cand.text.."(".. commit ..")"   -- 首選項+注音符號
+    -- cand:get_genuine().preedit = cand.text.."\t▌".. commit ..""   -- 首選項+注音符號 
+    -- cand:get_genuine().preedit = cand.text.."\t".. commit .."(" .. commit_en  ..")" -- 首選項+注音符號+英文編碼
+    -- cand:get_genuine().preedit = cand.text.."\t".. commit_en .."(" .. commit  ..")" -- 首選項+英文編碼+注音符號
     -- cand:get_genuine().preedit = cand.text .."✍" --首选
     yield(cand)
   end

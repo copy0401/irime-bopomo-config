@@ -5,17 +5,19 @@ __include: bopomofo.schema:/
 
 # 默認的opencc字形轉換選項設爲臺灣字形標準
 __patch:
-  - switches/@2/reset: 2
-  - bopomofo_tw.custom:/patch?
+  # - switches/@2/reset: 2
+  - bopomofo_liu.custom:/patch?
 
 schema:
   schema_id: bopomofo_liu
-  name: 注音liu # "ˉ"
+  name: 注蝦 # "ˉ"
   version: '1.8'
   author:
     - 佛振 <chen.sst@gmail.com>
   description: |
     用於無蝦米方案 輸入注音反查無暇米碼 不單獨使用
+  dependencies:
+    - terra_pinyin
 #
 # speller:
 #   algebra:

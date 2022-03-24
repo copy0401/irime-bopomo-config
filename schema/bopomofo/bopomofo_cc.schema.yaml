@@ -3,7 +3,6 @@
 
 __include: bopomofo.schema:/
 
-
 # 默認的opencc字形轉換選項設爲臺灣字形標準
 __patch:
   # - switches/@2/reset: 2
@@ -11,19 +10,20 @@ __patch:
 
 schema:
   schema_id: bopomofo_cc
-  name: 注音 # "ˉ"
+  name: 速音 # "ˉ"
   version: '1.8'
   author:
     - 佛振 <chen.sst@gmail.com>
   description: |
     注音符號輸入，採用「大千式」鍵盤排列，輸出臺灣正體字形。
-
     本方案採用「無模式」設計，以大寫字母鍵或上下方向鍵、回車鍵選詞；
     空格鍵輸入第一聲，標記爲「ˉ」。也可省略聲調或韻母部份。
   dependencies:
     # - cangjie5 # cctest
     # - liur_Trad # cctest 嘸蝦米混打
     # - liur.extended # cctest 嘸蝦米混打
+    - openxiami.extended
+    - terra_pinyin
 
 
 switches:
@@ -184,7 +184,7 @@ translator:
 # liur 翻譯器的設定項
 liur:
   # dictionary: liur_Trad
-  dictionary: liur.extended
+  dictionary: openxiami.extended
   # spelling_hints: 1
   enable_completion: true # 关闭后英文不会有提示，只会在打全时才会显示，体验不是很好
   enable_sentence: true # 連打 造詞

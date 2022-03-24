@@ -54,7 +54,7 @@ engine:
     # - lua_translator@charset_filter               # cctest rime.lua 滤除含 CJK 扩展汉字的候选项
     # - lua_translator@charset_comment_filter       # cctest rime.lua 为候选项加上其所属字符集的注释
     - reverse_lookup_filter@phonetic_reverse_lookup # 反查濾鏡 可加載多個實例，後接@+濾鏡名 # cctest 打字時 標出注音
-    - lua_filter@preedit_preview2                   # /lua/preedit_preview2.lua # iRime 需要開啟
+    - lua_filter@preedit_preview2                   # /lua/preedit_preview2.lua # iRime 需要開啟 因為要刪除 自造詞用
     - uniquifier                                    # 過濾重複的候選字，有可能來自繁簡轉換
   processors:          # 這批組件處理各類按鍵消息
     - ascii_composer   # 處理西文模式及中西文切換
@@ -181,10 +181,10 @@ speller:
     # - derive/^([a-z;,])..([a-z;,])$/$1$2\?\?/     # 取首尾二碼 爲速成碼反查四碼字
     # - derive/^([a-z;,])...([a-z;,])$/$1$2\?\?\?/  # 取首尾二碼 爲速成碼反查五碼字
     # 參考五筆方案
-    # - "derive/^[a-z]([a-z]*)$/?$1/"
-    # - "derive/^([a-z])[a-z]([a-z]*)$/$1?$2/"
-    # - "derive/^([a-z]*)[a-z]([a-z])$/$1?$2/"
-    # - "derive/^([a-z]*)[a-z]$/$1?/"
+    - "derive/^[a-z]([a-z]*)$/?$1/"
+    - "derive/^([a-z])[a-z]([a-z]*)$/$1?$2/"
+    - "derive/^([a-z]*)[a-z]([a-z])$/$1?$2/"
+    - "derive/^([a-z]*)[a-z]$/$1?/"
     # 亂序
     # - derive/^([a-z])([a-z])/$1$2/ # derive --衍生〔保留原形〕# 12
     # - derive/^([a-z])([a-z])/$2$1/ # derive --衍生〔保留原形〕# 21
@@ -255,9 +255,8 @@ translator:
     # - "^[',.].*$"
     # - ".*$" # 全部不造詞
   comment_format: # 提示碼自定義
-    # - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|ABCDEFGHIJKLMNOPQRSTUVWXYZ[];',.|" # 顯示大寫 # 使用 preedit_preview2 就不用這行
+    - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|ABCDEFGHIJKLMNOPQRSTUVWXYZ[];',.|" # 顯示大寫 # 使用 preedit_preview2 就不用這行
     # - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ[];',.|" # 顯示大寫 # 使用 preedit_preview2 就不用這行
-    # - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|                          [];',.|"
     # - xform/^~(.+)$/>[$1]   # 將提示碼改為較美觀的型式
     - xform/^~(.+)$/$1   # 改提示碼型式 搭配 lua 使用
   # preedit_format: # 上屛碼自定義

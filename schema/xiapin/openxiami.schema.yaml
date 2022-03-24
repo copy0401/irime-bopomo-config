@@ -1,0 +1,330 @@
+# Rime schema settings
+# encoding: utf-8
+
+schema:
+  schema_id: openxiami
+  name: 速蝦 # 蝦米速成
+  version: "0.01"
+  author:
+    - copy0401
+  description: |
+    蝦米詞句連打
+    碼表源自openxiami
+  dependencies:
+    - luna_pinyin # 只有預設的反查用到 可停用
+    - terra_pinyin
+    - bopomofo_liu # 符號 = 替代 空白鍵 的 注音
+
+
+switches:
+  # - name: ascii_punct
+  #   states: [ 。，, ．， ]
+  - name: ascii_mode
+    reset: 0
+    states: [ 中文, 西文 ]
+  - name: full_shape
+    states: [ 半形, 全形 ] # 半形/全形 半角/全角
+  - name: simplification
+    states: [ 繁體, 簡體 ] # 漢字/汉字 繁體/簡體
+  # - name: liu_w2c # Control+Shift+7 # 嘸蝦米方案中 注音/拼音顯示反查的嘸蝦米編碼
+  #   reset: 1
+  #   states: [ 關閉反查碼 , 反查碼 ]
+  # - name: liu_w3c # Control+Shift+8 # 嘸蝦米方案中 同音字
+  #   reset: 0
+  #   states: [ 關閉同音字 , 同音字 ]
+  - options:
+      # - zh_hant_tw
+      - liu_w2c
+      - liu_w3c
+    states:
+      # - 關閉 # 功能為 opencc 轉換 臺灣字形
+      - 反查碼 # 反查時 標註 蝦米碼
+      - 同音字 # 輸入時 候選項 增加 同音字
+    reset: 0
+
+
+# zh_hant_tw:
+#   option_name: zh_hant_tw
+#   opencc_config: t2tw.json
+#   tags: abc
+#   tips: char
+
+
+liu_w2c: # 反查字的 嘸蝦米編碼
+  opencc_config: liu_w2c.json # 要檢查 opencc 裏面有沒有這個檔案  用字轉換定義文件
+  option_name: liu_w2c # 對應swiches中設定的切換項名
+  show_in_comment: true
+  tags: [ phonetic , reverse_lookup ] # 設定轉換範圍 # abc 保持顯示蝦米碼 # phonetic 只有注音反查時顯示蝦米碼
+  # all [ pinyin , reverse_lookup , abc]  # pinyin , phonetic , mkst , abc, unicode
+  tips: all # 設定是否提示轉換前的字，可塡none〔或不塡〕、char〔僅對單字有效〕、all
+  comment_format: # 提示碼自定義
+    - xform/^~(.+)$/$1 # 去除 行首 ~
+    - xform/\b(\w+)\b/\L$1\E/ # 把 碼改為小寫顯示
+    - xform/\b(\w{1,3})\b/\U$1\E/ # 把 1-3 碼字改為大寫顯示
+    # - xform/\b([\^])([VRSF56789])\b/\+\L$2/ # 轉換 ^V to +v
+    - xform/\b([\^])([VRSF56789])\b/\-\L$2/ # 轉換 ^V to -v
+    - xform/\[// # 轉換  [ABC] [BC] to ABC] BC]
+    - xform/\]/ / # 轉換 ABC] BC] to ABC BC
+    - xform/^(.+)/\[ $1/ # 轉換 ABC ~BCD to [ABC ~BCD
+    - xform/(.+)$/$1\]/ # 轉換 [ABC ~BCD to  [ABC ~BCD]
+    # - xform/\~/\] \[ / # 轉換  [ABC ~BCD]  to  [ABC] [BCD]
+    # - xform/\~/\]\[ / # 轉換  [ABC ~BCD]  to  [ABC][BCD]
+    - xform/\~/\, / # 轉換  [ABC ~BCD]  to  [ABC,BCD]
+
+
+liu_w3c: # 反查字的 同音字
+  opencc_config: liu_w3c.json
+  option_name: liu_w3c
+  show_in_comment: false
+  tags: abc
+  tips: char
+
+engine:
+  processors:
+    - ascii_composer
+    - recognizer
+    - key_binder
+    - speller
+    # - punctuator
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - ascii_segmentor
+    - matcher
+    - affix_segmentor@phonetic  # 注音反查嘸蝦米 # 改用 reverse_lookup_translator
+    - abc_segmentor
+    # - punct_segmentor
+    - fallback_segmentor
+  translators:
+    # - punct_translator
+    - script_translator@fixed
+    - script_translator
+    - reverse_lookup_translator
+    - script_translator@phonetic # 注音反查嘸蝦米 # 改用 reverse_lookup_translator
+    # - reverse_lookup_translator@phonetic # 注音反查嘸蝦米
+    #
+    # - lua_translator@t_translator          # cctest rime.lua
+    # - lua_translator@t2_translator         # cctest rime.lua
+    - lua_translator@date_translator       # cctest rime.lua
+    - lua_translator@calculator_translator # cctest 計算機功能
+    # - history_translator@repeat_history    # cctest # 重复上次上屏内容 # 用不到 先停用
+  filters:
+    - simplifier
+    - simplifier@liu_w2c  # 無蝦米字碼反查 編碼
+    - simplifier@liu_w3c  # 無蝦米字碼反查 同音字
+    - reverse_lookup_filter@phonetic_reverse_lookup # 反查濾鏡 標出注音
+    # - lua_filter@reverse_lookup_filter_liu # rime.lua 反查 嘸蝦米碼 對於透過 opnecc同音字再反查的 編碼會有異常
+    - lua_filter@preedit_preview2                   # /lua/preedit_preview2.lua # iRime 需要開啟
+    - uniquifier
+
+
+speller:
+  alphabet: "abcdefghijklmnopqrstuvwxyz[];',.?"  # 萬用碼 ?` # 定義本方案輸入鍵
+  initials: "abcdefghijklmnopqrstuvwxyz[];',.?"  # 定義僅作始碼之鍵
+  # delimiter: " ;'"  # 上屛時的音節間分音符
+  delimiter: " ;"  # 上屛時的音節間分音符
+  finals: ";" # 定義僅作末碼之鍵 # 測試中 好像沒影響
+  #
+  algebra: # 拼寫運算規則，由之算出的拼寫匯入prism中
+    # 為了加強造詞準確性，在字典中，
+    # 以「~」前綴標記非標準拆字，
+    # 再透過拼寫語法去除「~」後，送入辭典查詢     - xform/^~(.*)$/$1
+    # xform --改寫〔不保留原形〕
+    - xform/^~(.*)$/$1/
+    # ########################################
+    #  魔法鍵 ? 等於 A~Z
+    # 方法1
+    - "derive/^[a-z]([a-z]*)$/?$1/"
+    - "derive/^([a-z])[a-z]([a-z]*)$/$1?$2/"
+    - "derive/^([a-z]*)[a-z]([a-z])$/$1?$2/"
+    - "derive/^([a-z]*)[a-z]$/$1?/"
+    # 方法2
+    # - derive/^([a-z;,.]).([a-z;,.])$/$1$2\?/  # 取首尾二碼爲反查三碼字
+    # - derive/^([a-z;,.])..([a-z;,.])$/$1$2\?\?/  # 取首尾二碼爲速成碼反查四碼字
+    # - derive/^([a-z;,.])...([a-z;,.])$/$1$2\?\?\?/  # 取首尾二碼爲速成碼反查五碼字
+    # ########################################
+    # 速成碼
+    # 方法1
+    # - 'derive/^([a-z])\w+(\w)$/$1$2\;/'  # 取蝦米 首尾二碼+; 爲速成碼  #
+    # - 'derive/^([a-z])\w+$/$1\;/'        # 取蝦米 首碼+;  爲速成碼  # 打太多 會lag
+    # - 'derive/^([a-z])([a-z]){0,3}$/$1\;/'                          # 取蝦米 Aa     +; # 1+0~3碼
+    # - 'derive/^([a-z])([a-z])([a-z]){0,2}$/$1$2\;/'                 # 取蝦米 AaAb   +; # 2+0~2碼
+    # - 'derive/^([a-z])([a-z])([a-z])([a-z]){0,1}$/$1$2$3\;/'        # 取蝦米 AaAbAc +; # 3+0~1碼
+    # 方法2
+    # - 'derive/^([a-z])([a-z])$/$1$2/'     # 取蝦米 首尾二碼   爲速成碼  
+    # - 'derive/^([a-z])\w+(\w)$/$1$2\;/'   # 取蝦米 首尾二碼   爲速成碼
+    # 方法3 
+    # - derive/^([a-z;,.])\w+([a-z;,.])$/$1$2\;\;/  # 取 首尾;; 爲速成碼反查N碼字
+    # - derive/^([a-z;,.])([a-z;,.]*)$/$1\;\;/      # 取 首;;   爲速成碼反查N碼字
+    # 方法4 abbrev https://github.com/rime/home/wiki/SpellingAlgebra
+    # - derive/^([a-z]).*$/$1\;/ # 簡拼
+    # - abbrev/^([a-z]).*$/$1\;/
+    # - fuzz/^([a-z]).+([a-z])$/$1$2/
+    # - fuzz/^([a-z])([a-z]){0,3}([a-z])$/$1$3\;/ # 首尾二碼+;
+    # - fuzz/^([a-z])([a-z]){0,3}$/$1\;\;/ # 簡拼
+    - fuzz/^([a-z])([a-z]){0,3}$/$1\;/ # 簡拼
+    # - fuzz/^([a-z])([a-z]){0,3}$/$1/ # 簡拼
+    # 方法5 lan zuho 
+    # - derive/^(\w).+$/$1/' # 測試
+    # - derive/\A(\w).+$/$1/' # 測試
+
+
+translator:
+  dictionary: openxiami.extended
+  prism: openxiami
+  db_class: tabledb # 測試時先用 tabledb  # tabledb  xxx.txt  #  userdb  xxx.userdb 適合同步用
+  preedit_format: # 上屛碼自定義
+    - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|ABCDEFGHIJKLMNOPQRSTUVWXYZ[];',.|" # 組字時顯示大寫
+  comment_format: # 提示碼自定義
+    - "xlit|abcdefghijklmnopqrstuvwxyz[];',.|ABCDEFGHIJKLMNOPQRSTUVWXYZ[];',.|" # 顯示大寫 # 使用 preedit_preview2 就不用這行
+    - xform/^~(.+)$/$1   # 改提示碼型式 搭配 lua 使用
+  initial_quality: 10
+  enable_user_dict: true  # 開啓用戶詞典
+  enable_completion: true # 提前顯示尚未輸入完整碼的字 開不開都可  iRime 建議開
+  max_homophones: 7
+  max_homographs: 7
+
+fixed: # 用來將 單字前置 # 如果沒影響可以停用
+  __include: /translator
+  initial_quality: 10000
+  enable_user_dict: false  # 開啓用戶詞典
+  enable_completion: true # 提前顯示尚未輸入完整碼的字 開不開都可  iRime 建議開
+  tag: abc #
+  max_homophones: 7
+  max_homographs: 7
+
+# repeat_history: # 重复上次上屏内容
+#   input: "?"
+#   size: 10
+#   initial_quality: 50000
+
+
+# abc_segmentor:
+#   extra_tags:
+#     - reverse_lookup # 打開會讓 注音 速蝦 混合輸入 但是有些問題
+
+# reverse_lookup:
+#   dictionary: luna_pinyin
+#   prefix: "';"
+#   suffix: "'"
+#   tips: 〔拼音〕
+#   preedit_format:
+#     - xform/([nl])v/$1ü/
+#     - xform/([nl])ue/$1üe/
+#     - xform/([jqxy])v/$1u/
+#   comment_format:
+#     - "xlit|abcdefghijklmnopqrstuvwxyz|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜符|"
+
+reverse_lookup: # 注音反查 嘸蝦米編碼 只能查單字
+  prefix: "';"
+  suffix: "'"
+  tips: 〔注音〕
+  # spelling_hints: 9
+  dictionary: terra_pinyin
+  prism: bopomofo_liu # bopomofo_tw # irime內建
+  preedit_format:  #menu反查之輸入法 顯示
+    # - "xlit|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/- 6347'|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙ |"
+    - "xlit|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/-=6347'|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙ |" # 使用 = 當空白鍵
+  comment_format:  #menu 提示 字碼 顯示
+    - xform/\b(\w{1,3})\b/\U$1\E/ # 把 1-3 碼字改為大寫顯示
+  initial_quality: 1.1  # 調整該編譯器出字優先度
+
+phonetic: # 注音反查 嘸蝦米編碼 ##############################################
+  tag: phonetic
+  # spelling_hints: 9
+  prefix: "`" # "\\" ####################################################################
+  suffix: "'"
+  dictionary: terra_pinyin # irime內建
+  prism: bopomofo_liu #  bopomofo_tw
+  preedit_format:  #menu反查之輸入法 顯示
+    # - "xlit|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/- 6347'|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙ |"
+    - "xlit|1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/-=6347'|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙ |" # 使用 = 當空白鍵
+  tips: 〔注音〕
+  initial_quality: 1.1  # 調整該編譯器出字優先度
+
+
+phonetic_reverse_lookup: # 顯示注音符號
+  tag: phonetic_reverse_lookup
+  dictionary: terra_pinyin
+  overwrite_comment: false  # 覆蓋其他提示  # 保留 逐碼+注音 設 false # 只留注音設 true
+  comment_format:
+    - "xform/e?r5$/er5/"
+    - "xform/iu/iou/"
+    - "xform/ui/uei/"
+    - "xform/ong/ung/"
+    - "xform/yi?/i/"
+    - "xform/wu?/u/"
+    - "xform/iu/v/"
+    - "xform/([jqx])u/$1v/"
+    - "xform/([iuv])n/$1en/"
+    - "xform/zh/Z/"
+    - "xform/ch/C/"
+    - "xform/sh/S/"
+    - "xform/ai/A/"
+    - "xform/ei/I/"
+    - "xform/ao/O/"
+    - "xform/ou/U/"
+    - "xform/ang/K/"
+    - "xform/eng/G/"
+    - "xform/an/M/"
+    - "xform/en/N/"
+    - "xform/er/R/"
+    - "xform/eh/E/"
+    - "xform/([iv])e/$1E/"
+    - "xform/1//"
+    - "xlit|bpmfdtnlgkhjqxZCSrzcsiuvaoeEAIOUMNKGR2345|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˊˇˋ˙|"
+    - xform/ /} {/
+    - xform/^/ {
+    - xform/$/}/
+
+
+
+
+punctuator:
+  import_preset: default
+
+key_binder:
+  import_preset: default
+  bindings: 
+    ## paging     翻頁
+    ## has_menu   操作候選項用
+    ## composing  操作輸入碼用
+    ## always     全域
+    ### Tab鍵 換頁
+    # - {accept: Tab, send: Page_Down, when: composing}         # 換下頁
+    # - {accept: "Shift+Tab", send: Page_Up, when: composing}   # 換上頁
+    ##
+    # - {accept: Tab, send: Down, when: composing}            # 換下個候選項
+    # - {accept: "Shift+Tab", send: Up, when: composing}      # 換上個候選項
+    ##
+    - {when: composing, accept: Tab, send: space }          # 上屏候選項
+
+menu:
+  alternative_select_labels: [0,1,2,3,4,5,6,7,8,9] # 由0開始算  v=1 r=2 s=3 f=4
+  alternative_select_keys: 0123456789
+  page_size: 5 # 候選視窗每頁項目數 default 5  
+
+editor:
+  bindings:
+    # space: commit_composition #使用 fluency_editor 時開啟
+    Return: commit_composition # 使用 express_editor 時開啟 # iRime 可以設 commit_raw_input
+    Shift+Return: commit_raw_input # 上屏原始輸入
+    Control+Return: commit_script_text # 上屏變換後輸入
+
+recognizer:
+  import_preset: default
+  patterns:
+    email: ^[a-z][-_.0-9a-z]*@.*$
+    url: ^(www[.]|https?:|ftp:|mailto:).*$
+    reverse_lookup: "';[1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/=6347-]*'?$" # 注音反查嘸蝦米編碼 只能查單字 使用 = 當空白鍵
+    expression: "^=.*$" #cctest 計算機功能
+    lua: "^(``)[a-z0-9/-]*$"
+    phonetic: "`[1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/=6347-]*'?$" # 注音反查嘸蝦米編碼 使用 = 當空白鍵
+    # phonetic: "^\\\\[1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/=6347-]*'?$" # 注音反查嘸蝦米編碼 使用 = 當空白鍵
+
+__patch:
+  # 使用八股文語言模型
+  - grammar:/hant?
+  # 用家自選配置
+  - openxiami.custom:/patch?

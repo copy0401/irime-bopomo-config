@@ -24,9 +24,9 @@ switches:
   - options: [ _key_Left ]
     states: [ ← ] 
   - options: [ _key_Right ]
-    states: [ → ]                    
+    states: [ → ]
   - options: [_key_Hide]
-    states: [   ▽   ]    
+    states: [   ▽   ]
 
 engine:
   processors:

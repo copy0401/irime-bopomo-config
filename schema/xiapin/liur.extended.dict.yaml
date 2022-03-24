@@ -53,7 +53,7 @@ import_tables:
   # - liur_TradToSimp # 如果要啟動簡體漢字就取消註解
   # - openxiami_TCJP # 有加 VRSF # 有些字有 ~ 影響部份造詞
   - openxiami_TCJPCC # 有加 VRSF # 有些字有 刪 ~ 測試完成 可以解決照詞問題
-  - openxiami_TradExt
+  # - openxiami_TradExt
   # - liur_English # 以英語詞庫 小於三碼補 ; 
   #
   # - liur_customWords
