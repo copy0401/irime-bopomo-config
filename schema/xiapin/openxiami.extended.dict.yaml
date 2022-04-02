@@ -23,7 +23,8 @@ import_tables:
   # - openxiami_LIUTCJP
   # - openxiami_TCJP # 有加 VRSF # 有些字有 ~ 影響部份造詞
   - openxiami_TCJPCC # 有加 VRSF # 有些字有 刪 ~ 測試完成 可以解決 造詞問題
-  - openxiami_TradExt
+  # - openxiami_TradExt
+  - openxiami_TradExtCC # 刪 結尾 ; 
   # - liur_English # 以英語詞庫 小於三碼補 ; 
   #
   # - liur_customWords

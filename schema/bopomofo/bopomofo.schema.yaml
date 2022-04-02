@@ -3,7 +3,7 @@
 
 schema:
   schema_id: bopomofo
-  name: 注音
+  name: "注音 bopomofo"
   version: '2.4'
   author:
     - 佛振 <chen.sst@gmail.com>

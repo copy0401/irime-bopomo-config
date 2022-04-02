@@ -3,10 +3,10 @@
 
 schema:
   schema_id: openxiami
-  name: 速蝦 # 蝦米速成
+  name: 速蝦 # 蝦米速成 # table_translator + script_translator
   version: "0.01"
   author:
-    - copy0401
+    - copy0401 # https://github.com/copy0401/irime-bopomo-config/
   description: |
     蝦米詞句連打
     碼表源自openxiami
@@ -89,6 +89,7 @@ engine:
     - selector
     - navigator
     - express_editor
+    # - fluency_editor
   segmentors:
     - ascii_segmentor
     - matcher
@@ -99,7 +100,10 @@ engine:
   translators:
     # - punct_translator
     - script_translator@fixed
+    #
     - script_translator
+    # - table_translator
+    #
     - reverse_lookup_translator
     - script_translator@phonetic # 注音反查嘸蝦米 # 改用 reverse_lookup_translator
     # - reverse_lookup_translator@phonetic # 注音反查嘸蝦米
@@ -115,7 +119,7 @@ engine:
     - simplifier@liu_w3c  # 無蝦米字碼反查 同音字
     - reverse_lookup_filter@phonetic_reverse_lookup # 反查濾鏡 標出注音
     # - lua_filter@reverse_lookup_filter_liu # rime.lua 反查 嘸蝦米碼 對於透過 opnecc同音字再反查的 編碼會有異常
-    - lua_filter@preedit_preview2                   # /lua/preedit_preview2.lua # iRime 需要開啟
+    # - lua_filter@preedit_preview2                   # /lua/preedit_preview2.lua # iRime 需要開啟
     - uniquifier
 
 
@@ -124,14 +128,15 @@ speller:
   initials: "abcdefghijklmnopqrstuvwxyz[];',.?"  # 定義僅作始碼之鍵
   # delimiter: " ;'"  # 上屛時的音節間分音符
   delimiter: " ;"  # 上屛時的音節間分音符
-  finals: ";" # 定義僅作末碼之鍵 # 測試中 好像沒影響
+  # delimiter: " '" # 上屛時的音節間分音符
+  # finals: ";" # 定義僅作末碼之鍵 # 測試中 好像沒影響
   #
   algebra: # 拼寫運算規則，由之算出的拼寫匯入prism中
     # 為了加強造詞準確性，在字典中，
     # 以「~」前綴標記非標準拆字，
     # 再透過拼寫語法去除「~」後，送入辭典查詢     - xform/^~(.*)$/$1
     # xform --改寫〔不保留原形〕
-    - xform/^~(.*)$/$1/
+    # - xform/^~(.*)$/$1/ # 目前用不到
     # ########################################
     #  魔法鍵 ? 等於 A~Z
     # 方法1
@@ -159,11 +164,12 @@ speller:
     # - derive/^([a-z;,.])([a-z;,.]*)$/$1\;\;/      # 取 首;;   爲速成碼反查N碼字
     # 方法4 abbrev https://github.com/rime/home/wiki/SpellingAlgebra
     # - derive/^([a-z]).*$/$1\;/ # 簡拼
-    # - abbrev/^([a-z]).*$/$1\;/
+    # - derive/^([a-z]).*$/$1/
     # - fuzz/^([a-z]).+([a-z])$/$1$2/
     # - fuzz/^([a-z])([a-z]){0,3}([a-z])$/$1$3\;/ # 首尾二碼+;
+    - fuzz/^([a-z])([a-z]){0,2}([a-z])$/$1$3\;/ # 首尾二碼+; ##########
     # - fuzz/^([a-z])([a-z]){0,3}$/$1\;\;/ # 簡拼
-    - fuzz/^([a-z])([a-z]){0,3}$/$1\;/ # 簡拼
+    # - fuzz/^([a-z])([a-z]){0,3}$/$1\;/ # 簡拼  ##########
     # - fuzz/^([a-z])([a-z]){0,3}$/$1/ # 簡拼
     # 方法5 lan zuho 
     # - derive/^(\w).+$/$1/' # 測試
@@ -182,17 +188,15 @@ translator:
   initial_quality: 10
   enable_user_dict: true  # 開啓用戶詞典
   enable_completion: true # 提前顯示尚未輸入完整碼的字 開不開都可  iRime 建議開
-  max_homophones: 7
-  max_homographs: 7
 
-fixed: # 用來將 單字前置 # 如果沒影響可以停用
+
+fixed: # 用來將 單字前置 #  避免自造詞影響排序
   __include: /translator
   initial_quality: 10000
   enable_user_dict: false  # 開啓用戶詞典
   enable_completion: true # 提前顯示尚未輸入完整碼的字 開不開都可  iRime 建議開
   tag: abc #
-  max_homophones: 7
-  max_homographs: 7
+
 
 # repeat_history: # 重复上次上屏内容
 #   input: "?"
@@ -279,8 +283,6 @@ phonetic_reverse_lookup: # 顯示注音符號
     - xform/$/}/
 
 
-
-
 punctuator:
   import_preset: default
 
@@ -323,8 +325,12 @@ recognizer:
     phonetic: "`[1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/=6347-]*'?$" # 注音反查嘸蝦米編碼 使用 = 當空白鍵
     # phonetic: "^\\\\[1qaz2wsxedcrfv5tgbyhnujm8ik,9ol.0p;/=6347-]*'?$" # 注音反查嘸蝦米編碼 使用 = 當空白鍵
 
-__patch:
-  # 使用八股文語言模型
-  - grammar:/hant?
-  # 用家自選配置
-  - openxiami.custom:/patch?
+# __patch:
+#   - grammar:/hant? # 使用八股文語言模型
+#   - openxiami.custom:/patch? # 用家自選配置
+
+grammar: # 使用八股文語言模型
+  language: zh-hant-t-essay-bgw
+translator/contextual_suggestions: true
+translator/max_homophones: 7
+translator/max_homographs: 7

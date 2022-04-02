@@ -1,0 +1,19 @@
+{
+  "name": "無蝦米字碼反查",
+  "segmentation": {
+    "type": "mmseg",
+    "dict": {
+      "type": "text",
+      "file": "liu_w3c.txt"
+    }
+  },
+  "conversion_chain": [{
+    "dict": {
+      "type": "group",
+      "dicts": [{
+        "type": "text",
+        "file": "liu_w3c.txt"
+      }]
+    }
+  }]
+}
